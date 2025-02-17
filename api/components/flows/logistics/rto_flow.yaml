@@ -1,0 +1,70 @@
+summary: Return to Origin (RTO) Flow
+
+details:
+  - description: |
+      This flow outlines the <b>Return to Origin (RTO)</b> process for <b>Logistics Service Providers (LSPs)</b> to handle situations where the buyer is unavailable, an accident occurs, or other unforeseen circumstances arise while the rider is out for delivery.</br>
+      </br>
+      A separate fulfillment will be created for <b>RTO</b> (type = "RTO").</br>
+      The forward shipment fulfillment will be linked to the <b>RTO</b> fulfillment via "rto_event".</br>
+      Since <b>LSPs</b> track a single shipment status for both the forward shipment and <b>RTO</b>:</br>
+      - The forward shipment fulfillment will be set to its terminal state (<b>"RTO"</b>).</br>
+      - The fulfillment state for <b>RTO</b> fulfillment will be updated to <b>"RTO-Initiated"</b>.</br>
+      - The order quote will be updated to include <b>RTO</b> costs before the order or <b>RTO</b> fulfillment reaches its terminal state.</br>
+      - The terminal states for <b>RTO</b> fulfillment are <b>"RTO-Delivered"</b> or <b>"RTO-Disposed"</b>.</br>
+      - The terminal state for the order is <b>"Completed"</b> once the <b>RTO</b> fulfillment reaches its terminal state.</br>
+
+    mermaid: >-
+      sequenceDiagram
+        title Order Flow Overview
+        participant LBNP as Logistics Buyer Network Participant (LBNP)
+        participant LSP as Logistics Service Provider (LSP)
+             
+        LSP ->> LBNP: **/on_status** - Send latest order status (Out-for-delivery, etc.)
+        LSP ->> LBNP: **/on_cancel** - LSP marks the forward shipment as 'RTO' 
+        LSP ->> LBNP: **/on_status** - Send latest order status (RTO-Delivered/RTO-Disposed)
+
+steps:
+  - summary: <b>LSP updates order status</b>
+    api: on_status
+    details:
+      - description: |
+          <b>LSP</b> can use the <b>on_status</b> call to send real-time status updates about the order, such as <b>Order-picked-up, Out-for-delivery, etc.</b>
+        mermaid: >-
+          sequenceDiagram
+            title Order Status
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_picked_up.yaml"
+  - summary: <b>LSP marks the forward shipment as 'RTO' </b>
+    api: on_cancel
+    details:
+      - description: |
+          <b>LSP</b> marks the forward shipment as <b>'RTO'</b> and initiates a new <b>RTO</b> fulfillment (<b>RTO-Initiated</b>). </br>
+          The order quote will be updated to include <b>RTO</b> costs before the order or <b>RTO</b> fulfillment reaches its terminal state.</br>
+          The forward shipment fulfillment will be linked to the <b>RTO</b> fulfillment using "rto_event".</br>
+        mermaid: >-
+          sequenceDiagram
+            title RTO Fulfillment Creation
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_cancel/on_cancel_rto.yaml"
+  - summary: <b>LSP updates the RTO fulfillment to its terminal state </b>
+    api: on_status
+    details:
+      - description: |
+          <b>LSP</b> updates the <b>'RTO'</b> fulfillment status to either <b>RTO-Delivered</b> or <b>RTO-Disposed</b>.
+        mermaid: >-
+          sequenceDiagram
+            title Update RTO Fulfillment to Terminal State
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_status** - Update RTO fulfillment to its terminal state
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_rto.yaml"

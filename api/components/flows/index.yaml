@@ -1,8 +1,10 @@
-- $ref: "./on-demand/on-demand-ride-assign-on_confirm.yaml"
-- $ref: "./on-demand/on-demand-ride-assign-post-on_confirm.yaml"
-- $ref: "./on-demand/on-demand-ride-cancellation-by-rider.yaml"
-- $ref: "./on-demand/on-demand-ride-cancellation-by-driver.yaml"
-- $ref: "./on-demand/on-demand-payment-confirmation.yaml"
+- $ref: "./logistics/baseline.yaml"
+- $ref: "./logistics/quick-commerce.yaml"
+- $ref: "./logistics/cod_flow.yaml"
+- $ref: "./logistics/rto_flow.yaml"
+- $ref: "./logistics/wallet_flow.yaml"
+
+
 
 
 

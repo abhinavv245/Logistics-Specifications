@@ -1,0 +1,77 @@
+summary: Prepaid Payment collected by LSP (Payment Wallet)
+
+details:
+  - description: |
+      This flow outlines the <b>Payment Wallet process</b> for <b>Logistics Service Providers (LSPs)</b>, enabling them to establish a prepaid wallet system for logistics buyers. Payments for services are deducted directly from this wallet, ensuring a seamless and efficient transaction process.
+      </br>
+      A <b>prepaid payment system</b> for logistics can be facilitated through a payment wallet managed by the <b>Logistics Service Provider (LSP)</b> on behalf of the <b>Logistics Buyer Network Partner (LBNP)</b>.</br>  
+      The creation and maintenance of this wallet will be handled off-network. The <b>LSP</b> may establish the wallet during dynamic onboarding, notify the <b>LBNP</b> using the contact details provided via the protocol, and the <b>LBNP</b> can top up the balance as required.</br>  
+      For payment type <b>"ON-ORDER"</b>, the current wallet balance can be provided by the <b>LSP</b> when the <b>LBNP</b> requests a quote.</br>  
+      The wallet will be automatically debited for logistics transactions:</br>  
+      - Wallet balance will be <b>blocked</b> during the <b>/on_init</b> stage.</br>  
+      - Wallet balance will be <b>auto-debited</b> upon <b>/on_confirm</b>.</br>  
+      - If there is insufficient wallet balance, the <b>LSP</b> may reject the order confirmation with an appropriate error code.</br>  
+      - In case of order cancellation, the debited wallet balance must be <b>reversed</b>.</br>
+
+    mermaid: >-
+      sequenceDiagram
+        title Order Flow Overview
+        participant LBNP as Logistics Buyer Network Participant (LBNP)
+        participant LSP as Logistics Service Provider (LSP)
+
+        LBNP --> LSP: **/search**   
+        LSP --> LBNP: **/on_search**   
+        LBNP ->> LSP: **/select** - Sends the payment type as ON-ORDER, which is collected by the BPP.
+        LSP ->> LBNP: **/on_select** - LSP provides payment tags, including the available wallet balance of the LBNP.
+        LBNP --> LSP: **/init**   
+        LSP --> LBNP: **/on_init**  
+        LBNP --> LSP: **/confirm**   
+        LSP ->> LBNP: **/on_confirm** - Automatically deducts the amount from the LBNP wallet and sends both the deducted amount and the updated wallet balance.
+steps:
+  - summary: <b>LSP initiates payment collection via prepaid wallet</b>
+    api: select
+    details:
+      - description: |
+          <b>LBNP</b> specifies that the payment will be collected through a <b>prepaid wallet</b> in the <b>payment</b> object.</br>
+          The <b>collected_by</b> field in the payment object is set to <b>LSP</b>, indicating that the LSP manages the prepaid payment.
+        mermaid: >-
+          sequenceDiagram
+            title Prepaid Payment Selection
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
+            LSP ->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/select/select_wallet.yaml"
+
+  - summary: <b>LSP provides wallet balance information</b>
+    api: on_select
+    details:
+      - description: |
+          <b>LSP</b> sends the <b>LBNP</b>'s current wallet balance in the <b>payment.tags</b> field.</br>
+          This allows the <b>LBNP</b> to view the available balance before confirming the transaction.
+        mermaid: >-
+          sequenceDiagram
+            title Wallet Balance Information
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_select/on_select_wallet.yaml"
+
+  - summary: <b>LSP auto-deducts payment from LBNP wallet</b>
+    api: on_confirm
+    details:
+      - description: |
+          <b>LSP</b> automatically deducts the required amount from the <b>LBNP</b> wallet upon order confirmation.</br>
+          The deducted amount and the updated wallet balance are included in the response.
+        mermaid: >-
+          sequenceDiagram
+            title Wallet Auto-Deduction on Confirmation
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_confirm/on_confirm_wallet.yaml"

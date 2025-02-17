@@ -1,0 +1,235 @@
+summary: Order Flow (Baseline)
+details:
+  - description: |
+      This flow defines the logistics order process for <b>Baseline Features</b> to be implemented by all Network participants transacting on version 1.2.5.<br>
+
+      These features are:<br>  
+        - <b>Catalog Live Search</b><br>
+        - <b>Feature discovery</b><br>
+        - <b>Payment collector updating settlement window & settlement terms</b><br>
+        - <b>Updated RTO order state</b><br>
+        - <b>Shipment type for P2H2P orders</b><br>
+        - <b>Single pickup, single drop (SPSD)</b><br>
+        - <b>Order / fulfillment status updates</b><br>
+        - <b>Cancellation</b><br>
+        - <b>RTO</b><br>
+        - <b>P2P - live tracking</b><br><br>
+
+      Other <b>Baseline Features</b> include:<br>
+        - <b>Settlement window & settlement terms</b> to be provided, for the order, by the payment collector<br>
+        - For <b>P2H2P shipments</b>, the shipment type ("flyer", "box") will be used to compute the weight for pricing:<br>
+          - <b>"Flyer"</b>: If dead weight < 1 kg, use dead weight else max(dead weight, volumetric weight)<br>
+          - <b>"Box"</b>: max(dead weight, volumetric weight)<br>
+          - For <b>"Box"</b> shipment type, weight for pricing = max(dead weight, volumetric weight). If the box dimensions are large, it will take a lot of space and handling at the logistic end, e.g.:<br>
+            - Seller sends 500g shipment (dead weight) with 22x20x18cm dimension box.<br>
+            - Volumetric weight is 1.5kg (22*20*18/5000).<br>
+            - Hence, weight for pricing is 1.5kg.<br><br>
+
+    mermaid: >-
+      sequenceDiagram
+        title Order Flow Overview
+        participant LBNP as Logistics Buyer Network Participant (LBNP)
+        participant LSP as Logistics Service Provider (LSP)
+        
+        %% Step 1: Searching
+        LBNP ->> LSP: **/search** - Initiate search request with key parameters
+        LSP ->> LBNP: **/on_search** - Respond with catalog and rate card
+
+        %% Step 2: Order Initialization
+        LBNP ->> LSP: **/init** - Select LSP & initialize order
+        LSP ->> LBNP: **/on_init** - Provide quote breakup
+
+        %% Step 3: Order Confirmation
+        LBNP ->> LSP: **/confirm** - Send order confirmation
+        LSP ->> LBNP: **/on_confirm** - Order acceptance 
+
+        %% Step 4: Order Updates
+        LBNP ->> LSP: **/update** - Send order update request
+        LSP ->> LBNP: **/on_update** - Provide shipping label or weight differential charges
+
+        %% Step 5: Order Status & Tracking
+        LSP ->> LBNP: **/on_status** - Send latest order status
+
+        LBNP ->> LSP: **/track** - Request live tracking updates
+        LSP ->> LBNP: **/on_track** - Send real-time tracking details
+
+steps:
+  - summary: <b>LBNP sends a search request</b>
+    api: search
+    details:
+      - description: |
+          <b>LBNP</b> initiates a search request providing key parameters.
+        mermaid: >-
+          sequenceDiagram
+            title Search & Rate Request
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/search** - Request available options based on shipment details
+            LSP -->> LBNP: ACK - Confirm search request received
+            LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
+    example:
+      $ref: "../../examples/logistics/search/search.yaml"
+
+  - summary: <b>LSP responds with catalog</b>
+    api: on_search
+    details:
+      - description: |
+          <b>LSP</b> provides catalog of services and pricing details.
+        mermaid: >-
+          sequenceDiagram
+            title Fulfillment Catalog Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
+            LBNP ->> LSP: ACK - Confirm catalog received
+    example:
+      $ref: "../../examples/logistics/on_search/on_search.yaml"
+
+  - summary: <b>LBNP selects and initializes order</b>
+    api: init
+    details:
+      - description: |
+          <b>LBNP</b> selects an LSP and sends an order initialization request.
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/init** - Send order details for fulfillment
+            LSP -->> LBNP: ACK - Confirm request received
+    example:
+      $ref: "../../examples/logistics/init/init.yaml"
+
+  - summary: <b>LSP acknowledges and provides quote breakup</b>
+    api: on_init
+    details:
+      - description: |
+          <b>LSP</b> acknowledges and provides quote breakup
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
+            LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
+    example:
+      $ref: "../../examples/logistics/on_init/on_init.yaml"
+
+  - summary: <b>LBNP sends order confirmation</b>
+    api: confirm
+    details:
+      - description: |
+          <b>LBNP</b> confirms the order with LSP.
+        mermaid: >-
+          sequenceDiagram
+            title Order Confirmation
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/confirm** - Confirm order with final details
+            LSP -->> LBNP: ACK - Confirm order received
+            LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
+    example:
+      $ref: "../../examples/logistics/confirm/confirm.yaml"
+
+  - summary: <b>LSP accepts the order</b>
+    api: on_confirm
+    details:
+      - description: |
+          <b>LSP</b> accepts the order and provides fulfillment details.
+        mermaid: >-
+          sequenceDiagram
+            title Order Confirmation Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
+            LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
+    example:
+      $ref: "../../examples/logistics/on_confirm/on_confirm.yaml"
+
+  - summary: <b>LBNP updates order details</b>
+    api: update
+    details:
+      - description: |
+          <b>LBNP</b> updates order fulfillment details such as delivery address, ready_to_ship = yes, etc.
+        mermaid: >-
+          sequenceDiagram
+            title Order Update
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/update** - Send updated order details
+            LSP -->> LBNP: ACK - Confirm update received
+            LSP ->> LBNP: **/on_update** - Confirm changes applied
+    example:
+      $ref: "../../examples/logistics/update/update.yaml"
+
+  - summary: <b>LSP updates order details</b>
+    api: on_update
+    details:
+      - description: |
+          <b>LSP</b> can use on_update call to send shipping label once order is ready to be shipped, it can also update differential weight charges.
+        mermaid: >-
+          sequenceDiagram
+            title Order Update Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_update** - Update order details
+            LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
+    example:
+      $ref: "../../examples/logistics/on_update/on_update.yaml"
+
+  - summary: <b>LSP updates order status</b>
+    api: on_status
+    details:
+      - description: |
+          <b>LSP</b> can use on_status call to send status updates regarding the order, such as whether the order has been picked up or out for delivery.
+        mermaid: >-
+          sequenceDiagram
+            title Order Status
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_status** - Update order status
+            LBNP ->> LSP: ACK - Acknowledge order status
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_picked_up.yaml"
+  - summary: <b>LBNP requests for tracking information</b>
+    api: track
+    details:
+      - description: |
+          <b>LBNP</b> requests for tracking information for e.g. live tracking via gps coordinates for hyperlocal delivery.
+        mermaid: >-
+          sequenceDiagram
+            title Order Tracking
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/track** - Requests for tracking information
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/track/track.yaml"
+  - summary: <b>LSP provides order tracking information (gps or url) </b>
+    api: on_track
+    details:
+      - description: |
+          <b>LSP</b> provides tracking information
+        mermaid: >-
+          sequenceDiagram
+            title Order tracking Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_track** - Update order tracking information
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_track/on_track.yaml"
+  - summary: <b>LSP updates order status</b>
+    api: on_status
+    details:
+      - description: |
+          <b>LSP</b> can use on_status call to send status updates regarding the order, such as whether the order has been picked up or out for delivery.
+        mermaid: >-
+          sequenceDiagram
+            title Order Status
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: **/on_status** - Update order status
+            LBNP ->> LSP: ACK - Acknowledge order status
+    example:
+      $ref: "../../examples/logistics/on_status/on_status.yaml"

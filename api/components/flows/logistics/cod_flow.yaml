@@ -1,0 +1,170 @@
+summary: Cash on Delivery (COD) Retail Order Flow
+
+details:
+  - description: |
+      This flow defines the logistics process for <b>Cash on Delivery (COD)</b> orders, ensuring proper tracking and settlement between Logistics Buyer Network Participants (<b>LBNPs</b>) and Logistics Service Providers (<b>LSPs</b>).</br>
+
+      <b>Key Features:</b></br>
+      - <b>LBNP</b> declares the order as a COD order in the linked order.</br>
+      - The <b>COD collection amount</b> is specified in the request and can be updated before confirmation.</br>
+      - <b>LSP</b> responds with COD capability and service charges.</br>
+      - The <b>COD settlement process</b> ensures proper tracking of collected payments.</br>
+    mermaid: >-
+      sequenceDiagram
+        title COD Order Flow
+        participant LBNP
+        participant LSP
+        LBNP ->> LSP: /search (Declare COD order, collection amount)
+        LSP -->> LBNP: /on_search (COD capability, service charge details)
+
+  - description: |
+      <b>Order Initialization Process:</b></br>
+      - LBNP selects delivery type and COD fee structure.</br>
+      - LSP responds with final delivery cost, COD charges, and applicable taxes.</br>
+    mermaid: >-
+      sequenceDiagram
+        title Order Initialization
+        participant LBNP
+        participant LSP
+        LBNP ->> LSP: /init (Select delivery type, COD fee)
+        LSP -->> LBNP: /on_init (Final cost breakdown)
+
+  - description: |
+      <b>Order Confirmation & COD Settlement Details:</b></br>
+      - LBNP provides bank account/wallet details for COD deposit.</br>
+      - LSP must deposit the collected amount within a specified time.</br>
+    mermaid: >-
+      sequenceDiagram
+        title Order Confirmation
+        participant LBNP
+        participant LSP
+        LBNP ->> LSP: /confirm (Provide COD settlement details)
+        LSP -->> LBNP: ACK
+
+  - description: |
+      <b>COD Collection & Settlement Update:</b></br>
+      - LSP delivers the order and collects the COD amount.</br>
+      - LSP updates LBNP with the COD deposit transaction details.</br>
+    mermaid: >-
+      sequenceDiagram
+        title COD Collection & Settlement Update
+        participant LBNP
+        participant LSP
+        LSP ->> LBNP: /on_status (COD deposit details, transaction ID)
+        LBNP ->> LSP: ACK
+
+steps:
+  - summary: LBNP sends a search request
+    api: search
+    details:
+      - description: |
+          LBNP initiates a search request providing key details:</br>
+          - Declares <b>COD order</b> inside the linked order.</br>
+          - Specifies <b>COD collection amount</b> (includes product cost, packaging, delivery fee, and COD charges).</br>
+        mermaid: >-
+          sequenceDiagram
+            title Search & Rate Request
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /search (Declare COD order, collection amount)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/search/search_cod.yaml"
+
+  - summary: LSP responds with COD capability
+    api: on_search
+    details:
+      - description: |
+          LSP provides COD service details:</br>
+          - Confirms <b>COD support</b>.</br>
+          - Publishes <b>COD collection fee</b> and handling charges.</br>
+        mermaid: >-
+          sequenceDiagram
+            title COD Capability Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_search (COD capability, service charge details)
+            LBNP -->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_search/on_search_cod.yaml"
+
+  - summary: LBNP initializes order with COD selection
+    api: init
+    details:
+      - description: |
+          - LBNP selects:</br>
+          1. <b>Type of delivery</b> (Instant, Same-Day, etc.).</br>
+          2. <b>COD fee structure</b>.</br>
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /init (Select delivery type, COD fee)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/init/init_cod.yaml"
+
+  - summary: LSP provides final cost breakdown
+    api: on_init
+    details:
+      - description: |
+          - LSP shares final cost including:</br>
+          - <b>Base delivery charge</b>.</br>
+          - <b>COD fee as a separate line item</b>.</br>
+          - <b>Applicable taxes on COD fee (if any)</b>.</br>
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
+            LBNP -->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_init/on_init_cod.yaml"
+
+  - summary: LBNP confirms order & provides COD settlement details
+    api: confirm
+    details:
+      - description: |
+          - LBNP confirms order and specifies:</br>
+          - <b>Bank account or wallet details</b> for COD deposit.</br>
+          - <b>Deposit time window</b> for LSP to settle COD.</br>
+        mermaid: >-
+          sequenceDiagram
+            title Order Confirmation
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /confirm (COD settlement details)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/confirm/confirm_cod.yaml"
+  - summary: LSP accepts the order
+    api: on_confirm
+    details:
+      - description: |
+          - LSP accepts the order and provides timeslots in case the order is ready to be shipped.
+        mermaid: >-
+          sequenceDiagram
+            title Order confirmation
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_confirm
+            LBNP -->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_confirm/on_confirm_cod.yaml"
+  - summary: LSP updates LBNP on COD settlement
+    api: on_status
+    details:
+      - description: |
+          - LSP deposits collected COD amount and updates LBNP.</br>
+          - Provides <b>transaction ID</b> and <b>timestamp</b> of deposit.</br>
+        mermaid: >-
+          sequenceDiagram
+            title COD Settlement Update
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_status (COD deposit transaction details)
+            LBNP -->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_cod.yaml"

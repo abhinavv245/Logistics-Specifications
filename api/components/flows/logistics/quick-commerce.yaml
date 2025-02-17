@@ -1,0 +1,189 @@
+summary: Quick Commerce / Milk Run / SPMD Logistics Flow
+
+details:
+  - description: |
+      This flow defines the logistics process for <b>Quick Commerce</b>, <b>Milk Run</b>, and <b>SPMD (Single Pickup Multi-Delivery)</b> models. It facilitates seamless coordination between logistics service providers (<b>LSPs</b>) and logistics buyer network participants (<b>LBNPs</b>).<br/>
+
+      <b>Key Features:</b><br/>
+      - <b>LBNP</b> initiates a search request with parameters like order count, rider availability, pickup details, serviceability distance, and pricing structure.<br/>
+      - <b>LSP</b> responds with fulfillment capacity, pricing guarantees, and incremental rates.<br/>
+      - Delivery details are updated dynamically through forward APIs.<br/>
+      - Each retail order receives separate fulfillment.<br/>
+      - <b>Quick Commerce:</b> <i>Instant delivery with strict turnaround times (S2D TAT).</i><br/>
+      - <b>Milk Run & SPMD:</b> <i>Flexible delivery options: "Immediate", "Same Day", or "Next Day" based on protocol.</i><br/>
+    mermaid: >-
+      sequenceDiagram
+        title Search & Rate Request
+        participant LBNP
+        participant LSP
+        LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
+        LSP -->> LBNP: /on_search (Fulfillment capacity, pricing details)
+
+  - description: |
+      <b>Order Initialization Process:</b><br/>
+      - <b>LBNP</b> initializes order processing by sending a request.<br/>
+      - <b>LSP</b> acknowledges the request and provides initial fulfillment details.<br/>
+    mermaid: >-
+      sequenceDiagram
+        title Order Initialization
+        participant LBNP
+        participant LSP
+        LBNP ->> LSP: /init (Initialize order processing)
+        LSP -->> LBNP: ACK
+        LSP ->> LBNP: /on_init (Provide initial fulfillment details)
+        LBNP ->> LSP: ACK
+
+  - description: |
+      <b>Order Confirmation Flow:</b><br/>
+      - <b>LSP</b> requests confirmation from <b>LBNP</b>.<br/>
+      - <b>LSP</b> provides final fulfillment details.<br/>
+    mermaid: >-
+      sequenceDiagram
+        title Order Confirmation
+        participant LBNP
+        participant LSP
+        LSP ->> LBNP: /confirm (Order confirmation request)
+        LSP -->> LBNP: ACK
+        LSP ->> LBNP: /on_confirm (Final fulfillment details)
+        LBNP ->> LSP: ACK
+
+steps:
+  - summary: <b>LBNP sends a search request</b>
+    api: search
+    details:
+      - description: |
+          <b>LBNP</b> initiates a search request providing key parameters:<br/>
+          - <i>Number of orders or riders.</i><br/>
+          - <i>Pickup location and delivery slot.</i><br/>
+          - <i>Maximum serviceable distance.</i><br/>
+          - <i>Rate structure (rate per rider/order).</i><br/>
+        mermaid: >-
+          sequenceDiagram
+            title Search & Rate Request
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/search/search_quick_commerce.yaml"
+
+  - summary: <b>LSP responds with fulfillment catalog</b>
+    api: on_search
+    details:
+      - description: |
+          <b>LSP</b> provides a response detailing:<br/>
+          - <i>Available fulfillment capacity.</i><br/>
+          - <i>Minimum guarantee per order.</i><br/>
+          - <i>Incremental pricing based on riders/orders per time unit.</i><br/>
+        mermaid: >-
+          sequenceDiagram
+            title Catalog Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_search/on_search_quick_commerce.yaml"
+
+  - summary: <b>LBNP selects and initializes order with LSP</b>
+    api: init
+    details:
+      - description: |
+          - <b>LBNP</b> selects an <b>LSP</b> based on internal logic and sends <code>/init</code> request.<br/>
+          - Each retail order is processed as a separate fulfillment.<br/>
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /init (Initialize order processing)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/init/init_quick_commerce.yaml"
+
+  - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
+    api: on_init
+    details:
+      - description: |
+          - <b>LSP</b> assigns fulfillment IDs and provides a pricing breakdown.<br/>
+        mermaid: >-
+          sequenceDiagram
+            title Order Initialization Response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_init/on_init_quick_commerce.yaml"
+  - summary: <b>LBNP sends order confirmation to LSP</b>
+    api: confirm
+    details:
+      - description: |
+          - LBNP sends order confirmation to LSP
+        mermaid: >-
+          sequenceDiagram
+            title Order confirmation
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /confirm (Confirmation of the order)
+            LSP -->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/confirm/confirm.yaml"
+  - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
+    api: on_confirm
+    details:
+      - description: |
+          - <b>LSP</b> accepts the order and provide pickup and delivery range once the order is ready to be shipped. Pickup slot (in tags) that was provided by LBNP become irrelevant after pickup time (in fulfillments.time.range) is provided, same with delivery slot & time;<br/>
+        mermaid: >-
+          sequenceDiagram
+            title Order confirmation response
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_confirm (Order acceptance)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_confirm/on_confirm_quick_commerce.yaml"
+  - summary: <b>LSP updates order status with the rider details</b>
+    api: on_status
+    details:
+      - description: |
+          - <b>LSP</b> LSP communicates rider information to <b>LBNP</b> .'rider_details' tags are added with the rider information in fulfillment.tags;
+        mermaid: >-
+          sequenceDiagram
+            title Order Status Update
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_status (Updated order status and rider information)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_quick_commerce.yaml"
+
+  - summary: <b>LBNP updates order details and assigns the rider to respective fulfillments</b>
+    api: update
+    details:
+      - description: |
+          - <b>LBNP</b> updates order details (e.g., agent assignment to each fulfillment, location updates).<br/>
+        mermaid: >-
+          sequenceDiagram
+            title Order Update
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: /update (Updated order details)
+            LSP ->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/update/update_quick_commerce.yaml"
+
+  - summary: <b>LSP acknowledges the update</b>
+    api: on_update
+    details:
+      - description: |
+          - <b>LSP</b> acknowledges updates and reflects them in fulfillment details.<br/>
+        mermaid: >-
+          sequenceDiagram
+            title Order Update Acknowledgment
+            participant LBNP
+            participant LSP
+            LSP ->> LBNP: /on_update (Updated fulfillment details)
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_update/on_update_quick_commerce.yaml"
