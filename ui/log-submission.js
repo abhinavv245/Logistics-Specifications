@@ -10,7 +10,7 @@ function renderDropdownCases(branchname,filteredData){
 
 function renderCases(branchName,file) {
 fetch(
-`https://raw.githubusercontent.com/ondc-official/ONDC-FIS-Specifications/${branchName}/api/components/docs/${file}.md`
+`https://raw.githubusercontent.com/abhinavv245/Logistics-Specifications/${branchName}/api/components/docs/${file}.md`
 )
 .then((response) => response.text())
 .then((text) => {

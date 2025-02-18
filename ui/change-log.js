@@ -18,7 +18,7 @@ function updateChangeLog() {
 
 function renderMDFile(branchName, file) {
   fetch(
-    `https://raw.githubusercontent.com/ONDC-Official/ONDC-FIS-Specifications/${branchName}/api/components/docs/changeLog/${file}.md`
+    `https://raw.githubusercontent.com/abhinavv245/Logistics-Specifications/${branchName}/api/components/docs/changeLog/${file}.md`
   )
     .then((response) => response.text())
     .then(async (text) => {
