@@ -27,7 +27,7 @@ details:
         LSP ->> LBNP: **/on_status** - Updates the fulfillment state 'At-pickup'
         LSP -->> LBNP: rest of the APIs
 steps:
-  - summary: <b>LSP initiates order confirmation with estimated preparation time</b>
+  - summary: LSP initiates order confirmation with estimated preparation time
     api: confirm
     details:
       - description: |
@@ -46,7 +46,7 @@ steps:
     example:
       $ref: "../../examples/logistics/confirm/confirm_immediate.yaml"
 
-  - summary: <b>LSP updates the status once the order is ready</b>
+  - summary: LSP updates the status once the order is ready
     api: update
     details:
       - description: |
@@ -62,7 +62,7 @@ steps:
     example:
       $ref: "../../examples/logistics/update/update_immediate.yaml"
 
-  - summary: <b>Rider sets fulfillment state to "At-pickup"</b>
+  - summary: Rider sets fulfillment state to "At-pickup"
     api: on_status
     details:
       - description: |
@@ -70,9 +70,9 @@ steps:
         mermaid: >-
           sequenceDiagram
             title Rider Update Fulfillment Status
-            participant Rider
+            participant LBNP
             participant LSP
             LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
-            LBNP ->> LSP: ACK
+            LBNP -->> LSP: ACK
     example:
       $ref: "../../examples/logistics/on_status/on_status_immediate.yaml"
