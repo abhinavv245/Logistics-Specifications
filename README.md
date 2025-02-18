@@ -1,1 +1,1 @@
-ONDC Logistics Specification
+ONDC Logistics Specifications
