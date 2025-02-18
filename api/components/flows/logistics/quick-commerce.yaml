@@ -21,8 +21,8 @@ details:
 
   - description: |
       <b>Order Initialization Process:</b><br/>
-      - <b>LBNP</b> initializes order processing by sending a request.<br/>
-      - <b>LSP</b> acknowledges the request and provides initial fulfillment details.<br/>
+      - <b>LBNP</b> initializes order processing by providing billing and address details.<br/>
+      - <b>LSP</b> assigns the fulfillment IDs to the respective fulfillments.<br/>
     mermaid: >-
       sequenceDiagram
         title Order Initialization
@@ -30,7 +30,7 @@ details:
         participant LSP
         LBNP ->> LSP: /init (Initialize order processing)
         LSP -->> LBNP: ACK
-        LSP ->> LBNP: /on_init (Provide initial fulfillment details)
+        LSP ->> LBNP: /on_init (Assigns fulfillment IDs)
         LBNP ->> LSP: ACK
 
   - description: |
@@ -42,10 +42,32 @@ details:
         title Order Confirmation
         participant LBNP
         participant LSP
-        LSP ->> LBNP: /confirm (Order confirmation request)
+        LBNP ->> LSP: /confirm (Order confirmation request)
         LSP -->> LBNP: ACK
         LSP ->> LBNP: /on_confirm (Final fulfillment details)
         LBNP ->> LSP: ACK
+
+  - description: |
+      <b>Rider Information:</b><br/>
+      - <b>LSP</b> provides rider details to the <b>LBNP</b>.<br/>
+    mermaid: >-
+      sequenceDiagram
+        title Rider information
+        participant LBNP
+        participant LSP
+        LSP ->> LBNP: /on_status (Rider information)
+        LSP -->> LBNP: ACK
+
+  - description: |
+      <b>Rider Assignment:</b><br/>
+      - <b>LSP</b> communicates rider information to <b>LBNP</b> ; subsequent to this, LBNP updates agent details, for each fulfillment, and communicates to LSP using /update;<br/>
+    mermaid: >-
+      sequenceDiagram
+        title Rider assignment
+        participant LBNP
+        participant LSP
+        LSP ->> LBNP: /update (Rider assignment)
+        LSP -->> LBNP: ACK
 
 steps:
   - summary: <b>LBNP sends a search request</b>

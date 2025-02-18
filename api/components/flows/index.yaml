@@ -1,4 +1,5 @@
 - $ref: "./logistics/baseline.yaml"
+- $ref: "./logistics/immediate_delivery_flow.yaml"
 - $ref: "./logistics/quick-commerce.yaml"
 - $ref: "./logistics/cod_flow.yaml"
 - $ref: "./logistics/rto_flow.yaml"

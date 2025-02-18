@@ -6,7 +6,7 @@ value:
     country: IND
     city: std:080
     action: on_confirm
-    core_version: 1.2.5
+    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
@@ -80,7 +80,7 @@ value:
                 - link to downloadable shipping label (required for P2H2P)
               additional_desc:
                 content_type: text/html
-                url: ..
+                url: ".."
             time:
               duration: PT15M
               range:
@@ -107,7 +107,7 @@ value:
               short_desc: value of DCC
               additional_desc:
                 content_type: text/html
-                url: ..
+                url: ".."
             time:
               range:
                 start: "2024-11-20T23:00:00.000Z"

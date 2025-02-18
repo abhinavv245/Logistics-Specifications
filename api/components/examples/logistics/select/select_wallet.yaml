@@ -6,7 +6,7 @@ value:
     country: IND
     city: std:080
     action: select
-    core_version: 1.2.5
+    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com

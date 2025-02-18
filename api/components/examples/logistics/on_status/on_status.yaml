@@ -6,7 +6,7 @@ value:
     country: IND
     city: std:080
     action: on_status
-    core_version: 1.2.5
+    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
@@ -88,7 +88,7 @@ value:
                 - link to downloadable shipping label
               additional_desc:
                 content_type: text/html
-                url: ..
+                url: ".."
             authorization:
               type: OTP
               token: OTP code

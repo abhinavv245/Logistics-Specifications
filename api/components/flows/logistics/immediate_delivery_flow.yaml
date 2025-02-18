@@ -1,0 +1,78 @@
+summary: Immediate Delivery Flow
+
+details:
+  - description: |
+      The <b>Immediate Delivery Flow</b> outlines the process for confirming and updating logistics orders with the <b>Logistics Service Provider (LSP)</b> and the <b>Logistics Buyer Network Partner (LBNP)</b>.</br>
+
+      When confirming the order, the <b>LBNP</b> must send the following information in /confirm:</br>
+      - Estimated order preparation time</br>
+      - <b>"ready_to_ship" = "yes"</b></br>
+      - Reference retail order ID</br>
+      - Static OTP for pickup/delivery verification (optional, as required)</br>
+      </br>
+      The <b>LBNP</b> should use their estimate of the order preparation time along with the LSP's estimated pickup time to determine when to place the logistics order. If the conditions aren't met, the <b>LSP</b> can reject the order confirmation (<b>NACK</b>) with error code <b>65005</b>.</br>
+      </br>
+      Once the order is ready for shipment, the <b>LBNP</b> sends <b>"order_ready" = "yes"</b> via <b>/update</b> to notify the LSP.</br>
+      </br>
+      The rider must set the fulfillment state to <b>"At-pickup"</b> after reaching the perimeter of the pickup location, via <b>/on_status</b>.
+
+    mermaid: >-
+      sequenceDiagram
+        title Order Flow Overview
+        participant LBNP as Logistics Buyer Network Participant (LBNP)
+        participant LSP as Logistics Service Provider (LSP)
+        LBNP -->> LSP: rest of the APIs
+        LBNP ->> LSP: **/confirm** - "ready_to_ship" status as "yes," along with the estimated order preparation time and the linked retail order ID.
+        LBNP ->> LSP: **/update** - marking the "order_ready" tag as "yes"
+        LSP ->> LBNP: **/on_status** - Updates the fulfillment state 'At-pickup'
+        LSP -->> LBNP: rest of the APIs
+steps:
+  - summary: <b>LSP initiates order confirmation with estimated preparation time</b>
+    api: confirm
+    details:
+      - description: |
+          <b>LBNP</b> sends the estimated order preparation time and retail order ID within the <b>fulfillment.tags</b>. The <b>linked_order</b> is also included to reference the retail order.</br>
+          Additionally, the <b>"ready_to_ship" = "yes"</b> status is marked in the fulfillment tags.</br>
+          <b>LBNP</b> should use their estimate of order preparation time and the estimated time to pickup (by LSP) to decide when to place the logistics order.</br> Static OTP for pickup/delivery verification (optional, as required)</br>
+          If the conditions mentioned above aren't met, the <b>LSP</b> can reject the order confirmation (<b>NACK</b>) with error code <b>65005</b>.
+        mermaid: >-
+          sequenceDiagram
+            title Order Confirmation with Preparation Time
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/confirm** - Estimated order preparation time, linked_order, retail order ID, "ready_to_ship" = "yes"
+            LSP -->> LBNP: ACK
+            LSP -->> LBNP: NACK - Reject order if conditions aren't met, error code 65005
+    example:
+      $ref: "../../examples/logistics/confirm/confirm_immediate.yaml"
+
+  - summary: <b>LSP updates the status once the order is ready</b>
+    api: update
+    details:
+      - description: |
+          Once the order is ready, <b>LBNP</b> sends the <b>"order_ready" = "yes"</b> status within the <b>/update</b> API call.</br>
+          This marks the order as ready for pickup by the LSP.
+        mermaid: >-
+          sequenceDiagram
+            title Order Ready Update
+            participant LBNP
+            participant LSP
+            LBNP ->> LSP: **/update** - "order_ready" = "yes"
+            LSP ->> LBNP: ACK
+    example:
+      $ref: "../../examples/logistics/update/update_immediate.yaml"
+
+  - summary: <b>Rider sets fulfillment state to "At-pickup"</b>
+    api: on_status
+    details:
+      - description: |
+          The rider must set the fulfillment state to <b>"At-pickup"</b> after reaching the perimeter of the pickup location. This action is sent via the unsoliciated <b>/on_status</b> API call to update the status.
+        mermaid: >-
+          sequenceDiagram
+            title Rider Update Fulfillment Status
+            participant Rider
+            participant LSP
+            LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
+            LBNP ->> LSP: ACK
+    example:
+      $ref: "../../examples/logistics/on_status/on_status_immediate.yaml"

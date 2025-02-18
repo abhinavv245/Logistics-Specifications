@@ -1,23 +1,23 @@
-summary: Order Confirmation (Auto-debit of wallet balance)
-description: LSP provides acceptance to the order and auto-debit of wallet balance
+summary: Order status (At-pickup)
+description: LSP updates the order status such as any changes to the fulfillment state for e.g. from At-pickup, record timestamps, etc and maintains the complete order trail.
 value:
   context:
     domain: nic2004:60232
     country: IND
     city: std:080
-    action: on_confirm
+    action: on_status
     core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
-    message_id: M3
-    timestamp: '2024-11-20T22:00:30.000Z'
+    message_id: M7
+    timestamp: '2024-11-20T00:00:30.000Z'
   message:
     order:
       id: O2
-      state: Accepted
+      state: In-progress
       provider:
         id: P1
         locations:
@@ -50,19 +50,20 @@ value:
       fulfillments:
         - id: '1'
           type: Delivery
+          '@ondc/org/awb_no': '1227262193237777'
           state:
             descriptor:
-              code: Pending
-          '@ondc/org/awb_no': '1227262193237777'
+              code: At-pickup
+              short_desc: pickup or delivery failed reason code
           tracking: false
           start:
             person:
               name: person_name
             location:
               id: S1
-              gps: 12.4535,77.9283
+              gps: 12.453544,77.928379
               address:
-                name: Store name
+                name: name
                 building: My house or building name
                 locality: My street name
                 city: Bengaluru
@@ -72,25 +73,26 @@ value:
             contact:
               phone: '9886098860'
               email: abcd.efgh@gmail.com
-            instructions:
-              code: '2'
-              short_desc: value of PCC
-              long_desc: QR code will be attached to package
-              images:
-                - link to downloadable shipping label (required for P2H2P)
-              additional_desc:
-                content_type: text/html
-                url: ".."
             time:
               duration: PT15M
               range:
                 start: '2024-11-20T22:30:00.000Z'
                 end: '2024-11-20T22:45:00.000Z'
+            instructions:
+              code: 5,
+              short_desc: "9876"
+              name: ONDC order
+              long_desc: additional instructions for pickup
+              images:
+                - link to downloadable shipping label
+              additional_desc:
+                content_type: text/html
+                url: ".."
           end:
             person:
               name: person_name
             location:
-              gps: 12.4535445,77.9283792
+              gps: 12.4535,77.9283
               address:
                 name: 'My house or building #'
                 building: My house or building name
@@ -102,22 +104,31 @@ value:
             contact:
               phone: '9886098860'
               email: abcd.efgh@gmail.com
-            instructions:
-              code: '3'
-              short_desc: value of DCC
-              additional_desc:
-                content_type: text/html
-                url: ".."
             time:
               range:
                 start: '2024-11-20T23:00:00.000Z'
                 end: '2024-11-20T23:15:00.000Z'
+            instructions:
+              code: "5"
+              short_desc: "4567"
+              name: ONDC order
+              long_desc: additional instructions for delivery
           agent:
             name: agent_name
             phone: '9886098860'
           vehicle:
             registration: 3LVJ945
+          '@ondc/org/ewaybillno': EBN1
+          '@ondc/org/ebnexpirydate': '2024-11-30T12:00:00.000Z'
           tags:
+            - code: tracking
+              list:
+                - code: gps_enabled
+                  value: 'yes'
+                - code: url_enabled
+                  value: 'no'
+                - code: url
+                  value: ..
             - code: linked_provider
               list:
                 - code: id
@@ -180,28 +191,28 @@ value:
                   value: kilogram
                 - code: weight_value
                   value: '1.0'
-            - code: shipping_label
-              list:
-                - code: type
-                  value: pdf
-                - code: url
-                  value: public link to pdf
-            - code: weather_check
-              list:
-                - code: raining
-                  value: 'yes'
-            - code: state
-              list:
-                - code: ready_to_ship
-                  value: 'yes'
-            - code: rto_action
-              list:
-                - code: return_to_origin
-                  value: 'no'
+      payment:
+        '@ondc/org/collection_amount': '300.00'
+        type: POST-FULFILLMENT
+        collected_by: BPP
+        '@ondc/org/settlement_basis': invoicing
+        '@ondc/org/settlement_window': P15D
+        status: PAID
+        time:
+          timestamp: '2024-11-21T10:00:00.000Z'
+        '@ondc/org/settlement_details':
+          - settlement_counterparty: buyer-app
+            settlement_type: upi
+            upi_address: gft@oksbi
+            settlement_bank_account_no: XXXXXXXXXX
+            settlement_ifsc_code: XXXXXXXXX
+            settlement_status: PAID
+            settlement_reference: XXXXXXXXX
+            settlement_timestamp: '2024-11-21T00:00:00.000Z'
       billing:
-        name: ONDC Logistics Buyer NP
+        name: ONDC Seller NP
         address:
-          name: My building no
+          name: 'My building #'
           building: My building name
           locality: My street name
           city: Bengaluru
@@ -211,23 +222,6 @@ value:
         tax_number: XXXXXXXXXXXXXXX
         phone: '9886098860'
         email: abcd.efgh@gmail.com
-        created_at: '2024-11-20T21:30:00.000Z'
-        updated_at: '2024-11-20T21:30:00.000Z'
-      payment:
-        collected_by: BPP
-        type: ON-ORDER
-        params:
-          currency: INR
-          transaction_id: txn1234
-          amount: '150.00'
-        status: PAID
-        tags:
-          - code: wallet_balance
-            list:
-              - code: currency
-                value: INR
-              - code: value
-                value: '4850.00'
       '@ondc/org/linked_order':
         items:
           - category_id: Grocery
@@ -247,6 +241,7 @@ value:
           address:
             name: KHB Towers
             building: Building or House No
+            street: 6th Block
             locality: Koramangala
             city: Bengaluru
             state: Karnataka
@@ -267,14 +262,26 @@ value:
               unit: centimeter
               value: 1
       tags:
-        - code: bpp_terms
+        - code: diff_dim
           list:
-            - code: static_terms
-              value: >-
-                https://github.com/ONDC-Official/protocol-network-extension/discussions/79
-        - code: bap_terms
+            - code: unit
+              value: centimeter
+            - code: length
+              value: '1.5'
+            - code: breadth
+              value: '1.5'
+            - code: height
+              value: '1.5'
+        - code: diff_weight
           list:
-            - code: accept_bpp_terms
-              value: 'Y'
-      created_at: '2024-11-20T22:00:00.000Z'
-      updated_at: '2024-11-20T22:00:30.000Z'
+            - code: unit
+              value: kilogram
+            - code: weight
+              value: '1.5'
+        - code: diff_proof
+          list:
+            - code: type
+              value: image
+            - code: url
+              value: https://lsp.com/sorter/images1.png
+      updated_at: '2024-11-20T23:00:30.000Z'

@@ -1,6 +1,0 @@
-logistics:
-  summary: Logistics 
-  description: >-
-    Logistics use case
-  example_set:
-    $ref: "./logistics/index.yaml"
