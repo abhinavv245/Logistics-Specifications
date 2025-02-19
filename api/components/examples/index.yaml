@@ -1,2 +1,0 @@
-on-demand:
-  $ref: './on-demand/on-demand.yaml'
