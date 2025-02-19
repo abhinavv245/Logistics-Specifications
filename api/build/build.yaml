@@ -11461,8 +11461,8 @@ x-flows:
           - In case of order cancellation, the debited wallet balance must be
           <b>reversed</b>.</br>
         mermaid: |-
-          sequenceDiagram
-            title Order Flow Overview
+          sequenceDiagram 
+            title Payment Wallet Overview
             participant LBNP as Logistics Buyer Network Participant (LBNP)
             participant LSP as Logistics Service Provider (LSP)
 
