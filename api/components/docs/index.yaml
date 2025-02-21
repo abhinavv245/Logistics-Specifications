@@ -1,2 +1,24 @@
 filenames:
-  - log-verification.md
+  - Call_masking.md
+  - Cancellation_terms.md
+  - Codified_static_terms.md
+  - Customer_support_contact_details.md
+  - Differential_weight_charges.md
+  - Feature_list.md
+  - Fulfillment_states_mapping.md
+  - Partial_RTO.md
+  - Pickup_and_delivery_attemp_trail.md
+  - Proof_of_pickup_and_delivery.md
+  - Publish_special_capabilities.md
+  - RCM_self_declaration.md
+  - Reverse_QC.md
+  - SLA_metrics.md
+  - Seller_and_buyer_instructions.md
+  - Seller_creds.md
+  - Seller_creds_list.md
+  - Static_OTP_RTO.md
+  - Static_OTP_pickup_and_delivery.md
+  - Surge_fee.md
+  - Transaction_level_contract.md
+  - Update_delivery_address.md
+  - eWay_bill.md
