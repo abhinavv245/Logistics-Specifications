@@ -19707,8 +19707,8 @@ x-featureui: &ref_47
     - Seller_and_buyer_instructions.md
     - Seller_creds.md
     - Seller_creds_list.md
+    - Static_OTP_RTO.md
     - Static_OTP_pickup_and_delivery.md
-    - Static_OTP_rto.md
     - Surge_fee.md
     - Transaction_level_contract.md
     - Update_delivery_address.md
