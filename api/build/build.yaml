@@ -19688,9 +19688,11 @@ x-tlc:
         Terms and the ONDC Network Policy or the Static Terms and the Network
         Participant Agreement, the terms of the ONDC Network Policy or the
         Network Participant Agreement (as the case may be) will prevail.
-x-testcasesui:
+x-featureui: &ref_47
   filenames:
-    - log-verification.md
+    - Static_OTP_pickup_and_delivery copy.md
+    - Static_OTP_rto.md
+x-testcasesui: *ref_47
 x-sandboxui:
   dropdown:
     - environment-name: staging
