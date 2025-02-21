@@ -1,0 +1,19 @@
+type:
+  - code: Delivery
+    description: Describes the type of fulfillment.
+    reference: <PR/Issue/Discussion Links md format text
+  - code: Return
+    description: Describes the type of fulfillment.
+    reference: <PR/Issue/Discussion Links md format text  
+start: 
+  authorization:
+    type:
+      - code: OTP
+        description: Describes OTP as an authorization mechanism used to start the fulfillment of an order.
+        reference: <PR/Issue/Discussion Links md format text
+end: 
+  authorization:
+    type:
+      - code: OTP
+        description: Describes OTP as an authorization mechanism used to end the fulfillment of an order.
+        reference: <PR/Issue/Discussion Links md format text
