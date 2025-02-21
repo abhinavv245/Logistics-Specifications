@@ -1,5 +1,14 @@
 # Static OTP Verification (RTO) - 00A
 
+## Overview
+Static OTP verification for **Return to Origin (RTO)** ensures that return deliveries are authenticated securely. By using a **static OTP**, the system ensures that only authorized returns are completed, reducing the risk of fraud and incorrect returns.
+
+## Key Features
+- **Secure RTO Process**: Ensures only valid returns are processed by requiring OTP authentication.
+- **LSP Restrictions**: Logistics Service Providers (LSPs) should not share OTPs with riders; the OTP is provided by the end seller.
+- **Order Tracking**: Captures OTPs for RTO verification at the time of delivery return.
+- **Enhanced Transparency**: Ensures visibility into return attempts through structured logging.
+
 ## Flow for RTO Verification
 1. **LBNP requests for LSP** that supports RTO delivery verification using static OTP.
 2. **LBNP creates verification code** for delivery:
@@ -117,7 +126,6 @@
             }
           },
           "start": {
-            ..
             "time": {
               "timestamp": "2024-10-16T07:00:00.000Z"
             },
@@ -127,7 +135,6 @@
             }
           },
           "end": {
-            ..
             "time": {
               "timestamp": "2024-10-16T07:30:00.000Z"
             },
@@ -216,23 +223,9 @@
               ]
             }
           ]
-        },
-        {
-          "id": "1-RTO",
-          "type": "RTO",
-          "state": {
-            "descriptor": {
-              "code": "RTO-Delivered"
-            }
-          },
-          "end": {
-            "instructions": {
-              "code": "5",
-              "short_desc": "9876"
-            }
-          }
         }
       ]
     }
   }
 }
+```

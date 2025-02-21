@@ -1,5 +1,14 @@
 # Static OTP Verification (Pickup & Delivery) - 009
 
+## Overview
+Static OTP verification is a method used to ensure secure pickup and delivery of orders by requiring an OTP at key fulfillment stages. This enhances security by ensuring that only authorized personnel can complete the transaction.
+
+## Key Features
+- **Static OTP**: A fixed OTP assigned for an order, without time validity.
+- **Dynamic OTP**: An OTP that is valid only for a specific time period.
+- **Enhanced Security**: Prevents unauthorized pickups and deliveries.
+- **LSP Restrictions**: Logistics service providers (LSPs) should not share OTPs with riders; OTPs must be provided by the end seller or buyer.
+
 ## Pickup & Delivery Verification Modes
 
 - **Static OTP** - Static for the order, without any time validity.
