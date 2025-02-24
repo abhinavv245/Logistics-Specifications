@@ -3,8 +3,9 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 
 async function buildAttribiutes() {
+
   let attributes = {};
-  const workSheetsFromBuffer = xlsx.parse(`./on-demand_attributes_updated.xlsx`);
+  const workSheetsFromBuffer = xlsx.parse(`./attributes/Logistics 1.2.5 Attribute Sheet.xlsx`);
   for (let i = 0; i < workSheetsFromBuffer.length; i++) {
     const array = workSheetsFromBuffer[i];
     const filterArray = array.data.filter((subArr) => subArr.length > 0);
@@ -16,7 +17,7 @@ async function buildAttribiutes() {
   }
   if (Object.keys(attributes)?.length) {
     const attributesYaml = yaml.dump(attributes);
-    fs.writeFileSync(`./attributes/on-demand/index.yaml`, attributesYaml);
+    fs.writeFileSync(`./attributes/logistics/index.yaml`, attributesYaml);
   }
 }
 function formObject(attributes) {

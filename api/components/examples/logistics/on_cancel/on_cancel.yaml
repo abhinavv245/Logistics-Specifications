@@ -39,18 +39,18 @@ value:
       quote:
         price:
           currency: INR
-          value: ..
+          value: '59.00'
         breakup:
           - '@ondc/org/item_id': I1
             '@ondc/org/title_type': delivery
             price:
               currency: INR
-              value: ..
+              value: "50.00"
           - '@ondc/org/item_id': I1
             '@ondc/org/title_type': tax
             price:
               currency: INR
-              value: ..
+              value: "09.00"
       fulfillments:
         - id: '1'
           type: Delivery
