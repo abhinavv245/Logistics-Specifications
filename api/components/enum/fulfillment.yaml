@@ -4,16 +4,85 @@ type:
     reference: <PR/Issue/Discussion Links md format text
   - code: Return
     description: Describes the type of fulfillment.
-    reference: <PR/Issue/Discussion Links md format text  
-start: 
+    reference: <PR/Issue/Discussion Links md format text
+start:
   authorization:
     type:
       - code: OTP
         description: Describes OTP as an authorization mechanism used to start the fulfillment of an order.
         reference: <PR/Issue/Discussion Links md format text
-end: 
+  instructions:
+    code:
+      - code: 2
+        description: Describes merchant order number.
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 3
+        description: Describes any other pickup confirmation code.
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 4
+        description: Describes OTP for pickup confirmation.
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 5
+        description: Describes Static OTP for pickup confirmation.
+        reference: <PR/Issue/Discussion Links md format text
+end:
   authorization:
     type:
       - code: OTP
         description: Describes OTP as an authorization mechanism used to end the fulfillment of an order.
         reference: <PR/Issue/Discussion Links md format text
+  instructions:
+    code:
+      - code: 1
+        description: Describes OTP for delivery confirmation.
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 2
+        description: Describes any other delivery confirmation code (DCC).
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 3
+        description: Describes no delivery code.
+        reference: <PR/Issue/Discussion Links md format text
+      - code: 5
+        description: Describes Static OTP for delivery confirmation.
+        reference: <PR/Issue/Discussion Links md format text
+state:
+  descriptor:
+    code:
+      - code: Pending
+        description: Describes the state of the order as Pending.
+      - code: Cancelled
+        description: Describes the state of the order as Cancelled.
+      - code: Order-picked-up
+        description: Describes the state of the order as Order picked up.
+      - code: RTO
+        description: Describes the state of the order as Return to Origin.
+      - code: RTO-Delivered
+        description: Describes the state of the order as Return to Origin Delivered.
+      - code: RTO-Disposed
+        description: Describes the state of the order as Return to Origin Disposed.
+      - code: Out-for-pickup
+        description: Describes the state of the order as Out for pickup.
+      - code: At-destination-hub
+        description: Describes the state of the order as At destination hub.
+      - code: In-transit
+        description: Describes the state of the order as In transit.
+      - code: At-pickup
+        description: Describes the state of the order as At pickup.
+      - code: Out-for-delivery
+        description: Describes the state of the order as Out for delivery. 
+      - code: At-delivery
+        description: Describes the state of the order as At delivery.  
+      - code: Searching-for-Agent
+        description: Describes the state of the order as Searching for Agent.
+      - code: Agent-assigned
+        description: Describes the state of the order as Agent assigned. 
+      - code: Pickup-failed
+        description: Describes the state of the order as Pickup failed.   
+      - code: Pickup-rescheduled
+        description: Describes the state of the order as Pickup rescheduled.       
+      - code: Delivery-failed
+        description: Describes the state of the order as Delivery failed.
+      - code: Delivery-rescheduled
+        description: Describes the state of the order as Delivery rescheduled. 
+      - code: Order-delivered
+        description: Describes the state of the order as Order delivered.    

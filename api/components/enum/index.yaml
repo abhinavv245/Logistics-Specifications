@@ -14,8 +14,7 @@ search:
       category: &category
         $ref: "./category.yaml"
       item: &item
-        $ref: "./item.yaml"  
-
+        $ref: "./item.yaml"
 on_search:
   context:
     <<: *context
@@ -27,10 +26,18 @@ on_search:
   message:
     catalog:
       bpp/providers:
-        items: &item
-          $ref: "./item.yaml"
-        fulfillments: *fulfillment
-        payments: *payment
+        items:
+          descriptor:
+            code:
+              $ref: "./item.yaml#/descriptor/code"
+          category_id:
+            $ref: "./category.yaml#/id"
+        categories:
+          id:
+            $ref: "./category.yaml#/id"
+        fulfillments:
+          type:
+            $ref: "./fulfillment.yaml#/type"
 select:
   context:
     <<: *context
@@ -66,16 +73,24 @@ init:
         reference: <PR/Issue/Discussion Links md format text>
   message:
     order:
-     items: *item
-     payment: 
-      ondc/org/settlement_details:
-       settlement_counterparty: 
-        - code: lbnp
-          description: This defines with whom the settlement will happen.
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: lsp
-          description: This defines with whom the settlement will happen.
-          reference: <PR/Issue/Discussion Links md format text>  
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+      payment:
+        ondc/org/settlement_details:
+          settlement_counterparty:
+            - code: lbnp
+              description: This defines with whom the settlement will happen.
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: lsp
+              description: This defines with whom the settlement will happen.
+              reference: <PR/Issue/Discussion Links md format text>
+        type:
+          $ref: "./payment.yaml#/type"
 on_init:
   context:
     <<: *context
@@ -85,32 +100,13 @@ on_init:
         reference: <PR/Issue/Discussion Links md format text>
   message:
     order: &orderTerms
-      items: *item
-      fulfillments: *fulfillment
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
       payments: *payment
       quote:
         breakup:
-          "@ondc/org/title_type":
-             - code: delivery
-               description: Describes the base fare for delivery.
-               reference: <PR/Issue/Discussion Links md format text>
-             - code: rto
-               description: Describes the base fare for return to origin (rto).
-               reference: <PR/Issue/Discussion Links md format text>
-             - code: tax
-               description: Describes the tax fare for delivery or rto.
-               reference: <PR/Issue/Discussion Links md format text>
-             - code: diff
-               description: Describes the weight differential charge.
-               reference: <PR/Issue/Discussion Links md format text>
-             - code: tax_diff
-               description: Describes the tax on weight differential charge.
-               reference: <PR/Issue/Discussion Links md format text>
-             - code: discount
-               description: Describes the discount on delivery charge.
-               reference: <PR/Issue/Discussion Links md format text>          
-           
-        
+          $ref: "./quote.yaml#/breakup"
 confirm:
   context:
     <<: *context
@@ -120,8 +116,25 @@ confirm:
         reference: <PR/Issue/Discussion Links md format text>
   message:
     order:
-      <<: *order
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
       quote: *quote
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+      payments: *payment
 on_confirm:
   context:
     <<: *context
@@ -133,16 +146,38 @@ on_confirm:
     order:
       <<: *orderTerms
       state:
-      - code: Created
-        description: Defines the current state of order
-        reference: <PR/Issue/Discussion Link md format text>
-      - code: Accepted
-        description:  Defines the current state of order
-        reference: <PR/Issue/Discussion Link md format text>
-      - code: Cancelled
-        description:  Defines the current state of order
-        reference: <PR/Issue/Discussion Link md format text>
-
+        - code: Created
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Accepted
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Cancelled
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        state:
+          $ref: "./fulfillment.yaml#/state"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+      payments: *payment
+      quote:
+        breakup:
+          $ref: "./quote.yaml#/breakup"
 status:
   context:
     <<: *context
@@ -158,7 +193,50 @@ on_status:
         description: Seller app return order with status , Driver pickup - driver drop
         reference: <PR/Issue/Discussion Links md format text>
   message:
-    order: *orderTerms
+    order:
+      state:
+        - code: Created
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Accepted
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Cancelled
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Completed
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: In-progress
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        state:
+          $ref: "./fulfillment.yaml#/state"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+          authorization:
+            type:
+              $ref: "./fulfillment.yaml#/start/authorization/type"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+          authorization:
+            type:
+              $ref: "./fulfillment.yaml#/end/authorization/type"
+      quote: *quote
+      payments: *payment
 cancel:
   context:
     <<: *context
@@ -166,11 +244,6 @@ cancel:
       - code: cancel
         description: Buyer app requests order cancellation."
         reference: <PR/Issue/Discussion Links md format text>
-  message:
-    cancellation_reason_id:
-      $ref: "./cancel.yaml#/buyer"
-    descriptor:
-      code: *status
 on_cancel:
   context:
     <<: *context
@@ -180,15 +253,83 @@ on_cancel:
         reference: <PR/Issue/Discussion Links md format text>
   message:
     order:
-      items: *item
-      fulfillments: *fulfillment
-      payments: *payment
-      cancellation:
-        reason:
-          descriptor:
-            code:
-              $ref: "./cancel.yaml#/seller"
+      state:
+        - code: Created
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Accepted
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Cancelled
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
       quote: *quote
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        state:
+          $ref: "./fulfillment.yaml#/state"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+      payment: *payment
+on_cancel_rto:
+  context:
+    <<: *context
+    action:
+      - code: on_cancel
+        description: Seller app specifies the cancellation status.
+        reference: <PR/Issue/Discussion Links md format text>
+  message:
+    order:
+      state:
+        - code: Created
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Accepted
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Cancelled
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: Completed
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+        - code: In-progress
+          description: Defines the current state of order
+          reference: <PR/Issue/Discussion Link md format text>
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        state:
+          $ref: "./fulfillment.yaml#/state"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+      quote: *quote
+      payments: *payment
 update:
   context:
     <<: *context
@@ -197,13 +338,78 @@ update:
         description: Buyer app requests order update."
         reference: <PR/Issue/Discussion Links md format text>
   message:
-    order: *orderQuote
+    order:
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+          authorization:
+            type:
+              $ref: "./fulfillment.yaml#/start/authorization/type"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
 on_update:
   context:
     <<: *context
     action:
-      - code: on_cancel
+      - code: on_update
         description: Seller app specifies the update status.
         reference: <PR/Issue/Discussion Links md format text>
   message:
-    order: *orderQuote
+    order:
+      items:
+        descriptor:
+          code:
+            $ref: "./item.yaml#/descriptor/code"
+        category_id:
+          $ref: "./category.yaml#/id"
+      quote: *quote
+      fulfillments:
+        type:
+          $ref: "./fulfillment.yaml#/type"
+        state:
+          $ref: "./fulfillment.yaml#/state"
+        start:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/start/instructions/code"
+          authorization:
+            type:
+              $ref: "./fulfillment.yaml#/start/authorization/type"
+        end:
+          instructions:
+            code:
+              $ref: "./fulfillment.yaml#/end/instructions/code"
+      payment: *payment
+track:
+  context:
+    <<: *context
+    action:
+      - code: track
+        description: Seller app specifies the update status.
+        reference: <PR/Issue/Discussion Links md format text>
+on_track:
+  context:
+    <<: *context
+    action:
+      - code: on_track
+        description: Seller app specifies the update status.
+        reference: <PR/Issue/Discussion Links md format text>
+  message:
+    trcaking:
+      status:
+        - code: active
+          description: Defines whether the status is active or not
+        - code: inactive
+          description: Defines whether the status is active or not
