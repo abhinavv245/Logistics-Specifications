@@ -1,43 +1,285 @@
 payments:
   tags:
     - code: BUYER_FINDER_FEES
-      description : Describes the finder fees for buyer
+      description: Describes the finder fees for buyer
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/buyer-finder-fees"
-    - code: SETTLEMENT_TERMS    
-      description : Describes the settlement terms
+    - code: SETTLEMENT_TERMS
+      description: Describes the settlement terms
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/settlement-terms"
-items: 
-  tags: 
+items:
+  tags:
     - code: FARE_POLICY
-      description : Details about fare for the ride
+      description: Details about fare for the ride
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/fare_policy"
     - code: INFO
-      description : Describes the general info about the ride
+      description: Describes the general info about the ride
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/info"    
-fulfillments: 
+        $ref: "./tag.yaml#/info"
+fulfillments:
   tags:
-    - code: ROUTE_INFO
-      description : Describes the route information.
+    - code: linked_provider
+      description: Describes the provider information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/route_info"
-    - code: LOCATION
-      description : Describes the location information.
+        $ref: "./tag.yaml#/linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/location" 
+        $ref: "./tag.yaml#/linked_order"
 locationTagsOnly:
-  tags:  
+  tags:
     - code: LOCATION
-      description : Describes the location information.
+      description: Describes the location information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/location"            
+        $ref: "./tag.yaml#/location"
+
+tags:
+  - code: lbnp_features
+    description: Describes the list of enhanced features supported.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/lbnp_features"
+descriptor_tags:
+  - code: bpp_terms
+    description: Describes the bpp terms and conditions.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/descriptor_tags"
+fulfillment_tags:
+  - code: distance
+    description: Describes the total distance. Useful for P2P.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/fulfillment_tags"
+bap_terms:
+  - code: bap_terms
+    description: Describes the bap terms and conditions.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/bap_terms"
+bpp_terms:
+  - code: bpp_terms
+    description: Describes the bpp terms and conditions.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/bpp_terms"
+
+confirm_fulfillments:
+  tags:
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: state
+      description: Describes the state for ready to ship.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_state"
+    - code: rto_action
+      description: Describes the rto (Return to origin) action.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_rto_action"
+
+on_confirm_fulfillments:
+  tags:
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: state
+      description: Describes the state for ready to ship.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_state"
+    - code: rto_action
+      description: Describes the rto (Return to origin) action.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_rto_action"
+    - code: shipping_label
+      description: Describes the shipping label.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/shipping_label"
+    - code: weather_check
+      description: Describes the weather check.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/weather_check"
+
+update_fulfillments:
+  tags:
+    - code: state
+      description: Describes the state for ready to ship.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_state"
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+
+on_update_fulfillments:
+  tags:
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: shipping_label
+      description: Describes the shipping label.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/shipping_label"
+
+on_cancel_fulfillments:
+  tags:
+    - code: igm_request
+      description: Describes the IGM request.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/igm_request"
+    - code: precancel_state
+      description: Describes the pre-cancel state of fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/precancel_state"
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: shipping_label
+      description: Describes the shipping label.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/shipping_label"
+
+on_cancel_rto_fulfillments:
+  tags:
+    - code: rto_event
+      description: Describes the RTO event.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/rto_events"
+    - code: igm_request
+      description: Describes the IGM request.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/igm_request"
+    - code: precancel_state
+      description: Describes the pre-cancel state of fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/precancel_state"
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: shipping_label
+      description: Describes the shipping label.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/shipping_label"
+
+on_status_fulfillments:
+  tags:
+    - code: tracking
+      description: (optional) tracking attributes for fulfillment, may be provided, on or before fulfillment state of "Agent-assigned", if tracking = "true";
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/tracking"
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: shipping_label
+      description: Describes the shipping label.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/shipping_label"
