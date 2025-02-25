@@ -190,7 +190,7 @@ search:
                 description: Area code for pickup location address.
           authorization:
             type:
-              required: mandatory
+              required: optional
               type: string
               owner: BAP
               usage: OTP
@@ -225,7 +225,7 @@ search:
                 description: Area code for delivery location address.
           authorization:
             type:
-              required: mandatory
+              required: optional
               type: string
               owner: BAP
               usage: OTP
