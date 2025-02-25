@@ -283,3 +283,45 @@ on_status_fulfillments:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/shipping_label"
+
+on_confirm_order_tags:
+  - code: bpp_terms
+    description: Describes the bpp terms and conditions.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/bpp_terms"
+  - code: bap_terms
+    description: Describes the bap terms and conditions.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/bap_terms"
+
+tracking_tags:
+  tags:
+    - code: order
+      description: Describes the order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Describes the order id to be tracked.
+          reference: <PR/Issue/Discussion Links md format text>
+    - code: config
+      description: Describes whether tracking is by gps (point-to-point hyperlocal) or url (non-hyperlocal).
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: attr
+          description: can be "tracking.location.gps", "tracking.url"
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: type
+          description: "live_poll tracking.location.gps or for deferred tracking.url"
+          reference: <PR/Issue/Discussion Links md format text>
+    - code: path
+      description: Describes the origin of the order's journey.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: lat_lng
+          description: Describes the latitude and longitude of the driver.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: sequence
+          description: Describes the sequence.
+          reference: <PR/Issue/Discussion Links md format text>
