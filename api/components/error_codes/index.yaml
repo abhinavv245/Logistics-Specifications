@@ -1,8 +1,4 @@
 code:
-  - code: 66006
-    Event: KYC Failed - due to xx reason
-    From: BPP
-    Description: Used in error object
   - code: 60001
     Event: >-
       Location Serviceability Error - Pickup location not serviceable by
