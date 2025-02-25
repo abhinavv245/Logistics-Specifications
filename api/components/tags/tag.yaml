@@ -4,7 +4,7 @@ buyer-finder-fees:
     reference: <PR/Issue/Discussion Links md format text>
   - code: BUYER_FINDER_FEES_PERCENTAGE
     description: Buyer finder fee in percentage
-    reference: <PR/Issue/Discussion Links md format text>    
+    reference: <PR/Issue/Discussion Links md format text>
   - code: BUYER_FINDER_FEES_AMOUNT
     description: Buyer finder fee in amount
     reference: <PR/Issue/Discussion Links md format text>
@@ -14,7 +14,7 @@ fare_policy:
     reference: <PR/Issue/Discussion Links md format text>
   - code: MIN_FARE_DISTANCE_KM
     description: Describes the minimum fare per KM
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: PER_KM_CHARGE
     description: Describes the per km charge
     reference: <PR/Issue/Discussion Links md format text>
@@ -23,48 +23,48 @@ fare_policy:
     reference: <PR/Issue/Discussion Links md format text>
   - code: WAITING_CHARGE_PER_MIN
     description: Describes the waiting charge per minute
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: NIGHT_CHARGE_MULTIPLIER
     description: Describes the times need to multiply for night charge
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: NIGHT_SHIFT_START_TIME
-    description : Describes the time when night shift starts
+    description: Describes the time when night shift starts
     reference: <PR/Issue/Discussion Links md format text>
   - code: NIGHT_SHIFT_END_TIME
     description: Describes the time when night shift ends
     reference: <PR/Issue/Discussion Links md format text>
   - code: EXTERNAL_REF
     description: Describes the reference to fare policy that has been documented in text/html
-    reference: <PR/Issue/Discussion Links md format text>   
-        
+    reference: <PR/Issue/Discussion Links md format text>
+
   # - code: RESTRICTED_PERSON
   #   description: Describes the restricted person
-  #   reference: <PR/Issue/Discussion Links md format text>                     
+  #   reference: <PR/Issue/Discussion Links md format text>
   # - code: RESTRICTION_PROOF
   #   description: Describes the proof needed for restriction
-  #   reference: <PR/Issue/Discussion Links md format text>                                     
+  #   reference: <PR/Issue/Discussion Links md format text>
 seat_grid:
   - code: X
     description: Describes the x-axis co-ordinate of seat
     reference: <PR/Issue/Discussion Links md format text>
   - code: Y
     description: Describes the y-axis co-ordinate of seat
-    reference: <PR/Issue/Discussion Links md format text>   
+    reference: <PR/Issue/Discussion Links md format text>
   - code: Z
     description: Describes the z-axis co-ordinate of seat
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: X_SIZE
     description: describes the x-axis size of seat
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: Y_SIZE
     description: Describes the y-axis size of seat
-    reference: <PR/Issue/Discussion Links md format text>    
+    reference: <PR/Issue/Discussion Links md format text>
   - code: SEAT_NUMBER
     description: Describes the seat number for assigned ticket
-    reference: <PR/Issue/Discussion Links md format text>   
-  - code: RESTRICTED_GENDER 
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: RESTRICTED_GENDER
     description: Describes the restricted gender for assigned ticket
-    reference: <PR/Issue/Discussion Links md format text>   
+    reference: <PR/Issue/Discussion Links md format text>
   - code: SINGLE_SEAT
     description: describes if assigned ticket seat is single or not
     reference: <PR/Issue/Discussion Links md format text>
@@ -79,43 +79,43 @@ seat_grid:
     reference: <PR/Issue/Discussion Links md format text>
   - code: AVAILABLE
     description: Describes whether seat is available for selection or not
-    reference: <PR/Issue/Discussion Links md format text>      
+    reference: <PR/Issue/Discussion Links md format text>
 vehicle_grid:
   - code: X_MAX
     description: Describes the max x-axis co-ordinate of vehicle
     reference: <PR/Issue/Discussion Links md format text>
   - code: Y_MAX
     description: Describes the max y-axis co-ordinate of vehicle
-    reference: <PR/Issue/Discussion Links md format text>   
+    reference: <PR/Issue/Discussion Links md format text>
   - code: Z_MAX
     description: Describes the max z-axis co-ordinate of vehicle
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: X_LOBBY_START
     description: Describes the x-axis starting point
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: X_LOBBY_SIZE
     description: Describes the x-axis size of lobby
-    reference: <PR/Issue/Discussion Links md format text>    
+    reference: <PR/Issue/Discussion Links md format text>
   - code: Y_LOBBY_START
     description: Describes the y-axis starting point
-    reference: <PR/Issue/Discussion Links md format text>   
-  - code: Y_LOBBY_SIZE 
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: Y_LOBBY_SIZE
     description: Describes the y-axis size of lobby
     reference: <PR/Issue/Discussion Links md format text>
-  - code: SEAT_SELECTION 
+  - code: SEAT_SELECTION
     description: Describes whether seat selection is mandatory or optional
     reference: <PR/Issue/Discussion Links md format text>
 vehicle_availability:
-  - code: AVALIABLE_SEATS 
+  - code: AVALIABLE_SEATS
     description: Describes the available seats present in vehicle
-    reference: <PR/Issue/Discussion Links md format text> 
-route_info:    
-  - code: ENCODED_POLYLINE
-    description: Describes the encoded polyline value.
     reference: <PR/Issue/Discussion Links md format text>
-  - code: WAYPOINTS
-    description: Describes the waypoints value.
-    reference: <PR/Issue/Discussion Links md format text>  
+linked_provider:
+  - code: id
+    description: Describes unique id for provider.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: name
+    description: Describes the name of provider.
+    reference: <PR/Issue/Discussion Links md format text>
 settlement-terms:
   - code: SETTLEMENT_WINDOW
     description: Time window to complete settlement
@@ -140,28 +140,217 @@ settlement-terms:
     reference: <PR/Issue/Discussion Links md format text>
   - code: SETTLEMENT_AMOUNT
     description: Denotes settlement amount
-    reference: <PR/Issue/Discussion Links md format text>                
+    reference: <PR/Issue/Discussion Links md format text>
 info:
   - code: DISTANCE_TO_NEAREST_DRIVER_METER
     description: Describes the distance to nearest driver.
     reference: <PR/Issue/Discussion Links md format text>
   - code: ETA_TO_NEAREST_DRIVER_MIN
     description: Describes the ETA to nearest driver.
-    reference: <PR/Issue/Discussion Links md format text>  
-location:
-  - code: START_AREA
-    description: Describes the area code of start location.
     reference: <PR/Issue/Discussion Links md format text>
-  - code: END_AREA
-    description: Describes the area code of end location.
+linked_order:
+  - code: currency
+    description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: Describes the declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: category
+    description: Describes the category of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Describes the weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Describes the weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: Describes the package dimension unit for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: Describes the length of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: Describes the breadth of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: Describes the height of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+lbnp_features:
+  - code: 00B
+    description: Describes the Updated cancellation codes.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: 00E
+    description: Describes the Pickup & delivery attempt trail (P2H2P).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: 01D
+    description: Describes the Publish special capabilities.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "005"
+    description: Describes the Quick Commerce Logistics.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "009"
+    description: Describes the Static OTP verification (pickup & delivery).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: 00C
+    description: Describes the Updated flow for Immediate Delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+descriptor_tags:
+  - code: static_terms
+    description: Describes the static terms.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: static_terms_new
+    description: Describes the new static terms.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: effective_date
+    description: Describes the effective date.
+    reference: <PR/Issue/Discussion Links md format text>
+fulfillment_tags:
+  - code: motorable_distance_type
+    description: Describes the motorable distance type.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: motorable_distance
+    description: Describes the motorable distance.
+    reference: <PR/Issue/Discussion Links md format text>
+bap_terms:
+  - code: accept_bap_terms
+    description: Describes the acceptance of bap terms.
+    reference: <PR/Issue/Discussion Links md format text>
+bpp_terms:
+  - code: static_terms
+    description: Describes the static terms.
+    reference: <PR/Issue/Discussion Links md format text>
+
+confirm_linked_provider:
+  - code: id
+    description: Describes unique id for provider.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: name
+    description: Describes the name of provider.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: address
+    description: Describes the address of provider.
+    reference: <PR/Issue/Discussion Links md format text>
+
+confirm_linked_order:
+  - code: id
+    description: Describes the unique id of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: Describes the declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: category
+    description: Describes the category of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Describes the weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Describes the weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: Describes the package dimension unit for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: Describes the length of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: Describes the breadth of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: Describes the height of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: shipment_type
+    description: Describes the shipment type of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+
+confirm_linked_order_item:
+  - code: category
+    description: Describes the category of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: name
+    description: Describes the name of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: value
+    description: Describes the declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: quantity
+    description: Describes thequantity of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Describes the weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Describes the weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+
+confirm_state:
+  - code: ready_to_ship
+    description: Describes the order is ready to ship.
+    reference: <PR/Issue/Discussion Links md format text>
+
+confirm_rto_action:
+  - code: return_to_origin
+    description: Describes the item for return to origin.
+    reference: <PR/Issue/Discussion Links md format text>
+
+shipping_label:
+  - code: type
+    description: Describes the type of shipping label.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: url
+    description: Describes the url of shipping label.
+    reference: <PR/Issue/Discussion Links md format text>  
+
+weather_check:
+  - code: raining
+    description: Describes the weather is raining.
+    reference: <PR/Issue/Discussion Links md format text>    
+    
+igm_request:
+  - code: id
+    description: Describes the unique id of the IGM (Issue Grievance Management)
     reference: <PR/Issue/Discussion Links md format text> 
 
-  
+precancel_state: 
+  - code: fulfillment_state
+    description: Describes the previous fulfillment state of the order.
+    reference: <PR/Issue/Discussion Links md format text> 
+  - code: updated_at
+    description: Describes the updated time of the order.
+    reference: <PR/Issue/Discussion Links md format text>   
+
+rto_events: 
+  - code: retry_count
+    description: Describes the number of retry attempted.
+    reference: <PR/Issue/Discussion Links md format text> 
+  - code: rto_id
+    description: Describes the unique id of the RTO.
+    reference: <PR/Issue/Discussion Links md format text>  
+  - code: cancellation_reason_id
+    description: Describes the cancellation reason id.
+    reference: <PR/Issue/Discussion Links md format text> 
+  - code: cancelled_by
+    description: Describes the order cancelled by.
+    reference: <PR/Issue/Discussion Links md format text> 
 
 
-
-    
-
+tracking:
+  - code: gps_enabled
+    description: Describes whether tracking by GPS coordinates enabled
+    reference: <PR/Issue/Discussion Links md format text> 
+  - code: url_enabled
+    description: Describes whether tracking by GPS coordinates enabled
+    reference: <PR/Issue/Discussion Links md format text>  
+  - code: url
+    description: Describes if tracking by URL enabled, corresponding URL for tracking
+    reference: <PR/Issue/Discussion Links md format text>              
 
 
 

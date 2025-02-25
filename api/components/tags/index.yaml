@@ -1,40 +1,92 @@
 search:
   message:
     intent:
-      payment: &payments
-        $ref: "./tag-group.yaml#/payments"
       fulfillment: &fulfillments
-        $ref: './tag-group.yaml#/locationTagsOnly'       
+        $ref: "./tag-group.yaml#/fulfillments"
+      tags:
+        $ref: "./tag-group.yaml#/tags"
+
 on_search:
   message:
     catalog:
-      providers:
-        items: &items
-          $ref: "./tag-group.yaml#/items"
-        payments: *payments
-# select: 
-#   message:
-#     order:
-#       fulfillments: *fulfillments
-on_select: 
-  message:
-    order:
-      items: *items
-      fulfillments: &fulfillments
-        $ref: './tag-group.yaml#/fulfillments'
+      bpp/descriptor:
+        tags:
+          $ref: "./tag-group.yaml#/descriptor_tags"
+      bpp/providers:
+        fulfillments:
+          $ref: "./tag-group.yaml#/fulfillment_tags"
+      tags:
+        $ref: "./tag-group.yaml#/tags"
 
 init:
   message:
     order:
-      payments: *payments
-on_init: &ref0
+      fulfillments:
+        tags:
+          - code: linked_provider
+            list:
+              $ref: "./tag.yaml#/linked_provider"
+      tags:
+        $ref: "./tag-group.yaml#/bap_terms"
+
+on_init:
   message:
     order:
-      items: *items
-      payments: *payments
-      fulfillments: *fulfillments
-confirm: *ref0       
-on_confirm: *ref0
-on_status: *ref0
-on_cancel: *ref0
-on_update: *ref0
+      fulfillments:
+        tags:
+          - code: linked_provider
+            list:
+              $ref: "./tag.yaml#/linked_provider"
+      tags:
+        $ref: "./tag-group.yaml#/bpp_terms"
+
+confirm:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/confirm_fulfillments"
+      tags:
+        $ref: "./tag-group.yaml#/bap_terms"
+
+on_confirm:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/on_confirm_fulfillments"
+      tags:
+        $ref: "./tag-group.yaml#/on_confirm_order_tags"
+
+update:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/update_fulfillments"
+        
+on_update:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/on_update_fulfillments"
+
+on_cancel:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/on_cancel_fulfillments"
+
+on_cancel_rto:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/on_cancel_rto_fulfillments"
+
+on_track:
+  message:
+    tracking:
+      $ref: "./tag-group.yaml#/tracking_tags"
+       
+on_status:
+  message:
+    order:
+      fulfillments:
+        $ref: "./tag-group.yaml#/on_status_fulfillments"             
