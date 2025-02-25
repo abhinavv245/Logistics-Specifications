@@ -2,41 +2,39 @@ search:
   message:
     intent:
       fulfillment: &fulfillments
-        $ref: "./tag-group.yaml#/fulfillments"
+        $ref: "./tag-group.yaml#/search_fulfillments_tags"
       tags:
-        $ref: "./tag-group.yaml#/tags"
+        $ref: "./tag-group.yaml#/search_intent_tags"
 
 on_search:
   message:
     catalog:
       bpp/descriptor:
         tags:
-          $ref: "./tag-group.yaml#/descriptor_tags"
+          $ref: "./tag-group.yaml#/bpp_descriptor_tags"
       bpp/providers:
         fulfillments:
-          $ref: "./tag-group.yaml#/fulfillment_tags"
+          $ref: "./tag-group.yaml#/on_search_fulfillment_tags"
+        items:
+          $ref: "./tag-group.yaml#/item_tags" 
       tags:
-        $ref: "./tag-group.yaml#/tags"
+        $ref: "./tag-group.yaml#/providers_tags"
 
 init:
   message:
     order:
       fulfillments:
-        tags:
-          - code: linked_provider
-            list:
-              $ref: "./tag.yaml#/linked_provider"
+        $ref: "./tag-group.yaml#/init_fulfillment_tags"
+      items:
+        $ref: "./tag-group.yaml#/init_items_tags"  
       tags:
-        $ref: "./tag-group.yaml#/bap_terms"
+        $ref: "./tag-group.yaml#/init_order_tags"
 
 on_init:
   message:
     order:
       fulfillments:
-        tags:
-          - code: linked_provider
-            list:
-              $ref: "./tag.yaml#/linked_provider"
+        $ref: "./tag-group.yaml#/init_fulfillments"
       tags:
         $ref: "./tag-group.yaml#/bpp_terms"
 
