@@ -46,5 +46,4 @@ function formObject(attributes) {
   return result;
 }
 
-
 module.exports = { buildAttribiutes }
