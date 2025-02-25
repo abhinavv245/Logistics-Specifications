@@ -3642,148 +3642,478 @@ x-tags:
   search:
     message:
       intent:
-        payment: &ref_16
-          tags:
-            - code: BUYER_FINDER_FEES
-              description: Describes the finder fees for buyer
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: BUYER_FINDER_FEES_TYPE
-                  description: Buyer finder fee type
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: BUYER_FINDER_FEES_PERCENTAGE
-                  description: Buyer finder fee in percentage
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: BUYER_FINDER_FEES_AMOUNT
-                  description: Buyer finder fee in amount
-                  reference: <PR/Issue/Discussion Links md format text>
-            - code: SETTLEMENT_TERMS
-              description: Describes the settlement terms
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: SETTLEMENT_WINDOW
-                  description: Time window to complete settlement
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: SETTLEMENT_BASIS
-                  description: Basis required to complete settlement
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: SETTLEMENT_TYPE
-                  description: Payment method to complete settlement
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: MANDATORY_ARBITRATION
-                  description: >-
-                    Flag to denote if dispute can be resolved through
-                    arbitration
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: COURT_JURISDICTION
-                  description: Denotes court that will have jurisdiction for the case
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: DELAY_INTEREST
-                  description: Denotes interest to be paid as a delay charge
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: STATIC_TERMS
-                  description: Terms for settlement
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: SETTLEMENT_AMOUNT
-                  description: Denotes settlement amount
-                  reference: <PR/Issue/Discussion Links md format text>
         fulfillment:
           tags:
-            - code: LOCATION
-              description: Describes the location information.
+            - code: linked_provider
+              description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_18
-                - code: START_AREA
-                  description: Describes the area code of start location.
+              list: &ref_17
+                - code: id
+                  description: Describes unique id for provider.
                   reference: <PR/Issue/Discussion Links md format text>
-                - code: END_AREA
-                  description: Describes the area code of end location.
+                - code: name
+                  description: Describes the name of provider.
                   reference: <PR/Issue/Discussion Links md format text>
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: currency
+                  description: Describes the currency of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: declared_value
+                  description: Describes the declared value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: category
+                  description: Describes the category of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_unit
+                  description: Describes the weight unit of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_value
+                  description: Describes the weight value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: dim_unit
+                  description: Describes the package dimension unit for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: length
+                  description: Describes the length of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: breadth
+                  description: Describes the breadth of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: height
+                  description: Describes the height of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+        tags: &ref_16
+          - code: lbnp_features
+            description: Describes the list of enhanced features supported.
+            reference: <PR/Issue/Discussion Links md format text>
+            list:
+              - code: 00B
+                description: Describes the Updated cancellation codes.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: 00E
+                description: Describes the Pickup & delivery attempt trail (P2H2P).
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: 01D
+                description: Describes the Publish special capabilities.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: '005'
+                description: Describes the Quick Commerce Logistics.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: '009'
+                description: Describes the Static OTP verification (pickup & delivery).
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: 00C
+                description: Describes the Updated flow for Immediate Delivery.
+                reference: <PR/Issue/Discussion Links md format text>
   on_search:
     message:
       catalog:
-        providers:
-          items: &ref_17
-            tags:
-              - code: FARE_POLICY
-                description: Details about fare for the ride
-                reference: <PR/Issue/Discussion Links md format text>
-                list:
-                  - code: MIN_FARE
-                    description: Describes the minimum fare
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: MIN_FARE_DISTANCE_KM
-                    description: Describes the minimum fare per KM
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: PER_KM_CHARGE
-                    description: Describes the per km charge
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: PICKUP_CHARGE
-                    description: Describes the pickup charge
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: WAITING_CHARGE_PER_MIN
-                    description: Describes the waiting charge per minute
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: NIGHT_CHARGE_MULTIPLIER
-                    description: Describes the times need to multiply for night charge
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: NIGHT_SHIFT_START_TIME
-                    description: Describes the time when night shift starts
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: NIGHT_SHIFT_END_TIME
-                    description: Describes the time when night shift ends
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: EXTERNAL_REF
-                    description: >-
-                      Describes the reference to fare policy that has been
-                      documented in text/html
-                    reference: <PR/Issue/Discussion Links md format text>
-              - code: INFO
-                description: Describes the general info about the ride
-                reference: <PR/Issue/Discussion Links md format text>
-                list:
-                  - code: DISTANCE_TO_NEAREST_DRIVER_METER
-                    description: Describes the distance to nearest driver.
-                    reference: <PR/Issue/Discussion Links md format text>
-                  - code: ETA_TO_NEAREST_DRIVER_MIN
-                    description: Describes the ETA to nearest driver.
-                    reference: <PR/Issue/Discussion Links md format text>
-          payments: *ref_16
-  on_select:
-    message:
-      order:
-        items: *ref_17
-        fulfillments: &ref_19
+        bpp/descriptor:
           tags:
-            - code: ROUTE_INFO
-              description: Describes the route information.
+            - code: bpp_terms
+              description: Describes the bpp terms and conditions.
               reference: <PR/Issue/Discussion Links md format text>
               list:
-                - code: ENCODED_POLYLINE
-                  description: Describes the encoded polyline value.
+                - code: static_terms
+                  description: Describes the static terms.
                   reference: <PR/Issue/Discussion Links md format text>
-                - code: WAYPOINTS
-                  description: Describes the waypoints value.
+                - code: static_terms_new
+                  description: Describes the new static terms.
                   reference: <PR/Issue/Discussion Links md format text>
-            - code: LOCATION
-              description: Describes the location information.
+                - code: effective_date
+                  description: Describes the effective date.
+                  reference: <PR/Issue/Discussion Links md format text>
+        bpp/providers:
+          fulfillments:
+            - code: distance
+              description: Describes the total distance. Useful for P2P.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list:
+                - code: motorable_distance_type
+                  description: Describes the motorable distance type.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: motorable_distance
+                  description: Describes the motorable distance.
+                  reference: <PR/Issue/Discussion Links md format text>
+        tags: *ref_16
   init:
     message:
       order:
-        payments: *ref_16
-  on_init: &ref_20
+        fulfillments:
+          tags:
+            - code: linked_provider
+              list: *ref_17
+        tags: &ref_18
+          - code: bap_terms
+            description: Describes the bap terms and conditions.
+            reference: <PR/Issue/Discussion Links md format text>
+            list: &ref_25
+              - code: accept_bap_terms
+                description: Describes the acceptance of bap terms.
+                reference: <PR/Issue/Discussion Links md format text>
+  on_init:
     message:
       order:
-        items: *ref_17
-        payments: *ref_16
-        fulfillments: *ref_19
-  confirm: *ref_20
-  on_confirm: *ref_20
-  on_status: *ref_20
-  on_cancel: *ref_20
-  on_update: *ref_20
+        fulfillments:
+          tags:
+            - code: linked_provider
+              list: *ref_17
+        tags:
+          - code: bpp_terms
+            description: Describes the bpp terms and conditions.
+            reference: <PR/Issue/Discussion Links md format text>
+            list: &ref_24
+              - code: static_terms
+                description: Describes the static terms.
+                reference: <PR/Issue/Discussion Links md format text>
+  confirm:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_19
+                - code: id
+                  description: Describes unique id for provider.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: name
+                  description: Describes the name of provider.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: address
+                  description: Describes the address of provider.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_20
+                - code: id
+                  description: Describes the unique id of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: currency
+                  description: Describes the currency of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: declared_value
+                  description: Describes the declared value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: category
+                  description: Describes the category of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_unit
+                  description: Describes the weight unit of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_value
+                  description: Describes the weight value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: dim_unit
+                  description: Describes the package dimension unit for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: length
+                  description: Describes the length of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: breadth
+                  description: Describes the breadth of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: height
+                  description: Describes the height of the package for retail order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: shipment_type
+                  description: Describes the shipment type of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_21
+                - code: category
+                  description: Describes the category of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: name
+                  description: Describes the name of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: currency
+                  description: Describes the currency of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: value
+                  description: Describes the declared value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: quantity
+                  description: Describes thequantity of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_unit
+                  description: Describes the weight unit of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: weight_value
+                  description: Describes the weight value of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: state
+              description: Describes the state for ready to ship.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_22
+                - code: ready_to_ship
+                  description: Describes the order is ready to ship.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: rto_action
+              description: Describes the rto (Return to origin) action.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_23
+                - code: return_to_origin
+                  description: Describes the item for return to origin.
+                  reference: <PR/Issue/Discussion Links md format text>
+        tags: *ref_18
+  on_confirm:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+            - code: state
+              description: Describes the state for ready to ship.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_22
+            - code: rto_action
+              description: Describes the rto (Return to origin) action.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_23
+            - code: shipping_label
+              description: Describes the shipping label.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_26
+                - code: type
+                  description: Describes the type of shipping label.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: url
+                  description: Describes the url of shipping label.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: weather_check
+              description: Describes the weather check.
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: raining
+                  description: Describes the weather is raining.
+                  reference: <PR/Issue/Discussion Links md format text>
+        tags:
+          - code: bpp_terms
+            description: Describes the bpp terms and conditions.
+            reference: <PR/Issue/Discussion Links md format text>
+            list: *ref_24
+          - code: bap_terms
+            description: Describes the bap terms and conditions.
+            reference: <PR/Issue/Discussion Links md format text>
+            list: *ref_25
+  update:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: state
+              description: Describes the state for ready to ship.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_22
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+  on_update:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+            - code: shipping_label
+              description: Describes the shipping label.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_26
+  on_cancel:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: igm_request
+              description: Describes the IGM request.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_27
+                - code: id
+                  description: >-
+                    Describes the unique id of the IGM (Issue Grievance
+                    Management)
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: precancel_state
+              description: Describes the pre-cancel state of fulfillment.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_28
+                - code: fulfillment_state
+                  description: Describes the previous fulfillment state of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: updated_at
+                  description: Describes the updated time of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+            - code: shipping_label
+              description: Describes the shipping label.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_26
+  on_cancel_rto:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: rto_event
+              description: Describes the RTO event.
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: retry_count
+                  description: Describes the number of retry attempted.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: rto_id
+                  description: Describes the unique id of the RTO.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: cancellation_reason_id
+                  description: Describes the cancellation reason id.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: cancelled_by
+                  description: Describes the order cancelled by.
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: igm_request
+              description: Describes the IGM request.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_27
+            - code: precancel_state
+              description: Describes the pre-cancel state of fulfillment.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_28
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+            - code: shipping_label
+              description: Describes the shipping label.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_26
+  on_track:
+    message:
+      tracking:
+        tags:
+          - code: order
+            description: Describes the order information.
+            reference: <PR/Issue/Discussion Links md format text>
+            list:
+              - code: id
+                description: Describes the order id to be tracked.
+                reference: <PR/Issue/Discussion Links md format text>
+          - code: config
+            description: >-
+              Describes whether tracking is by gps (point-to-point hyperlocal)
+              or url (non-hyperlocal).
+            reference: <PR/Issue/Discussion Links md format text>
+            list:
+              - code: attr
+                description: can be "tracking.location.gps", "tracking.url"
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: type
+                description: live_poll tracking.location.gps or for deferred tracking.url
+                reference: <PR/Issue/Discussion Links md format text>
+          - code: path
+            description: Describes the origin of the order's journey.
+            reference: <PR/Issue/Discussion Links md format text>
+            list:
+              - code: lat_lng
+                description: Describes the latitude and longitude of the driver.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: sequence
+                description: Describes the sequence.
+                reference: <PR/Issue/Discussion Links md format text>
+  on_status:
+    message:
+      order:
+        fulfillments:
+          tags:
+            - code: tracking
+              description: >-
+                (optional) tracking attributes for fulfillment, may be provided,
+                on or before fulfillment state of "Agent-assigned", if tracking
+                = "true";
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: gps_enabled
+                  description: Describes whether tracking by GPS coordinates enabled
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: url_enabled
+                  description: Describes whether tracking by GPS coordinates enabled
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: url
+                  description: >-
+                    Describes if tracking by URL enabled, corresponding URL for
+                    tracking
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: linked_provider
+              description: Describes the provider information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_19
+            - code: linked_order
+              description: Describes the retail linked order information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_20
+            - code: linked_order_item
+              description: Describes the retail linked order item information.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_21
+            - code: shipping_label
+              description: Describes the shipping label.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: *ref_26
 x-flows:
   - summary: Order Flow (Baseline)
     details:
@@ -3855,7 +4185,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_23
+        example: &ref_31
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -3976,7 +4306,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_34
+        example: &ref_42
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -4099,7 +4429,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_27
+        example: &ref_35
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4213,7 +4543,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_38
+        example: &ref_46
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -4328,7 +4658,7 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 LSP -->> LBNP: ACK - Confirm order received
                 LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-        example: &ref_21
+        example: &ref_29
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -4588,7 +4918,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
-        example: &ref_41
+        example: &ref_49
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -4883,7 +5213,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_31
+        example: &ref_39
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -5045,7 +5375,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_update** - Update order details
                 LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
-        example: &ref_48
+        example: &ref_56
           summary: Order updates
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -5324,7 +5654,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_22
+        example: &ref_30
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -5646,7 +5976,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_33
+        example: &ref_41
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -5678,7 +6008,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_track** - Update order tracking information
                 LBNP ->> LSP: ACK
-        example: &ref_51
+        example: &ref_59
           summary: Order tracking
           description: LSP provides live tracking details
           value:
@@ -5749,7 +6079,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_45
+        example: &ref_53
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6965,7 +7295,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_25
+        example: &ref_33
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -7132,7 +7462,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_36
+        example: &ref_44
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -7311,7 +7641,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_29
+        example: &ref_37
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -7630,7 +7960,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_40
+        example: &ref_48
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -7920,7 +8250,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: *ref_21
+        example: *ref_29
       - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
         api: on_confirm
         details:
@@ -7937,7 +8267,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_43
+        example: &ref_51
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -8423,7 +8753,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_47
+        example: &ref_55
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -8960,7 +9290,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_32
+        example: &ref_40
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -9308,7 +9638,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_update (Updated fulfillment details)
                 LBNP ->> LSP: ACK
-        example: &ref_49
+        example: &ref_57
           summary: Order updates (Quick Commerce)
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -9878,7 +10208,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_24
+        example: &ref_32
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -10005,7 +10335,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_35
+        example: &ref_43
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -10144,7 +10474,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_28
+        example: &ref_36
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -10286,7 +10616,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_39
+        example: &ref_47
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -10414,7 +10744,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (COD settlement details)
                 LSP -->> LBNP: ACK
-        example: &ref_30
+        example: &ref_38
           summary: Order confirmation (Cash on delivery)
           description: LBNP confirms the order
           value:
@@ -10688,7 +11018,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_42
+        example: &ref_50
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -11006,7 +11336,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_46
+        example: &ref_54
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -11427,7 +11757,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_22
+        example: *ref_30
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -11449,7 +11779,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
                 LBNP ->> LSP: ACK
-        example: &ref_50
+        example: &ref_58
           summary: RTO Initiation
           description: >-
             LSP updates the forward shipment to RTO and creates a new RTO
@@ -12199,7 +12529,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_26
+        example: &ref_34
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -12307,7 +12637,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_37
+        example: &ref_45
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -12424,7 +12754,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_44
+        example: &ref_52
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -12729,21 +13059,21 @@ x-examples:
     example_set:
       search:
         examples:
-          - *ref_23
-          - *ref_24
-          - *ref_25
+          - *ref_31
+          - *ref_32
+          - *ref_33
       select:
         examples:
-          - *ref_26
+          - *ref_34
       init:
         examples:
-          - *ref_27
-          - *ref_28
-          - *ref_29
+          - *ref_35
+          - *ref_36
+          - *ref_37
       confirm:
         examples:
-          - *ref_21
-          - *ref_30
+          - *ref_29
+          - *ref_38
           - summary: Order confirmation (Quick Commerce)
             description: LBNP confirms the order
             value:
@@ -13195,8 +13525,8 @@ x-examples:
                   updated_at: '2024-11-20T22:00:00.000Z'
       update:
         examples:
-          - *ref_31
-          - *ref_32
+          - *ref_39
+          - *ref_40
       status:
         examples:
           - summary: Order Status
@@ -13220,7 +13550,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_33
+          - *ref_41
       cancel:
         examples:
           - summary: Order cancellation
@@ -13245,32 +13575,32 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
-          - *ref_34
-          - *ref_35
-          - *ref_36
-      on_select:
-        examples:
-          - *ref_37
-      on_init:
-        examples:
-          - *ref_38
-          - *ref_39
-          - *ref_40
-      on_confirm:
-        examples:
-          - *ref_41
           - *ref_42
           - *ref_43
           - *ref_44
-      on_status:
+      on_select:
         examples:
           - *ref_45
+      on_init:
+        examples:
           - *ref_46
           - *ref_47
+          - *ref_48
+      on_confirm:
+        examples:
+          - *ref_49
+          - *ref_50
+          - *ref_51
+          - *ref_52
+      on_status:
+        examples:
+          - *ref_53
+          - *ref_54
+          - *ref_55
       on_update:
         examples:
-          - *ref_48
-          - *ref_49
+          - *ref_56
+          - *ref_57
       on_cancel:
         examples:
           - summary: Order cancellation
@@ -13540,10 +13870,10 @@ x-examples:
                           unit: centimeter
                           value: 1
                   updated_at: '2024-11-20T22:00:30.000Z'
-          - *ref_50
+          - *ref_58
       on_track:
         examples:
-          - *ref_51
+          - *ref_59
 x-attributes:
   logistics:
     attribute_set:
@@ -23618,7 +23948,7 @@ x-tlc:
         Terms and the ONDC Network Policy or the Static Terms and the Network
         Participant Agreement, the terms of the ONDC Network Policy or the
         Network Participant Agreement (as the case may be) will prevail.
-x-featureui: &ref_52
+x-featureui: &ref_60
   filenames:
     - Call_masking.md
     - Cancellation_terms.md
@@ -23643,7 +23973,7 @@ x-featureui: &ref_52
     - Transaction_level_contract.md
     - Update_delivery_address.md
     - eWay_bill.md
-x-testcasesui: *ref_52
+x-testcasesui: *ref_60
 x-sandboxui:
   dropdown:
     - environment-name: staging
