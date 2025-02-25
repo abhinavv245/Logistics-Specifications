@@ -5,6 +5,77 @@ linked_provider:
   - code: name
     description: Describes the name of provider.
     reference: <PR/Issue/Discussion Links md format text>
+
+rider_details:
+  - code: name
+    description: Describes the rider name.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: phone
+    description: Describes the rider phone number.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: vehicle_registration
+    description: Describes the vehicle registration number.
+    reference: <PR/Issue/Discussion Links md format text>
+
+items_tags:
+  - code: type
+    description: Describes the type of the item.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: unit
+    description: Describes the unit of the item, required if type="rider".
+    reference: <PR/Issue/Discussion Links md format text>
+
+fulfill_response:
+  - code: rider_count
+    description: either rider_count or order_count to be provided; if both available, rider_count overrides order_count, as applicable.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: order_count
+    description: Describes the number of retail orders for delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: rate_basis
+    description: Describes the rate basis - rate per rider or order.
+    reference: <PR/Issue/Discussion Links md format text>
+
+on_status_fulfill_response:
+  - code: rider_count
+    description: either rider_count or order_count to be provided; if both available, rider_count overrides order_count, as applicable.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: order_count
+    description: Describes the number of retail orders for delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: rate_basis
+    description: Describes the rate basis - rate per rider or order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: diff_value
+    description: Describes the differential value based on which additional cost added to quote (diff, tax_diff), to be interpreted based on "rate_basis" and "unit" for item cost in /on_search.
+    reference: <PR/Issue/Discussion Links md format text>
+
+fulfill_request:
+  - code: rider_count
+    description: either rider_count or order_count to be provided; if both available, rider_count overrides order_count, as applicable.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: order_count
+    description: Describes the number of retail orders for delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: rate_basis
+    description: Describes the rate basis - rate per rider or order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: motorable_distance
+    description: Describes the max motorable distance for serviceability (in km).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: pickup_slot_start
+    description: Describes the pickup slot - start time (UTC).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: pickup_slot_end
+    description: Describes the pickup slot - end time (UTC).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: delivery_slot_start
+    description: Describes the delivery slot - start time (UTC).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: delivery_slot_end
+    description: Describes the delivery slot - end time (UTC).
+    reference: <PR/Issue/Discussion Links md format text>
+
 linked_order:
   - code: currency
     description: Describes the currency of the order.
@@ -52,6 +123,58 @@ lbnp_features:
   - code: 00C
     description: Describes the Updated flow for Immediate Delivery.
     reference: <PR/Issue/Discussion Links md format text>
+  - code: "000"
+    description: Describes the catalog.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "001"
+    description: Describes the Serviceability for P2P.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "002"
+    description: Describes the Serviceability for P2H2P.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "003"
+    description: Describes the Rate Card for P2P.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "004"
+    description: Describes the Rate Card for P2H2P.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "006"
+    description: Describes the Milk Run Logistics.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "007"
+    description: Describes the Single pickup multi drop (SPMD).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "008"
+    description: Describes the COD order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "00A"
+    description: Describes the Static OTP verification (RTO).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "00D"
+    description: Describes the Payment wallet.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "00F"
+    description: Describes the ePOD.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "010"
+    description: Describes the Call Masking.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "011"
+    description: Describes the Update delivery address.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "012"
+    description: Describes the Update pickup & delivery authorization.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "013"
+    description: Describes the Seller & buyer instructions.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "014"
+    description: Describes the Seller Creds.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "015"
+    description: Describes the Dynamic OTP verification (pickup & delivery).
+    reference: <PR/Issue/Discussion Links md format text>
+
 descriptor_tags:
   - code: static_terms
     description: Describes the static terms.
@@ -163,51 +286,47 @@ shipping_label:
     reference: <PR/Issue/Discussion Links md format text>
   - code: url
     description: Describes the url of shipping label.
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
 
 weather_check:
   - code: raining
     description: Describes the weather is raining.
-    reference: <PR/Issue/Discussion Links md format text>    
-    
+    reference: <PR/Issue/Discussion Links md format text>
+
 igm_request:
   - code: id
     description: Describes the unique id of the IGM (Issue Grievance Management)
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
 
-precancel_state: 
+precancel_state:
   - code: fulfillment_state
     description: Describes the previous fulfillment state of the order.
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: updated_at
     description: Describes the updated time of the order.
-    reference: <PR/Issue/Discussion Links md format text>   
+    reference: <PR/Issue/Discussion Links md format text>
 
-rto_events: 
+rto_events:
   - code: retry_count
     description: Describes the number of retry attempted.
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: rto_id
     description: Describes the unique id of the RTO.
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: cancellation_reason_id
     description: Describes the cancellation reason id.
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: cancelled_by
     description: Describes the order cancelled by.
-    reference: <PR/Issue/Discussion Links md format text> 
-
+    reference: <PR/Issue/Discussion Links md format text>
 
 tracking:
   - code: gps_enabled
     description: Describes whether tracking by GPS coordinates enabled
-    reference: <PR/Issue/Discussion Links md format text> 
+    reference: <PR/Issue/Discussion Links md format text>
   - code: url_enabled
     description: Describes whether tracking by GPS coordinates enabled
-    reference: <PR/Issue/Discussion Links md format text>  
+    reference: <PR/Issue/Discussion Links md format text>
   - code: url
     description: Describes if tracking by URL enabled, corresponding URL for tracking
-    reference: <PR/Issue/Discussion Links md format text>              
-
-
-
+    reference: <PR/Issue/Discussion Links md format text>

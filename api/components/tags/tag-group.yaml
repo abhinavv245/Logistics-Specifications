@@ -10,6 +10,30 @@ fulfillments:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/linked_order"
+    - code: fulfill_request
+      description: Describes the fulfillment request parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_request"
+
+items_tags:
+  tags:
+    - code: type
+      description: Describes the type of the item.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/items_tags"
+
+init_items_tags:
+  tags:
+    - code: type
+      description: Defines the base type.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: type
+          description: The type classification (e.g., base).
+          reference: <PR/Issue/Discussion Links md format text>
+
 tags:
   - code: lbnp_features
     description: Describes the list of enhanced features supported.
@@ -23,11 +47,27 @@ descriptor_tags:
     list:
       $ref: "./tag.yaml#/descriptor_tags"
 fulfillment_tags:
-  - code: distance
-    description: Describes the total distance. Useful for P2P.
-    reference: <PR/Issue/Discussion Links md format text>
-    list:
-      $ref: "./tag.yaml#/fulfillment_tags"
+  tags:
+    - code: distance
+      description: Describes the total distance. Useful for P2P.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfillment_tags"
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/linked_provider"
+    - code: fulfill_request
+      description: Describes the fulfillment request parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_request"
+    - code: fulfill_response
+      description: Describes the fulfillment response parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_response"
 bap_terms:
   - code: bap_terms
     description: Describes the bap terms and conditions.
@@ -40,6 +80,34 @@ bpp_terms:
     reference: <PR/Issue/Discussion Links md format text>
     list:
       $ref: "./tag.yaml#/bpp_terms"
+
+init_fulfillments:
+  tags:
+    - code: linked_provider
+      description: Describes the provider information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_provider"
+    - code: linked_order
+      description: Describes the retail linked order information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order"
+    - code: linked_order_item
+      description: Describes the retail linked order item information.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/confirm_linked_order_item"
+    - code: fulfill_request
+      description: Describes the fulfillment request parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_request"
+    - code: fulfill_response
+      description: Describes the fulfillment response parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_response"
 
 confirm_fulfillments:
   tags:
@@ -152,6 +220,21 @@ on_update_fulfillments:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/shipping_label"
+    - code: fulfill_request
+      description: Describes the fulfillment request parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_request"
+    - code: fulfill_response
+      description: Describes the fulfillment response parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/on_status_fulfill_response"
+    - code: rider_details
+      description: Describes the LSP updates rider details, for each rider requested by LBNP (as per rider_count).
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/rider_details"
 
 on_cancel_fulfillments:
   tags:
@@ -251,6 +334,21 @@ on_status_fulfillments:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/shipping_label"
+    - code: fulfill_request
+      description: Describes the fulfillment request parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/fulfill_request"
+    - code: fulfill_response
+      description: Describes the fulfillment response parameters.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/on_status_fulfill_response"
+    - code: rider_details
+      description: Describes the LSP updates rider details, for each rider requested by LBNP (as per rider_count).
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/rider_details"
 
 on_confirm_order_tags:
   - code: bpp_terms
@@ -293,3 +391,347 @@ tracking_tags:
         - code: sequence
           description: Describes the sequence.
           reference: <PR/Issue/Discussion Links md format text>
+
+search_fulfillments_tags:
+  tags:
+    - code: linked_provider
+      description: Describes the provider linked to the order.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Provider ID.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: name
+          description: Provider Name.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: linked_order
+      description: Describes the order details.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: cod_order
+          description: Specifies if the order is cash on delivery.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: currency
+          description: The currency used for the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: declared_value
+          description: The declared value of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: category
+          description: The category of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_unit
+          description: The unit for the weight of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_value
+          description: The weight value of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: dim_unit
+          description: The unit for the dimensions of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: length
+          description: The length of the order package.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: breadth
+          description: The breadth of the order package.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: height
+          description: The height of the order package.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: fulfill_request
+      description: Details regarding order fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: rider_count
+          description: Number of riders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: order_count
+          description: Number of orders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: rate_basis
+          description: Basis for the rate calculation.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: motorable_distance
+          description: Distance that can be traveled by vehicle.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_start
+          description: Start time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_end
+          description: End time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_start
+          description: Start time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_end
+          description: End time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+
+search_intent_tags:
+  - code: lbnp_features
+    description: Describes the LBNP features enabled.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/lbnp_features"
+
+  - code: lbnp_sla_terms
+    description: Service Level Agreement terms for LBNP.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: metric
+        description: The metric being measured.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: base_unit
+        description: The unit of measurement.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: base_min
+        description: The minimum base value.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: base_max
+        description: The maximum base value.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: penalty_min
+        description: The minimum penalty value.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: penalty_max
+        description: The maximum penalty value.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: penalty_unit
+        description: The unit of penalty measurement.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: penalty_value
+        description: The penalty value imposed.
+        reference: <PR/Issue/Discussion Links md format text>
+
+bpp_descriptor_tags:
+  - code: bpp_terms
+    description: Terms and conditions related to BPP.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: static_terms
+        description: URL for static terms (if any).
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: static_terms_new
+        description: Updated static terms URL.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: effective_date
+        description: The date when the terms become effective.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: np_tax_type
+        description: Type of tax applicable (e.g., RCM).
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: max_liability
+        description: Maximum liability amount.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: max_liability_cap
+        description: Maximum cap on liability.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: mandatory_arbitration
+        description: Whether arbitration is mandatory (true/false).
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: court_jurisdiction
+        description: The jurisdiction for legal proceedings.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: delay_interest
+        description: Interest rate applied for delays.
+        reference: <PR/Issue/Discussion Links md format text>
+
+on_search_fulfillment_tags:
+  tags:
+    - code: distance
+      description: Details about the motorable distance.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: motorable_distance_type
+          description: The unit of motorable distance measurement.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: motorable_distance
+          description: The measured motorable distance.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: fulfill_request
+      description: Request details for fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: rider_count
+          description: Number of riders requested.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: order_count
+          description: Number of orders in the request.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: rate_basis
+          description: Basis for the rate calculation.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: motorable_distance
+          description: Distance that can be traveled by vehicle.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_start
+          description: Start time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_end
+          description: End time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_start
+          description: Start time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_end
+          description: End time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: fulfill_response
+      description: Response details for fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: rider_count
+          description: Number of riders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: order_count
+          description: Number of orders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: rate_basis
+          description: Basis for the rate calculation.
+          reference: <PR/Issue/Discussion Links md format text>
+
+item_tags:
+  tags:
+    - code: type
+      description: Defines the type and unit.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: type
+          description: The type of entity (e.g., rider, cod).
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: unit
+          description: The unit of measurement associated with the type.
+          reference: <PR/Issue/Discussion Links md format text>
+
+providers_tags:
+  - code: lsp_features
+    description: Features available for the LSP.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/lbnp_features"
+  - code: special_req
+    description: Special requirements for the order.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: dangerous_goods
+        description: Indicates if dangerous goods are included.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: cold_storage
+        description: Indicates if cold storage is required.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: open_box_delivery
+        description: Indicates if open box delivery is required.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: fragile_handling
+        description: Indicates if fragile handling is required.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: cod_order
+        description: Indicates if the order is Cash on Delivery.
+        reference: <PR/Issue/Discussion Links md format text>
+
+init_fulfillment_tags:
+  tags:
+    - code: linked_provider
+      description: Details about the linked provider.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Unique identifier for the provider.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: name
+          description: Name of the provider.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: address
+          description: Address details of the provider including shop name, building name, locality, city, state, and pincode.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: fulfill_request
+      description: Request details for fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: rider_count
+          description: Number of riders requested.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: order_count
+          description: Number of orders in the request.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: rate_basis
+          description: Basis for the rate calculation.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: motorable_distance
+          description: Distance that can be traveled by vehicle.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_start
+          description: Start time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: pickup_slot_end
+          description: End time for the pickup slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_start
+          description: Start time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: delivery_slot_end
+          description: End time for the delivery slot.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: fulfill_response
+      description: Response details for fulfillment.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: rider_count
+          description: Number of riders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: order_count
+          description: Number of orders assigned.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: rate_basis
+          description: Basis for the rate calculation.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: linked_order
+      description: Details about the linked order.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Unique identifier for the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: currency
+          description: Currency used for the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: declared_value
+          description: Declared monetary value of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: category
+          description: Category of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_unit
+          description: Unit of weight measurement.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_value
+          description: Weight of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: dim_unit
+          description: Unit of dimensional measurement.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: length
+          description: Length of the package.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: breadth
+          description: Breadth of the package.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: height
+          description: Height of the package.
+          reference: <PR/Issue/Discussion Links md format text>
+
+init_order_tags:
+  - code: bap_terms
+    description: Terms and conditions agreed upon by the BAP.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: accept_bpp_terms
+        description: Indicates whether the BAP accepts the BPP terms.
+        reference: <PR/Issue/Discussion Links md format text>
