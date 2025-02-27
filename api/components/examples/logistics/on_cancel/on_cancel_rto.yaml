@@ -253,6 +253,7 @@ value:
       payment:
         '@ondc/org/collection_amount': '300.00'
         collected_by: BPP
+        status: NOT-PAID
         type: POST-FULFILLMENT
         '@ondc/org/settlement_basis': invoicing
         '@ondc/org/settlement_window': P15D

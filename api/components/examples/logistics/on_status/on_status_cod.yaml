@@ -281,6 +281,7 @@ value:
       payment:
         collected_by: BPP
         type: ON-ORDER
+        status: PAID
       billing:
         name: ONDC Seller NP
         address:
@@ -294,6 +295,8 @@ value:
         tax_number: XXXXXXXXXXXXXXX
         phone: '9886098860'
         email: abcd.efgh@gmail.com
+        created_at: '2024-11-20T21:30:00.000Z'
+        updated_at: '2024-11-20T21:30:00.000Z'
       '@ondc/org/linked_order':
         items:
           - category_id: Grocery

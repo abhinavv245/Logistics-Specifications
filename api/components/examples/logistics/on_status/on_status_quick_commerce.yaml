@@ -457,6 +457,7 @@ value:
         '@ondc/org/collection_amount': '300.00'
         collected_by: BAP
         type: POST-FULFILLMENT
+        status: PAID
         '@ondc/org/settlement_basis': invoicing
         '@ondc/org/settlement_window': P15D
         '@ondc/org/settlement_details':

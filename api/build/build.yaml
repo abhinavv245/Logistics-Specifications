@@ -510,30 +510,7 @@ paths:
                   type: object
                   properties:
                     order:
-                      type: object
-                      properties:
-                        provider:
-                          $ref: '#/components/schemas/Provider'
-                        provider_location:
-                          $ref: '#/components/schemas/Location'
-                        items:
-                          type: array
-                          items:
-                            allOf:
-                              - $ref: '#/components/schemas/Item'
-                              - properties:
-                                  quantity:
-                                    $ref: '#/components/schemas/ItemQuantity'
-                        add_ons:
-                          type: array
-                          items:
-                            $ref: '#/components/schemas/AddOn'
-                        offers:
-                          type: array
-                          items:
-                            $ref: '#/components/schemas/Offer'
-                        quote:
-                          $ref: '#/components/schemas/Quotation'
+                      $ref: '#/components/schemas/Order'
                   required:
                     - order
                 error:
@@ -1459,7 +1436,7 @@ components:
           format: date-time
         cancelled_by:
           type: string
-        reasons:
+        reason:
           $ref: '#/components/schemas/Option'
         selected_reason:
           type: object
@@ -1564,6 +1541,10 @@ components:
           type: string
           description: Time after which catalog has to be refreshed
           format: date-time
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
     Category:
       description: Describes a category.
       type: object
@@ -2272,6 +2253,8 @@ components:
           description: >-
             Unique identifier for Order across network, will be created by buyer
             app in confirm API
+        cancellation:
+          $ref: '#/components/schemas/Cancellation'
         state:
           type: string
         provider:
@@ -4079,7 +4062,7 @@ x-tags:
             - code: fulfill_response
               description: Describes the fulfillment response parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_25
+              list: &ref_23
                 - code: rider_count
                   description: >-
                     either rider_count or order_count to be provided; if both
@@ -4103,7 +4086,7 @@ x-tags:
                 Describes the LSP updates rider details, for each rider
                 requested by LBNP (as per rider_count).
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_26
+              list: &ref_24
                 - code: name
                   description: Describes the rider name.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4121,7 +4104,7 @@ x-tags:
             - code: igm_request
               description: Describes the IGM request.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_23
+              list:
                 - code: id
                   description: >-
                     Describes the unique id of the IGM (Issue Grievance
@@ -4130,58 +4113,13 @@ x-tags:
             - code: precancel_state
               description: Describes the pre-cancel state of fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_24
+              list:
                 - code: fulfillment_state
                   description: Describes the previous fulfillment state of the order.
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: updated_at
                   description: Describes the updated time of the order.
                   reference: <PR/Issue/Discussion Links md format text>
-            - code: linked_provider
-              description: Describes the provider information.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_14
-            - code: linked_order
-              description: Describes the retail linked order information.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
-            - code: linked_order_item
-              description: Describes the retail linked order item information.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
-            - code: shipping_label
-              description: Describes the shipping label.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
-  on_cancel_rto:
-    message:
-      order:
-        fulfillments:
-          tags:
-            - code: rto_event
-              description: Describes the RTO event.
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: retry_count
-                  description: Describes the number of retry attempted.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: rto_id
-                  description: Describes the unique id of the RTO.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: cancellation_reason_id
-                  description: Describes the cancellation reason id.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: cancelled_by
-                  description: Describes the order cancelled by.
-                  reference: <PR/Issue/Discussion Links md format text>
-            - code: igm_request
-              description: Describes the IGM request.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_23
-            - code: precancel_state
-              description: Describes the pre-cancel state of fulfillment.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_24
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4277,13 +4215,13 @@ x-tags:
             - code: fulfill_response
               description: Describes the fulfillment response parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_25
+              list: *ref_23
             - code: rider_details
               description: >-
                 Describes the LSP updates rider details, for each rider
                 requested by LBNP (as per rider_count).
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_26
+              list: *ref_24
 x-flows:
   - summary: Order Flow (Baseline)
     details:
@@ -4355,7 +4293,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_29
+        example: &ref_27
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -4476,7 +4414,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_40
+        example: &ref_38
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -4599,7 +4537,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_33
+        example: &ref_31
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4713,7 +4651,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_44
+        example: &ref_42
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -4828,7 +4766,7 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 LSP -->> LBNP: ACK - Confirm order received
                 LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-        example: &ref_27
+        example: &ref_25
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -5088,7 +5026,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
-        example: &ref_47
+        example: &ref_45
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -5383,7 +5321,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_37
+        example: &ref_35
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -5824,7 +5762,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_28
+        example: &ref_26
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6070,6 +6008,8 @@ x-flows:
                   tax_number: XXXXXXXXXXXXXXX
                   phone: '9886098860'
                   email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
                 '@ondc/org/linked_order':
                   items:
                     - category_id: Grocery
@@ -6146,7 +6086,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_39
+        example: &ref_37
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -6249,7 +6189,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_51
+        example: &ref_49
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6496,6 +6436,8 @@ x-flows:
                   tax_number: XXXXXXXXXXXXXXX
                   phone: '9886098860'
                   email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
                 '@ondc/org/linked_order':
                   items:
                     - category_id: Grocery
@@ -7063,7 +7005,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
                 LBNP -->> LSP: ACK
-        example:
+        example: &ref_53
           summary: Order status (At-pickup)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -7292,6 +7234,8 @@ x-flows:
                   tax_number: XXXXXXXXXXXXXXX
                   phone: '9886098860'
                   email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
                 '@ondc/org/linked_order':
                   items:
                     - category_id: Grocery
@@ -7465,7 +7409,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_31
+        example: &ref_29
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -7632,7 +7576,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_42
+        example: &ref_40
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -7811,7 +7755,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_35
+        example: &ref_33
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8130,7 +8074,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_46
+        example: &ref_44
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -8420,7 +8364,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: *ref_27
+        example: *ref_25
       - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
         api: on_confirm
         details:
@@ -8437,7 +8381,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_49
+        example: &ref_47
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -8923,7 +8867,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_53
+        example: &ref_51
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -9392,6 +9336,7 @@ x-flows:
                   '@ondc/org/collection_amount': '300.00'
                   collected_by: BAP
                   type: POST-FULFILLMENT
+                  status: PAID
                   '@ondc/org/settlement_basis': invoicing
                   '@ondc/org/settlement_window': P15D
                   '@ondc/org/settlement_details':
@@ -9460,7 +9405,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_38
+        example: &ref_36
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -10378,7 +10323,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_30
+        example: &ref_28
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -10505,7 +10450,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_41
+        example: &ref_39
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -10644,7 +10589,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_34
+        example: &ref_32
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -10786,7 +10731,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_45
+        example: &ref_43
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -10914,7 +10859,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (COD settlement details)
                 LSP -->> LBNP: ACK
-        example: &ref_36
+        example: &ref_34
           summary: Order confirmation (Cash on delivery)
           description: LBNP confirms the order
           value:
@@ -11188,7 +11133,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_48
+        example: &ref_46
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -11506,7 +11451,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_52
+        example: &ref_50
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -11794,6 +11739,7 @@ x-flows:
                 payment:
                   collected_by: BPP
                   type: ON-ORDER
+                  status: PAID
                 billing:
                   name: ONDC Seller NP
                   address:
@@ -11807,6 +11753,8 @@ x-flows:
                   tax_number: XXXXXXXXXXXXXXX
                   phone: '9886098860'
                   email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
                 '@ondc/org/linked_order':
                   items:
                     - category_id: Grocery
@@ -11927,7 +11875,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_28
+        example: *ref_26
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -12208,6 +12156,7 @@ x-flows:
                 payment:
                   '@ondc/org/collection_amount': '300.00'
                   collected_by: BPP
+                  status: NOT-PAID
                   type: POST-FULFILLMENT
                   '@ondc/org/settlement_basis': invoicing
                   '@ondc/org/settlement_window': P15D
@@ -12270,7 +12219,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update RTO fulfillment to its terminal state
                 LBNP ->> LSP: ACK
-        example:
+        example: &ref_52
           summary: Order status (RTO)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -12565,6 +12514,8 @@ x-flows:
                   tax_number: XXXXXXXXXXXXXXX
                   phone: '9886098860'
                   email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
                 '@ondc/org/linked_order':
                   items:
                     - category_id: Grocery
@@ -12699,7 +12650,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_32
+        example: &ref_30
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -12807,7 +12758,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_43
+        example: &ref_41
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -12924,7 +12875,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_50
+        example: &ref_48
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -13229,21 +13180,21 @@ x-examples:
     example_set:
       search:
         examples:
+          - *ref_27
+          - *ref_28
           - *ref_29
-          - *ref_30
-          - *ref_31
       select:
         examples:
-          - *ref_32
+          - *ref_30
       init:
         examples:
+          - *ref_31
+          - *ref_32
           - *ref_33
-          - *ref_34
-          - *ref_35
       confirm:
         examples:
-          - *ref_27
-          - *ref_36
+          - *ref_25
+          - *ref_34
           - summary: Order confirmation (Quick Commerce)
             description: LBNP confirms the order
             value:
@@ -13695,8 +13646,8 @@ x-examples:
                   updated_at: '2024-11-20T22:00:00.000Z'
       update:
         examples:
-          - *ref_37
-          - *ref_38
+          - *ref_35
+          - *ref_36
       status:
         examples:
           - summary: Order Status
@@ -13720,7 +13671,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_39
+          - *ref_37
       cancel:
         examples:
           - summary: Order cancellation
@@ -13745,27 +13696,30 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
+          - *ref_38
+          - *ref_39
           - *ref_40
-          - *ref_41
-          - *ref_42
       on_select:
         examples:
-          - *ref_43
+          - *ref_41
       on_init:
         examples:
+          - *ref_42
+          - *ref_43
           - *ref_44
-          - *ref_45
-          - *ref_46
       on_confirm:
         examples:
+          - *ref_45
+          - *ref_46
           - *ref_47
           - *ref_48
-          - *ref_49
-          - *ref_50
       on_status:
         examples:
+          - *ref_49
+          - *ref_50
           - *ref_51
           - *ref_52
+          - *ref_26
           - *ref_53
       on_update:
         examples:
@@ -13992,6 +13946,7 @@ x-examples:
                   payment:
                     '@ondc/org/collection_amount': '300.00'
                     collected_by: BPP
+                    status: NOT-PAID
                     type: POST-FULFILLMENT
                     '@ondc/org/settlement_basis': invoicing
                     '@ondc/org/settlement_window': P15D
@@ -14504,7 +14459,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -14597,7 +14552,7 @@ x-attributes:
                 start:
                   time:
                     duration:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
@@ -15129,7 +15084,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -15154,7 +15109,7 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -15759,7 +15714,7 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_basis':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -15767,7 +15722,7 @@ x-attributes:
                   indicates from when settlement window starts, enum -
                   "invoicing" (from date of invoicing);
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -15895,7 +15850,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -16147,13 +16102,13 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_basis':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
                 description: false
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -16195,7 +16150,7 @@ x-attributes:
                   owner: false
                   usage: false
                   description: false
-      ' confirm':
+      confirm:
         context:
           domain:
             required: mandatory
@@ -16767,7 +16722,7 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_basis':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -16775,7 +16730,7 @@ x-attributes:
                   indicates from when settlement window starts, enum -
                   "invoicing" (from date of invoicing);
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -17062,7 +17017,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -17589,13 +17544,13 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_basis':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
                 description: ' indicates from when settlement window starts, enum - "invoicing" (from date of invoicing);'
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -18055,64 +18010,64 @@ x-attributes:
               end:
                 person:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                 location:
                   gps:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   address:
                     name:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     building:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     locality:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     city:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     state:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     country:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     area_code:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 contact:
                   phone:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -18334,7 +18289,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -18883,13 +18838,13 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_basis':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
                 description: false
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -18995,8 +18950,8 @@ x-attributes:
                     usage: false
                     description: false
                   street:
-                    required: mandatory
-                    type: integer
+                    required: optional
+                    type: string
                     owner: BAP
                     usage: false
                     description: false
@@ -19272,7 +19227,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -19446,7 +19401,7 @@ x-attributes:
                     usage: false
                     description: false
               tracking:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -19454,76 +19409,76 @@ x-attributes:
               start:
                 person:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BPP
                     usage: false
                     description: false
                 location:
                   id:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   gps:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   address:
                     name:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     building:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     locality:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     city:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     state:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: required if "ready_to_ship" = yes in /confirm;
                     country:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: required if "ready_to_ship" = yes in /confirm;
                     area_code:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 contact:
                   phone:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   email:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -19537,13 +19492,13 @@ x-attributes:
                     description: false
                   range:
                     start:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
                       description: false
                     end:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
@@ -19626,64 +19581,64 @@ x-attributes:
               end:
                 person:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                 location:
                   gps:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BPP
                     usage: false
                     description: false
                   address:
                     name:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
                       description: false
                     building:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     locality:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     city:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     state:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     country:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     area_code:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 contact:
                   phone:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -19697,13 +19652,13 @@ x-attributes:
                 time:
                   range:
                     start:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     end:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
@@ -19798,7 +19753,7 @@ x-attributes:
                 description: false
             payment:
               '@ondc/org/collection_amount':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BAP
                 usage: false
@@ -19822,7 +19777,7 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BAP
                 usage: false
@@ -19842,7 +19797,7 @@ x-attributes:
                   description: false
               '@ondc/org/settlement_details':
                 settlement_counterparty:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: false
                   usage: false
@@ -20039,8 +19994,8 @@ x-attributes:
                     usage: false
                     description: false
                   street:
-                    required: mandatory
-                    type: integer
+                    required: optional
+                    type: string
                     owner: BAP
                     usage: false
                     description: false
@@ -20316,7 +20271,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -20551,7 +20506,7 @@ x-attributes:
             usage: '2023-03-23T04:41:16Z'
             description: Describes tme of request generation in RFC3339 format
           ttl:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: PT30S
@@ -20728,7 +20683,7 @@ x-attributes:
                     usage: false
                     description: false
               tracking:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -20736,76 +20691,76 @@ x-attributes:
               start:
                 person:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BPP
                     usage: false
                     description: false
                 location:
                   id:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   gps:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   address:
                     name:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     building:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     locality:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     city:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     state:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: required if "ready_to_ship" = yes in /confirm;
                     country:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: required if "ready_to_ship" = yes in /confirm;
                     area_code:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 contact:
                   phone:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   email:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -20819,13 +20774,13 @@ x-attributes:
                     description: false
                   range:
                     start:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
                       description: false
                     end:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
@@ -20908,64 +20863,64 @@ x-attributes:
               end:
                 person:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                 location:
                   gps:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BPP
                     usage: false
                     description: false
                   address:
                     name:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
                       description: false
                     building:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     locality:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     city:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     state:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     country:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     area_code:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 contact:
                   phone:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -20979,13 +20934,13 @@ x-attributes:
                 time:
                   range:
                     start:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     end:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
@@ -21080,7 +21035,7 @@ x-attributes:
                 description: false
             payment:
               '@ondc/org/collection_amount':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BAP
                 usage: false
@@ -21104,7 +21059,7 @@ x-attributes:
                 usage: false
                 description: false
               '@ondc/org/settlement_window':
-                required: mandatory
+                required: optional
                 type: string
                 owner: BAP
                 usage: false
@@ -21321,8 +21276,8 @@ x-attributes:
                     usage: false
                     description: false
                   street:
-                    required: mandatory
-                    type: integer
+                    required: optional
+                    type: string
                     owner: BAP
                     usage: false
                     description: false

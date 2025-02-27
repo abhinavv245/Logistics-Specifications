@@ -72,12 +72,6 @@ on_cancel:
       fulfillments:
         $ref: "./tag-group.yaml#/on_cancel_fulfillments"
 
-on_cancel_rto:
-  message:
-    order:
-      fulfillments:
-        $ref: "./tag-group.yaml#/on_cancel_rto_fulfillments"
-
 on_track:
   message:
     tracking:

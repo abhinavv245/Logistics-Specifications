@@ -212,6 +212,10 @@ async function traverseTags(currentTagValue, schemaForTraversal, logObject) {
         await traverseTags(currentTag, schema, logObject);
       }
     } else {
+      console.log(currentTagKey);
+
+      console.log(schemaForTraversal);
+
       throw Error(`[Tags], Key not found: ${currentTagKey} in ${logObject}`);
     }
   }
@@ -253,6 +257,7 @@ async function traverseAttributes(
     const currentAttr = currentAttributeValue[currentAttributeKey];
     const schemaType = schemaForTraversal[currentAttributeKey];
 
+    
     //&& 'type' in currentAttr && 'owner' in currentAttr && 'usage' in currentAttr && 'description' in currentAttr
     if ("required" in currentAttr) {
       continue;
@@ -479,7 +484,7 @@ async function validateExamplesAttributes(exampleSets, attributes) {
                 currentAttribute,
                 example_sets
               );
-            } else {
+            } else {             
               console.log(`attribute not found for ${example_sets}`);
             }
           }

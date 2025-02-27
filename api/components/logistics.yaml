@@ -505,30 +505,7 @@ paths:
                   type: object
                   properties:
                     order:
-                      type: object
-                      properties:
-                        provider:
-                          $ref: '#/components/schemas/Provider'
-                        provider_location:
-                          $ref: '#/components/schemas/Location'
-                        items:
-                          type: array
-                          items:
-                            allOf:
-                              - $ref: '#/components/schemas/Item'
-                              - properties:
-                                  quantity:
-                                    $ref: '#/components/schemas/ItemQuantity'
-                        add_ons:
-                          type: array
-                          items:
-                            $ref: '#/components/schemas/AddOn'
-                        offers:
-                          type: array
-                          items:
-                            $ref: '#/components/schemas/Offer'
-                        quote:
-                          $ref: '#/components/schemas/Quotation'
+                      $ref: '#/components/schemas/Order'
                   required:
                     - order
                 error:
@@ -1421,7 +1398,7 @@ components:
           format: date-time
         cancelled_by:
           type: string
-        reasons:
+        reason:
           $ref: '#/components/schemas/Option'
         selected_reason:
           type: object
@@ -1518,6 +1495,10 @@ components:
           type: string
           description: Time after which catalog has to be refreshed
           format: date-time
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
     Category:
       description: Describes a category.
       type: object
@@ -2160,6 +2141,8 @@ components:
           type: string
           description: Unique identifier for Order across network,
                        will be created by buyer app in confirm API
+        cancellation:
+          $ref: '#/components/schemas/Cancellation'
         state:
           type: string
         provider:
