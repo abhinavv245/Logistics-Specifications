@@ -6,6 +6,38 @@ linked_provider:
     description: Describes the name of provider.
     reference: <PR/Issue/Discussion Links md format text>
 
+search_linked_order:
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: The currency used for the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: The declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: category
+    description: The category of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: The unit for the weight of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: The weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: The unit for the dimensions of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: The length of the order package.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: The breadth of the order package.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: The height of the order package.
+    reference: <PR/Issue/Discussion Links md format text>
+
 rider_details:
   - code: name
     description: Describes the rider name.
@@ -23,6 +55,11 @@ items_tags:
     reference: <PR/Issue/Discussion Links md format text>
   - code: unit
     description: Describes the unit of the item, required if type="rider".
+    reference: <PR/Issue/Discussion Links md format text>
+
+common_items_tags:
+  - code: type
+    description: Describes the type of the item.
     reference: <PR/Issue/Discussion Links md format text>
 
 fulfill_response:
@@ -174,6 +211,42 @@ lbnp_features:
   - code: "015"
     description: Describes the Dynamic OTP verification (pickup & delivery).
     reference: <PR/Issue/Discussion Links md format text>
+  - code: "016"
+    description: Describes the Dynamic OTP verification (RTO).
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "017"
+    description: Describes the Surge fee.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "018"
+    description: Describes the Partial RTO.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "019"
+    description: Describes the eWay bill.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01A"
+    description: Describes the Cancellation terms.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01B"
+    description: Describes the Reverse QC.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01C"
+    description: Describes the SLA metrics.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01D"
+    description: Describes the Publish special capabilities.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01E"
+    description: Describes the RCM self-declaration.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "01F"
+    description: Describes the Codified static terms.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "020"
+    description: Describes the Exchange customer support contact details.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: "021"
+    description: Describes the Differential weight charges.
+    reference: <PR/Issue/Discussion Links md format text>
 
 descriptor_tags:
   - code: static_terms
@@ -199,9 +272,13 @@ bap_terms:
 bpp_terms:
   - code: static_terms
     description: Describes the static terms.
+    reference: https://github.com/ONDC-Official/protocol-network-extension/discussions/79
+accept_bpp_terms:
+  - code: accept_bpp_terms
+    description: Indicates if BPP terms are accepted.
     reference: <PR/Issue/Discussion Links md format text>
 
-confirm_linked_provider:
+common_linked_provider:
   - code: id
     description: Describes unique id for provider.
     reference: <PR/Issue/Discussion Links md format text>
@@ -212,7 +289,7 @@ confirm_linked_provider:
     description: Describes the address of provider.
     reference: <PR/Issue/Discussion Links md format text>
 
-confirm_linked_order:
+common_linked_order:
   - code: id
     description: Describes the unique id of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -247,7 +324,7 @@ confirm_linked_order:
     description: Describes the shipment type of the order.
     reference: <PR/Issue/Discussion Links md format text>
 
-confirm_linked_order_item:
+common_linked_order_item:
   - code: category
     description: Describes the category of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -270,12 +347,105 @@ confirm_linked_order_item:
     description: Describes the weight value of the order.
     reference: <PR/Issue/Discussion Links md format text>
 
-confirm_state:
+init_linked_order:
+  - code: id
+    description: Describes the unique id of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: Describes the declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: category
+    description: Describes the category of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Describes the weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Describes the weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: Describes the package dimension unit for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: Describes the length of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: Describes the breadth of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: Describes the height of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+
+on_confirm_linked_order:
+  - code: id
+    description: Unique identifier for the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: Currency used in the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: Declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: Dimension unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: Length of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: Breadth of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: Height of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: shipment_type
+    description: Type of shipment (e.g., box).
+    reference: <PR/Issue/Discussion Links md format text>
+
+on_init_linked_order:
+  - code: id
+    description: Describes the unique id of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: currency
+    description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: declared_value
+    description: Describes the declared value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_unit
+    description: Describes the weight unit of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: weight_value
+    description: Describes the weight value of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: dim_unit
+    description: Describes the package dimension unit for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: length
+    description: Describes the length of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: breadth
+    description: Describes the breadth of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: height
+    description: Describes the height of the package for retail order.
+    reference: <PR/Issue/Discussion Links md format text>
+
+fulfillment_state:
   - code: ready_to_ship
     description: Describes the order is ready to ship.
     reference: <PR/Issue/Discussion Links md format text>
 
-confirm_rto_action:
+rto_action:
   - code: return_to_origin
     description: Describes the item for return to origin.
     reference: <PR/Issue/Discussion Links md format text>
@@ -306,7 +476,7 @@ precancel_state:
     description: Describes the updated time of the order.
     reference: <PR/Issue/Discussion Links md format text>
 
-rto_events:
+on_cancel_rto_events:
   - code: retry_count
     description: Describes the number of retry attempted.
     reference: <PR/Issue/Discussion Links md format text>
@@ -320,6 +490,23 @@ rto_events:
     description: Describes the order cancelled by.
     reference: <PR/Issue/Discussion Links md format text>
 
+rto_events:
+  - code: retry_count
+    description: Number of retry attempts before RTO.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: rto_id
+    description: Unique identifier for the RTO event.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cancellation_reason_id
+    description: Reason ID for order cancellation.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: sub_reason_id
+    description: Sub-reason ID for cancellation.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cancelled_by
+    description: Entity responsible for cancellation.
+    reference: <PR/Issue/Discussion Links md format text>
+
 tracking:
   - code: gps_enabled
     description: Describes whether tracking by GPS coordinates enabled
@@ -329,4 +516,118 @@ tracking:
     reference: <PR/Issue/Discussion Links md format text>
   - code: url
     description: Describes if tracking by URL enabled, corresponding URL for tracking
+    reference: <PR/Issue/Discussion Links md format text>
+
+lbnp_sla_terms:
+  - code: metric
+    description: The metric being measured.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: base_unit
+    description: The unit of measurement.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: base_min
+    description: The minimum base value.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: base_max
+    description: The maximum base value.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: penalty_min
+    description: The minimum penalty value.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: penalty_max
+    description: The maximum penalty value.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: penalty_unit
+    description: The unit of penalty measurement.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: penalty_value
+    description: The penalty value imposed.
+    reference: <PR/Issue/Discussion Links md format text>
+
+settlement_details:
+  - code: settlement_window
+    description: Settlement window duration.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: settlement_type
+    description: Type of settlement.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: beneficiary_name
+    description: Name of the beneficiary.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: upi_address
+    description: UPI address of the beneficiary.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: bank_account_no
+    description: Bank account number.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: ifsc_code
+    description: IFSC code of the bank.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: bank_name
+    description: Name of the bank.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: branch_name
+    description: Name of the bank branch.
+    reference: <PR/Issue/Discussion Links md format text>
+
+rto_verification:
+  - code: code
+    description: Verification code.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: short_desc
+    description: Short description of the verification.
+    reference: <PR/Issue/Discussion Links md format text>
+
+reverseqc_input:
+  - code: P001
+    description: Product identifier.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: P003
+    description: Quantity identifier.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: Q001
+    description: QC-related identifier.
+    reference: <PR/Issue/Discussion Links md format text>
+
+masked_contact:
+  - code: masked_contact
+    description: Masked contact details for secure communication.
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: type
+        description: Type of masked contact (e.g., IVR PIN).
+        value: ivr_pin
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: setup
+        description: IVR setup or contact number.
+        value: "1800180000"
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: token
+        description: Token for masked contact.
+        value: "12345"
+        reference: <PR/Issue/Discussion Links md format text>
+
+wallet_balance:
+  - code: currency
+    description: Describe the type of currency.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: value
+    description: Available balance in the wallet.
+    reference: <PR/Issue/Discussion Links md format text>
+
+dangerous_goods:
+  - code: dangerous_goods
+    description: Indicates if dangerous goods are included.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cold_storage
+    description: Indicates if cold storage is required.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: open_box_delivery
+    description: Indicates if open box delivery is required.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: fragile_handling
+    description: Indicates if fragile handling is required.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Indicates if the order is Cash on Delivery.
     reference: <PR/Issue/Discussion Links md format text>
