@@ -5,7 +5,7 @@ id:
  - code: Standard Delivery
    description: Delivery will be done by Surface
    reference: <PR/Issue/Discussion Links md format text>
- - code: immediate Delivery
+ - code: Immediate Delivery
    description: Delivery will be done within S2D (Shipment to Delivery) <= 60 min
    reference: <PR/Issue/Discussion Links md format text>
  - code: Next Day Delivery
@@ -13,4 +13,7 @@ id:
    reference: <PR/Issue/Discussion Links md format text>
  - code: Same Day Delivery
    description: Delivery will be done on the Same Day with respect to context timestamp
-   reference: <PR/Issue/Discussion Links md format text>        
+   reference: <PR/Issue/Discussion Links md format text>      
+ - code: Instant Delivery
+   description: Delivery will be done on the Same Day with respect to context timestamp
+   reference: <PR/Issue/Discussion Links md format text>     

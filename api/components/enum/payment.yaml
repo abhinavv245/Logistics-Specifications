@@ -1,11 +1,18 @@
 type:
   - code: ON-ORDER
-    description: Payment occurs prior to order placement.
+    description: Payment occurs prior to order confirmation.
     reference: <PR/Issue/Discussion Links md format text
   - code: ON-FULFILLMENT
     description: Payment occurs when order is Delivered.
     reference: <PR/Issue/Discussion Links md format text
-  - code: POST-FULFILLMENT 
-    description: Payment occurs upon completion of many order (consolidated payment after multiple order). 
+  - code: POST-FULFILLMENT
+    description: Payment occurs after invoice is raised.
     reference: <PR/Issue/Discussion Links md format text
-
+"@ondc/org/settlement_details":
+  settlement_counterparty:
+    - code: lbnp
+      description: This defines with whom the settlement will happen.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: lsp
+      description: This defines with whom the settlement will happen.
+      reference: <PR/Issue/Discussion Links md format text>

@@ -3095,18 +3095,14 @@ servers:
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-Logistics/1.0.26
 x-enum:
   search:
-    context:
-      action:
-        - code: search
-          description: Buyer app indicates the search intent
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: &ref_0
+    context: &ref_0
+      domain:
         - code: nic2004:60232
           description: mobility domain Ride
           reference: <PR/Issue/Discussion Links md format text>
     message:
       intent:
-        fulfillment: &ref_5
+        fulfillment:
           type: &ref_3
             - code: Delivery
               description: Describes the type of fulfillment.
@@ -3114,51 +3110,177 @@ x-enum:
             - code: Return
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
-          start:
+            - code: RTO
+              description: Describes the type of fulfillment.
+              reference: <PR/Issue/Discussion Links md format text
+          start: &ref_8
             authorization:
-              type: &ref_14
+              type:
                 - code: OTP
                   description: >-
                     Describes OTP as an authorization mechanism used to start
                     the fulfillment of an order.
                   reference: <PR/Issue/Discussion Links md format text
             instructions:
-              code: &ref_11
-                - code: 2
+              code:
+                - code: '2'
                   description: Describes merchant order number.
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 3
+                - code: '3'
                   description: Describes any other pickup confirmation code.
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 4
+                - code: '4'
                   description: Describes OTP for pickup confirmation.
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 5
+                - code: '5'
                   description: Describes Static OTP for pickup confirmation.
                   reference: <PR/Issue/Discussion Links md format text
-          end:
+          end: &ref_9
             authorization:
-              type: &ref_15
+              type:
                 - code: OTP
                   description: >-
                     Describes OTP as an authorization mechanism used to end the
                     fulfillment of an order.
                   reference: <PR/Issue/Discussion Links md format text
             instructions:
-              code: &ref_12
-                - code: 1
+              code:
+                - code: '1'
                   description: Describes OTP for delivery confirmation.
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 2
+                - code: '2'
                   description: Describes any other delivery confirmation code (DCC).
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 3
+                - code: '3'
                   description: Describes no delivery code.
                   reference: <PR/Issue/Discussion Links md format text
-                - code: 5
+                - code: '5'
                   description: Describes Static OTP for delivery confirmation.
                   reference: <PR/Issue/Discussion Links md format text
-          state: &ref_13
+        payment:
+          type: &ref_5
+            - code: ON-ORDER
+              description: Payment occurs prior to order confirmation.
+              reference: <PR/Issue/Discussion Links md format text
+            - code: ON-FULFILLMENT
+              description: Payment occurs when order is Delivered.
+              reference: <PR/Issue/Discussion Links md format text
+            - code: POST-FULFILLMENT
+              description: Payment occurs after invoice is raised.
+              reference: <PR/Issue/Discussion Links md format text
+        category:
+          id: &ref_2
+            - code: Express Delivery
+              description: Delivery will be done by Air
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: Standard Delivery
+              description: Delivery will be done by Surface
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: Immediate Delivery
+              description: >-
+                Delivery will be done within S2D (Shipment to Delivery) <= 60
+                min
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: Next Day Delivery
+              description: >-
+                Delivery will be done on the Next Day with respect to context
+                timestamp
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: Same Day Delivery
+              description: >-
+                Delivery will be done on the Same Day with respect to context
+                timestamp
+              reference: <PR/Issue/Discussion Links md format text>
+            - code: Instant Delivery
+              description: >-
+                Delivery will be done on the Same Day with respect to context
+                timestamp
+              reference: <PR/Issue/Discussion Links md format text>
+        item:
+          descriptor: &ref_4
+            code: &ref_1
+              - code: P2P
+                description: P2P Describe shipment method (Point to point).
+                reference: <PR/Issue/Discussion Links md format text
+              - code: P2H2P
+                description: P2H2P Describe shipment method (Point to hub to point).
+                reference: <PR/Issue/Discussion Links md format text
+  on_search:
+    context: *ref_0
+    message:
+      catalog:
+        bpp/providers:
+          items:
+            descriptor:
+              code: *ref_1
+            category_id: *ref_2
+          categories:
+            id: *ref_2
+          fulfillments:
+            type: *ref_3
+  init:
+    context: *ref_0
+    message:
+      order:
+        items:
+          descriptor: *ref_4
+        fulfillments:
+          type: *ref_3
+        payment: &ref_6
+          type: *ref_5
+          '@ondc/org/settlement_details':
+            settlement_counterparty:
+              - code: lbnp
+                description: This defines with whom the settlement will happen.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: lsp
+                description: This defines with whom the settlement will happen.
+                reference: <PR/Issue/Discussion Links md format text>
+  on_init:
+    context: *ref_0
+    message:
+      order:
+        fulfillments:
+          type: *ref_3
+        payment: *ref_6
+        quote: &ref_7
+          breakup:
+            '@ondc/org/title_type':
+              - code: delivery
+                description: Describes the base fare for delivery.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: rto
+                description: Describes the base fare for return to origin (rto).
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: tax
+                description: Describes the tax fare for delivery or rto.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: diff
+                description: Describes the weight differential charge.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: tax_diff
+                description: Describes the tax on weight differential charge.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: discount
+                description: Describes the discount on delivery charge.
+                reference: <PR/Issue/Discussion Links md format text>
+              - code: cod
+                description: Describes the COD charge
+                reference: <PR/Issue/Discussion Links md format text>
+  confirm:
+    context: *ref_0
+    message:
+      order:
+        items: &ref_10
+          descriptor:
+            code: *ref_1
+          category_id: *ref_2
+        quote: *ref_7
+        fulfillments: &ref_11
+          type: *ref_3
+          start: *ref_8
+          end: *ref_9
+          state:
             descriptor:
               code:
                 - code: Pending
@@ -3169,6 +3291,10 @@ x-enum:
                   description: Describes the state of the order as Order picked up.
                 - code: RTO
                   description: Describes the state of the order as Return to Origin.
+                - code: RTO-Initiated
+                  description: >-
+                    Describes the state of the order as Return to Origin
+                    Initiated.
                 - code: RTO-Delivered
                   description: >-
                     Describes the state of the order as Return to Origin
@@ -3203,441 +3329,64 @@ x-enum:
                   description: Describes the state of the order as Delivery rescheduled.
                 - code: Order-delivered
                   description: Describes the state of the order as Order delivered.
-        payment: &ref_6
-          type: &ref_8
-            - code: ON-ORDER
-              description: Payment occurs prior to order placement.
-              reference: <PR/Issue/Discussion Links md format text
-            - code: ON-FULFILLMENT
-              description: Payment occurs when order is Delivered.
-              reference: <PR/Issue/Discussion Links md format text
-            - code: POST-FULFILLMENT
-              description: >-
-                Payment occurs upon completion of many order (consolidated
-                payment after multiple order).
-              reference: <PR/Issue/Discussion Links md format text
-        category:
-          id: &ref_2
-            - code: Express Delivery
-              description: Delivery will be done by Air
-              reference: <PR/Issue/Discussion Links md format text>
-            - code: Standard Delivery
-              description: Delivery will be done by Surface
-              reference: <PR/Issue/Discussion Links md format text>
-            - code: immediate Delivery
-              description: >-
-                Delivery will be done within S2D (Shipment to Delivery) <= 60
-                min
-              reference: <PR/Issue/Discussion Links md format text>
-            - code: Next Day Delivery
-              description: >-
-                Delivery will be done on the Next Day with respect to context
-                timestamp
-              reference: <PR/Issue/Discussion Links md format text>
-            - code: Same Day Delivery
-              description: >-
-                Delivery will be done on the Same Day with respect to context
-                timestamp
-              reference: <PR/Issue/Discussion Links md format text>
-        item: &ref_4
-          descriptor:
-            code: &ref_1
-              - code: P2P
-                description: P2P Describe shipment method (Point to point).
-                reference: <PR/Issue/Discussion Links md format text
-              - code: P2H2P
-                description: P2H2P Describe shipment method (Point to hub to point).
-                reference: <PR/Issue/Discussion Links md format text
-  on_search:
-    context:
-      action:
-        - code: on_search
-          description: Seller app provides catalog based on search intent.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      catalog:
-        bpp/providers:
-          items:
-            descriptor:
-              code: *ref_1
-            category_id: *ref_2
-          categories:
-            id: *ref_2
-          fulfillments:
-            type: *ref_3
-  select:
-    context:
-      action:
-        - code: select
-          description: Buyer app communicates selected items and quantities.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        items: *ref_4
-        fulfillments: *ref_5
-        payments: *ref_6
-        status: &ref_7
-          - code: SOFT-CANCEL
-            description: >-
-              Describes a soft-cancel request initiated by the buyer app, a step
-              preceding cancellation.
-            reference: <PR/Issue/Discussion Links md format text
-          - code: CONFIRM-CANCEL
-            description: >-
-              Describes a confirm-cancel request initiated by the buyer app,
-              confirming the order cancellation
-            reference: <PR/Issue/Discussion Links md format text
-          - code: ACTIVE
-            description: Describes the status of the order.
-            reference: <PR/Issue/Discussion Links md format text
-          - code: COMPLETE
-            description: Describes the status of the order.
-            reference: <PR/Issue/Discussion Links md format text
-          - code: CANCELLED
-            description: Describes the status of the order.
-            reference: <PR/Issue/Discussion Links md format text
-  on_select:
-    context:
-      action:
-        - code: on_select
-          description: >-
-            Seller app provides serviceability info, quotes, and O2D TAT for
-            selected items.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        items: *ref_4
-        fulfillments: *ref_5
-        payments: *ref_6
-        status: *ref_7
-        quote: &ref_10
-          breakup: &ref_9
-            '@ondc/org/title_type':
-              - code: delivery
-                description: Describes the base fare for delivery.
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: rto
-                description: Describes the base fare for return to origin (rto).
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: tax
-                description: Describes the tax fare for delivery or rto.
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: diff
-                description: Describes the weight differential charge.
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: tax_diff
-                description: Describes the tax on weight differential charge.
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: discount
-                description: Describes the discount on delivery charge.
-                reference: <PR/Issue/Discussion Links md format text>
-  init:
-    context:
-      action:
-        - code: init
-          description: >-
-            Buyer and seller apps confirm terms & conditions before placing
-            orders.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        items:
-          descriptor:
-            code: *ref_1
-        fulfillments:
-          type: *ref_3
-        payment:
-          ondc/org/settlement_details:
-            settlement_counterparty:
-              - code: lbnp
-                description: This defines with whom the settlement will happen.
-                reference: <PR/Issue/Discussion Links md format text>
-              - code: lsp
-                description: This defines with whom the settlement will happen.
-                reference: <PR/Issue/Discussion Links md format text>
-          type: *ref_8
-  on_init:
-    context:
-      action:
-        - code: on_init
-          description: >-
-            Buyer and seller apps agree to terms & conditions before placing
-            orders.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        fulfillments:
-          type: *ref_3
-        payments: *ref_6
-        quote:
-          breakup: *ref_9
-  confirm:
-    context:
-      action:
-        - code: confirm
-          description: Buyer app submits orders on behalf of the buyer.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        quote: *ref_10
-        fulfillments:
-          type: *ref_3
-          start:
-            instructions:
-              code: *ref_11
-          end:
-            instructions:
-              code: *ref_12
-        payments: *ref_6
+        payment: *ref_6
   on_confirm:
-    context:
-      action:
-        - code: on_confirm
-          description: >-
-            Seller app responds to the order with auto-acceptance, deferred
-            acceptance, or rejection.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      order:
-        fulfillments:
-          type: *ref_3
-          state: *ref_13
-          start:
-            instructions:
-              code: *ref_11
-          end:
-            instructions:
-              code: *ref_12
-        payments: *ref_6
-        quote:
-          breakup: *ref_9
+      order: &ref_12
         state:
           - code: Created
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
+            description: The order has been created by the buyer app.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: Accepted
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
+            description: The order has been accepted by the seller app.
+            reference: <PR/Issue/Discussion Links md format text>
+          - code: In-progress
+            description: The order is in progress.
+            reference: <PR/Issue/Discussion Links md format text>
+          - code: Completed
+            description: The order has been delivered to the buyer.
+            reference: <PR/Issue/Discussion Links md format text>
           - code: Cancelled
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
+            description: The order has been cancelled.
+            reference: <PR/Issue/Discussion Links md format text>
+        items: *ref_10
+        fulfillments: *ref_11
+        payment: *ref_6
+        quote: *ref_7
   status:
-    context:
-      action:
-        - code: status
-          description: Buyer app request for status of the order
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
   on_status:
-    context:
-      action:
-        - code: on_status
-          description: Seller app return order with status , Driver pickup - driver drop
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      order:
-        state:
-          - code: Created
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Accepted
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Cancelled
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Completed
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: In-progress
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        fulfillments:
-          type: *ref_3
-          state: *ref_13
-          start:
-            instructions:
-              code: *ref_11
-            authorization:
-              type: *ref_14
-          end:
-            instructions:
-              code: *ref_12
-            authorization:
-              type: *ref_15
-        quote: *ref_10
-        payments: *ref_6
+      order: *ref_12
   cancel:
-    context:
-      action:
-        - code: cancel
-          description: Buyer app requests order cancellation."
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
   on_cancel:
-    context:
-      action:
-        - code: on_cancel
-          description: Seller app specifies the cancellation status.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      order:
-        state:
-          - code: Created
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Accepted
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Cancelled
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        quote: *ref_10
-        fulfillments:
-          type: *ref_3
-          state: *ref_13
-          start:
-            instructions:
-              code: *ref_11
-          end:
-            instructions:
-              code: *ref_12
-        payment: *ref_6
-  on_cancel_rto:
-    context:
-      action:
-        - code: on_cancel
-          description: Seller app specifies the cancellation status.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
-    message:
-      order:
-        state:
-          - code: Created
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Accepted
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Cancelled
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: Completed
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-          - code: In-progress
-            description: Defines the current state of order
-            reference: <PR/Issue/Discussion Link md format text>
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        fulfillments:
-          type: *ref_3
-          state: *ref_13
-          start:
-            instructions:
-              code: *ref_11
-          end:
-            instructions:
-              code: *ref_12
-        quote: *ref_10
-        payments: *ref_6
+      order: *ref_12
   update:
-    context:
-      action:
-        - code: update
-          description: Buyer app requests order update."
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      order:
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        fulfillments:
-          type: *ref_3
-          start:
-            instructions:
-              code: *ref_11
-            authorization:
-              type: *ref_14
-          end:
-            instructions:
-              code: *ref_12
+      order: *ref_12
   on_update:
-    context:
-      action:
-        - code: on_update
-          description: Seller app specifies the update status.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      order:
-        items:
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        quote: *ref_10
-        fulfillments:
-          type: *ref_3
-          state: *ref_13
-          start:
-            instructions:
-              code: *ref_11
-            authorization:
-              type: *ref_14
-          end:
-            instructions:
-              code: *ref_12
-        payment: *ref_6
+      order: *ref_12
   track:
-    context:
-      action:
-        - code: track
-          description: Seller app specifies the update status.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
   on_track:
-    context:
-      action:
-        - code: on_track
-          description: Seller app specifies the update status.
-          reference: <PR/Issue/Discussion Links md format text>
-      domain: *ref_0
+    context: *ref_0
     message:
-      trcaking:
+      tracking:
         status:
           - code: active
             description: Defines whether the status is active or not
+            reference: <PR/Issue/Discussion Links md format text>
           - code: inactive
             description: Defines whether the status is active or not
+            reference: <PR/Issue/Discussion Links md format text>
 x-tags:
   search:
     message:
@@ -3720,7 +3469,7 @@ x-tags:
           - code: lbnp_features
             description: Describes the LBNP features enabled.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_16
+            list: &ref_13
               - code: 00B
                 description: Describes the Updated cancellation codes.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3924,7 +3673,7 @@ x-tags:
           - code: lsp_features
             description: Features available for the LSP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_16
+            list: *ref_13
           - code: special_req
             description: Special requirements for the order.
             reference: <PR/Issue/Discussion Links md format text>
@@ -4064,7 +3813,7 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_17
+              list: &ref_14
                 - code: id
                   description: Describes unique id for provider.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4077,7 +3826,7 @@ x-tags:
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_18
+              list: &ref_15
                 - code: id
                   description: Describes the unique id of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4114,7 +3863,7 @@ x-tags:
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_19
+              list: &ref_16
                 - code: category
                   description: Describes the category of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4139,7 +3888,7 @@ x-tags:
             - code: fulfill_request
               description: Describes the fulfillment request parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_25
+              list: &ref_22
                 - code: rider_count
                   description: >-
                     either rider_count or order_count to be provided; if both
@@ -4187,7 +3936,7 @@ x-tags:
           - code: bpp_terms
             description: Describes the bpp terms and conditions.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_22
+            list: &ref_19
               - code: static_terms
                 description: Describes the static terms.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -4199,26 +3948,26 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: state
               description: Describes the state for ready to ship.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_20
+              list: &ref_17
                 - code: ready_to_ship
                   description: Describes the order is ready to ship.
                   reference: <PR/Issue/Discussion Links md format text>
             - code: rto_action
               description: Describes the rto (Return to origin) action.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_21
+              list: &ref_18
                 - code: return_to_origin
                   description: Describes the item for return to origin.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4226,7 +3975,7 @@ x-tags:
           - code: bap_terms
             description: Describes the bap terms and conditions.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_23
+            list: &ref_20
               - code: accept_bap_terms
                 description: Describes the acceptance of bap terms.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -4238,27 +3987,27 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: state
               description: Describes the state for ready to ship.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_17
             - code: rto_action
               description: Describes the rto (Return to origin) action.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_18
             - code: shipping_label
               description: Describes the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_24
+              list: &ref_21
                 - code: type
                   description: Describes the type of shipping label.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4276,11 +4025,11 @@ x-tags:
           - code: bpp_terms
             description: Describes the bpp terms and conditions.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_22
+            list: *ref_19
           - code: bap_terms
             description: Describes the bap terms and conditions.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_23
+            list: *ref_20
   update:
     message:
       order:
@@ -4289,19 +4038,19 @@ x-tags:
             - code: state
               description: Describes the state for ready to ship.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_17
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
   on_update:
     message:
       order:
@@ -4310,27 +4059,27 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: shipping_label
               description: Describes the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_24
+              list: *ref_21
             - code: fulfill_request
               description: Describes the fulfillment request parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_25
+              list: *ref_22
             - code: fulfill_response
               description: Describes the fulfillment response parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_28
+              list: &ref_25
                 - code: rider_count
                   description: >-
                     either rider_count or order_count to be provided; if both
@@ -4354,7 +4103,7 @@ x-tags:
                 Describes the LSP updates rider details, for each rider
                 requested by LBNP (as per rider_count).
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_29
+              list: &ref_26
                 - code: name
                   description: Describes the rider name.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4372,7 +4121,7 @@ x-tags:
             - code: igm_request
               description: Describes the IGM request.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_26
+              list: &ref_23
                 - code: id
                   description: >-
                     Describes the unique id of the IGM (Issue Grievance
@@ -4381,7 +4130,7 @@ x-tags:
             - code: precancel_state
               description: Describes the pre-cancel state of fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_27
+              list: &ref_24
                 - code: fulfillment_state
                   description: Describes the previous fulfillment state of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4391,19 +4140,19 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: shipping_label
               description: Describes the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_24
+              list: *ref_21
   on_cancel_rto:
     message:
       order:
@@ -4428,27 +4177,27 @@ x-tags:
             - code: igm_request
               description: Describes the IGM request.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_26
+              list: *ref_23
             - code: precancel_state
               description: Describes the pre-cancel state of fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_27
+              list: *ref_24
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: shipping_label
               description: Describes the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_24
+              list: *ref_21
   on_track:
     message:
       tracking:
@@ -4508,33 +4257,33 @@ x-tags:
             - code: linked_provider
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_14
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_15
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_16
             - code: shipping_label
               description: Describes the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_24
+              list: *ref_21
             - code: fulfill_request
               description: Describes the fulfillment request parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_25
+              list: *ref_22
             - code: fulfill_response
               description: Describes the fulfillment response parameters.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_28
+              list: *ref_25
             - code: rider_details
               description: >-
                 Describes the LSP updates rider details, for each rider
                 requested by LBNP (as per rider_count).
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_29
+              list: *ref_26
 x-flows:
   - summary: Order Flow (Baseline)
     details:
@@ -4606,7 +4355,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_32
+        example: &ref_29
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -4727,7 +4476,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_43
+        example: &ref_40
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -4850,7 +4599,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_36
+        example: &ref_33
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4964,7 +4713,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_47
+        example: &ref_44
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -5079,7 +4828,7 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 LSP -->> LBNP: ACK - Confirm order received
                 LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-        example: &ref_30
+        example: &ref_27
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -5339,7 +5088,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
-        example: &ref_50
+        example: &ref_47
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -5634,7 +5383,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_40
+        example: &ref_37
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -5796,7 +5545,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_update** - Update order details
                 LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
-        example: &ref_57
+        example: &ref_54
           summary: Order updates
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -6075,7 +5824,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_31
+        example: &ref_28
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6397,7 +6146,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_42
+        example: &ref_39
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -6429,7 +6178,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_track** - Update order tracking information
                 LBNP ->> LSP: ACK
-        example: &ref_60
+        example: &ref_57
           summary: Order tracking
           description: LSP provides live tracking details
           value:
@@ -6500,7 +6249,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_54
+        example: &ref_51
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -7716,7 +7465,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_34
+        example: &ref_31
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -7883,7 +7632,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_45
+        example: &ref_42
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -8062,7 +7811,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_38
+        example: &ref_35
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8381,7 +8130,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_49
+        example: &ref_46
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -8671,7 +8420,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: *ref_30
+        example: *ref_27
       - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
         api: on_confirm
         details:
@@ -8688,7 +8437,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_52
+        example: &ref_49
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -9174,7 +8923,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_56
+        example: &ref_53
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -9711,7 +9460,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_41
+        example: &ref_38
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -10059,7 +9808,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_update (Updated fulfillment details)
                 LBNP ->> LSP: ACK
-        example: &ref_58
+        example: &ref_55
           summary: Order updates (Quick Commerce)
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -10629,7 +10378,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_33
+        example: &ref_30
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -10756,7 +10505,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_44
+        example: &ref_41
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -10895,7 +10644,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_37
+        example: &ref_34
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -11037,7 +10786,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_48
+        example: &ref_45
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -11165,7 +10914,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (COD settlement details)
                 LSP -->> LBNP: ACK
-        example: &ref_39
+        example: &ref_36
           summary: Order confirmation (Cash on delivery)
           description: LBNP confirms the order
           value:
@@ -11439,7 +11188,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_51
+        example: &ref_48
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -11757,7 +11506,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_55
+        example: &ref_52
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -12178,7 +11927,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_31
+        example: *ref_28
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -12200,7 +11949,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
                 LBNP ->> LSP: ACK
-        example: &ref_59
+        example: &ref_56
           summary: RTO Initiation
           description: >-
             LSP updates the forward shipment to RTO and creates a new RTO
@@ -12950,7 +12699,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_35
+        example: &ref_32
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -13058,7 +12807,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_46
+        example: &ref_43
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -13175,7 +12924,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_53
+        example: &ref_50
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -13480,21 +13229,21 @@ x-examples:
     example_set:
       search:
         examples:
-          - *ref_32
-          - *ref_33
-          - *ref_34
+          - *ref_29
+          - *ref_30
+          - *ref_31
       select:
         examples:
-          - *ref_35
+          - *ref_32
       init:
         examples:
-          - *ref_36
-          - *ref_37
-          - *ref_38
+          - *ref_33
+          - *ref_34
+          - *ref_35
       confirm:
         examples:
-          - *ref_30
-          - *ref_39
+          - *ref_27
+          - *ref_36
           - summary: Order confirmation (Quick Commerce)
             description: LBNP confirms the order
             value:
@@ -13946,8 +13695,8 @@ x-examples:
                   updated_at: '2024-11-20T22:00:00.000Z'
       update:
         examples:
-          - *ref_40
-          - *ref_41
+          - *ref_37
+          - *ref_38
       status:
         examples:
           - summary: Order Status
@@ -13971,7 +13720,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_42
+          - *ref_39
       cancel:
         examples:
           - summary: Order cancellation
@@ -13996,32 +13745,32 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
-          - *ref_43
-          - *ref_44
-          - *ref_45
+          - *ref_40
+          - *ref_41
+          - *ref_42
       on_select:
         examples:
-          - *ref_46
+          - *ref_43
       on_init:
+        examples:
+          - *ref_44
+          - *ref_45
+          - *ref_46
+      on_confirm:
         examples:
           - *ref_47
           - *ref_48
           - *ref_49
-      on_confirm:
-        examples:
           - *ref_50
+      on_status:
+        examples:
           - *ref_51
           - *ref_52
           - *ref_53
-      on_status:
+      on_update:
         examples:
           - *ref_54
           - *ref_55
-          - *ref_56
-      on_update:
-        examples:
-          - *ref_57
-          - *ref_58
       on_cancel:
         examples:
           - summary: Order cancellation
@@ -14291,10 +14040,10 @@ x-examples:
                           unit: centimeter
                           value: 1
                   updated_at: '2024-11-20T22:00:30.000Z'
-          - *ref_59
+          - *ref_56
       on_track:
         examples:
-          - *ref_60
+          - *ref_57
 x-attributes:
   logistics:
     attribute_set:
@@ -14496,7 +14245,7 @@ x-attributes:
                       description: Area code for pickup location address.
                 authorization:
                   type:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: OTP
@@ -14531,7 +14280,7 @@ x-attributes:
                       description: Area code for delivery location address.
                 authorization:
                   type:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: OTP
@@ -14566,8 +14315,8 @@ x-attributes:
                 owner: BAP
                 usage: 300
                 description: >-
-                  Collection amount for the order, deprecated, will be removed
-                  in future version;
+                  Collection amount for the retail order, deprecated, will be
+                  removed in future version;
             '@ondc/org/payload_details':
               weight:
                 unit:
@@ -14934,7 +14683,11 @@ x-attributes:
                     type: string
                     owner: BPP
                     usage: false
-                    description: false
+                    description: >-
+                      type of shipment; enum -  "P2P" (point-to-point), "P2H2P"
+                      (point-to-hub-to-point). P2H2P fulfillments require
+                      different packaging and AWB no; required for merchants to
+                      decide on the packaging required for shipment;
                   name:
                     required: mandatory
                     type: string
@@ -15735,7 +15488,7 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -15992,7 +15745,7 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: optional - only for ON-FULFILLMENT (CoD);
               collected_by:
                 required: mandatory
                 type: string
@@ -16158,7 +15911,7 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: ' required only if provider.locations was returned in /on_search;'
             items:
               id:
                 required: mandatory
@@ -16167,7 +15920,7 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -16338,7 +16091,7 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: quote.price.value = Σ(quote.breakup.price.value);
               breakup:
                 '@ondc/org/item_id':
                   required: mandatory
@@ -16351,7 +16104,10 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: >-
+                    enum - "delivery", "tax", "rto", "diff" (weight differential
+                    charge), "tax_diff" (tax on weight differential charge),
+                    "discount" (discount on delivery charge), cod, etc.
                 price:
                   currency:
                     required: mandatory
@@ -16370,20 +16126,20 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: ttl for quote;
             payment:
               '@ondc/org/collection_amount':
                 required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: optional - only for ON-FULFILLMENT (CoD);
               type:
                 required: mandatory
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: ' enum - "ON-FULFILLMENT" (CoD), "POST-FULFILLMENT" (post fulfillment billing), "ON-ORDER" (prepaid, typically thru wallet);'
               collected_by:
                 required: mandatory
                 type: string
@@ -16537,7 +16293,7 @@ x-attributes:
               type: string
               owner: BAP
               usage: false
-              description: false
+              description: ' alphanumeric, up to 32 characters;'
             state:
               required: mandatory
               type: string
@@ -16557,16 +16313,16 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: ' mandatory only if provider.locations was returned in /on_search;'
             items:
               id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -16602,7 +16358,7 @@ x-attributes:
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: ' S2D TAT; if S2D TAT and / or average pickup time is different from what was quoted earlier in /on_search, LSP can NACK /confirm with error code 60008;'
                 timestamp:
                   required: mandatory
                   type: string
@@ -16667,7 +16423,11 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: >-
+                  AWB no. can be provided by logistics buyer NP (in /confirm or
+                  /update) or LSP (in /on_confirm or /on_update) and is
+                  mandatory only if item.descriptor.code = "P2H2P". Can be 11-16
+                  digits;
               start:
                 time:
                   duration:
@@ -16675,7 +16435,7 @@ x-attributes:
                     type: string
                     owner: BPP
                     usage: false
-                    description: false
+                    description: estimated pickup time;
                 person:
                   name:
                     required: mandatory
@@ -16689,7 +16449,7 @@ x-attributes:
                     type: string
                     owner: BPP
                     usage: false
-                    description: false
+                    description: unique id for store - optional;
                   gps:
                     required: mandatory
                     type: string
@@ -16752,53 +16512,43 @@ x-attributes:
                     owner: BAP
                     usage: false
                     description: false
-                  tags:
-                    masked_contact:
-                      list:
-                        type:
-                          required: mandatory
-                          type: string
-                          owner: BAP
-                          usage: false
-                          description: false
-                        setup:
-                          required: mandatory
-                          type: string
-                          owner: BAP
-                          usage: false
-                          description: false
-                        token:
-                          required: mandatory
-                          type: integer
-                          owner: BAP
-                          usage: false
-                          description: false
                 instructions:
                   code:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >
+                      "code" required if "ready_to_ship" = yes in /confirm; type
+                      of PCC: enum - "2" - merchant order no, "3" - other pickup
+                      confirmation code, "4" - OTP;
                   short_desc:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >-
+                      value of PCC, merchant order no - max 6 alphanumeric;
+
+                      other pickup confirmation code - max 6 alphanumeric;
+
+                      OTP - max 6 alphanumeric;
+
+                      "short_desc" required if "ready_to_ship" = yes in
+                      /confirm;
                   long_desc:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: optional
                   additional_desc:
                     content_type:
                       required: mandatory
                       type: string
                       owner: BPP
                       usage: false
-                      description: false
+                      description: ' for seller & buyer instructions,'
                     url:
                       required: mandatory
                       type: string
@@ -16876,53 +16626,41 @@ x-attributes:
                     owner: BAP
                     usage: false
                     description: false
-                  tags:
-                    masked_contact:
-                      list:
-                        type:
-                          required: mandatory
-                          type: string
-                          owner: BAP
-                          usage: false
-                          description: false
-                        setup:
-                          required: mandatory
-                          type: string
-                          owner: BAP
-                          usage: false
-                          description: false
-                        token:
-                          required: mandatory
-                          type: string
-                          owner: BAP
-                          usage: false
-                          description: false
                 instructions:
                   code:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >
+                      optional - may be provided after order is picked up; type
+                      of DCC: enum - "1" - OTP, "2" - other DCC, "3" - no
+                      delivery code;
                   short_desc:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >
+                      optional - may be provided after order is picked up; value
+                      of DCC (required for code 1 & 2):
+
+                      other DCC - max 6 alphanumeric;
+
+                      OTP - max 6 alphanumeric;
                   long_desc:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: optional
                   additional_desc:
                     content_type:
                       required: optional
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: for seller & buyer instructions,
                     url:
                       required: optional
                       type: string
@@ -17344,7 +17082,7 @@ x-attributes:
               type: string
               owner: BPP
               usage: false
-              description: false
+              description: ' enum - "Created", "Accepted", "Cancelled", LSP may accept order after "ready_to_ship" from LBNP;'
             provider:
               id:
                 required: mandatory
@@ -17367,7 +17105,7 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -17397,19 +17135,19 @@ x-attributes:
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: required only if in /confirm;
                 duration:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: required only if in /confirm;
                 timestamp:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: required only if in /confirm;
             quote:
               price:
                 currency:
@@ -17476,13 +17214,13 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: ' required only if item.descriptor.code = "P2H2P"; can be provided by logistics buyer (/confirm or /update) or LSP (/on_confirm or /on_update);'
               tracking:
                 required: mandatory
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: ' should be true if live tracking is enabled;'
               start:
                 person:
                   name:
@@ -17584,7 +17322,9 @@ x-attributes:
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >-
+                      deprecated, will be removed in future version; to be
+                      replaced by "shipping_label" tag below;
                   additional_desc:
                     content_type:
                       required: optional
@@ -17611,13 +17351,13 @@ x-attributes:
                       type: string
                       owner: BPP
                       usage: false
-                      description: false
+                      description: ' in response to RTS, LSP provides a pickup time slot - this time slot could be specific in case of "Immediate Delivery" or could be the entire day for SDD / NDD etc;'
                     end:
                       required: optional
                       type: string
                       owner: BPP
                       usage: false
-                      description: false
+                      description: ' in response to RTS, LSP provides a pickup time slot - this time slot could be specific in case of "Immediate Delivery" or could be the entire day for SDD / NDD etc;'
               end:
                 person:
                   name:
@@ -17735,13 +17475,13 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: ' optional, may be provided for hyperlocal, inter-city delivery for last mile shipment;'
                 phone:
                   required: optional
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: ' optional, may be provided for hyperlocal, inter-city delivery for last mile shipment;'
               vehicle:
                 registration:
                   required: optional
@@ -17755,87 +17495,87 @@ x-attributes:
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               address:
                 name:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 building:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 locality:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 city:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 state:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 country:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 area_code:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
               tax_number:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               phone:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               email:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               created_at:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               updated_at:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
             payment:
               '@ondc/org/collection_amount':
                 required: optional
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: deprecated
               collected_by:
                 required: mandatory
                 type: string
@@ -17853,13 +17593,15 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: ' indicates from when settlement window starts, enum - "invoicing" (from date of invoicing);'
               '@ondc/org/settlement_window':
                 required: mandatory
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: >-
+                  settlement window, as per settlement basis, in ISO8601
+                  Duration format;
               '@ondc/org/settlement_details':
                 settlement_counterparty:
                   required: optional
@@ -17899,21 +17641,21 @@ x-attributes:
                   usage: false
                   description: false
                 transaction_id:
-                  required: mandatory
+                  required: optional
                   type: string
-                  owner: BAP
+                  owner: false
                   usage: false
                   description: false
                 amount:
-                  required: mandatory
+                  required: optional
                   type: string
-                  owner: BAP
+                  owner: false
                   usage: false
                   description: false
               status:
-                required: mandatory
+                required: optional
                 type: string
-                owner: BAP
+                owner: false
                 usage: false
                 description: false
             '@ondc/org/linked_order':
@@ -17923,47 +17665,47 @@ x-attributes:
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: ' deprecated, will be removed in future version;'
                 descriptor:
                   name:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                 quantity:
                   count:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   measure:
                     unit:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: ' deprecated, will be removed in future version;'
                     value:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: ' deprecated, will be removed in future version;'
                 price:
                   currency:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   value:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
               provider:
                 descriptor:
                   name:
@@ -17971,64 +17713,69 @@ x-attributes:
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                 address:
                   name:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   building:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   locality:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   city:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   state:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
                   area_code:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: ' deprecated, will be removed in future version;'
               order:
                 id:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: ' deprecated, will be removed in future version;'
                 weight:
                   unit:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >-
+                      unit weight, enum - "kilogram", "gram", deprecated, will
+                      be removed in future version;
                   value:
                     required: mandatory
                     type: string
                     owner: BAP
                     usage: false
-                    description: false
+                    description: >-
+                      if weight and / or dimensions provided are different from
+                      what was initially provided (in /search), LSP can NACK
+                      /confirm with error code 60011;
                 dimensions:
                   length:
                     unit:
@@ -18036,45 +17783,54 @@ x-attributes:
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: ' deprecated, will be removed in future version;'
                     value:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: >-
+                        if weight and / or dimensions provided are different
+                        from what was initially provided (in /search), LSP can
+                        NACK /confirm with error code 60011;
                   breadth:
                     unit:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: ' deprecated, will be removed in future version;'
                     value:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: >-
+                        if weight and / or dimensions provided are different
+                        from what was initially provided (in /search), LSP can
+                        NACK /confirm with error code 60011;
                   height:
                     unit:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: ' deprecated, will be removed in future version;'
                     value:
                       required: mandatory
                       type: string
                       owner: BAP
                       usage: false
-                      description: false
+                      description: >-
+                        if weight and / or dimensions provided are different
+                        from what was initially provided (in /search), LSP can
+                        NACK /confirm with error code 60011;
             created_at:
               required: mandatory
               type: string
               owner: BAP
               usage: false
-              description: false
+              description: should match the corresponding timestamp in /confirm;
             updated_at:
               required: mandatory
               type: string
@@ -18214,11 +17970,11 @@ x-attributes:
                 description: mandatory in case of multiple fulfillments / SPMD
             fulfillments:
               id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory in case of single fulfillment
               type:
                 required: mandatory
                 type: string
@@ -18279,7 +18035,7 @@ x-attributes:
                     description: false
                   valid_from:
                     required: optional
-                    type: integer
+                    type: string
                     owner: BAP
                     usage: false
                     description: false
@@ -18621,17 +18377,17 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory in case of single fulfillment
               fulfillment_ids:
                 required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory in case of multiple fulfillments / SPMD
               category_id:
                 required: mandatory
                 type: string
@@ -19033,80 +18789,80 @@ x-attributes:
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               address:
                 name:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 building:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 locality:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 city:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 state:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 country:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 area_code:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
               tax_number:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               phone:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               email:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               created_at:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               updated_at:
                 required: mandatory
-                type: integer
+                type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
             payment:
               '@ondc/org/collection_amount':
                 required: optional
@@ -19567,7 +19323,7 @@ x-attributes:
                   description: false
             items:
               id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -19579,11 +19335,11 @@ x-attributes:
                 usage: false
                 description: mandatory in case of multiple fulfillments / SPMD
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory in case of single fulfillment
               category_id:
                 required: mandatory
                 type: string
@@ -20146,61 +19902,73 @@ x-attributes:
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 building:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 locality:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 city:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 state:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 country:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 area_code:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
               tax_number:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               phone:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               email:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
+              created_at:
+                required: mandatory
+                type: string
+                owner: BAP
+                usage: false
+                description: billing should be same as in /init
+              updated_at:
+                required: mandatory
+                type: string
+                owner: BAP
+                usage: false
+                description: billing should be same as in /init
             '@ondc/org/linked_order':
               items:
                 category_id:
@@ -20834,7 +20602,7 @@ x-attributes:
                   description: false
             items:
               id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -20846,11 +20614,11 @@ x-attributes:
                 usage: false
                 description: mandatory in case of multiple fulfillments / SPMD
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory in case of single fulfillment
               category_id:
                 required: mandatory
                 type: string
@@ -20896,7 +20664,10 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: false
+                  description: >-
+                    quote should reflect the updated value of logistics order
+                    (including weight differential cost & tax if applicable)
+                    which has to be paid by LBNP;
               breakup:
                 '@ondc/org/item_id':
                   required: mandatory
@@ -21413,61 +21184,73 @@ x-attributes:
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 building:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 locality:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 city:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 state:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 country:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
                 area_code:
                   required: mandatory
                   type: string
                   owner: BAP
                   usage: false
-                  description: false
+                  description: billing should be same as in /init
               tax_number:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               phone:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
               email:
                 required: mandatory
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: billing should be same as in /init
+              created_at:
+                required: mandatory
+                type: string
+                owner: BAP
+                usage: false
+                description: billing should be same as in /init
+              updated_at:
+                required: mandatory
+                type: string
+                owner: BAP
+                usage: false
+                description: billing should be same as in /init
             '@ondc/org/linked_order':
               items:
                 category_id:

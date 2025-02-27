@@ -5,6 +5,9 @@ type:
   - code: Return
     description: Describes the type of fulfillment.
     reference: <PR/Issue/Discussion Links md format text
+  - code: RTO
+    description: Describes the type of fulfillment.
+    reference: <PR/Issue/Discussion Links md format text
 start:
   authorization:
     type:
@@ -13,16 +16,16 @@ start:
         reference: <PR/Issue/Discussion Links md format text
   instructions:
     code:
-      - code: 2
+      - code: "2"
         description: Describes merchant order number.
         reference: <PR/Issue/Discussion Links md format text
-      - code: 3
+      - code: "3"
         description: Describes any other pickup confirmation code.
         reference: <PR/Issue/Discussion Links md format text
-      - code: 4
+      - code: "4"
         description: Describes OTP for pickup confirmation.
         reference: <PR/Issue/Discussion Links md format text
-      - code: 5
+      - code: "5"
         description: Describes Static OTP for pickup confirmation.
         reference: <PR/Issue/Discussion Links md format text
 end:
@@ -33,16 +36,16 @@ end:
         reference: <PR/Issue/Discussion Links md format text
   instructions:
     code:
-      - code: 1
+      - code: "1"
         description: Describes OTP for delivery confirmation.
         reference: <PR/Issue/Discussion Links md format text
-      - code: 2
+      - code: "2"
         description: Describes any other delivery confirmation code (DCC).
         reference: <PR/Issue/Discussion Links md format text
-      - code: 3
+      - code: "3"
         description: Describes no delivery code.
         reference: <PR/Issue/Discussion Links md format text
-      - code: 5
+      - code: "5"
         description: Describes Static OTP for delivery confirmation.
         reference: <PR/Issue/Discussion Links md format text
 state:
@@ -56,6 +59,8 @@ state:
         description: Describes the state of the order as Order picked up.
       - code: RTO
         description: Describes the state of the order as Return to Origin.
+      - code: RTO-Initiated
+        description: Describes the state of the order as Return to Origin Initiated.
       - code: RTO-Delivered
         description: Describes the state of the order as Return to Origin Delivered.
       - code: RTO-Disposed
