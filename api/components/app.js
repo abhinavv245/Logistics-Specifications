@@ -212,10 +212,6 @@ async function traverseTags(currentTagValue, schemaForTraversal, logObject) {
         await traverseTags(currentTag, schema, logObject);
       }
     } else {
-      console.log(currentTagKey);
-
-      console.log(schemaForTraversal);
-
       throw Error(`[Tags], Key not found: ${currentTagKey} in ${logObject}`);
     }
   }

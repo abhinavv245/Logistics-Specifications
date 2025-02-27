@@ -2334,6 +2334,10 @@ components:
           enum:
             - BAP
             - BPP
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagGroup'
         "@ondc/org/collection_amount":
           description: CoD collection amount
           type: string
