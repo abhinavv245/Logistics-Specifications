@@ -3610,7 +3610,7 @@ x-tags:
           - code: lbnp_sla_terms
             description: Service Level Agreement terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_23
+            list: &ref_24
               - code: metric
                 description: The metric being measured.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3790,7 +3790,7 @@ x-tags:
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_17
+              list: &ref_18
                 - code: id
                   description: Describes the unique id of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3855,7 +3855,7 @@ x-tags:
                 - code: height
                   description: Describes the height of the package for retail order.
                   reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_18
+        tags: &ref_19
           - code: bap_terms
             description: Terms and conditions agreed upon by the BAP.
             reference: <PR/Issue/Discussion Links md format text>
@@ -3890,7 +3890,7 @@ x-tags:
             - code: linked_order
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_19
+              list: &ref_20
                 - code: id
                   description: Describes the unique id of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3921,7 +3921,7 @@ x-tags:
             - code: linked_order_item
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_20
+              list: &ref_21
                 - code: category
                   description: Describes the category of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3989,11 +3989,11 @@ x-tags:
                 - code: value
                   description: Available balance in the wallet.
                   reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_21
+        tags: &ref_22
           - code: bpp_terms
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_27
+            list: &ref_28
               - code: static_terms
                 description: Describes the static terms.
                 reference: >-
@@ -4002,6 +4002,35 @@ x-tags:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: &ref_17
+                - code: masked_contact
+                  description: >-
+                    either phone no or masked_contact to be provided; to be part
+                    of the order in /confirm, /on_confirm, /on_update,
+                    /on_status;
+                  reference: <PR/Issue/Discussion Links md format text>
+                  list:
+                    - code: type
+                      description: Type of masked contact (e.g., IVR PIN).
+                      reference: <PR/Issue/Discussion Links md format text>
+                      list:
+                        - code: ivr_pin
+                          description: IVR with pin
+                        - code: ivr_without_pin
+                          description: IVR without pin
+                        - code: api_endpoint
+                          description: API endpoint for bridge
+                    - code: setup
+                      description: IVR setup or contact number.
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: token
+                      description: Token for masked contact.
+                      reference: <PR/Issue/Discussion Links md format text>
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: linked_provider
               description: Details about the linked provider.
@@ -4018,13 +4047,13 @@ x-tags:
             - code: linked_order
               description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_17
+              list: *ref_18
         items:
           tags:
             - code: type
               description: Defines the base type.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_22
+              list: &ref_23
                 - code: type
                   description: Describes the type of the item.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4038,11 +4067,17 @@ x-tags:
                     - code: cod
                       description: cod charge item
                       reference: <PR/Issue/Discussion Links md format text>
-        tags: *ref_18
+        tags: *ref_19
   on_init:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: *ref_17
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: rider_check
               description: Rider inline check details.
@@ -4066,22 +4101,28 @@ x-tags:
             - code: linked_order
               description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_19
+              list: *ref_20
             - code: linked_order_item
               description: Details about the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
-        tags: *ref_21
+              list: *ref_21
+        tags: *ref_22
   confirm:
     message:
       order:
-        items: &ref_24
+        items: &ref_25
           tags:
             - code: type
               description: Type information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_22
+              list: *ref_23
         fulfillments:
+          start:
+            contact:
+              tags: *ref_17
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: linked_provider
               description: Details about the linked provider.
@@ -4176,7 +4217,7 @@ x-tags:
             - code: state
               description: State details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_25
+              list: &ref_26
                 - code: ready_to_ship
                   description: Describes the order is ready to ship.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4190,7 +4231,7 @@ x-tags:
             - code: rto_action
               description: Return to Origin action details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_26
+              list: &ref_27
                 - code: return_to_origin
                   description: Describes the item for return to origin.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4325,19 +4366,25 @@ x-tags:
           - code: bap_terms
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_28
+            list: &ref_29
               - code: accept_bpp_terms
                 description: Indicates if BPP terms are accepted.
                 reference: <PR/Issue/Discussion Links md format text>
           - code: lbnp_sla_terms
             description: SLA terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_23
+            list: *ref_24
   on_confirm:
     message:
       order:
-        items: *ref_24
+        items: *ref_25
         fulfillments:
+          start:
+            contact:
+              tags: *ref_17
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: linked_provider
               description: Details of the linked provider.
@@ -4346,7 +4393,7 @@ x-tags:
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_29
+              list: &ref_30
                 - code: id
                   description: Unique identifier for the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4387,19 +4434,19 @@ x-tags:
             - code: linked_order_item
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_21
             - code: state
               description: Order state information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_25
+              list: *ref_26
             - code: rto_action
               description: Return to origin action status.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_26
+              list: *ref_27
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_30
+              list: &ref_31
                 - code: type
                   description: Describes the type of shipping label.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4437,15 +4484,15 @@ x-tags:
           - code: bpp_terms
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_27
+            list: *ref_28
           - code: bap_terms
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_28
+            list: *ref_29
           - code: lbnp_sla_terms
             description: Service Level Agreement (SLA) terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_23
+            list: *ref_24
   update:
     message:
       order:
@@ -4468,15 +4515,21 @@ x-tags:
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_29
+              list: *ref_30
             - code: linked_order_item
               description: Details of the linked order items.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_21
   on_update:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: *ref_17
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: linked_provider
               description: Details of the linked provider.
@@ -4485,15 +4538,15 @@ x-tags:
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_29
+              list: *ref_30
             - code: linked_order_item
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_21
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_31
             - code: fulfill_request
               description: Fulfillment request details.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4604,26 +4657,10 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: &ref_31
-                - code: type
-                  description: Type of masked contact (e.g., IVR PIN).
-                  reference: <PR/Issue/Discussion Links md format text>
-                  list:
-                    - code: ivr_pin
-                      description: IVR with pin
-                    - code: ivr_without_pin
-                      description: IVR without pin
-                    - code: api_endpoint
-                      description: API endpoint for bridge
-                - code: setup
-                  description: IVR setup or contact number.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: token
-                  description: Token for masked contact.
-                  reference: <PR/Issue/Discussion Links md format text>
+              tags: *ref_17
           end:
             contact:
-              tags: *ref_31
+              tags: *ref_17
           tags:
             - code: igm_request
               description: Request related to IGM (Issue Management).
@@ -4684,15 +4721,15 @@ x-tags:
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_29
+              list: *ref_30
             - code: linked_order_item
               description: Items within the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_21
             - code: shipping_label
               description: Details of the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_31
             - code: rto_event
               description: Details of the Return to Origin (RTO) event.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4747,6 +4784,12 @@ x-tags:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: *ref_17
+          end:
+            contact:
+              tags: *ref_17
           tags:
             - code: tracking
               description: Tracking details for the order.
@@ -4770,15 +4813,15 @@ x-tags:
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_29
+              list: *ref_30
             - code: linked_order_item
               description: Individual items in the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_21
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_31
             - code: fulfill_request
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
