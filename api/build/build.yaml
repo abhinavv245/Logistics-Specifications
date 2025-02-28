@@ -3898,6 +3898,16 @@ x-tags:
                 - code: type
                   description: Describes the type of the item.
                   reference: <PR/Issue/Discussion Links md format text>
+                  list:
+                    - code: base
+                      description: base item
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: surge
+                      description: surge fee item
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: cod
+                      description: cod charge item
+                      reference: <PR/Issue/Discussion Links md format text>
         tags: *ref_18
   on_init:
     message:
