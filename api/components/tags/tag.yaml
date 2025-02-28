@@ -19,6 +19,40 @@ search_linked_order:
   - code: category
     description: The category of the order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "F&B"
+        description: F&B item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Grocery"
+        description: Grocery item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Fashion"
+        description: Fashion item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "BPC"
+        description: BPC item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Electronics"
+        description: Electronics item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Appliances"
+        description: Appliances item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Home & Kitchen"
+        description: Home & Kitchen item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Health & Wellness"
+        description: Health & Wellness item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Pharma"
+        description: Pharma item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Auto components"
+        description: Auto components item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "C2C parcels"
+        description: C2C parcels item
+        reference: <PR/Issue/Discussion Links md format text>
   - code: weight_unit
     description: The unit for the weight of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -53,9 +87,23 @@ items_tags:
   - code: type
     description: Describes the type of the item.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "base"
+        description: min guarantee amount, as per rate basis (base)
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "rider"
+        description: min guarantee amount, as per rate basis (rider)
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "order"
+        description: min guarantee amount, as per rate basis (order)
+        reference: <PR/Issue/Discussion Links md format text>  
   - code: unit
     description: Describes the unit of the item, required if type="rider".
     reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: "hour"
+        description: cost quoted is per this unit
+        reference: <PR/Issue/Discussion Links md format text> 
 
 common_items_tags:
   - code: type
@@ -82,6 +130,13 @@ fulfill_response:
   - code: rate_basis
     description: Describes the rate basis - rate per rider or order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "rider"
+        description: rate basis per rider
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "order"
+        description: rate basis per order
+        reference: <PR/Issue/Discussion Links md format text>
 
 on_status_fulfill_response:
   - code: rider_count
@@ -93,6 +148,13 @@ on_status_fulfill_response:
   - code: rate_basis
     description: Describes the rate basis - rate per rider or order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "rider"
+        description: rate basis per rider
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "order"
+        description: rate basis per order
+        reference: <PR/Issue/Discussion Links md format text>
   - code: diff_value
     description: Describes the differential value based on which additional cost added to quote (diff, tax_diff), to be interpreted based on "rate_basis" and "unit" for item cost in /on_search.
     reference: <PR/Issue/Discussion Links md format text>
@@ -107,6 +169,13 @@ fulfill_request:
   - code: rate_basis
     description: Describes the rate basis - rate per rider or order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "rider"
+        description: rate basis per rider
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "order"
+        description: rate basis per order
+        reference: <PR/Issue/Discussion Links md format text>
   - code: motorable_distance
     description: Describes the max motorable distance for serviceability (in km).
     reference: <PR/Issue/Discussion Links md format text>
@@ -133,6 +202,40 @@ linked_order:
   - code: category
     description: Describes the category of the order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "F&B"
+        description: F&B item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Grocery"
+        description: Grocery item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Fashion"
+        description: Fashion item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "BPC"
+        description: BPC item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Electronics"
+        description: Electronics item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Appliances"
+        description: Appliances item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Home & Kitchen"
+        description: Home & Kitchen item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Health & Wellness"
+        description: Health & Wellness item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Pharma"
+        description: Pharma item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Auto components"
+        description: Auto components item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "C2C parcels"
+        description: C2C parcels item
+        reference: <PR/Issue/Discussion Links md format text>
   - code: weight_unit
     description: Describes the weight unit of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -312,6 +415,40 @@ common_linked_order:
   - code: category
     description: Describes the category of the order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "F&B"
+        description: F&B item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Grocery"
+        description: Grocery item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Fashion"
+        description: Fashion item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "BPC"
+        description: BPC item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Electronics"
+        description: Electronics item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Appliances"
+        description: Appliances item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Home & Kitchen"
+        description: Home & Kitchen item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Health & Wellness"
+        description: Health & Wellness item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Pharma"
+        description: Pharma item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Auto components"
+        description: Auto components item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "C2C parcels"
+        description: C2C parcels item
+        reference: <PR/Issue/Discussion Links md format text>
   - code: weight_unit
     description: Describes the weight unit of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -338,6 +475,40 @@ common_linked_order_item:
   - code: category
     description: Describes the category of the order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "F&B"
+        description: F&B item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Grocery"
+        description: Grocery item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Fashion"
+        description: Fashion item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "BPC"
+        description: BPC item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Electronics"
+        description: Electronics item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Appliances"
+        description: Appliances item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Home & Kitchen"
+        description: Home & Kitchen item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Health & Wellness"
+        description: Health & Wellness item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Pharma"
+        description: Pharma item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Auto components"
+        description: Auto components item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "C2C parcels"
+        description: C2C parcels item
+        reference: <PR/Issue/Discussion Links md format text>
   - code: name
     description: Describes the name of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -370,6 +541,40 @@ init_linked_order:
   - code: category
     description: Describes the category of the order.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "F&B"
+        description: F&B item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Grocery"
+        description: Grocery item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Fashion"
+        description: Fashion item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "BPC"
+        description: BPC item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Electronics"
+        description: Electronics item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Appliances"
+        description: Appliances item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Home & Kitchen"
+        description: Home & Kitchen item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Health & Wellness"
+        description: Health & Wellness item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "Pharma"
+        description: Pharma item
+        reference: <PR/Issue/Discussion Links md format text> 
+      - code: "Auto components"
+        description: Auto components item
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "C2C parcels"
+        description: C2C parcels item
+        reference: <PR/Issue/Discussion Links md format text>
   - code: weight_unit
     description: Describes the weight unit of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -420,6 +625,13 @@ on_confirm_linked_order:
   - code: shipment_type
     description: Type of shipment (e.g., box).
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "box"
+        description: shipment type - box
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "flyer"
+        description: shipment type - flyer
+        reference: <PR/Issue/Discussion Links md format text>
 
 on_init_linked_order:
   - code: id
@@ -454,16 +666,43 @@ fulfillment_state:
   - code: ready_to_ship
     description: Describes the order is ready to ship.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "yes"
+        description: order is ready to be shipped
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "no"
+        description: order is not ready to be shipped
+        reference: <PR/Issue/Discussion Links md format text>
 
 rto_action:
   - code: return_to_origin
     description: Describes the item for return to origin.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "yes"
+        description: order should be returned to origin in case of return
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "no"
+        description: order can be disposed in case of return
+        reference: <PR/Issue/Discussion Links md format text>
 
 shipping_label:
   - code: type
     description: Describes the type of shipping label.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "webp"
+        description: Describes the type of shipping label (webp)
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "png"
+        description: Describes the type of shipping label (png)
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "jpeg"
+        description: Describes the type of shipping label (jpeg)
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "pdf"
+        description: Describes the type of shipping label (pdf)
+        reference: <PR/Issue/Discussion Links md format text>
   - code: url
     description: Describes the url of shipping label.
     reference: <PR/Issue/Discussion Links md format text>
@@ -472,6 +711,13 @@ weather_check:
   - code: raining
     description: Describes the weather is raining.
     reference: <PR/Issue/Discussion Links md format text>
+    list: 
+      - code: "yes"
+        description: It is raining
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: "no"
+        description: It is not raining
+        reference: <PR/Issue/Discussion Links md format text>
 
 igm_request:
   - code: id
@@ -480,10 +726,39 @@ igm_request:
 
 precancel_state:
   - code: fulfillment_state
-    description: Describes the previous fulfillment state of the order.
+    description: Describes the pre-cancel state of fulfillment, i.e. state of fulfillment prior to cancellation.
     reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: Pending
+        description: Describes the state of the order as Pending.
+      - code: Order-picked-up
+        description: Describes the state of the order as Order picked up.
+      - code: Out-for-pickup
+        description: Describes the state of the order as Out for pickup.
+      - code: At-destination-hub
+        description: Describes the state of the order as At destination hub.
+      - code: In-transit
+        description: Describes the state of the order as In transit.
+      - code: At-pickup
+        description: Describes the state of the order as At pickup.
+      - code: Out-for-delivery
+        description: Describes the state of the order as Out for delivery. 
+      - code: At-delivery
+        description: Describes the state of the order as At delivery.  
+      - code: Searching-for-Agent
+        description: Describes the state of the order as Searching for Agent.
+      - code: Agent-assigned
+        description: Describes the state of the order as Agent assigned. 
+      - code: Pickup-failed
+        description: Describes the state of the order as Pickup failed.   
+      - code: Pickup-rescheduled
+        description: Describes the state of the order as Pickup rescheduled.       
+      - code: Delivery-failed
+        description: Describes the state of the order as Delivery failed.
+      - code: Delivery-rescheduled
+        description: Describes the state of the order as Delivery rescheduled. 
   - code: updated_at
-    description: Describes the updated time of the order.
+    description: Describes the time of the precancel state.
     reference: <PR/Issue/Discussion Links md format text>
 
 on_cancel_rto_events:
@@ -600,23 +875,22 @@ reverseqc_input:
     reference: <PR/Issue/Discussion Links md format text>
 
 masked_contact:
-  - code: masked_contact
-    description: Masked contact details for secure communication.
+  - code: type
+    description: Type of masked contact (e.g., IVR PIN).
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: type
-        description: Type of masked contact (e.g., IVR PIN).
-        value: ivr_pin
-        reference: <PR/Issue/Discussion Links md format text>
-      - code: setup
-        description: IVR setup or contact number.
-        value: "1800180000"
-        reference: <PR/Issue/Discussion Links md format text>
-      - code: token
-        description: Token for masked contact.
-        value: "12345"
-        reference: <PR/Issue/Discussion Links md format text>
-
+      - code: ivr_pin
+        description: IVR with pin
+      - code: ivr_without_pin
+        description: IVR without pin
+      - code: api_endpoint
+        description: API endpoint for bridge
+  - code: setup
+    description: IVR setup or contact number.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: token
+    description: Token for masked contact.
+    reference: <PR/Issue/Discussion Links md format text>
 wallet_balance:
   - code: currency
     description: Describe the type of currency.

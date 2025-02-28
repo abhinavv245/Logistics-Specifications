@@ -233,7 +233,13 @@ on_cancel_rto_fulfillments:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/shipping_label"
-
+init_contact_tags:
+  tags:
+    - code: masked_contact
+      description: either phone no or masked_contact to be provided; to be part of the order in /confirm, /on_confirm, /on_update, /on_status;
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/masked_contact"
 init_fulfillment_tags:
   tags:
     - code: linked_provider
