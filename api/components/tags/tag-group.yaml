@@ -946,7 +946,7 @@ on_status_fulfillment_tags:
       description: Details of assigned riders.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        ref: "./tag.yaml#/rider_details"
+        $ref: "./tag.yaml#/rider_details"
 
     - code: cod_collection_detail
       description: Details of COD collection.

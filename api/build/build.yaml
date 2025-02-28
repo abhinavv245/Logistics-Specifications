@@ -4844,7 +4844,15 @@ x-tags:
               description: Details of assigned riders.
               reference: <PR/Issue/Discussion Links md format text>
               list:
-                ref: ./tag.yaml#/rider_details
+                - code: name
+                  description: Describes the rider name.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: phone
+                  description: Describes the rider phone number.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: vehicle_registration
+                  description: Describes the vehicle registration number.
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: cod_collection_detail
               description: Details of COD collection.
               reference: <PR/Issue/Discussion Links md format text>
