@@ -15,5 +15,5 @@ id:
    description: Delivery will be done on the Same Day with respect to context timestamp
    reference: <PR/Issue/Discussion Links md format text>      
  - code: Instant Delivery
-   description: Delivery will be done on the Same Day with respect to context timestamp
+   description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
    reference: <PR/Issue/Discussion Links md format text>     

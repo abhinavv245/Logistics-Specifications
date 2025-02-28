@@ -3085,7 +3085,7 @@ x-enum:
     context: &ref_0
       domain:
         - code: nic2004:60232
-          description: mobility domain Ride
+          description: Logistics domain code
           reference: <PR/Issue/Discussion Links md format text>
     message:
       intent:
@@ -3179,9 +3179,7 @@ x-enum:
                 timestamp
               reference: <PR/Issue/Discussion Links md format text>
             - code: Instant Delivery
-              description: >-
-                Delivery will be done on the Same Day with respect to context
-                timestamp
+              description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
               reference: <PR/Issue/Discussion Links md format text>
         item:
           descriptor: &ref_4
