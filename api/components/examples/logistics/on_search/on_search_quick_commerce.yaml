@@ -17,7 +17,7 @@ value:
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M1
-    timestamp: 2024-11-20T21:00:30.000Z
+    timestamp: '2024-11-20T21:00:30.000Z'
   message:
     catalog:
       descriptor:
@@ -34,7 +34,7 @@ value:
                 value: https://github.com/ONDC-Official/NP-Static-Terms/lspNP_LSP/1.0/tc.pdf
               - descriptor:
                   code: EFFECTIVE_DATE
-                value: 2024-11-20T00:00:00.000Z
+                value: '2024-11-20T00:00:00.000Z'
               - descriptor:
                   code: NP_TAX_TYPE
                 value: RCM
@@ -64,7 +64,7 @@ value:
               time:
                 label: TAT
                 duration: PT10M
-                timestamp: 2024-12-11
+                timestamp: '2024-12-11'
           fulfillments:
             - id: "1"
               type: Delivery
@@ -99,16 +99,16 @@ value:
                       value: "3.0"
                     - descriptor:
                         code: PICKUP_SLOT_START
-                      value: 2024-12-11T00:00:00.000Z
+                      value: '2024-12-11T00:00:00.000Z'
                     - descriptor:
                         code: PICKUP_SLOT_END
-                      value: 2024-12-11T00:15:00.000Z
+                      value: '2024-12-11T00:15:00.000Z'
                     - descriptor:
                         code: DELIVERY_SLOT_START
-                      value: 2024-12-11T01:30:00.000Z
+                      value: '2024-12-11T01:30:00.000Z'
                     - descriptor:
                         code: DELIVERY_SLOT_END
-                      value: 2024-12-11T02:00:00.000Z
+                      value: '2024-12-11T02:00:00.000Z'
                 - descriptor:
                     code: FULFILL_RESPONSE
                   list:
@@ -137,7 +137,7 @@ value:
               time:
                 label: TAT
                 duration: PT10M
-                timestamp: 2024-11-20
+                timestamp: '2024-11-20'
               tags:
                 - descriptor:
                     code: TYPE
@@ -162,7 +162,7 @@ value:
               time:
                 label: TAT
                 duration: PT10M
-                timestamp: 2024-11-20
+                timestamp: '2024-11-20'
               tags:
                 - descriptor:
                     code: TYPE

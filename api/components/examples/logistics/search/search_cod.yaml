@@ -103,10 +103,10 @@ value:
           list:
             - descriptor:
                 code: 00B
-              value: yes
+              value: 'yes'
             - descriptor:
                 code: 00E
-              value: yes
+              value: 'yes'
             - descriptor:
                 code: 01D
-              value: yes
+              value: 'yes'

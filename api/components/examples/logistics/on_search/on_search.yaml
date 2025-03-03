@@ -20,14 +20,18 @@ value:
   message:
     catalog:
       tags:
-        - code: lsp_features
+        - descriptor:
+            code: LSP_FEATURES
           list:
-            - code: "005"
-              value: yes
-            - code: "009"
-              value: yes
-            - code: 00C
-              value: yes
+            - descriptor:
+                code: '005'
+              value: 'yes'
+            - descriptor:
+                code: '009'
+              value: 'yes'
+            - descriptor:
+                code: '00C'
+              value: 'yes'
       descriptor:
         name: LSP Aggregator Inc
         tags:
