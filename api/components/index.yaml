@@ -10,9 +10,11 @@ attributes:
   $ref: "./attributes/index.yaml"
 error_codes:
   $ref: "./error_codes/index.yaml"
-testcases-ui:
+# testcases-ui:
+#   $ref: "./docs/index.yaml"
+feature-ui:
   $ref: "./docs/index.yaml"
-sandbox-ui:
-  $ref: "./sandbox/index.yaml"
-tlc:
-  $ref: "./tlc/index.yaml"
+# sandbox-ui:
+#   $ref: "./sandbox/index.yaml"
+# tlc:
+#   $ref: "./tlc/index.yaml"
