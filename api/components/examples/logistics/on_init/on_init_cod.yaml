@@ -3,17 +3,20 @@ description: LBNP acknowledges order initialisation , provides quote breakup.
 value:
   context:
     domain: nic2004:60232
-    country: IND
-    city: std:080
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
+    version: '2.0.0'
     action: on_init
-    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M2
-    timestamp: '2024-11-20T21:30:30.000Z'
+    timestamp: 2024-11-20T21:30:30.000Z
   message:
     order:
       provider:
@@ -22,92 +25,122 @@ value:
           - id: L1
       items:
         - id: I1
-          fulfillment_id: '1'
+          fulfillment_ids:
+            - "1"
       fulfillments:
-        - id: '1'
+        - id: "1"
           type: Delivery
-          start:
-            location:
-              id: S1
-              gps: 12.4535,77.9283
-              address:
-                name: Store name
-                building: House or building name
-                locality: Locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560041'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
-          end:
-            location:
-              gps: 12.453544,77.928379
-              address:
-                name: 'My house #'
-                building: My house or building name
-                locality: locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560076'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
+          stops:
+            - type: START
+              location:
+                gps: 12.4535,77.9283
+                address: Store name, House or building name, Locality
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560041"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+                tags: []
+            - type: END
+              location:
+                gps: 12.453544,77.928379
+                address: "My house #, My house or building name, locality"
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560076"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+                tags: []
           tags:
-            - code: rider_check
+            - descriptor:
+                code: RIDER_CHECK
               list:
-                - code: inline_check_for_rider
-                  value: 'yes'
-            - code: linked_provider
+                - descriptor:
+                    code: INLINE_CHECK_FOR_RIDER
+                  value: yes
+            - descriptor:
+                code: LINKED_PROVIDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: P1
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Seller1
-            - code: linked_order
+            - descriptor:
+                code: LINKED_ORDER
               list:
-                - code: cod_order
-                  value: 'yes'
-                - code: currency
+                - descriptor:
+                    code: COD_ORDER
+                  value: yes
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: declared_value
-                  value: '300.00'
-                - code: collection_amount
-                  value: '325.00'
+                - descriptor:
+                    code: DECLARED_VALUE
+                  value: "300.00"
+                - descriptor:
+                    code: COLLECTION_AMOUNT
+                  value: "325.00"
       quote:
         price:
           currency: INR
-          value: '59.00'
+          value: "59.00"
         breakup:
-          - '@ondc/org/item_id': I1
-            '@ondc/org/title_type': delivery
+          - title: DELIVERY
+            item:
+              id: I1
+              price:
+                currency: INR
+                value: "50.00"
             price:
               currency: INR
-              value: '50.00'
-          - '@ondc/org/item_id': I1
-            '@ondc/org/title_type': tax
+              value: "50.00"
+          - title: TAX
+            item:
+              id: I1
+              price:
+                currency: INR
+                value: "9.00"
             price:
               currency: INR
-              value: '9.00'
-          - '@ondc/org/item_id': I2
-            '@ondc/org/title_type': cod
+              value: "9.00"
+          - title: COD
+            item:
+              id: I2
+              price:
+                currency: INR
+                value: "16.25"
             price:
               currency: INR
-              value: '16.25'
-          - '@ondc/org/item_id': I2
-            '@ondc/org/title_type': tax
+              value: "16.25"
+          - title: TAX
+            item:
+              id: I2
+              price:
+                currency: INR
+                value: "2.93"
             price:
               currency: INR
-              value: '2.93'
+              value: "2.93"
         ttl: PT15M
-      payment:
-        type: ON-ORDER
-        collected_by: BPP
       tags:
-        - code: bpp_terms
+        - descriptor:
+            code: BPP_TERMS
           list:
-            - code: static_terms
-              value: >-
-                https://github.com/ONDC-Official/protocol-network-extension/discussions/79
+            - descriptor:
+                code: STATIC_TERMS
+              value: https://github.com/ONDC-Official/protocol-network-extension/discussions/79
+      payments:
+        - type: ON-ORDER
+          collected_by: BPP
