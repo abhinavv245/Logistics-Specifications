@@ -1,1001 +1,903 @@
 search_fulfillments_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Describes the provider linked to the order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Provider ID.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: name
+        - code: NAME
           description: Provider Name.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_order
+    - code: LINKED_ORDER
       description: Describes the order details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/search_linked_order"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/search_linked_order
+    - code: FULFILL_REQUEST
       description: Details regarding order fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
+        $ref: ./tag.yaml#/fulfill_request
 search_intent_tags:
-  - code: lbnp_features
+  - code: LBNP_FEATURES
     description: Describes the LBNP features enabled.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/lbnp_features"
-
-  - code: lbnp_sla_terms
+      $ref: ./tag.yaml#/lbnp_features
+  - code: LBNP_SLA_TERMS
     description: Service Level Agreement terms for LBNP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/lbnp_sla_terms"
-
+      $ref: ./tag.yaml#/lbnp_sla_terms
 on_search_bpp_descriptor_tags:
-  - code: bpp_terms
+  - code: BPP_TERMS
     description: Terms and conditions related to BPP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: static_terms
+      - code: STATIC_TERMS
         description: URL for static terms (if any).
         reference: <PR/Issue/Discussion Links md format text>
-      - code: static_terms_new
+      - code: STATIC_TERMS_NEW
         description: Updated static terms URL.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: effective_date
+      - code: EFFECTIVE_DATE
         description: The date when the terms become effective.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: np_tax_type
+      - code: NP_TAX_TYPE
         description: Type of tax applicable (e.g., RCM).
         reference: <PR/Issue/Discussion Links md format text>
-      - code: max_liability
+      - code: MAX_LIABILITY
         description: Maximum liability amount.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: max_liability_cap
+      - code: MAX_LIABILITY_CAP
         description: Maximum cap on liability.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: mandatory_arbitration
+      - code: MANDATORY_ARBITRATION
         description: Whether arbitration is mandatory (true/false).
         reference: <PR/Issue/Discussion Links md format text>
-      - code: court_jurisdiction
+      - code: COURT_JURISDICTION
         description: The jurisdiction for legal proceedings.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: delay_interest
+      - code: DELAY_INTEREST
         description: Interest rate applied for delays.
         reference: <PR/Issue/Discussion Links md format text>
-
 on_search_fulfillment_tags:
   tags:
-    - code: distance
+    - code: DISTANCE
       description: Details about the motorable distance.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: motorable_distance_type
+        - code: MOTORABLE_DISTANCE_TYPE
           description: The unit of motorable distance measurement.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: motorable_distance
+        - code: MOTORABLE_DISTANCE
           description: The measured motorable distance.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: fulfill_request
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_response"
-
+        $ref: ./tag.yaml#/fulfill_response
 on_search_item_tags:
   tags:
-    - code: type
+    - code: TYPE
       description: Defines the type and unit.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/items_tags"
-
+        $ref: ./tag.yaml#/items_tags
 on_search_providers_tags:
-  - code: lsp_features
+  - code: LSP_FEATURES
     description: Features available for the LSP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/lbnp_features"
-  - code: special_req
+      $ref: ./tag.yaml#/lbnp_features
+  - code: SPECIAL_REQ
     description: Special requirements for the order.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/dangerous_goods"
-
+      $ref: ./tag.yaml#/dangerous_goods
 select_fulfillment_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Describes the provider information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_response"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/fulfill_response
+    - code: LINKED_ORDER
       description: Describes the retail linked order information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/init_linked_order"
-
+        $ref: ./tag.yaml#/init_linked_order
 on_select_fulfillment_tags:
   tags:
-    - code: rider_check
+    - code: RIDER_CHECK
       description: Rider inline check details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: inline_check_for_rider
+        - code: INLINE_CHECK_FOR_RIDER
           description: Indicates if inline check for rider is required.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Describes the provider information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_response"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/fulfill_response
+    - code: LINKED_ORDER
       description: Describes the retail linked order information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_init_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_init_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Describes the retail linked order item information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
+        $ref: ./tag.yaml#/common_linked_order_item
 on_select_payment_tags:
   tags:
-    - code: wallet_balance
+    - code: WALLET_BALANCE
       description: Wallet balance details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/wallet_balance"
-
+        $ref: ./tag.yaml#/wallet_balance
 init_items_tags:
   tags:
-    - code: type
+    - code: TYPE
       description: Defines the base type.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_items_tags"
-
+        $ref: ./tag.yaml#/common_items_tags
 on_cancel_rto_fulfillments:
   tags:
-    - code: rto_event
+    - code: RTO_EVENT
       description: Describes the RTO event.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_cancel_rto_events"
-    - code: igm_request
+        $ref: ./tag.yaml#/on_cancel_rto_events
+    - code: IGM_REQUEST
       description: Describes the IGM request.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/igm_request"
-    - code: precancel_state
+        $ref: ./tag.yaml#/igm_request
+    - code: PRECANCEL_STATE
       description: Describes the pre-cancel state of fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/precancel_state"
-    - code: linked_provider
+        $ref: ./tag.yaml#/precancel_state
+    - code: LINKED_PROVIDER
       description: Describes the provider information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Describes the retail linked order information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order"
-    - code: linked_order_item
+        $ref: ./tag.yaml#/common_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Describes the retail linked order item information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-    - code: shipping_label
+        $ref: ./tag.yaml#/common_linked_order_item
+    - code: SHIPPING_LABEL
       description: Describes the shipping label.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/shipping_label"
+        $ref: ./tag.yaml#/shipping_label
 contact_tags:
-    - code: masked_contact
-      description: either phone no or masked_contact to be provided; to be part of the order in /confirm, /on_confirm, /on_update, /on_status;
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        $ref: "./tag.yaml#/masked_contact"
+  - code: MASKED_CONTACT
+    description: either phone no or masked_contact to be provided; to be part of the order in /confirm, /on_confirm, /on_update, /on_status;
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: ./tag.yaml#/masked_contact
 init_fulfillment_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details about the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_response"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/fulfill_response
+    - code: LINKED_ORDER
       description: Details about the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/init_linked_order"
-
+        $ref: ./tag.yaml#/init_linked_order
 init_order_tags:
-  - code: bap_terms
+  - code: BAP_TERMS
     description: Terms and conditions agreed upon by the BAP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: accept_bpp_terms
+      - code: ACCEPT_BPP_TERMS
         description: Indicates whether the BAP accepts the BPP terms.
         reference: <PR/Issue/Discussion Links md format text>
-
 on_init_fulfillment_tags:
   tags:
-    - code: rider_check
+    - code: RIDER_CHECK
       description: Rider inline check details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: inline_check_for_rider
+        - code: INLINE_CHECK_FOR_RIDER
           description: Indicates if inline check for rider is required.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details about the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_response"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/fulfill_response
+    - code: LINKED_ORDER
       description: Details about the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_init_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_init_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Details about the linked order item.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
+        $ref: ./tag.yaml#/common_linked_order_item
 on_init_order_tags:
-  - code: bpp_terms
+  - code: BPP_TERMS
     description: Terms related to BPP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/bpp_terms"
-
+      $ref: ./tag.yaml#/bpp_terms
 confirm_item_tags:
   tags:
-    - code: type
+    - code: TYPE
       description: Type information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_items_tags"
-
+        $ref: ./tag.yaml#/common_items_tags
 confirm_fulfillment_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details about the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Provider ID.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: name
+        - code: NAME
           description: Provider name.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: address
+        - code: ADDRESS
           description: Provider address details.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: cred_code
+        - code: CRED_CODE
           description: Credential code.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: cred_desc
+        - code: CRED_DESC
           description: Credential description.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_order
+    - code: LINKED_ORDER
       description: Details about the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Order ID.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: prep_time
+        - code: PREP_TIME
           description: Preparation time.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: cod_order
+        - code: COD_ORDER
           description: Indicates if Cash on Delivery is applicable.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: currency
+        - code: CURRENCY
           description: Currency type.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: declared_value
+        - code: DECLARED_VALUE
           description: Declared order value.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: collection_amount
+        - code: COLLECTION_AMOUNT
           description: Collection amount.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_unit
+        - code: WEIGHT_UNIT
           description: Unit of weight.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_value
+        - code: WEIGHT_VALUE
           description: Weight of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: dim_unit
+        - code: DIM_UNIT
           description: Unit of dimension.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: length
+        - code: LENGTH
           description: Length of the package.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: breadth
+        - code: BREADTH
           description: Breadth of the package.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: height
+        - code: HEIGHT
           description: Height of the package.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: shipment_type
+        - code: SHIPMENT_TYPE
           description: Type of shipment.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_order_item
+    - code: LINKED_ORDER_ITEM
       description: Details about the linked order item.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: category
+        - code: CATEGORY
           description: Item category.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: name
+        - code: NAME
           description: Item name.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: currency
+        - code: CURRENCY
           description: Currency type.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: value
+        - code: VALUE
           description: Item value.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: quantity
+        - code: QUANTITY
           description: Quantity of item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_unit
+        - code: WEIGHT_UNIT
           description: Unit of weight.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_value
+        - code: WEIGHT_VALUE
           description: Weight of the item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: return_to_origin
+        - code: RETURN_TO_ORIGIN
           description: Indicates if return to origin is applicable.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: state
+    - code: STATE
       description: State details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfillment_state"
-
-    - code: rto_action
+        $ref: ./tag.yaml#/fulfillment_state
+    - code: RTO_ACTION
       description: Return to Origin action details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/rto_action"
-
-    - code: provider
+        $ref: ./tag.yaml#/rto_action
+    - code: PROVIDER
       description: Provider details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: name
+        - code: NAME
           description: Provider name.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: address
+        - code: ADDRESS
           description: Provider address.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: tax_id
+        - code: TAX_ID
           description: Provider tax ID.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: order
+    - code: ORDER
       description: Order details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Order ID.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_unit
+        - code: WEIGHT_UNIT
           description: Weight unit of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_value
+        - code: WEIGHT_VALUE
           description: Weight of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: dim_unit
+        - code: DIM_UNIT
           description: Dimension unit of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: length
+        - code: LENGTH
           description: Length of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: breadth
+        - code: BREADTH
           description: Breadth of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: height
+        - code: HEIGHT
           description: Height of the order.
           reference: <PR/Issue/Discussion Links md format text>
-    - code: cod_settlement_detail
+    - code: COD_SETTLEMENT_DETAIL
       description: COD settlement details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/settlement_details"
-
-    - code: rto_verification
+        $ref: ./tag.yaml#/settlement_details
+    - code: RTO_VERIFICATION
       description: Return to origin (RTO) verification details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/rto_verification"
-
-    - code: items
+        $ref: ./tag.yaml#/rto_verification
+    - code: ITEMS
       description: Order items.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: category
+        - code: CATEGORY
           description: Item category.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: name
+        - code: NAME
           description: Item name.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: currency
+        - code: CURRENCY
           description: Currency type.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: value
+        - code: VALUE
           description: Item value.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: quantity
+        - code: QUANTITY
           description: Quantity of the item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_unit
+        - code: WEIGHT_UNIT
           description: Weight unit of the item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_value
+        - code: WEIGHT_VALUE
           description: Weight value of the item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: hsn_code
+        - code: HSN_CODE
           description: HSN code for the item.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: ebn_exempt
+        - code: EBN_EXEMPT
           description: EBN exemption status.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: reverseqc_input
+    - code: REVERSEQC_INPUT
       description: Reverse QC input details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/reverseqc_input"
-
+        $ref: ./tag.yaml#/reverseqc_input
 confirm_order_tags:
-  - code: bap_terms
+  - code: BAP_TERMS
     description: Terms related to BAP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/accept_bpp_terms"
-
-  - code: lbnp_sla_terms
+      $ref: ./tag.yaml#/accept_bpp_terms
+  - code: LBNP_SLA_TERMS
     description: SLA terms for LBNP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/lbnp_sla_terms"
-
+      $ref: ./tag.yaml#/lbnp_sla_terms
 on_confirm_fulfillment_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details of the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Details of the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_confirm_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_confirm_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Details of the linked order item.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
-    - code: state
+        $ref: ./tag.yaml#/common_linked_order_item
+    - code: STATE
       description: Order state information.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfillment_state"
-
-    - code: rto_action
+        $ref: ./tag.yaml#/fulfillment_state
+    - code: RTO_ACTION
       description: Return to origin action status.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/rto_action"
-
-    - code: shipping_label
+        $ref: ./tag.yaml#/rto_action
+    - code: SHIPPING_LABEL
       description: Shipping label details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/shipping_label"
-
-    - code: weather_check
+        $ref: ./tag.yaml#/shipping_label
+    - code: WEATHER_CHECK
       description: Weather conditions at the time of delivery.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/weather_check"
-
+        $ref: ./tag.yaml#/weather_check
 on_confirm_order_tags:
-  - code: bpp_terms
+  - code: BPP_TERMS
     description: Terms related to BPP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/bpp_terms"
-
-  - code: bap_terms
+      $ref: ./tag.yaml#/bpp_terms
+  - code: BAP_TERMS
     description: Terms related to BAP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/accept_bpp_terms"
-
-  - code: lbnp_sla_terms
+      $ref: ./tag.yaml#/accept_bpp_terms
+  - code: LBNP_SLA_TERMS
     description: Service Level Agreement (SLA) terms for LBNP.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      $ref: "./tag.yaml#/lbnp_sla_terms"
-
+      $ref: ./tag.yaml#/lbnp_sla_terms
 update_fulfillment_tags:
   tags:
-    - code: state
+    - code: STATE
       description: Order state details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: ready_to_ship
+        - code: READY_TO_SHIP
           description: Indicates if the order is ready to ship.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: order_ready
+        - code: ORDER_READY
           description: Indicates if the order is ready.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details of the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Details of the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_confirm_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_confirm_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Details of the linked order items.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
+        $ref: ./tag.yaml#/common_linked_order_item
 on_update_fulfillment_tags:
   tags:
-    - code: linked_provider
+    - code: LINKED_PROVIDER
       description: Details of the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Details of the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_confirm_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_confirm_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Details of the linked order item.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
-    - code: shipping_label
+        $ref: ./tag.yaml#/common_linked_order_item
+    - code: SHIPPING_LABEL
       description: Shipping label details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/shipping_label"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/shipping_label
+    - code: FULFILL_REQUEST
       description: Fulfillment request details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Fulfillment response details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: rider_count
+        - code: RIDER_COUNT
           description: Number of riders assigned.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: order_count
+        - code: ORDER_COUNT
           description: Number of orders being fulfilled.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: rate_basis
+        - code: RATE_BASIS
           description: Basis for rate calculation.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: diff_value
+        - code: DIFF_VALUE
           description: Difference in expected and actual values.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: rider_details
+    - code: RIDER_DETAILS
       description: Details of the rider assigned to the order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: name
+        - code: NAME
           description: Rider's name.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: phone
+        - code: PHONE
           description: Rider's phone number.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: fulfillment_delay
+    - code: FULFILLMENT_DELAY
       description: Details regarding fulfillment delays.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: state
+        - code: STATE
           description: Current state of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: reason_id
+        - code: REASON_ID
           description: Reason for the delay.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: timestamp
+        - code: TIMESTAMP
           description: Timestamp of the delay event.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: attempt
+        - code: ATTEMPT
           description: Whether an attempt was made.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: fulfillment_proof
+    - code: FULFILLMENT_PROOF
       description: Proof of order fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: state
+        - code: STATE
           description: Final state of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: type
+        - code: TYPE
           description: Format of the proof (e.g., image, webp).
           reference: <PR/Issue/Discussion Links md format text>
-        - code: url
+        - code: URL
           description: Link to the proof image.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: ebn
+    - code: EBN
       description: Electronic bill number details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: EBN identifier.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: expiry_date
+        - code: EXPIRY_DATE
           description: Expiry date of the EBN.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_order_diff
+    - code: LINKED_ORDER_DIFF
       description: Differences in the linked order details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Order ID.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_unit
+        - code: WEIGHT_UNIT
           description: Unit of weight measurement.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: weight_value
+        - code: WEIGHT_VALUE
           description: Weight of the order.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: dim_unit
+        - code: DIM_UNIT
           description: Unit for dimensions.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: length
+        - code: LENGTH
           description: Order length.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: breadth
+        - code: BREADTH
           description: Order breadth.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: height
+        - code: HEIGHT
           description: Order height.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: linked_order_diff_proof
+    - code: LINKED_ORDER_DIFF_PROOF
       description: Proof of differences in the order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: type
+        - code: TYPE
           description: Type of proof (e.g., image).
           reference: <PR/Issue/Discussion Links md format text>
-        - code: url
+        - code: URL
           description: Link to the proof image.
           reference: <PR/Issue/Discussion Links md format text>
-
 on_cancel_fulfillment_tags:
   tags:
-    - code: igm_request
+    - code: IGM_REQUEST
       description: Request related to IGM (Issue Management).
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/igm_request"
-
-    - code: precancel_state
+        $ref: ./tag.yaml#/igm_request
+    - code: PRECANCEL_STATE
       description: State of fulfillment before cancellation.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/precancel_state"
-
-    - code: linked_provider
+        $ref: ./tag.yaml#/precancel_state
+    - code: LINKED_PROVIDER
       description: Information about the linked provider.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Details of the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_confirm_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_confirm_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Items within the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
-    - code: shipping_label
+        $ref: ./tag.yaml#/common_linked_order_item
+    - code: SHIPPING_LABEL
       description: Details of the shipping label.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/shipping_label"
-
-    - code: rto_event
+        $ref: ./tag.yaml#/shipping_label
+    - code: RTO_EVENT
       description: Details of the Return to Origin (RTO) event.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/rto_events"
-
+        $ref: ./tag.yaml#/rto_events
 on_track_tracking_tags:
   tags:
-    - code: order
+    - code: ORDER
       description: Order details for tracking.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: id
+        - code: ID
           description: Unique identifier for the order.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: config
+    - code: CONFIG
       description: Configuration for tracking updates.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: attr
+        - code: ATTR
           description: Tracking attribute being used.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: type
+        - code: TYPE
           description: Type of tracking mechanism.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: path
+    - code: PATH
       description: GPS path details for live tracking.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: lat_lng
+        - code: LAT_LNG
           description: Latitude and longitude coordinates.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: sequence
+        - code: SEQUENCE
           description: Order of location updates.
           reference: <PR/Issue/Discussion Links md format text>
-
 on_status_order_tags:
-  - code: diff_dim
+  - code: DIFF_DIM
     description: Dimension differences recorded.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: unit
+      - code: UNIT
         description: Unit of measurement for dimensions.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: length
+      - code: LENGTH
         description: Length difference recorded.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: breadth
+      - code: BREADTH
         description: Breadth difference recorded.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: height
+      - code: HEIGHT
         description: Height difference recorded.
         reference: <PR/Issue/Discussion Links md format text>
-
-  - code: diff_weight
+  - code: DIFF_WEIGHT
     description: Weight differences recorded.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: unit
+      - code: UNIT
         description: Unit of measurement for weight.
         reference: <PR/Issue/Discussion Links md format text>
-      - code: weight
+      - code: WEIGHT
         description: Weight difference recorded.
         reference: <PR/Issue/Discussion Links md format text>
-
-  - code: diff_proof
+  - code: DIFF_PROOF
     description: Proof of recorded differences.
     reference: <PR/Issue/Discussion Links md format text>
     list:
-      - code: type
+      - code: TYPE
         description: Type of proof provided (image, document, etc.).
         reference: <PR/Issue/Discussion Links md format text>
-      - code: url
+      - code: URL
         description: URL to access proof.
         reference: <PR/Issue/Discussion Links md format text>
-
 on_status_fulfillment_tags:
   tags:
-    - code: tracking
+    - code: TRACKING
       description: Tracking details for the order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/tracking"
-
-    - code: linked_provider
+        $ref: ./tag.yaml#/tracking
+    - code: LINKED_PROVIDER
       description: Provider details linked to the order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_provider"
-
-    - code: linked_order
+        $ref: ./tag.yaml#/common_linked_provider
+    - code: LINKED_ORDER
       description: Details of the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/on_confirm_linked_order"
-
-    - code: linked_order_item
+        $ref: ./tag.yaml#/on_confirm_linked_order
+    - code: LINKED_ORDER_ITEM
       description: Individual items in the linked order.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/common_linked_order_item"
-
-    - code: shipping_label
+        $ref: ./tag.yaml#/common_linked_order_item
+    - code: SHIPPING_LABEL
       description: Shipping label details.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/shipping_label"
-
-    - code: fulfill_request
+        $ref: ./tag.yaml#/shipping_label
+    - code: FULFILL_REQUEST
       description: Request details for fulfillment.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/fulfill_request"
-
-    - code: fulfill_response
+        $ref: ./tag.yaml#/fulfill_request
+    - code: FULFILL_RESPONSE
       description: Response details for the fulfillment request.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: rider_count
+        - code: RIDER_COUNT
           description: Number of riders assigned.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: order_count
+        - code: ORDER_COUNT
           description: Number of orders accepted.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: rate_basis
+        - code: RATE_BASIS
           description: Basis of rate calculation.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: diff_value
+        - code: DIFF_VALUE
           description: Difference in estimated vs actual values.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: rider_details
+    - code: RIDER_DETAILS
       description: Details of assigned riders.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/rider_details"
-
-    - code: cod_collection_detail
+        $ref: ./tag.yaml#/rider_details
+    - code: COD_COLLECTION_DETAIL
       description: Details of COD collection.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: currency
+        - code: CURRENCY
           description: Currency in which COD was collected.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: value
+        - code: VALUE
           description: Amount collected as COD.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: transaction_id
+        - code: TRANSACTION_ID
           description: Transaction ID of the COD collection.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: timestamp
+        - code: TIMESTAMP
           description: Timestamp of the COD collection.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: cod_settlement_detail
+    - code: COD_SETTLEMENT_DETAIL
       description: Details of COD settlement.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/settlement_details"
-
-    - code: rto_event
+        $ref: ./tag.yaml#/settlement_details
+    - code: RTO_EVENT
       description: Details of the RTO (Return to Origin) event.
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        - code: retry_count
+        - code: RETRY_COUNT
           description: Number of retry attempts made before initiating RTO.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: rto_id
+        - code: RTO_ID
           description: Unique identifier for the RTO event.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: cancellation_reason_id
+        - code: CANCELLATION_REASON_ID
           description: Reason code for order cancellation.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: reason_id
+        - code: REASON_ID
           description: Primary reason code for the RTO.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: sub_reason_id
+        - code: SUB_REASON_ID
           description: Sub-reason code for additional context.
           reference: <PR/Issue/Discussion Links md format text>
-        - code: cancelled_by
+        - code: CANCELLED_BY
           description: Entity responsible for initiating the cancellation.
           reference: <PR/Issue/Discussion Links md format text>
-
-    - code: reverseqc_output
+    - code: REVERSEQC_OUTPUT
       description: Output details of the reverse quality check (QC).
       reference: <PR/Issue/Discussion Links md format text>
       list:
-        $ref: "./tag.yaml#/reverseqc_input"
+        $ref: ./tag.yaml#/reverseqc_input
