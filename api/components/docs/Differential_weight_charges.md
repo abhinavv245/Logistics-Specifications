@@ -1,9 +1,11 @@
 # Differential Weight Charges - 021
 
 ## Overview
+
 Logistics Service Providers (**LSPs**) notify **Logistics Buyer Network Participants (LBNPs)** of any differential weight charges due to discrepancies in actual shipment weight and dimensions. This notification can be sent via `/on_update`, `/on_status`, or `/on_cancel` (for RTO impact).
 
 ## Key Features
+
 - **LSP Provides Updated Costs**: Includes differential cost, applicable taxes, updated weight, and dimensions.
 - **LBNP Acknowledgement (ACK/NACK)**:
   - **ACK**: Accepts updated quote, and differential cost is added to total shipment cost.
@@ -13,16 +15,15 @@ Logistics Service Providers (**LSPs**) notify **Logistics Buyer Network Particip
 ## Payload Changes
 
 ### **LSP Notifies LBNP of Differential Weight Charges**
+
 ```json
 {
   "context": {
-    "action": "on_update",
-    "core_version": "1.2.5",
-    ..
+    "version": "2.0.0",
+    "action": "on_update"
   },
   "message": {
     "order": {
-      ..
       "quote": {
         "price": {
           "currency": "INR",
@@ -30,32 +31,40 @@ Logistics Service Providers (**LSPs**) notify **Logistics Buyer Network Particip
         },
         "breakup": [
           {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "delivery",
+            "title": "DELIVERY",
+            "item": {
+              "id": "I1"
+            },
             "price": {
               "currency": "INR",
               "value": "50.0"
             }
           },
           {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "tax",
+            "title": "TAX",
+            "item": {
+              "id": "I1"
+            },
             "price": {
               "currency": "INR",
               "value": "9.0"
             }
           },
           {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "diff",
+            "title": "DIFF",
+            "item": {
+              "id": "I1"
+            },
             "price": {
               "currency": "INR",
               "value": "25.0"
             }
           },
           {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "tax_diff",
+            "title": "TAX_DIFF",
+            "item": {
+              "id": "I1"
+            },
             "price": {
               "currency": "INR",
               "value": "4.5"
@@ -65,35 +74,47 @@ Logistics Service Providers (**LSPs**) notify **Logistics Buyer Network Particip
       },
       "fulfillments": [
         {
-          ..
           "tags": [
-            ..
             {
-              "code": "linked_order_diff",
+              "descriptor": {
+                "code": "LINKED_ORDER_DIFF"
+              },
               "list": [
                 {
-                  "code": "id",
+                  "descriptor": {
+                    "code": "ID"
+                  },
                   "value": "RO1"
                 },
                 {
-                  "code": "weight_unit",
+                  "descriptor": {
+                    "code": "WEIGHT_UNIT"
+                  },
                   "value": "kilogram"
                 },
                 {
-                  "code": "weight_value",
+                  "descriptor": {
+                    "code": "WEIGHT_VALUE"
+                  },
                   "value": "3.0"
                 }
               ]
             },
             {
-              "code": "linked_order_diff_proof",
+              "descriptor": {
+                "code": "LINKED_ORDER_DIFF_PROOF"
+              },
               "list": [
                 {
-                  "code": "type",
+                  "descriptor": {
+                    "code": "TYPE"
+                  },
                   "value": "image"
                 },
                 {
-                  "code": "url",
+                  "descriptor": {
+                    "code": "URL"
+                  },
                   "value": "https://lsp.com/sorter/images1.png"
                 }
               ]
@@ -108,55 +129,79 @@ Logistics Service Providers (**LSPs**) notify **Logistics Buyer Network Particip
 ```
 
 ### **Updated Weight & Dimensions**
+
 ```json
 {
   "tags": [
     {
-      "code": "diff_dim",
+      "descriptor": {
+        "code": "DIFF_DIM"
+      },
       "list": [
         {
-          "code": "unit",
+          "descriptor": {
+            "code": "UNIT"
+          },
           "value": "centimeter"
         },
         {
-          "code": "length",
+          "descriptor": {
+            "code": "LENGTH"
+          },
           "value": "1.5"
         },
         {
-          "code": "breadth",
+          "descriptor": {
+            "code": "BREADTH"
+          },
           "value": "1.5"
         },
         {
-          "code": "height",
+          "descriptor": {
+            "code": "HEIGHT"
+          },
           "value": "1.5"
         }
       ]
     },
     {
-      "code": "diff_weight",
+      "descriptor": {
+        "code": "DIFF_WEIGHT"
+      },
       "list": [
         {
-          "code": "unit",
+          "descriptor": {
+            "code": "UNIT"
+          },
           "value": "kilogram"
         },
         {
-          "code": "weight",
+          "descriptor": {
+            "code": "WEIGHT"
+          },
           "value": "1.5"
         }
       ]
     },
     {
-      "code": "diff_proof",
+      "descriptor": {
+        "code": "DIFF_PROOF"
+      },
       "list": [
         {
-          "code": "type",
+          "descriptor": {
+            "code": "TYPE"
+          },
           "value": "image"
         },
         {
-          "code": "url",
+          "descriptor": {
+            "code": "URL"
+          },
           "value": "https://lsp.com/sorter/images1.png"
         }
       ]
     }
   ]
 }
+```

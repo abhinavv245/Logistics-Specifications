@@ -13,49 +13,58 @@ Partial Return to Origin (RTO) allows the **LBNP** to declare specific items tha
 
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..,
-      "fulfillments": [
-        {
-          ..
-          "tags": [
-            {
-              "code": "rto_action",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "return_to_origin",
-                  "value": "yes"
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "RTO_ACTION"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "RETURN_TO_ORIGIN"
+                                    },
+                                    "value": "yes"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "LINKED_PROVIDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "P1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Seller1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "ADDRESS"
+                                    },
+                                    "value": "shop_name,building_name,locality,city,state,pincode"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "linked_provider",
-              "list": [
-                {
-                  "code": "id",
-                  "value": "P1"
-                },
-                {
-                  "code": "name",
-                  "value": "Seller1"
-                },
-                {
-                  "code": "address",
-                  "value": "shop_name,building_name,locality,city,state,pincode"
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }
 ```
 
@@ -63,65 +72,72 @@ Partial Return to Origin (RTO) allows the **LBNP** to declare specific items tha
 
 ```json
 {
-  "context": {
-    "action": "on_cancel",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "state": "In-progress",
-      "cancellation": {
-        "cancelled_by": "lsp.com",
-        "reason": {
-          "id": "127"
-        }
-      },
-      ..
-      "items": [
-        {
-          "id": "I1",
-          "fulfillment_id": "1",
-          ..
-        },
-        {
-          "id": "I2",
-          "fulfillment_id": "1-RTO",
-          ..
-        }
-      ],
-      ..
-      "fulfillments": [
-        {
-          "id": "1-RTO",
-          "type": "RTO",
-          "state": {
-            "descriptor": {
-              "code": "RTO-Initiated"
-            }
-          },
-          "tags": [
-            {
-              "code": "linked_provider",
-              "list": [
-                {
-                  "code": "id",
-                  "value": "P1"
-                },
-                {
-                  "code": "name",
-                  "value": "Seller1"
-                },
-                {
-                  "code": "address",
-                  "value": "shop_name,building_name,locality,city,state,pincode"
+    "context": {
+        "version": "2.0.0",
+        "action": "on_cancel"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "cancellation": {
+                "cancelled_by": "lsp.com",
+                "reason": {
+                    "id": "127"
                 }
-              ]
-            }
-          ]
+            },
+            "items": [
+                {
+                    "id": "I1",
+                    "fulfillment_ids": [
+                        "1"
+                    ]
+                },
+                {
+                    "id": "I2",
+                    "fulfillment_ids": [
+                        "1-RTO"
+                    ]
+                }
+            ],
+            "fulfillments": [
+                {
+                    "id": "1-RTO",
+                    "state": {
+                        "descriptor": {
+                            "code": "RTO-Initiated"
+                        }
+                    },
+                    "type": "RTO",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_PROVIDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "P1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Seller1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "ADDRESS"
+                                    },
+                                    "value": "shop_name,building_name,locality,city,state,pincode"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "status": "In-progress"
         }
-      ]
     }
-  }
 }

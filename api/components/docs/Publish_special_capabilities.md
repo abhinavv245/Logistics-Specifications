@@ -14,47 +14,56 @@ Logistics Service Providers (**LSPs**) can publish their special requirement cap
 ### **LSP Publishes Special Requirement Capabilities**
 ```json
 {
-  "context": {
-    "action": "on_search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "catalog": {
-      ..
-      "bpp/providers": [
-        {
-          "id": "P1",
-          ..
-          "tags": [
-            {
-              "code": "special_req",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_search"
+    },
+    "message": {
+        "catalog": {
+            "providers": [
                 {
-                  "code": "dangerous_goods",
-                  "value": "no"
-                },
-                {
-                  "code": "cold_storage",
-                  "value": "no"
-                },
-                {
-                  "code": "open_box_delivery",
-                  "value": "no"
-                },
-                {
-                  "code": "fragile_handling",
-                  "value": "no"
-                },
-                {
-                  "code": "cod_order",
-                  "value": "yes"
+                    "id": "P1",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "SPECIAL_REQ"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "DANGEROUS_GOODS"
+                                    },
+                                    "value": "no"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "COLD_STORAGE"
+                                    },
+                                    "value": "no"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "OPEN_BOX_DELIVERY"
+                                    },
+                                    "value": "no"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "FRAGILE_HANDLING"
+                                    },
+                                    "value": "no"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "COD_ORDER"
+                                    },
+                                    "value": "yes"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }

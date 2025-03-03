@@ -35,296 +35,376 @@ Service Level Agreement (**SLA**) metrics are defined by the **Logistics Buyer N
 
 ```json
 {
-  "context":
-  {
-    "action":"search",
-    "core_version":"1.2.5",
-    ..
-  },
-  "message":
-  {
-    "intent":
-    {
-      ..
-      "tags":
-      [
-        ..
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"20"
-            },
-            {
-              "code":"penalty_max",
-              "value":"29.9"
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"0.5"
-            },
-          ]
-        },
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"30"
-            },
-            {
-              "code":"penalty_max",
-              "value":""
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"1"
-            },
-          ]
-        },
-        ..
-      ]
+    "context": {
+        "version": "2.0.0",
+        "action": "search"
+    },
+    "message": {
+        "intent": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "20"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": "29.9"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "0.5"
+                        }
+                    ]
+                },
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "30"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
     }
-  }
 }
 ```
 
 ```json
 {
-  "context":
-  {
-    "action":"confirm",
-    "core_version":"1.2.5",
-    ..
-  },
-  "message":
-  {
-    "order":
-    {
-      ..
-      "tags":
-      [
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"20"
-            },
-            {
-              "code":"penalty_max",
-              "value":"29.9"
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"0.5"
-            },
-          ]
-        },
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"30"
-            },
-            {
-              "code":"penalty_max",
-              "value":""
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"1"
-            },
-          ]
-        },
-        ..
-      ]
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "20"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": "29.9"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "0.5"
+                        }
+                    ]
+                },
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "30"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
     }
-  }
 }
 ```
 
 ```json
 {
-  "context":
-  {
-    "action":"on_confirm",
-    "core_version":"1.2.5",
-    ..
-  },
-  "message":
-  {
-    "order":
-    {
-      ..
-      "tags":
-      [
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"20"
-            },
-            {
-              "code":"penalty_max",
-              "value":"29.9"
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"0.5"
-            },
-          ]
-        },
-        {
-          "code":"lbnp_sla_terms",
-          "list":
-          [
-            {
-              "code":"metric",
-              "value":"Order_Accept"
-            },
-            {
-              "code":"base_unit",
-              "value":"mins"
-            },
-            {
-              "code":"base_min",
-              "value":"0"
-            },
-            {
-              "code":"base_max",
-              "value":"2"
-            },
-            {
-              "code":"penalty_min",
-              "value":"30"
-            },
-            {
-              "code":"penalty_max",
-              "value":""
-            },
-            {
-              "code":"penalty_unit",
-              "value":"percent"
-            },
-            {
-              "code":"penalty_value",
-              "value":"1"
-            },
-          ]
-        },
-        ..
-      ]
+    "context": {
+        "version": "2.0.0",
+        "action": "on_confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "20"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": "29.9"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "0.5"
+                        }
+                    ]
+                },
+                {
+                    "descriptor": {
+                        "code": "LBNP_SLA_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "METRIC"
+                            },
+                            "value": "Order_Accept"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_UNIT"
+                            },
+                            "value": "mins"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MIN"
+                            },
+                            "value": "0"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "BASE_MAX"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MIN"
+                            },
+                            "value": "30"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_MAX"
+                            },
+                            "value": ""
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_UNIT"
+                            },
+                            "value": "percent"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "PENALTY_VALUE"
+                            },
+                            "value": "1"
+                        }
+                    ]
+                }
+            ]
+        }
     }
-  }
 }
 
 ```

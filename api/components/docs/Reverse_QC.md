@@ -14,104 +14,116 @@ Reverse **Quality Check (QC)** follows a **Standard Operating Procedure (SOP)** 
 ### **Input Checklist (Provided by LBNP)**
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "fulfillments": [
-        {
-          ..
-          "start": {
-            ..
-            "instructions": {
-              ..
-              "additional_desc": {
-                "content_type": "text/html",
-                "url": "https://reverse_qc_sop_form.htm"
-              }
-            }
-          },
-          "tags": [
-            {
-              "code": "reverseqc_input",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "P001",
-                  "value": "Atta"
-                },
-                {
-                  "code": "P003",
-                  "value": "1"
-                },
-                {
-                  "code": "Q001",
-                  "value": ""
+                    "stops": [
+                        {
+                            "type": "START",
+                            "instructions": {
+                                "additional_desc": {
+                                    "content_type": "text/html",
+                                    "url": "https://reverse_qc_sop_form.htm"
+                                }
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "REVERSEQC_INPUT"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "P001"
+                                    },
+                                    "value": "Atta"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "P003"
+                                    },
+                                    "value": "1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "Q001"
+                                    },
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }
 ```
 
 ### **Output Checklist (Submitted by Rider)**
 ```json
 {
-  "context": {
-    "action": "on_status",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "fulfillments": [
-        {
-          ..
-          "state": {
-            "descriptor": {
-              "code": "Order-picked-up",
-              "short_desc": "pickup or delivery failed reason code"
-            }
-          },
-          "start": {
-            ..
-            "instructions": {
-              ..
-              "additional_desc": {
-                "content_type": "text/html",
-                "url": "https://reverse_qc_sop_form.htm"
-              }
-            }
-          },
-          "tags": [
-            {
-              "code": "reverseqc_output",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_status"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "P001",
-                  "value": "Atta"
-                },
-                {
-                  "code": "P003",
-                  "value": "1"
-                },
-                {
-                  "code": "Q001",
-                  "value": "yes"
+                    "state": {
+                        "descriptor": {
+                            "code": "Order-picked-up",
+                            "short_desc": "pickup or delivery failed reason code"
+                        }
+                    },
+                    "stops": [
+                        {
+                            "type": "START",
+                            "instructions": {
+                                "additional_desc": {
+                                    "content_type": "text/html",
+                                    "url": "https://reverse_qc_sop_form.htm"
+                                }
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "REVERSEQC_OUTPUT"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "P001"
+                                    },
+                                    "value": "Atta"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "P003"
+                                    },
+                                    "value": "1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "Q001"
+                                    },
+                                    "value": "yes"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }

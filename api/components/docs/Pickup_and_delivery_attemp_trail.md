@@ -15,67 +15,83 @@ The **Pickup & Delivery Attempt Trail** helps track the fulfillment status of in
 
 ```json
 {
-  "context": {
-    "action": "on_update",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "fulfillments": [
-        {
-          "type": "Delivery",
-          ..
-          "tags": [
-            ..
-            {
-              "code": "fulfillment_delay",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_update"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "fulfillments": [
                 {
-                  "code": "state",
-                  "value": "Order-picked-up"
-                },
-                {
-                  "code": "reason_id",
-                  "value": "004"
-                },
-                {
-                  "code": "timestamp",
-                  "value": "2024-12-02T22:00:00.000Z"
-                },
-                {
-                  "code": "attempt",
-                  "value": "yes"
+                    "type": "Delivery",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "FULFILLMENT_DELAY"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "STATE"
+                                    },
+                                    "value": "Order-picked-up"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "REASON_ID"
+                                    },
+                                    "value": "004"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "TIMESTAMP"
+                                    },
+                                    "value": "2024-12-02T22:00:00.000Z"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "ATTEMPT"
+                                    },
+                                    "value": "yes"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "FULFILLMENT_DELAY"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "STATE"
+                                    },
+                                    "value": "Order-delivered"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "REASON_ID"
+                                    },
+                                    "value": "005"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "TIMESTAMP"
+                                    },
+                                    "value": "2024-12-03T22:00:00.000Z"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "ATTEMPT"
+                                    },
+                                    "value": "yes"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "fulfillment_delay",
-              "list": [
-                {
-                  "code": "state",
-                  "value": "Order-delivered"
-                },
-                {
-                  "code": "reason_id",
-                  "value": "005"
-                },
-                {
-                  "code": "timestamp",
-                  "value": "2024-12-03T22:00:00.000Z"
-                },
-                {
-                  "code": "attempt",
-                  "value": "yes"
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ],
-      ..
     }
-  }
 }
 ```

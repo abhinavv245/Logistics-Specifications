@@ -22,210 +22,238 @@ Static OTP verification for **Return to Origin (RTO)** ensures that return deliv
 
 ```json
 {
-  "context": {
-    "action": "search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "intent": {
-      ..
-      "fulfillment": {
-        "type": "Delivery",
-        ..
-        "end": {
-          ..
-          "instructions": {
-            "code": "5"
-          }
+    "context": {
+        "version": "2.0.0",
+        "action": "search"
+    },
+    "message": {
+        "intent": {
+            "fulfillment": {
+                "type": "Delivery",
+                "stops": [
+                    {
+                        "type": "END",
+                        "instructions": {
+                            "code": "5"
+                        }
+                    }
+                ]
+            }
         }
-      },
-      ..
     }
-  }
 }
 ```
 
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "LO1",
-      "state": "Created",
-      ..
-      "fulfillments": [
-        {
-          "id": "F1",
-          "type": "Delivery",
-          ..
-          "tags": [
-            {
-              "code": "linked_order",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "id": "LO1",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "RO1"
+                    "id": "F1",
+                    "type": "Delivery",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "RO1"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "RTO_ACTION"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "RETURN_TO_ORIGIN"
+                                    },
+                                    "value": "no"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "RTO_VERIFICATION"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "CODE"
+                                    },
+                                    "value": "5"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "SHORT_DESC"
+                                    },
+                                    "value": "9876"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "rto_action",
-              "list": [
-                {
-                  "code": "return_to_origin",
-                  "value": "no"
-                }
-              ]
-            },
-            {
-              "code": "rto_verification",
-              "list": [
-                {
-                  "code": "code",
-                  "value": "5"
-                },
-                {
-                  "code": "short_desc",
-                  "value": "9876"
-                }
-              ]
-            }
-          ]
+            ],
+            "status": "Created"
         }
-      ],
-      ..
     }
-  }
 }
 ```
 
 ```json
 {
-  "context": {
-    "action": "on_status",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "LO1",
-      ..
-      "fulfillments": [
-        {
-          "id": "F1",
-          "type": "Delivery",
-          ..
-          "state": {
-            "descriptor": {
-              "code": "RTO"
-            }
-          },
-          "start": {
-            "time": {
-              "timestamp": "2024-10-16T07:00:00.000Z"
-            },
-            "instructions": {
-              "code": "5",
-              "short_desc": "9876"
-            }
-          },
-          "end": {
-            "time": {
-              "timestamp": "2024-10-16T07:30:00.000Z"
-            },
-            "instructions": {
-              "code": "5",
-              "short_desc": "5432"
-            }
-          },
-          "tags": [
-            {
-              "code": "linked_order",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_status"
+    },
+    "message": {
+        "order": {
+            "id": "LO1",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "RO1"
+                    "id": "F1",
+                    "state": {
+                        "descriptor": {
+                            "code": "RTO"
+                        }
+                    },
+                    "type": "Delivery",
+                    "stops": [
+                        {
+                            "type": "START",
+                            "time": {
+                                "timestamp": "2024-10-16T07:00:00.000Z"
+                            },
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "9876"
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "time": {
+                                "timestamp": "2024-10-16T07:30:00.000Z"
+                            },
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "5432"
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "RO1"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ],
-      ..
     }
-  }
 }
 ```
 
 ```json
 {
-  "context": {
-    "action": "on_status",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "state": "Completed",
-      ..
-      "fulfillments": [
-        {
-          "id": "1",
-          "type": "Delivery",
-          "state": {
-            "descriptor": {
-              "code": "RTO"
-            }
-          },
-          "tags": [
-            {
-              "code": "linked_order",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_status"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "RO1"
+                    "id": "1",
+                    "state": {
+                        "descriptor": {
+                            "code": "RTO"
+                        }
+                    },
+                    "type": "Delivery",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "RO1"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "RTO_EVENT"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "RETRY_COUNT"
+                                    },
+                                    "value": "3"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "RTO_ID"
+                                    },
+                                    "value": "F1-RTO"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CANCELLATION_REASON_ID"
+                                    },
+                                    "value": "013"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "REASON_ID"
+                                    },
+                                    "value": "127"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "SUB_REASON_ID"
+                                    },
+                                    "value": "004"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CANCELLED_BY"
+                                    },
+                                    "value": "lsp.com"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "rto_event",
-              "list": [
-                {
-                  "code": "retry_count",
-                  "value": "3"
-                },
-                {
-                  "code": "rto_id",
-                  "value": "F1-RTO"
-                },
-                {
-                  "code": "cancellation_reason_id",
-                  "value": "013"
-                },
-                {
-                  "code": "reason_id",
-                  "value": "127"
-                },
-                {
-                  "code": "sub_reason_id",
-                  "value": "004"
-                },
-                {
-                  "code": "cancelled_by",
-                  "value": "lsp.com"
-                }
-              ]
-            }
-          ]
+            ],
+            "status": "Completed"
         }
-      ]
     }
-  }
 }
 ```

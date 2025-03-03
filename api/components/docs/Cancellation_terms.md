@@ -15,61 +15,60 @@ Cancellation terms allow the **Logistics Service Provider (LSP)** to define rule
 ### **Defining Cancellation Terms in the Order**
 ```json
 {
-  "context": {
-    "action": "on_init",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "cancellation_terms": [
-        {
-          "fulfillment_state": {
-            "descriptor": {
-              "code": "Pending",
-              "short_desc": "132"
-            }
-          },
-          "cancellation_fee": {
-            "percentage": "0.00",
-            "amount": {
-              "currency": "INR",
-              "value": "0.00"
-            }
-          }
-        },
-        {
-          "fulfillment_state": {
-            "descriptor": {
-              "code": "Agent-assigned",
-              "short_desc": "102,103,105"
-            }
-          },
-          "cancellation_fee": {
-            "percentage": "100.00",
-            "amount": {
-              "currency": "INR",
-              "value": "50.00"
-            }
-          }
-        },
-        {
-          "fulfillment_state": {
-            "descriptor": {
-              "code": "Order-picked-up",
-              "short_desc": "125,126,127,128"
-            }
-          },
-          "cancellation_fee": {
-            "percentage": "100.00",
-            "amount": {
-              "currency": "INR",
-              "value": "50.00"
-            }
-          }
+    "context": {
+        "version": "2.0.0",
+        "action": "on_init"
+    },
+    "message": {
+        "order": {
+            "id": "O3",
+            "cancellation_terms": [
+                {
+                    "fulfillment_state": {
+                        "descriptor": {
+                            "code": "Pending",
+                            "short_desc": "132"
+                        }
+                    },
+                    "cancellation_fee": {
+                        "percentage": "0.00",
+                        "amount": {
+                            "currency": "INR",
+                            "value": "0.00"
+                        }
+                    }
+                },
+                {
+                    "fulfillment_state": {
+                        "descriptor": {
+                            "code": "Agent-assigned",
+                            "short_desc": "102,103,105"
+                        }
+                    },
+                    "cancellation_fee": {
+                        "percentage": "100.00",
+                        "amount": {
+                            "currency": "INR",
+                            "value": "50.00"
+                        }
+                    }
+                },
+                {
+                    "fulfillment_state": {
+                        "descriptor": {
+                            "code": "Order-picked-up",
+                            "short_desc": "125,126,127,128"
+                        }
+                    },
+                    "cancellation_fee": {
+                        "percentage": "100.00",
+                        "amount": {
+                            "currency": "INR",
+                            "value": "50.00"
+                        }
+                    }
+                }
+            ]
         }
-      ]
     }
-  }
 }

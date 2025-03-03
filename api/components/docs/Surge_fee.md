@@ -14,164 +14,185 @@ The **Surge Fee** component allows Logistics Service Providers (LSPs) to declare
 ### **Catalog Update with Surge Fee**
 ```json
 {
-  "context": {
-    "action": "on_search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "catalog": {
-      "bpp/providers": [
-        {
-          "id": "P1",
-          ..
-          "items": [
-            {
-              "id": "I1",
-              "parent_item_id": "",
-              "category_id": "Immediate Delivery",
-              "fulfillment_id": "1",
-              "descriptor": {
-                "code": "P2P",
-                ..
-              },
-              "price": {
-                "currency": "INR",
-                "value": "59.00"
-              },
-              ..
-              "tags": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_search"
+    },
+    "message": {
+        "catalog": {
+            "providers": [
                 {
-                  "code": "type",
-                  "list": [
-                    {
-                      "code": "type",
-                      "value": "base"
-                    }
-                  ]
+                    "id": "P1",
+                    "items": [
+                        {
+                            "id": "I1",
+                            "parent_item_id": "",
+                            "descriptor": {
+                                "code": "P2P"
+                            },
+                            "price": {
+                                "currency": "INR",
+                                "value": "59.00"
+                            },
+                            "tags": [
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "list": [
+                                        {
+                                            "descriptor": {
+                                                "code": "TYPE"
+                                            },
+                                            "value": "base"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "fulfillment_ids": [
+                                "1"
+                            ],
+                            "category_ids": [
+                                "Immediate Delivery"
+                            ]
+                        },
+                        {
+                            "id": "I3",
+                            "parent_item_id": "",
+                            "descriptor": {
+                                "code": "P2P"
+                            },
+                            "price": {
+                                "currency": "INR",
+                                "value": "23.60"
+                            },
+                            "tags": [
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "list": [
+                                        {
+                                            "descriptor": {
+                                                "code": "TYPE"
+                                            },
+                                            "value": "surge"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "fulfillment_ids": [
+                                "1"
+                            ],
+                            "category_ids": [
+                                "Immediate Delivery"
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "id": "I3",
-              "parent_item_id": "",
-              "category_id": "Immediate Delivery",
-              "fulfillment_id": "1",
-              "descriptor": {
-                "code": "P2P",
-                ..
-              },
-              "price": {
-                "currency": "INR",
-                "value": "23.60"
-              },
-              ..
-              "tags": [
-                {
-                  "code": "type",
-                  "list": [
-                    {
-                      "code": "type",
-                      "value": "surge"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }
 ```
 
 ### **Order Confirmation with Surge Fee**
 ```json
 {
-  "context": {
-    "action": "on_confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      ..
-      "items": [
-        {
-          "id": "I1",
-          ..
-          "tags": [
-            {
-              "code": "type",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_confirm"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "items": [
                 {
-                  "code": "type",
-                  "value": "base"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "I3",
-          "parent_item_id": "I1",
-          ..
-          "tags": [
-            {
-              "code": "type",
-              "list": [
+                    "id": "I1",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "TYPE"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "value": "base"
+                                }
+                            ]
+                        }
+                    ]
+                },
                 {
-                  "code": "type",
-                  "value": "surge"
+                    "id": "I3",
+                    "parent_item_id": "I1",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "TYPE"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "value": "surge"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
+            ],
+            "quote": {
+                "price": {
+                    "currency": "INR",
+                    "value": "82.60"
+                },
+                "breakup": [
+                    {
+                        "title": "DELIVERY",
+                        "item": {
+                            "id": "I1"
+                        },
+                        "price": {
+                            "currency": "INR",
+                            "value": "50.00"
+                        }
+                    },
+                    {
+                        "title": "TAX",
+                        "item": {
+                            "id": "I1"
+                        },
+                        "price": {
+                            "currency": "INR",
+                            "value": "9.00"
+                        }
+                    },
+                    {
+                        "title": "SURGE",
+                        "item": {
+                            "id": "I3"
+                        },
+                        "price": {
+                            "currency": "INR",
+                            "value": "20.00"
+                        }
+                    },
+                    {
+                        "title": "TAX",
+                        "item": {
+                            "id": "I3"
+                        },
+                        "price": {
+                            "currency": "INR",
+                            "value": "3.60"
+                        }
+                    }
+                ]
             }
-          ]
         }
-      ],
-      "quote": {
-        "price": {
-          "currency": "INR",
-          "value": "82.60"
-        },
-        "breakup": [
-          {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "delivery",
-            "price": {
-              "currency": "INR",
-              "value": "50.00"
-            }
-          },
-          {
-            "@ondc/org/item_id": "I1",
-            "@ondc/org/title_type": "tax",
-            "price": {
-              "currency": "INR",
-              "value": "9.00"
-            }
-          },
-          {
-            "@ondc/org/item_id": "I3",
-            "@ondc/org/title_type": "surge",
-            "price": {
-              "currency": "INR",
-              "value": "20.00"
-            }
-          },
-          {
-            "@ondc/org/item_id": "I3",
-            "@ondc/org/title_type": "tax",
-            "price": {
-              "currency": "INR",
-              "value": "3.60"
-            }
-          }
-        ]
-      },
-      ..
     }
-  }
 }

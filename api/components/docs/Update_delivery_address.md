@@ -13,45 +13,42 @@ Updating the delivery address allows for modifications to the recipient's locati
 
 ```json
 {
-  "context": {
-    "action": "update",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "update_target": "fulfillment",
-    "order": {
-      ..
-      "fulfillments": [
-        ..
-        {
-          ..
-          "end": {
-            "person": {
-              "name": "Buyer1"
-            },
-            "location": {
-              "gps": "12.453544,77.928379",
-              "address": {
-                "name": "House #1",
-                "building": "House or Building name",
-                "locality": "Street name",
-                "city": "Bengaluru",
-                "state": "Karnataka",
-                "country": "India",
-                "area_code": "560076"
-              }
-            },
-            "contact": {
-              "phone": "9886098860",
-              ..
-            },
-            ..
-          },
-          ..
+    "context": {
+        "version": "2.0.0",
+        "action": "update"
+    },
+    "message": {
+        "update_target": "fulfillment",
+        "order": {
+            "fulfillments": [
+                {
+                    "stops": [
+                        {
+                            "type": "END",
+                            "person": {
+                                "name": "Buyer1"
+                            },
+                            "location": {
+                                "gps": "12.453544,77.928379",
+                                "address": "House #1, House or Building name, Street name",
+                                "city": {
+                                    "name": "Bengaluru"
+                                },
+                                "state": {
+                                    "name": "Karnataka"
+                                },
+                                "country": {
+                                    "name": "India"
+                                },
+                                "area_code": "560076"
+                            },
+                            "contact": {
+                                "phone": "9886098860"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
-      ],
-      ..
     }
-  }
 }

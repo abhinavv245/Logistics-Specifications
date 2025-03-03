@@ -39,150 +39,144 @@ Static OTP verification is a method used to ensure secure pickup and delivery of
 
 ```json
 {
-  "context": {
-    "action": "search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "intent": {
-      ..
-      "fulfillment": {
-        "type": "Delivery",
-        "start": {
-          ..
-          "instructions": {
-            "code": "5"
-          }
-        },
-        "end": {
-          ..
-          "instructions": {
-            "code": "5"
-          }
+    "context": {
+        "version": "2.0.0",
+        "action": "search"
+    },
+    "message": {
+        "intent": {
+            "fulfillment": {
+                "type": "Delivery",
+                "stops": [
+                    {
+                        "type": "START",
+                        "instructions": {
+                            "code": "5"
+                        }
+                    },
+                    {
+                        "type": "END",
+                        "instructions": {
+                            "code": "5"
+                        }
+                    }
+                ]
+            },
+            "tags": []
         }
-      },
-      ..
     }
-  }
 }
 ```
 
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "LO1",
-      "state": "Created",
-      ..
-      "fulfillments": [
-        {
-          "id": "F1",
-          "type": "Delivery",
-          ..
-          "start": {
-            ..
-            "instructions": {
-              "code": "5",
-              "short_desc": "9876",
-              ..
-            }
-          },
-          "end": {
-            ..
-            "instructions": {
-              "code": "5",
-              "short_desc": "5432",
-              ..
-            }
-          },
-          ..
-          "tags": [
-            {
-              "code": "linked_order",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "id": "LO1",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "RO1"
+                    "id": "F1",
+                    "type": "Delivery",
+                    "stops": [
+                        {
+                            "type": "START",
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "9876"
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "5432"
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "RO1"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ],
+            "status": "Created"
         }
-      ],
-      ..
     }
-  }
 }
 ```
 
 ```json
 {
-  "context": {
-    "action": "on_status",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "LO1",
-      ..
-      "fulfillments": [
-        {
-          "id": "F1",
-          "type": "Delivery",
-          ..
-          "state": {
-            "descriptor": {
-              "code": "Order-picked-up",
-              ..
-            }
-          },
-          "start": {
-            ..
-            "time": {
-              ..
-              "timestamp": "2024-10-16T07:00:00.000Z"
-            },
-            "instructions": {
-              "code": "5",
-              "short_desc": "9876",
-              ..
-            }
-          },
-          "end": {
-            ..
-            "time": {
-              ..
-              "timestamp": "2024-10-16T07:30:00.000Z"
-            },
-            "instructions": {
-              "code": "5",
-              "short_desc": "5432",
-              ..
-            }
-          },
-          ..
-          "tags": [
-            {
-              "code": "linked_order",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_status"
+    },
+    "message": {
+        "order": {
+            "id": "LO1",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "RO1"
+                    "id": "F1",
+                    "state": {
+                        "descriptor": {
+                            "code": "Order-picked-up"
+                        }
+                    },
+                    "type": "Delivery",
+                    "stops": [
+                        {
+                            "type": "START",
+                            "time": {
+                                "timestamp": "2024-10-16T07:00:00.000Z"
+                            },
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "9876"
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "time": {
+                                "timestamp": "2024-10-16T07:30:00.000Z"
+                            },
+                            "instructions": {
+                                "code": "5",
+                                "short_desc": "5432"
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "RO1"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ],
-      ..
     }
-  }
-}
-```
+}```

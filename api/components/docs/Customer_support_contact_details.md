@@ -12,52 +12,56 @@ To ensure smooth communication between stakeholders during order fulfillment, bo
 ### **LBNP Shares Contact Details with LSP**
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "tags": [
-        {
-          "code": "bap_terms",
-          "list": [
-            {
-              "code": "phone",
-              "value": "9886098860"
-            }
-          ]
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "BAP_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "PHONE"
+                            },
+                            "value": "9886098860"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     }
-  }
 }
 ```
 
 ### **LSP Shares Contact Details with LBNP**
 ```json
 {
-  "context": {
-    "action": "on_confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "tags": [
-        {
-          "code": "bpp_terms",
-          "list": [
-            {
-              "code": "phone",
-              "value": "9886098860"
-            }
-          ]
+    "context": {
+        "version": "2.0.0",
+        "action": "on_confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "BPP_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "PHONE"
+                            },
+                            "value": "9886098860"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     }
-  }
 }

@@ -14,73 +14,88 @@ Call masking is a technique used to protect the privacy of both buyers and selle
 
 ```json
 {
-  "context": {
-    "action": "init",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "fulfillments": [
-        {
-          "id": "..",
-          ..
-          "start": {
-            ..
-            "contact": {
-              "phone": "9886098860",
-              "email": "abcd.efgh@gmail.com",
-              "tags": [
+    "context": {
+        "version": "2.0.0",
+        "action": "init"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "fulfillments": [
                 {
-                  "code": "masked_contact",
-                  "list": [
-                    {
-                      "code": "type",
-                      "value": "ivr_pin"
-                    },
-                    {
-                      "code": "setup",
-                      "value": "1800180000"
-                    },
-                    {
-                      "code": "token",
-                      "value": "12345"
-                    }
-                  ]
+                    "id": "F1",
+                    "stops": [
+                        {
+                            "type": "START",
+                            "contact": {
+                                "phone": "9886098860",
+                                "email": "abcd.efgh@gmail.com",
+                                "tags": [
+                                    {
+                                        "descriptor": {
+                                            "code": "MASKED_CONTACT"
+                                        },
+                                        "list": [
+                                            {
+                                                "descriptor": {
+                                                    "code": "TYPE"
+                                                },
+                                                "value": "ivr_pin"
+                                            },
+                                            {
+                                                "descriptor": {
+                                                    "code": "SETUP"
+                                                },
+                                                "value": "1800180000"
+                                            },
+                                            {
+                                                "descriptor": {
+                                                    "code": "TOKEN"
+                                                },
+                                                "value": "12345"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "contact": {
+                                "phone": "9886098860",
+                                "email": "abcd.efgh@gmail.com",
+                                "tags": [
+                                    {
+                                        "descriptor": {
+                                            "code": "MASKED_CONTACT"
+                                        },
+                                        "list": [
+                                            {
+                                                "descriptor": {
+                                                    "code": "TYPE"
+                                                },
+                                                "value": "ivr_without_pin"
+                                            },
+                                            {
+                                                "descriptor": {
+                                                    "code": "SETUP"
+                                                },
+                                                "value": "1800180000"
+                                            },
+                                            {
+                                                "descriptor": {
+                                                    "code": "TOKEN"
+                                                },
+                                                "value": ""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
                 }
-              ]
-            }
-          },
-          "end": {
-            ..
-            "contact": {
-              "phone": "9886098860",
-              "email": "abcd.efgh@gmail.com",
-              "tags": [
-                {
-                  "code": "masked_contact",
-                  "list": [
-                    {
-                      "code": "type",
-                      "value": "ivr_without_pin"
-                    },
-                    {
-                      "code": "setup",
-                      "value": "1800180000"
-                    },
-                    {
-                      "code": "token",
-                      "value": ""
-                    }
-                  ]
-                }
-              ]
-            }
-          }
+            ]
         }
-      ],
-      ..
     }
-  }
 }

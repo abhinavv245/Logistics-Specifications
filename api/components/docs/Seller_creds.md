@@ -12,44 +12,51 @@ Seller credentials allow tagging specific retail sellers under various classific
 
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "fulfillments": [
-        {
-          "type": "Delivery",
-          ..
-          "tags": [
-            {
-              "code": "linked_provider",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "P1"
-                },
-                {
-                  "code": "name",
-                  "value": "Seller1"
-                },
-                {
-                  "code": "cred_code",
-                  "value": "Social Sector"
-                },
-                {
-                  "code": "cred_desc",
-                  "value": "Women owned business"
+                    "type": "Delivery",
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_PROVIDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "P1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Seller1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CRED_CODE"
+                                    },
+                                    "value": "Social Sector"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CRED_DESC"
+                                    },
+                                    "value": "Women owned business"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            }
-          ]
+            ]
         }
-      ],
-      ..
     }
-  }
 }

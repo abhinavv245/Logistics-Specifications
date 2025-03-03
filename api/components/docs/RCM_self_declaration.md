@@ -13,55 +13,58 @@ Logistics Service Providers (**LSPs**) can provide a **Reverse Charge Mechanism 
 ### **LSP Provides RCM Self-Declaration**
 ```json
 {
-  "context": {
-    "action": "on_search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "catalog": {
-      "bpp/descriptor": {
-        "tags": [
-          {
-            "code": "bpp_terms",
-            "list": [
-              {
-                "code": "np_tax_type",
-                "value": "RCM"
-              },
-              ..
-            ]
-          }
-        ]
-      },
-      ..
+    "context": {
+        "version": "2.0.0",
+        "action": "on_search"
+    },
+    "message": {
+        "catalog": {
+            "descriptor": {
+                "tags": [
+                    {
+                        "descriptor": {
+                            "code": "BPP_TERMS"
+                        },
+                        "list": [
+                            {
+                                "descriptor": {
+                                    "code": "NP_TAX_TYPE"
+                                },
+                                "value": "RCM"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
     }
-  }
 }
 ```
 
 ### **RCM Confirmation in Order**
 ```json
 {
-  "context": {
-    "action": "on_confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "tags": [
-        {
-          "code": "bpp_terms",
-          "list": [
-            {
-              "code": "np_tax_type",
-              "value": "RCM"
-            },
-            ..
-          ]
+    "context": {
+        "version": "2.0.0",
+        "action": "on_confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "BPP_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "NP_TAX_TYPE"
+                            },
+                            "value": "RCM"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     }
-  }
 }

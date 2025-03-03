@@ -33,88 +33,106 @@ Codified static terms provide standardized legal and financial conditions during
 ### **Static Terms in /on_search**
 ```json
 {
-  "context": {
-    "action": "on_search",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "catalog": {
-      "bpp/descriptor": {
-        ..
-        "tags": [
-          {
-            "code": "bpp_terms",
-            "list": [
-              ..
-              {
-                "code": "max_liability",
-                "value": "2"
-              },
-              {
-                "code": "max_liability_cap",
-                "value": "10000"
-              },
-              {
-                "code": "mandatory_arbitration",
-                "value": "false"
-              },
-              {
-                "code": "court_jurisdiction",
-                "value": "Bengaluru"
-              },
-              {
-                "code": "delay_interest",
-                "value": "10.00"
-              }
-            ]
-          }
-        ]
-      }
+    "context": {
+        "version": "2.0.0",
+        "action": "on_search"
+    },
+    "message": {
+        "catalog": {
+            "descriptor": {
+                "tags": [
+                    {
+                        "descriptor": {
+                            "code": "BPP_TERMS"
+                        },
+                        "list": [
+                            {
+                                "descriptor": {
+                                    "code": "MAX_LIABILITY"
+                                },
+                                "value": "2"
+                            },
+                            {
+                                "descriptor": {
+                                    "code": "MAX_LIABILITY_CAP"
+                                },
+                                "value": "10000"
+                            },
+                            {
+                                "descriptor": {
+                                    "code": "MANDATORY_ARBITRATION"
+                                },
+                                "value": "false"
+                            },
+                            {
+                                "descriptor": {
+                                    "code": "COURT_JURISDICTION"
+                                },
+                                "value": "Bengaluru"
+                            },
+                            {
+                                "descriptor": {
+                                    "code": "DELAY_INTEREST"
+                                },
+                                "value": "10.00"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
     }
-  }
 }
 ```
 
 ### **Static Terms in /on_confirm**
 ```json
 {
-  "context": {
-    "action": "on_confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "tags": [
-        {
-          "code": "bpp_terms",
-          "list": [
-            ..
-            {
-              "code": "max_liability",
-              "value": "2"
-            },
-            {
-              "code": "max_liability_cap",
-              "value": "10000"
-            },
-            {
-              "code": "mandatory_arbitration",
-              "value": "false"
-            },
-            {
-              "code": "court_jurisdiction",
-              "value": "Bengaluru"
-            },
-            {
-              "code": "delay_interest",
-              "value": "10.00"
-            }
-          ]
+    "context": {
+        "version": "2.0.0",
+        "action": "on_confirm"
+    },
+    "message": {
+        "order": {
+            "tags": [
+                {
+                    "descriptor": {
+                        "code": "BPP_TERMS"
+                    },
+                    "list": [
+                        {
+                            "descriptor": {
+                                "code": "MAX_LIABILITY"
+                            },
+                            "value": "2"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "MAX_LIABILITY_CAP"
+                            },
+                            "value": "10000"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "MANDATORY_ARBITRATION"
+                            },
+                            "value": "false"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "COURT_JURISDICTION"
+                            },
+                            "value": "Bengaluru"
+                        },
+                        {
+                            "descriptor": {
+                                "code": "DELAY_INTEREST"
+                            },
+                            "value": "10.00"
+                        }
+                    ]
+                }
+            ]
         }
-      ]
     }
-  }
 }

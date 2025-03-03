@@ -15,41 +15,40 @@ Seller and buyer instructions provide a structured way for both parties to commu
 
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      "id": "O2",
-      "fulfillments": [
-        {
-          "type": "Delivery",
-          ..
-          "start": {
-            "instructions": {
-              ..
-              "long_desc": "additional instructions for pickup e.g. register or counter no",
-              "additional_desc": {
-                "content_type": "text/html",
-                "url": "url for additional info"
-              }
-            }
-          },
-          "end": {
-            "instructions": {
-              ..
-              "long_desc": "additional instructions for delivery e.g. leave package outside door",
-              "additional_desc": {
-                "content_type": "text/html",
-                "url": "url for additional info"
-              }
-            }
-          }
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "id": "O2",
+            "fulfillments": [
+                {
+                    "type": "Delivery",
+                    "stops": [
+                        {
+                            "type": "START",
+                            "instructions": {
+                                "long_desc": "additional instructions for pickup e.g. register or counter no",
+                                "additional_desc": {
+                                    "content_type": "text/html",
+                                    "url": "url for additional info"
+                                }
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "instructions": {
+                                "long_desc": "additional instructions for delivery e.g. leave package outside door",
+                                "additional_desc": {
+                                    "content_type": "text/html",
+                                    "url": "url for additional info"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
         }
-      ],
-      ..
     }
-  }
 }

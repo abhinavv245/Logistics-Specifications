@@ -14,130 +14,260 @@ The **eWay Bill** feature supports multiple e-way bills for a single logistics o
 ### **Adding Item & Seller Attributes to Linked Retail Order Details**
 ```json
 {
-  "context": {
-    "action": "confirm",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "fulfillments": [
-        {
-          ..
-          "tags": [
-            {
-              "code": "provider",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "confirm"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "name",
-                  "value": "Seller1"
-                },
-                {
-                  "code": "address",
-                  "value": "shop_name,building_name,locality,city,state,pincode"
-                },
-                {
-                  "code": "tax_id",
-                  "value": "29GSTIN1234K2Z2"
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "LINKED_PROVIDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Seller1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "ADDRESS"
+                                    },
+                                    "value": "shop_name,building_name,locality,city,state,pincode"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "TAX_ID"
+                                    },
+                                    "value": "29GSTIN1234K2Z2"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "O1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_UNIT"
+                                    },
+                                    "value": "kilogram"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_VALUE"
+                                    },
+                                    "value": "3.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "DIM_UNIT"
+                                    },
+                                    "value": "centimeter"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "LENGTH"
+                                    },
+                                    "value": "1.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "BREADTH"
+                                    },
+                                    "value": "1.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "HEIGHT"
+                                    },
+                                    "value": "1.0"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER_ITEM"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "CATEGORY"
+                                    },
+                                    "value": "Grocery"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Atta"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CURRENCY"
+                                    },
+                                    "value": "INR"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "VALUE"
+                                    },
+                                    "value": "70.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "QUANTITY"
+                                    },
+                                    "value": "2"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_UNIT"
+                                    },
+                                    "value": "kilogram"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_VALUE"
+                                    },
+                                    "value": "1.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "HSN_CODE"
+                                    },
+                                    "value": "XXXXXXXX"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "EBN_EXEMPT"
+                                    },
+                                    "value": "no"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "LINKED_ORDER_ITEM"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "CATEGORY"
+                                    },
+                                    "value": "Grocery"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "NAME"
+                                    },
+                                    "value": "Basmati Rice"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "CURRENCY"
+                                    },
+                                    "value": "INR"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "VALUE"
+                                    },
+                                    "value": "160.0"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "QUANTITY"
+                                    },
+                                    "value": "1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_UNIT"
+                                    },
+                                    "value": "kilogram"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "WEIGHT_VALUE"
+                                    },
+                                    "value": "1.0"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "items",
-              "list": [
-                {
-                  "code": "category",
-                  "value": "Grocery"
-                },
-                {
-                  "code": "name",
-                  "value": "Atta"
-                },
-                {
-                  "code": "currency",
-                  "value": "INR"
-                },
-                {
-                  "code": "value",
-                  "value": "70.0"
-                },
-                {
-                  "code": "quantity",
-                  "value": "2"
-                },
-                {
-                  "code": "weight_unit",
-                  "value": "kilogram"
-                },
-                {
-                  "code": "weight_value",
-                  "value": "1.0"
-                },
-                {
-                  "code": "hsn_code",
-                  "value": "XXXXXXXX"
-                },
-                {
-                  "code": "ebn_exempt",
-                  "value": "no"
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ]
     }
-  }
 }
 ```
 
 ### **Support for Multi e-Way Bills**
 ```json
 {
-  "context": {
-    "action": "on_update",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "fulfillments": [
-        {
-          ..
-          "tags": [
-            {
-              "code": "ebn",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_update"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "id",
-                  "value": "EBN1"
-                },
-                {
-                  "code": "expiry_date",
-                  "value": "2024-06-30T12:00:00.000Z"
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "EBN"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "EBN1"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "EXPIRY_DATE"
+                                    },
+                                    "value": "2024-06-30T12:00:00.000Z"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "EBN"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "ID"
+                                    },
+                                    "value": "EBN2"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "EXPIRY_DATE"
+                                    },
+                                    "value": "2024-07-01T12:00:00.000Z"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "ebn",
-              "list": [
-                {
-                  "code": "id",
-                  "value": "EBN2"
-                },
-                {
-                  "code": "expiry_date",
-                  "value": "2024-07-01T12:00:00.000Z"
-                }
-              ]
-            }
-          ],
-          "@ondc/org/ewaybillno": "EBN1",
-          "@ondc/org/ebnexpirydate": "2023-06-30T12:00:00.000Z"
+            ]
         }
-      ]
     }
-  }
 }

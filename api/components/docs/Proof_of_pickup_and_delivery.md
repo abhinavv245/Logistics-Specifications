@@ -16,77 +16,89 @@ Electronic Proof of Delivery (ePOD) enhances the transparency and security of lo
 
 ```json
 {
-  "context": {
-    "action": "on_update",
-    "core_version": "1.2.5",
-    ..
-  },
-  "message": {
-    "order": {
-      ..
-      "fulfillments": [
-        {
-          ..
-          "start": {
-            ..
-            "instructions": {
-              ..
-              "images": [
-                "link to downloadable shipping label",
-                "https://lsp.com/pickup_image.png",
-                "https://lsp.com/rider_location.png"
-              ]
-            }
-          },
-          "end": {
-            ..
-            "instructions": {
-              ..
-              "images": [
-                "https://lsp.com/delivery_image.png",
-                "https://lsp.com/rider_location.png"
-              ]
-            }
-          },
-          "tags": [
-            {
-              "code": "fulfillment_proof",
-              "list": [
+    "context": {
+        "version": "2.0.0",
+        "action": "on_update"
+    },
+    "message": {
+        "order": {
+            "fulfillments": [
                 {
-                  "code": "state",
-                  "value": "Order-picked-up"
-                },
-                {
-                  "code": "type",
-                  "value": "webp"
-                },
-                {
-                  "code": "url",
-                  "value": "public link to webp"
+                    "stops": [
+                        {
+                            "type": "START",
+                            "instructions": {
+                                "images": [
+                                    "link to downloadable shipping label",
+                                    "https://lsp.com/pickup_image.png",
+                                    "https://lsp.com/rider_location.png"
+                                ]
+                            }
+                        },
+                        {
+                            "type": "END",
+                            "instructions": {
+                                "images": [
+                                    "https://lsp.com/delivery_image.png",
+                                    "https://lsp.com/rider_location.png"
+                                ]
+                            }
+                        }
+                    ],
+                    "tags": [
+                        {
+                            "descriptor": {
+                                "code": "FULFILLMENT_PROOF"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "STATE"
+                                    },
+                                    "value": "Order-picked-up"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "value": "webp"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "URL"
+                                    },
+                                    "value": "public link to webp"
+                                }
+                            ]
+                        },
+                        {
+                            "descriptor": {
+                                "code": "FULFILLMENT_PROOF"
+                            },
+                            "list": [
+                                {
+                                    "descriptor": {
+                                        "code": "STATE"
+                                    },
+                                    "value": "Order-delivered"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "TYPE"
+                                    },
+                                    "value": "webp"
+                                },
+                                {
+                                    "descriptor": {
+                                        "code": "URL"
+                                    },
+                                    "value": "public link to webp"
+                                }
+                            ]
+                        }
+                    ]
                 }
-              ]
-            },
-            {
-              "code": "fulfillment_proof",
-              "list": [
-                {
-                  "code": "state",
-                  "value": "Order-delivered"
-                },
-                {
-                  "code": "type",
-                  "value": "webp"
-                },
-                {
-                  "code": "url",
-                  "value": "public link to webp"
-                }
-              ]
-            }
-          ]
+            ]
         }
-      ],
-      ..
     }
-  }
 }
