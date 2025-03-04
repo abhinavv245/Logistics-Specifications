@@ -32,7 +32,7 @@ value:
           time:
             label: TAT
             duration: PT10M
-            timestamp: 2024-11-20
+            timestamp: '2024-11-20'
           category_ids:
             - Instant Delivery
       quote:
