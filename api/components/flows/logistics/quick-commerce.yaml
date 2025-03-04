@@ -150,7 +150,7 @@ steps:
             LBNP ->> LSP: /confirm (Confirmation of the order)
             LSP -->> LBNP: ACK
     example:
-      $ref: "../../examples/logistics/confirm/confirm.yaml"
+      $ref: "../../examples/logistics/confirm/confirm_quick_commerce.yaml"
   - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
     api: on_confirm
     details:

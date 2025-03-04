@@ -5007,7 +5007,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_36
+        example: &ref_35
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -5128,7 +5128,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_47
+        example: &ref_48
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -5251,7 +5251,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_40
+        example: &ref_39
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -5365,7 +5365,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_51
+        example: &ref_52
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -5480,7 +5480,7 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 LSP -->> LBNP: ACK - Confirm order received
                 LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-        example: &ref_34
+        example: &ref_42
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -5740,7 +5740,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
-        example: &ref_54
+        example: &ref_55
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -6035,7 +6035,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_44
+        example: &ref_45
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -6197,7 +6197,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_update** - Update order details
                 LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
-        example: &ref_63
+        example: &ref_64
           summary: Order updates
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -6476,7 +6476,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_35
+        example: &ref_34
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6800,7 +6800,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_46
+        example: &ref_47
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -6832,7 +6832,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_track** - Update order tracking information
                 LBNP ->> LSP: ACK
-        example: &ref_66
+        example: &ref_67
           summary: Order tracking
           description: LSP provides live tracking details
           value:
@@ -6903,7 +6903,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_58
+        example: &ref_59
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -7719,7 +7719,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
                 LBNP -->> LSP: ACK
-        example: &ref_62
+        example: &ref_63
           summary: Order status (At-pickup)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -8123,7 +8123,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_38
+        example: &ref_37
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -8290,7 +8290,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_49
+        example: &ref_50
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -8469,7 +8469,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_42
+        example: &ref_41
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8788,7 +8788,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_53
+        example: &ref_54
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -9078,7 +9078,456 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: *ref_34
+        example: &ref_44
+          summary: Order confirmation (Quick Commerce)
+          description: LBNP confirms the order
+          value:
+            context:
+              domain: nic2004:60232
+              country: IND
+              city: std:080
+              action: confirm
+              core_version: 1.2.5
+              bap_id: lbnp.com
+              bap_uri: https://lbnp.com/ondc
+              bpp_id: lsp.com
+              bpp_uri: https://lsp.com/ondc
+              transaction_id: T1
+              message_id: M3
+              timestamp: '2024-11-20T22:00:00.000Z'
+              ttl: PT30S
+            message:
+              order:
+                id: O2
+                state: Created
+                provider:
+                  id: P1
+                  locations:
+                    - id: L1
+                items:
+                  - id: I1
+                    fulfillment_ids:
+                      - F1
+                      - F2
+                    category_id: Instant Delivery
+                    descriptor:
+                      code: P2P
+                    time:
+                      label: TAT
+                      duration: PT10M
+                      timestamp: '2024-11-20'
+                quote:
+                  price:
+                    currency: INR
+                    value: '159.00'
+                  breakup:
+                    - '@ondc/org/item_id': I1
+                      '@ondc/org/title_type': delivery
+                      price:
+                        currency: INR
+                        value: '150.00'
+                    - '@ondc/org/item_id': I1
+                      '@ondc/org/title_type': tax
+                      price:
+                        currency: INR
+                        value: '9.00'
+                fulfillments:
+                  - id: F1
+                    type: Delivery
+                    '@ondc/org/awb_no': '1227262193237777'
+                    start:
+                      time:
+                        duration: PT15M
+                      person:
+                        name: person_name
+                      location:
+                        id: S1
+                        gps: 12.4535,77.9283
+                        address:
+                          name: Store name
+                          building: House or building name
+                          locality: Locality
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560041'
+                      contact:
+                        phone: '9886098860'
+                        email: abcd.efgh@gmail.com
+                      instructions:
+                        code: '2'
+                        short_desc: value of PCC
+                        long_desc: additional instructions for pickup
+                        additional_desc:
+                          content_type: text/html
+                          url: ..
+                    end:
+                      person:
+                        name: person_name
+                      location:
+                        gps: 12.453544,77.928379
+                        address:
+                          name: 'My house #'
+                          building: My house or building name
+                          locality: locality
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560076'
+                      contact:
+                        phone: '9886098860'
+                        email: abcd.efgh@gmail.com
+                      instructions:
+                        code: '3'
+                        short_desc: value of DCC
+                        long_desc: additional instructions for delivery
+                        additional_desc:
+                          content_type: text/html
+                          url: ..
+                    tags:
+                      - code: linked_provider
+                        list:
+                          - code: id
+                            value: P1
+                          - code: name
+                            value: Seller1
+                          - code: address
+                            value: >-
+                              shop_name,building_name,locality,city,state,pincode
+                      - code: fulfill_request
+                        list:
+                          - code: rider_count
+                            value: '2'
+                          - code: order_count
+                            value: '10'
+                          - code: rate_basis
+                            value: rider
+                          - code: motorable_distance
+                            value: '3.0'
+                          - code: pickup_slot_start
+                            value: '2024-12-11T00:00:00.000Z'
+                          - code: pickup_slot_end
+                            value: '2024-12-11T00:15:00.000Z'
+                          - code: delivery_slot_start
+                            value: '2024-12-11T01:30:00.000Z'
+                          - code: delivery_slot_end
+                            value: '2024-12-11T02:00:00.000Z'
+                      - code: fulfill_response
+                        list:
+                          - code: rider_count
+                            value: '2'
+                          - code: order_count
+                            value: '10'
+                          - code: rate_basis
+                            value: rider
+                      - code: linked_order
+                        list:
+                          - code: id
+                            value: RO1
+                          - code: prep_time
+                            value: PT30M
+                          - code: cod_order
+                            value: 'yes'
+                          - code: currency
+                            value: INR
+                          - code: declared_value
+                            value: '300.0'
+                          - code: collection_amount
+                            value: '325.00'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '3.0'
+                          - code: value
+                            value: '300.0'
+                          - code: dim_unit
+                            value: centimeter
+                          - code: length
+                            value: '1.0'
+                          - code: breadth
+                            value: '1.0'
+                          - code: height
+                            value: '1.0'
+                          - code: shipment_type
+                            value: box
+                      - code: linked_order_item
+                        list:
+                          - code: category
+                            value: Grocery
+                          - code: name
+                            value: Atta
+                          - code: currency
+                            value: INR
+                          - code: value
+                            value: '70.0'
+                          - code: quantity
+                            value: '2'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '1.0'
+                          - code: return_to_origin
+                            value: 'yes'
+                      - code: linked_order_item
+                        list:
+                          - code: category
+                            value: Grocery
+                          - code: name
+                            value: Basmati Rice
+                          - code: currency
+                            value: INR
+                          - code: value
+                            value: '160.0'
+                          - code: quantity
+                            value: '1'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '1.0'
+                          - code: return_to_origin
+                            value: 'yes'
+                      - code: state
+                        list:
+                          - code: ready_to_ship
+                            value: 'no'
+                      - code: rto_action
+                        list:
+                          - code: return_to_origin
+                            value: 'no'
+                  - id: F2
+                    type: Delivery
+                    '@ondc/org/awb_no': '1227262193237777'
+                    start:
+                      time:
+                        duration: PT15M
+                      person:
+                        name: person_name
+                      location:
+                        id: S1
+                        gps: 12.4535,77.9283
+                        address:
+                          name: Store name
+                          building: House or building name
+                          locality: Locality
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560041'
+                      contact:
+                        phone: '9886098860'
+                        email: abcd.efgh@gmail.com
+                      instructions:
+                        code: '2'
+                        short_desc: value of PCC
+                        long_desc: additional instructions for pickup
+                        additional_desc:
+                          content_type: text/html
+                          url: ..
+                    end:
+                      person:
+                        name: person_name
+                      location:
+                        gps: 12.453544,77.928379
+                        address:
+                          name: 'My house #'
+                          building: My house or building name
+                          locality: locality
+                          city: Bengaluru
+                          state: Karnataka
+                          country: India
+                          area_code: '560076'
+                      contact:
+                        phone: '9886098860'
+                        email: abcd.efgh@gmail.com
+                      instructions:
+                        code: '3'
+                        short_desc: value of DCC
+                        long_desc: additional instructions for delivery
+                        additional_desc:
+                          content_type: text/html
+                          url: ..
+                    tags:
+                      - code: linked_provider
+                        list:
+                          - code: id
+                            value: P1
+                          - code: name
+                            value: Seller1
+                          - code: address
+                            value: >-
+                              shop_name,building_name,locality,city,state,pincode
+                      - code: fulfill_request
+                        list:
+                          - code: rider_count
+                            value: '2'
+                          - code: order_count
+                            value: '10'
+                          - code: rate_basis
+                            value: rider
+                          - code: motorable_distance
+                            value: '3.0'
+                          - code: pickup_slot_start
+                            value: '2024-12-11T00:00:00.000Z'
+                          - code: pickup_slot_end
+                            value: '2024-12-11T00:15:00.000Z'
+                          - code: delivery_slot_start
+                            value: '2024-12-11T01:30:00.000Z'
+                          - code: delivery_slot_end
+                            value: '2024-12-11T02:00:00.000Z'
+                      - code: fulfill_response
+                        list:
+                          - code: rider_count
+                            value: '2'
+                          - code: order_count
+                            value: '10'
+                          - code: rate_basis
+                            value: rider
+                      - code: linked_order
+                        list:
+                          - code: id
+                            value: RO1
+                          - code: prep_time
+                            value: PT30M
+                          - code: cod_order
+                            value: 'yes'
+                          - code: currency
+                            value: INR
+                          - code: declared_value
+                            value: '300.0'
+                          - code: collection_amount
+                            value: '325.00'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '3.0'
+                          - code: value
+                            value: '300.0'
+                          - code: dim_unit
+                            value: centimeter
+                          - code: length
+                            value: '1.0'
+                          - code: breadth
+                            value: '1.0'
+                          - code: height
+                            value: '1.0'
+                          - code: shipment_type
+                            value: box
+                      - code: linked_order_item
+                        list:
+                          - code: category
+                            value: Grocery
+                          - code: name
+                            value: Atta
+                          - code: currency
+                            value: INR
+                          - code: value
+                            value: '70.0'
+                          - code: quantity
+                            value: '2'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '1.0'
+                          - code: return_to_origin
+                            value: 'yes'
+                      - code: linked_order_item
+                        list:
+                          - code: category
+                            value: Grocery
+                          - code: name
+                            value: Basmati Rice
+                          - code: currency
+                            value: INR
+                          - code: value
+                            value: '160.0'
+                          - code: quantity
+                            value: '1'
+                          - code: weight_unit
+                            value: kilogram
+                          - code: weight_value
+                            value: '1.0'
+                          - code: return_to_origin
+                            value: 'yes'
+                      - code: state
+                        list:
+                          - code: ready_to_ship
+                            value: 'no'
+                      - code: rto_action
+                        list:
+                          - code: return_to_origin
+                            value: 'no'
+                billing:
+                  name: ONDC Logistics Buyer NP
+                  address:
+                    name: name
+                    building: My house or building name
+                    locality: My street name
+                    city: Bengaluru
+                    state: Karnataka
+                    country: India
+                    area_code: '560076'
+                  tax_number: 29AAACU1901H1ZK
+                  phone: '9886098860'
+                  email: abcd.efgh@gmail.com
+                  created_at: '2024-11-20T21:30:00.000Z'
+                  updated_at: '2024-11-20T21:30:00.000Z'
+                payment:
+                  '@ondc/org/collection_amount': '300.00'
+                  collected_by: BAP
+                  type: POST-FULFILLMENT
+                  '@ondc/org/settlement_basis': invoicing
+                  '@ondc/org/settlement_window': P15D
+                  '@ondc/org/settlement_details':
+                    - settlement_counterparty: buyer-app
+                      settlement_type: upi
+                      upi_address: gft@oksbi
+                      settlement_bank_account_no: XXXXXXXXXX
+                      settlement_ifsc_code: XXXXXXXXX
+                '@ondc/org/linked_order':
+                  items:
+                    - category_id: Grocery
+                      descriptor:
+                        name: Atta
+                      quantity:
+                        count: 2
+                        measure:
+                          unit: kilogram
+                          value: 0.5
+                      price:
+                        currency: INR
+                        value: '150.00'
+                  provider:
+                    descriptor:
+                      name: Aadishwar Store
+                    address:
+                      name: KHB Towers
+                      building: Building or House No
+                      locality: Koramangala
+                      city: Bengaluru
+                      state: Karnataka
+                      area_code: '560070'
+                  order:
+                    id: O1
+                    weight:
+                      unit: kilogram
+                      value: 1
+                    dimensions:
+                      length:
+                        unit: centimeter
+                        value: 1
+                      breadth:
+                        unit: centimeter
+                        value: 1
+                      height:
+                        unit: centimeter
+                        value: 1
+                tags:
+                  - code: bap_terms
+                    list:
+                      - code: accept_bpp_terms
+                        value: 'yes'
+                created_at: '2024-11-20T22:00:00.000Z'
+                updated_at: '2024-11-20T22:00:00.000Z'
       - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
         api: on_confirm
         details:
@@ -9095,7 +9544,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_56
+        example: &ref_57
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -9581,7 +10030,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_60
+        example: &ref_61
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -10119,7 +10568,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_45
+        example: &ref_46
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -10467,7 +10916,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_update (Updated fulfillment details)
                 LBNP ->> LSP: ACK
-        example: &ref_64
+        example: &ref_65
           summary: Order updates (Quick Commerce)
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -11037,7 +11486,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_37
+        example: &ref_36
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -11164,7 +11613,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_48
+        example: &ref_49
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -11303,7 +11752,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_41
+        example: &ref_40
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -11445,7 +11894,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_52
+        example: &ref_53
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -11847,7 +12296,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_55
+        example: &ref_56
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -12165,7 +12614,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_59
+        example: &ref_60
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -12589,7 +13038,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_35
+        example: *ref_34
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -12611,7 +13060,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
                 LBNP ->> LSP: ACK
-        example: &ref_65
+        example: &ref_66
           summary: RTO Initiation
           description: >-
             LSP updates the forward shipment to RTO and creates a new RTO
@@ -12933,7 +13382,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update RTO fulfillment to its terminal state
                 LBNP ->> LSP: ACK
-        example: &ref_61
+        example: &ref_62
           summary: Order status (RTO)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -13364,7 +13813,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_39
+        example: &ref_38
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -13472,7 +13921,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_50
+        example: &ref_51
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -13589,7 +14038,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_57
+        example: &ref_58
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -13894,474 +14343,26 @@ x-examples:
     example_set:
       search:
         examples:
+          - *ref_35
           - *ref_36
           - *ref_37
-          - *ref_38
       select:
         examples:
-          - *ref_39
+          - *ref_38
       init:
         examples:
+          - *ref_39
           - *ref_40
           - *ref_41
-          - *ref_42
       confirm:
         examples:
-          - *ref_34
+          - *ref_42
           - *ref_43
-          - summary: Order confirmation (Quick Commerce)
-            description: LBNP confirms the order
-            value:
-              context:
-                domain: nic2004:60232
-                country: IND
-                city: std:080
-                action: confirm
-                core_version: 1.2.5
-                bap_id: lbnp.com
-                bap_uri: https://lbnp.com/ondc
-                bpp_id: lsp.com
-                bpp_uri: https://lsp.com/ondc
-                transaction_id: T1
-                message_id: M3
-                timestamp: '2024-11-20T22:00:00.000Z'
-                ttl: PT30S
-              message:
-                order:
-                  id: O2
-                  state: Created
-                  provider:
-                    id: P1
-                    locations:
-                      - id: L1
-                  items:
-                    - id: I1
-                      fulfillment_ids:
-                        - F1
-                        - F2
-                      category_id: Instant Delivery
-                      descriptor:
-                        code: P2P
-                      time:
-                        label: TAT
-                        duration: PT10M
-                        timestamp: '2024-11-20'
-                  quote:
-                    price:
-                      currency: INR
-                      value: '159.00'
-                    breakup:
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/title_type': delivery
-                        price:
-                          currency: INR
-                          value: '150.00'
-                      - '@ondc/org/item_id': I1
-                        '@ondc/org/title_type': tax
-                        price:
-                          currency: INR
-                          value: '9.00'
-                  fulfillments:
-                    - id: F1
-                      type: Delivery
-                      '@ondc/org/awb_no': '1227262193237777'
-                      start:
-                        time:
-                          duration: PT15M
-                        person:
-                          name: person_name
-                        location:
-                          id: S1
-                          gps: 12.4535,77.9283
-                          address:
-                            name: Store name
-                            building: House or building name
-                            locality: Locality
-                            city: Bengaluru
-                            state: Karnataka
-                            country: India
-                            area_code: '560041'
-                        contact:
-                          phone: '9886098860'
-                          email: abcd.efgh@gmail.com
-                        instructions:
-                          code: '2'
-                          short_desc: value of PCC
-                          long_desc: additional instructions for pickup
-                          additional_desc:
-                            content_type: text/html
-                            url: ..
-                      end:
-                        person:
-                          name: person_name
-                        location:
-                          gps: 12.453544,77.928379
-                          address:
-                            name: 'My house #'
-                            building: My house or building name
-                            locality: locality
-                            city: Bengaluru
-                            state: Karnataka
-                            country: India
-                            area_code: '560076'
-                        contact:
-                          phone: '9886098860'
-                          email: abcd.efgh@gmail.com
-                        instructions:
-                          code: '3'
-                          short_desc: value of DCC
-                          long_desc: additional instructions for delivery
-                          additional_desc:
-                            content_type: text/html
-                            url: ..
-                      tags:
-                        - code: linked_provider
-                          list:
-                            - code: id
-                              value: P1
-                            - code: name
-                              value: Seller1
-                            - code: address
-                              value: >-
-                                shop_name,building_name,locality,city,state,pincode
-                        - code: fulfill_request
-                          list:
-                            - code: rider_count
-                              value: '2'
-                            - code: order_count
-                              value: '10'
-                            - code: rate_basis
-                              value: rider
-                            - code: motorable_distance
-                              value: '3.0'
-                            - code: pickup_slot_start
-                              value: '2024-12-11T00:00:00.000Z'
-                            - code: pickup_slot_end
-                              value: '2024-12-11T00:15:00.000Z'
-                            - code: delivery_slot_start
-                              value: '2024-12-11T01:30:00.000Z'
-                            - code: delivery_slot_end
-                              value: '2024-12-11T02:00:00.000Z'
-                        - code: fulfill_response
-                          list:
-                            - code: rider_count
-                              value: '2'
-                            - code: order_count
-                              value: '10'
-                            - code: rate_basis
-                              value: rider
-                        - code: linked_order
-                          list:
-                            - code: id
-                              value: RO1
-                            - code: prep_time
-                              value: PT30M
-                            - code: cod_order
-                              value: 'yes'
-                            - code: currency
-                              value: INR
-                            - code: declared_value
-                              value: '300.0'
-                            - code: collection_amount
-                              value: '325.00'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '3.0'
-                            - code: value
-                              value: '300.0'
-                            - code: dim_unit
-                              value: centimeter
-                            - code: length
-                              value: '1.0'
-                            - code: breadth
-                              value: '1.0'
-                            - code: height
-                              value: '1.0'
-                            - code: shipment_type
-                              value: box
-                        - code: linked_order_item
-                          list:
-                            - code: category
-                              value: Grocery
-                            - code: name
-                              value: Atta
-                            - code: currency
-                              value: INR
-                            - code: value
-                              value: '70.0'
-                            - code: quantity
-                              value: '2'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '1.0'
-                            - code: return_to_origin
-                              value: 'yes'
-                        - code: linked_order_item
-                          list:
-                            - code: category
-                              value: Grocery
-                            - code: name
-                              value: Basmati Rice
-                            - code: currency
-                              value: INR
-                            - code: value
-                              value: '160.0'
-                            - code: quantity
-                              value: '1'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '1.0'
-                            - code: return_to_origin
-                              value: 'yes'
-                        - code: state
-                          list:
-                            - code: ready_to_ship
-                              value: 'no'
-                        - code: rto_action
-                          list:
-                            - code: return_to_origin
-                              value: 'no'
-                    - id: F2
-                      type: Delivery
-                      '@ondc/org/awb_no': '1227262193237777'
-                      start:
-                        time:
-                          duration: PT15M
-                        person:
-                          name: person_name
-                        location:
-                          id: S1
-                          gps: 12.4535,77.9283
-                          address:
-                            name: Store name
-                            building: House or building name
-                            locality: Locality
-                            city: Bengaluru
-                            state: Karnataka
-                            country: India
-                            area_code: '560041'
-                        contact:
-                          phone: '9886098860'
-                          email: abcd.efgh@gmail.com
-                        instructions:
-                          code: '2'
-                          short_desc: value of PCC
-                          long_desc: additional instructions for pickup
-                          additional_desc:
-                            content_type: text/html
-                            url: ..
-                      end:
-                        person:
-                          name: person_name
-                        location:
-                          gps: 12.453544,77.928379
-                          address:
-                            name: 'My house #'
-                            building: My house or building name
-                            locality: locality
-                            city: Bengaluru
-                            state: Karnataka
-                            country: India
-                            area_code: '560076'
-                        contact:
-                          phone: '9886098860'
-                          email: abcd.efgh@gmail.com
-                        instructions:
-                          code: '3'
-                          short_desc: value of DCC
-                          long_desc: additional instructions for delivery
-                          additional_desc:
-                            content_type: text/html
-                            url: ..
-                      tags:
-                        - code: linked_provider
-                          list:
-                            - code: id
-                              value: P1
-                            - code: name
-                              value: Seller1
-                            - code: address
-                              value: >-
-                                shop_name,building_name,locality,city,state,pincode
-                        - code: fulfill_request
-                          list:
-                            - code: rider_count
-                              value: '2'
-                            - code: order_count
-                              value: '10'
-                            - code: rate_basis
-                              value: rider
-                            - code: motorable_distance
-                              value: '3.0'
-                            - code: pickup_slot_start
-                              value: '2024-12-11T00:00:00.000Z'
-                            - code: pickup_slot_end
-                              value: '2024-12-11T00:15:00.000Z'
-                            - code: delivery_slot_start
-                              value: '2024-12-11T01:30:00.000Z'
-                            - code: delivery_slot_end
-                              value: '2024-12-11T02:00:00.000Z'
-                        - code: fulfill_response
-                          list:
-                            - code: rider_count
-                              value: '2'
-                            - code: order_count
-                              value: '10'
-                            - code: rate_basis
-                              value: rider
-                        - code: linked_order
-                          list:
-                            - code: id
-                              value: RO1
-                            - code: prep_time
-                              value: PT30M
-                            - code: cod_order
-                              value: 'yes'
-                            - code: currency
-                              value: INR
-                            - code: declared_value
-                              value: '300.0'
-                            - code: collection_amount
-                              value: '325.00'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '3.0'
-                            - code: value
-                              value: '300.0'
-                            - code: dim_unit
-                              value: centimeter
-                            - code: length
-                              value: '1.0'
-                            - code: breadth
-                              value: '1.0'
-                            - code: height
-                              value: '1.0'
-                            - code: shipment_type
-                              value: box
-                        - code: linked_order_item
-                          list:
-                            - code: category
-                              value: Grocery
-                            - code: name
-                              value: Atta
-                            - code: currency
-                              value: INR
-                            - code: value
-                              value: '70.0'
-                            - code: quantity
-                              value: '2'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '1.0'
-                            - code: return_to_origin
-                              value: 'yes'
-                        - code: linked_order_item
-                          list:
-                            - code: category
-                              value: Grocery
-                            - code: name
-                              value: Basmati Rice
-                            - code: currency
-                              value: INR
-                            - code: value
-                              value: '160.0'
-                            - code: quantity
-                              value: '1'
-                            - code: weight_unit
-                              value: kilogram
-                            - code: weight_value
-                              value: '1.0'
-                            - code: return_to_origin
-                              value: 'yes'
-                        - code: state
-                          list:
-                            - code: ready_to_ship
-                              value: 'no'
-                        - code: rto_action
-                          list:
-                            - code: return_to_origin
-                              value: 'no'
-                  billing:
-                    name: ONDC Logistics Buyer NP
-                    address:
-                      name: name
-                      building: My house or building name
-                      locality: My street name
-                      city: Bengaluru
-                      state: Karnataka
-                      country: India
-                      area_code: '560076'
-                    tax_number: 29AAACU1901H1ZK
-                    phone: '9886098860'
-                    email: abcd.efgh@gmail.com
-                    created_at: '2024-11-20T21:30:00.000Z'
-                    updated_at: '2024-11-20T21:30:00.000Z'
-                  payment:
-                    '@ondc/org/collection_amount': '300.00'
-                    collected_by: BAP
-                    type: POST-FULFILLMENT
-                    '@ondc/org/settlement_basis': invoicing
-                    '@ondc/org/settlement_window': P15D
-                    '@ondc/org/settlement_details':
-                      - settlement_counterparty: buyer-app
-                        settlement_type: upi
-                        upi_address: gft@oksbi
-                        settlement_bank_account_no: XXXXXXXXXX
-                        settlement_ifsc_code: XXXXXXXXX
-                  '@ondc/org/linked_order':
-                    items:
-                      - category_id: Grocery
-                        descriptor:
-                          name: Atta
-                        quantity:
-                          count: 2
-                          measure:
-                            unit: kilogram
-                            value: 0.5
-                        price:
-                          currency: INR
-                          value: '150.00'
-                    provider:
-                      descriptor:
-                        name: Aadishwar Store
-                      address:
-                        name: KHB Towers
-                        building: Building or House No
-                        locality: Koramangala
-                        city: Bengaluru
-                        state: Karnataka
-                        area_code: '560070'
-                    order:
-                      id: O1
-                      weight:
-                        unit: kilogram
-                        value: 1
-                      dimensions:
-                        length:
-                          unit: centimeter
-                          value: 1
-                        breadth:
-                          unit: centimeter
-                          value: 1
-                        height:
-                          unit: centimeter
-                          value: 1
-                  tags:
-                    - code: bap_terms
-                      list:
-                        - code: accept_bpp_terms
-                          value: 'yes'
-                  created_at: '2024-11-20T22:00:00.000Z'
-                  updated_at: '2024-11-20T22:00:00.000Z'
+          - *ref_44
       update:
         examples:
-          - *ref_44
           - *ref_45
+          - *ref_46
       status:
         examples:
           - summary: Order Status
@@ -14385,7 +14386,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_46
+          - *ref_47
       cancel:
         examples:
           - summary: Order cancellation
@@ -14410,35 +14411,35 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
-          - *ref_47
           - *ref_48
           - *ref_49
+          - *ref_50
       on_select:
         examples:
-          - *ref_50
+          - *ref_51
       on_init:
         examples:
-          - *ref_51
           - *ref_52
           - *ref_53
+          - *ref_54
       on_confirm:
         examples:
-          - *ref_54
           - *ref_55
           - *ref_56
           - *ref_57
+          - *ref_58
       on_status:
         examples:
-          - *ref_58
           - *ref_59
           - *ref_60
           - *ref_61
-          - *ref_35
           - *ref_62
+          - *ref_34
+          - *ref_63
       on_update:
         examples:
-          - *ref_63
           - *ref_64
+          - *ref_65
       on_cancel:
         examples:
           - summary: Order cancellation
@@ -14709,10 +14710,10 @@ x-examples:
                           unit: centimeter
                           value: 1
                   updated_at: '2024-11-20T22:00:30.000Z'
-          - *ref_65
+          - *ref_66
       on_track:
         examples:
-          - *ref_66
+          - *ref_67
 x-attributes:
   logistics:
     attribute_set:
