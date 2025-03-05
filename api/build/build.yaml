@@ -5471,52 +5471,52 @@ x-flows:
         api: confirm
         details:
           - description: >
-              <b>LBNP</b> confirms the order with LSP. The `/confirm` and
-              `/on_confirm` calls must be idempotent.  
+              <b>The `/confirm` and `/on_confirm` calls must be
+              idempotent.</b><br><br>
 
               - LBNP generates a unique `order_id` and sends `/confirm` to
-              LSP.  
+              LSP.<br>
 
-              - LSP validates the order:  
-                - If successful, LSP responds with ACK and creates the order.  
-                - If unsuccessful, LSP responds with NACK (error code **66002** - Order validation failure).  
+              - LSP validates the order:<br>
+                - If successful, LSP responds with ACK and creates the order.<br>
+                - If unsuccessful, LSP responds with NACK (error code <b>66002</b> - Order validation failure).<br>
               - If LBNP receives NACK, they must cancel the order with reason
-              code **996** (Order confirmation failure).  
+              code <b>996</b> (Order confirmation failure).<br>
 
               - If LSP receives the same `order_id` in subsequent API calls
               (`/confirm`, `/status`, `/cancel`, `/update`), it returns NACK
-              (error code **66004** - Order not found).  
+              (error code <b>66004</b> - Order not found).<br>
 
               - LSP may NACK due to internal errors (HTTP 504, error code
-              **66001** - Retriable error).  
-                - LBNP should retry `/confirm`.  
-                - If no ACK/NACK is received within the retry interval, LBNP cancels the order with reason code **996**.  
-              - If LSP sends `/on_confirm`, LBNP validates the order:  
-                - If successful, LBNP responds with ACK.  
-                - If unsuccessful, LBNP responds with NACK (error code **63002** - Order validation failure).  
-                - If LSP receives NACK, it cancels the order with reason code **997** (Order confirmation failure) and pushes the status update to LBNP.  
+              <b>66001</b> - Retriable error).<br>
+                - LBNP should retry `/confirm`.<br>
+                - If no ACK/NACK is received within the retry interval, LBNP cancels the order with reason code <b>996</b>.<br>
+              - If LSP sends `/on_confirm`, LBNP validates the order:<br>
+                - If successful, LBNP responds with ACK.<br>
+                - If unsuccessful, LBNP responds with NACK (error code <b>63002</b> - Order validation failure).<br>
+                - If LSP receives NACK, it cancels the order with reason code <b>997</b> (Order confirmation failure) and pushes the status update to LBNP.<br>
               - If the cancelled order appears in later API calls
               (`/on_confirm`, `/on_status`, `/on_cancel`, `/on_update`), LBNP
-              responds with ACK.  
+              responds with ACK.<br>
 
               - If LBNP encounters internal errors (HTTP 504/503, error code
-              **63001**), LSP should retry `/on_confirm`.  
-                - If no ACK/NACK is received within the retry interval, LSP cancels the order with reason code **997**.  
+              <b>63001</b>), LSP should retry `/on_confirm`.<br>
+                - If no ACK/NACK is received within the retry interval, LSP cancels the order with reason code <b>997</b>.<br>
               - If the order is in progress and appears in API calls (`/status`,
               `/track`, `/cancel`, `/update`), LSP responds with the current
-              order state along with error code **66003** (Order processing in
-              progress).  
+              order state along with error code <b>66003</b> (Order processing
+              in progress).<br>
 
               - If the order is cancelled and appears in API calls (`/status`,
               `/cancel`, `/update`), LSP returns the order state as
-              **cancelled**.  
+              <b>cancelled</b>.<br><br>
 
 
-              **Validation includes:** Order object integrity (items, quantity,
-              quote, fulfillment) as per `/on_init`.  
+              <b>Validation includes:</b> Order object integrity (items,
+              quantity, quote, fulfillment) as per `/on_init`.<br>
 
-              **Retries:** A cap on the number of attempts over a specific
-              duration, determined by LBNP.  
+              <b>Retries:</b> A cap on the number of attempts over a specific
+              duration, determined by LBNP.<br>
             mermaid: |-
               sequenceDiagram
                 title Order Confirmation Process
@@ -5525,8 +5525,8 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 alt Validation Successful
                   LSP -->> LBNP: ACK - Order confirmed
-                  LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-                  LBNP -->> LSP: ACK - Order validated
+                  LSP ->> LBNP: **/on_confirm** - Acceptance of order
+                  LBNP -->> LSP: ACK 
                 else Validation Failure
                   LSP -->> LBNP: NACK 66002 - Order validation failure
                   LBNP ->> LSP: **Cancel Order** (Reason Code 996)
@@ -5787,46 +5787,46 @@ x-flows:
         api: on_confirm
         details:
           - description: >
-              <b>LSP</b> accepts the order and provides fulfillment details.  
+              <b>LSP</b> accepts the order and provides fulfillment details.<br>
 
-              - Upon receiving `/confirm`, LSP validates the order:  
-                - If validation is successful, LSP sends `/on_confirm` with order fulfillment details.  
-                - If validation fails, LSP responds with NACK (error code **66002** - Order validation failure).  
-                  - LBNP must cancel the order with reason code **996** (Order confirmation failure).  
+              - Upon receiving `/confirm`, LSP validates the order:<br>
+                - If validation is successful, LSP sends `/on_confirm` with order fulfillment details.<br>
+                - If validation fails, LSP responds with NACK (error code <b>66002</b> - Order validation failure).<br>
+                  - LBNP must cancel the order with reason code <b>996</b> (Order confirmation failure).<br>
               - If LBNP receives `/on_confirm`, it validates the fulfillment
-              details:  
-                - If successful, LBNP responds with ACK.  
-                - If unsuccessful, LBNP responds with NACK (error code **63002** - Order validation failure).  
-                  - LSP must cancel the order with reason code **997** (Order confirmation failure) and push the status update to LBNP.  
+              details:<br>
+                - If successful, LBNP responds with ACK.<br>
+                - If unsuccessful, LBNP responds with NACK (error code <b>63002</b> - Order validation failure).<br>
+                  - LSP must cancel the order with reason code <b>997</b> (Order confirmation failure) and push the status update to LBNP.<br>
               - If LSP encounters internal errors (HTTP 504, error code
-              **66001** - Retriable error), LBNP should retry `/confirm`.  
-                - If no ACK/NACK is received within the retry interval, LBNP cancels the order with reason code **996**.  
+              <b>66001</b> - Retriable error), LBNP should retry `/confirm`.<br>
+                - If no ACK/NACK is received within the retry interval, LBNP cancels the order with reason code <b>996</b>.<br>
               - If LBNP encounters internal errors (HTTP 504/503, error code
-              **63001**), LSP should retry `/on_confirm`.  
-                - If no ACK/NACK is received within the retry interval, LSP cancels the order with reason code **997**.  
+              <b>63001</b>), LSP should retry `/on_confirm`.<br>
+                - If no ACK/NACK is received within the retry interval, LSP cancels the order with reason code <b>997</b>.<br>
               - If the order is in progress and appears in API calls (`/status`,
               `/track`, `/cancel`, `/update`), LSP responds with the current
-              order state along with error code **66003** (Order processing in
-              progress).  
+              order state along with error code <b>66003</b> (Order processing
+              in progress).<br>
 
               - If the order is cancelled and appears in API calls (`/status`,
               `/cancel`, `/update`), LSP returns the order state as
-              **cancelled**.  
+              <b>cancelled</b>.<br><br>
 
 
-              **Validation includes:** Order object integrity (items, quantity,
-              quote, fulfillment) as per `/on_init`.  
+              <b>Validation includes:</b> Order object integrity (items,
+              quantity, quote, fulfillment) as per `/on_init`.<br>
 
-              **Retries:** A cap on the number of attempts over a specific
-              duration, determined by LBNP.  
+              <b>Retries:</b> A cap on the number of attempts over a specific
+              duration, determined by LBNP.<br>
             mermaid: |-
               sequenceDiagram
                 title Order Confirmation Response
                 participant LBNP
                 participant LSP
-                LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
+                LSP ->> LBNP: **/on_confirm** - Acceptance of order
                 alt Validation Successful
-                  LBNP -->> LSP: ACK - Confirm receipt of fulfillment details
+                  LBNP -->> LSP: ACK 
                 else Validation Failure
                   LBNP -->> LSP: NACK 63002 - Order validation failure
                   LSP ->> LBNP: **Cancel Order** (Reason Code 997)
