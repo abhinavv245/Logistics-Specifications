@@ -3,10 +3,13 @@ description: LSP provides live tracking details
 value:
   context:
     domain: nic2004:60232
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
+    version: '2.0.0'
     action: on_track
-    country: IND
-    city: std:080
-    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
@@ -26,31 +29,45 @@ value:
         updated_at: '2024-11-20T23:31:00.000Z'
       status: active
       tags:
-        - code: order
+        - descriptor:
+            code: ORDER
           list:
-            - code: id
+            - descriptor:
+                code: ID
               value: O2
-        - code: config
+        - descriptor:
+            code: CONFIG
           list:
-            - code: attr
+            - descriptor:
+                code: ATTR
               value: tracking.location.gps
-            - code: type
+            - descriptor:
+                code: TYPE
               value: live_poll
-        - code: path
+        - descriptor:
+            code: PATH
           list:
-            - code: lat_lng
+            - descriptor:
+                code: LAT_LNG
               value: 12.9740,77.6134
-            - code: sequence
-              value: '1'
-        - code: path
+            - descriptor:
+                code: SEQUENCE
+              value: "1"
+        - descriptor:
+            code: PATH
           list:
-            - code: lat_lng
+            - descriptor:
+                code: LAT_LNG
               value: 12.9740,77.6136
-            - code: sequence
-              value: '2'
-        - code: path
+            - descriptor:
+                code: SEQUENCE
+              value: "2"
+        - descriptor:
+            code: PATH
           list:
-            - code: lat_lng
+            - descriptor:
+                code: LAT_LNG
               value: 12.9740,77.6137
-            - code: sequence
-              value: '3'
+            - descriptor:
+                code: SEQUENCE
+              value: "3"

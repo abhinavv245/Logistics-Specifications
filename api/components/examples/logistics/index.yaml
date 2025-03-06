@@ -65,6 +65,9 @@ on_status:
     - $ref: "./on_status/on_status.yaml"
     - $ref: "./on_status/on_status_cod.yaml"
     - $ref: "./on_status/on_status_quick_commerce.yaml"
+    - $ref: "./on_status/on_status_rto.yaml"
+    - $ref: "./on_status/on_status_picked_up.yaml"
+    - $ref: "./on_status/on_status_immediate.yaml"
 
 on_update:
   examples:
