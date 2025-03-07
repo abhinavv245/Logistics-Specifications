@@ -20809,18 +20809,18 @@ x-attributes:
               description: false
             cancellation:
               cancelled_by:
-                required: optional
+                required: mandatory
                 type: string
                 owner: BPP
                 usage: false
-                description: mandatory in case of cancellation
+                description: false
               reason:
                 id:
-                  required: optional
+                  required: mandatory
                   type: string
                   owner: BPP
                   usage: false
-                  description: mandatory in case of cancellation
+                  description: false
             provider:
               id:
                 required: mandatory
@@ -20837,7 +20837,7 @@ x-attributes:
                   description: false
             items:
               id:
-                required: optional
+                required: mandatory
                 type: string
                 owner: BPP
                 usage: false
