@@ -226,6 +226,12 @@ value:
                   value: pdf
                 - code: url
                   value: public link to pdf
+            - code: ebn
+              list:
+                - code: id
+                  value: EBN1
+                - code: expiry_date
+                  value: "2024-06-30T12:00:00.000Z"
         - id: 1-RTO
           type: RTO
           state:
@@ -235,6 +241,13 @@ value:
           start:
             time:
               timestamp: '2024-11-21T14:00:00.000Z'
+          tags:
+            - code: ebn
+              list:
+                - code: id
+                  value: EBN2
+                - code: expiry_date
+                  value: "2024-06-30T12:00:00.000Z"           
       billing:
         name: ONDC sellerNP
         address:

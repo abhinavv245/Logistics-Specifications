@@ -208,6 +208,12 @@ value:
                   value: pdf
                 - code: url
                   value: public link to pdf
+            - code: ebn
+              list:
+                - code: id
+                  value: EBN1
+                - code: expiry_date
+                  value: "2024-06-30T12:00:00.000Z"
       payment:
         '@ondc/org/collection_amount': '300.00'
         type: POST-FULFILLMENT
