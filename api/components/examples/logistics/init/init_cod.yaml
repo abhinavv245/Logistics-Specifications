@@ -3,12 +3,7 @@ description: LBNP initialises the order with the selected LSP.
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: init
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -71,7 +66,6 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
             - type: END
               location:
                 gps: 12.4535,77.9283
@@ -86,7 +80,6 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
           tags:
             - descriptor:
                 code: LINKED_PROVIDER

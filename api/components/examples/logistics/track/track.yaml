@@ -3,12 +3,7 @@ description: Logistics Buyer app requests for tracking information
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: track
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc

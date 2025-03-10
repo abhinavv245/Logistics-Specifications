@@ -4,12 +4,7 @@ description: Logistics Buyer app updates the order, assigns agent to the
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: update
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -45,7 +40,7 @@ value:
                 long_desc: additional instructions for pickup
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               authorization:
                 type: OTP
                 token: OTP code
@@ -67,7 +62,6 @@ value:
                 area_code: "560076"
               contact:
                 phone: "9886098860"
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of DCC
@@ -218,7 +212,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
         - id: F2
           agent:
@@ -235,7 +229,7 @@ value:
                 long_desc: additional instructions for pickup
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               authorization:
                 type: OTP
                 token: OTP code
@@ -257,7 +251,6 @@ value:
                 area_code: "560076"
               contact:
                 phone: "9886098860"
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of DCC
@@ -408,7 +401,6 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       updated_at: 2024-11-20T23:00:00.000Z
-      tags: []

@@ -3,18 +3,13 @@ description: Logistics Buyer app sends a search request for retail COD order
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: search
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     transaction_id: T1
     message_id: M1
-    timestamp: '2024-11-20T21:00:00.000Z'
+    timestamp: 2024-11-20T21:00:00.000Z
     ttl: PT30S
   message:
     intent:
@@ -28,8 +23,8 @@ value:
           days: 1,2,3,4,5,6,7
           schedule:
             holidays:
-              - '2023-06-29'
-              - '2023-08-15'
+              - 2023-06-29
+              - 2023-08-15
           duration: PT30M
           range:
             start: "1100"
@@ -103,10 +98,10 @@ value:
           list:
             - descriptor:
                 code: 00B
-              value: 'yes'
+              value: yes
             - descriptor:
                 code: 00E
-              value: 'yes'
+              value: yes
             - descriptor:
                 code: 01D
-              value: 'yes'
+              value: yes

@@ -5013,18 +5013,13 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: search
               bap_id: lbnp.com
               bap_uri: https://lbnp.com/ondc
               transaction_id: T1
               message_id: M1
-              timestamp: '2024-11-20T21:00:00.000Z'
+              timestamp: 2024-11-20T21:00:00.000Z
               ttl: PT30S
             message:
               intent:
@@ -5038,8 +5033,8 @@ x-flows:
                     days: 1,2,3,4,5,6,7
                     schedule:
                       holidays:
-                        - '2023-06-29'
-                        - '2023-08-15'
+                        - 2023-06-29T00:00:00.000Z
+                        - 2023-08-15T00:00:00.000Z
                     duration: PT30M
                     range:
                       start: '1100'
@@ -5134,11 +5129,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_search
               bap_id: lbnp.com
@@ -5274,11 +5264,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: init
               bap_id: lbnp.com
@@ -5321,7 +5306,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.4535,77.9283
@@ -5338,7 +5322,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -5418,11 +5401,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_init
               bap_id: lbnp.com
@@ -5460,7 +5438,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.453544,77.928379
@@ -5475,7 +5452,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: RIDER_CHECK
@@ -5500,18 +5476,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -5565,11 +5535,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: confirm
               bap_id: lbnp.com
@@ -5578,7 +5543,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M3
-              timestamp: '2024-11-20T22:00:00.000Z'
+              timestamp: 2024-11-20T22:00:00.000Z
               ttl: PT30S
             message:
               order:
@@ -5607,18 +5572,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -5644,7 +5603,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -5668,7 +5626,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -5787,7 +5744,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -5859,11 +5816,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_confirm
               bap_id: lbnp.com
@@ -5900,18 +5852,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -5946,7 +5892,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -5981,7 +5926,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -6118,7 +6062,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -6201,11 +6145,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: update
               bap_id: lbnp.com
@@ -6353,10 +6292,9 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 updated_at: 2024-11-20T23:00:00.000Z
-                tags: []
       - summary: <b>LSP updates order details</b>
         api: on_update
         details:
@@ -6379,11 +6317,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_update
               bap_id: lbnp.com
@@ -6392,7 +6325,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M4
-              timestamp: '2024-11-20T22:30:30.000Z'
+              timestamp: 2024-11-20T22:30:30.000Z
             message:
               order:
                 id: O2
@@ -6407,7 +6340,7 @@ x-flows:
                     time:
                       label: TAT
                       duration: PT45M
-                      timestamp: '2024-11-20'
+                      timestamp: 2024-11-20T00:00:00.000Z
                     fulfillment_ids:
                       - '1'
                     category_ids:
@@ -6420,18 +6353,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.0'
                       price:
                         currency: INR
                         value: '50.0'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.0'
                       price:
                         currency: INR
                         value: '9.0'
@@ -6446,8 +6373,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': '2024-11-20T12:00:00.000Z'
                     type: Delivery
                     stops:
                       - type: START
@@ -6466,13 +6391,12 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
-                            start: '2024-11-20T23:45:00.000Z'
-                            end: '2024-11-20T00:00:00.000Z'
-                          timestamp: '2024-11-20T00:00:00.000Z'
+                            start: 2024-11-20T23:45:00.000Z
+                            end: 2024-11-20T00:00:00.000Z
+                          timestamp: 2024-11-20T00:00:00.000Z
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -6502,7 +6426,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -6512,8 +6435,8 @@ x-flows:
                             url: ..
                         time:
                           range:
-                            start: '2024-11-20T02:00:00.000Z'
-                            end: '2024-11-20T02:15:00.000Z'
+                            start: 2024-11-20T02:00:00.000Z
+                            end: 2024-11-20T02:15:00.000Z
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -6619,19 +6542,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: '2024-11-20T12:00:00.000Z'
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC sellerNP
@@ -6646,10 +6569,9 @@ x-flows:
                   email: abcd.efgh@gmail.com
                   phone: '9886098860'
                   time:
-                    timestamp: '2024-11-20T21:30:00.000Z'
-                updated_at: '2024-11-20T23:00:30.000Z'
+                    timestamp: 2024-11-20T21:30:00.000Z
+                updated_at: 2024-11-20T23:00:30.000Z
                 status: In-progress
-                tags: []
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -6701,11 +6623,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_status
               bap_id: lbnp.com
@@ -6714,7 +6631,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M7
-              timestamp: '2024-11-20T00:00:30.000Z'
+              timestamp: 2024-11-20T00:00:30.000Z
             message:
               order:
                 id: O2
@@ -6742,18 +6659,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -6769,8 +6680,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2024-11-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -6789,7 +6698,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
@@ -6829,7 +6737,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -6961,19 +6868,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2024-11-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Seller NP
@@ -7072,11 +6979,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: track
               bap_id: lbnp.com
@@ -7107,11 +7009,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_track
               bap_id: lbnp.com
@@ -7120,7 +7017,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M6
-              timestamp: '2024-11-20T23:30:30.000Z'
+              timestamp: 2024-11-20T23:30:30.000Z
               ttl: PT30S
             message:
               tracking:
@@ -7129,8 +7026,8 @@ x-flows:
                 location:
                   gps: 12.9740,77.6134
                   time:
-                    timestamp: '2024-11-20T23:30:00.000Z'
-                  updated_at: '2024-11-20T23:31:00.000Z'
+                    timestamp: 2024-11-20T23:30:00.000Z
+                  updated_at: 2024-11-20T23:31:00.000Z
                 status: active
                 tags:
                   - descriptor:
@@ -7198,11 +7095,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_status
               bap_id: lbnp.com
@@ -7211,7 +7103,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M7
-              timestamp: '2024-11-20T00:00:30.000Z'
+              timestamp: 2024-11-20T00:00:30.000Z
             message:
               order:
                 id: O2
@@ -7239,18 +7131,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -7266,8 +7152,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2024-11-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -7286,7 +7170,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
@@ -7326,7 +7209,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -7459,19 +7341,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2024-11-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Seller NP
@@ -7638,11 +7520,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: confirm
               bap_id: lbnp.com
@@ -7651,7 +7528,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M3
-              timestamp: '2024-11-20T22:00:00.000Z'
+              timestamp: 2024-11-20T22:00:00.000Z
               ttl: PT30S
             message:
               order:
@@ -7680,18 +7557,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -7717,7 +7588,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: 5,
                           short_desc: '9876'
@@ -7741,7 +7611,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '5'
                           short_desc: '4567'
@@ -7863,7 +7732,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -7938,11 +7807,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: update
               bap_id: lbnp.com
@@ -8088,10 +7952,9 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 updated_at: 2024-11-20T23:00:00.000Z
-                tags: []
       - summary: Rider sets fulfillment state to "At-pickup"
         api: on_status
         details:
@@ -8116,11 +7979,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_status
               bap_id: lbnp.com
@@ -8129,7 +7987,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M7
-              timestamp: '2024-11-20T00:00:30.000Z'
+              timestamp: 2024-11-20T00:00:30.000Z
             message:
               order:
                 id: O2
@@ -8157,18 +8015,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -8184,8 +8036,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2024-11-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -8204,7 +8054,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
@@ -8238,7 +8087,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -8356,19 +8204,19 @@ x-flows:
                               code: WEIGHT_VALUE
                             value: '1.0'
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2024-11-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Seller NP
@@ -8567,18 +8415,13 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: search
               bap_id: lbnp.com
               bap_uri: https://lbnp.com/ondc
               transaction_id: T1
               message_id: M1
-              timestamp: '2024-11-20T21:00:00.000Z'
+              timestamp: 2024-11-20T21:00:00.000Z
               ttl: PT30S
             message:
               intent:
@@ -8592,8 +8435,8 @@ x-flows:
                     days: 1,2,3,4,5,6,7
                     schedule:
                       holidays:
-                        - '2023-06-29'
-                        - '2023-08-15'
+                        - 2023-06-29T00:00:00.000Z
+                        - 2023-08-15T00:00:00.000Z
                     duration: PT30M
                     range:
                       start: '1100'
@@ -8670,16 +8513,16 @@ x-flows:
                           value: '3.0'
                         - descriptor:
                             code: PICKUP_SLOT_START
-                          value: '2024-12-10T00:00:00.000Z'
+                          value: 2024-12-10T00:00:00.000Z
                         - descriptor:
                             code: PICKUP_SLOT_END
-                          value: '2024-12-10T00:15:00.000Z'
+                          value: 2024-12-10T00:15:00.000Z
                         - descriptor:
                             code: DELIVERY_SLOT_START
-                          value: '2024-12-10T01:30:00.000Z'
+                          value: 2024-12-10T01:30:00.000Z
                         - descriptor:
                             code: DELIVERY_SLOT_END
-                          value: '2024-12-10T02:00:00.000Z'
+                          value: 2024-12-10T02:00:00.000Z
                 payment:
                   type: POST-FULFILLMENT
                 tags:
@@ -8749,11 +8592,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_search
               bap_id: lbnp.com
@@ -8762,7 +8600,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M1
-              timestamp: '2024-11-20T21:00:30.000Z'
+              timestamp: 2024-11-20T21:00:30.000Z
             message:
               catalog:
                 descriptor:
@@ -8780,7 +8618,7 @@ x-flows:
                             https://github.com/ONDC-Official/NP-Static-Terms/lspNP_LSP/1.0/tc.pdf
                         - descriptor:
                             code: EFFECTIVE_DATE
-                          value: '2024-11-20T00:00:00.000Z'
+                          value: 2024-11-20T00:00:00.000Z
                         - descriptor:
                             code: NP_TAX_TYPE
                           value: RCM
@@ -8810,7 +8648,7 @@ x-flows:
                         time:
                           label: TAT
                           duration: PT10M
-                          timestamp: '2024-12-11'
+                          timestamp: 2024-12-11T00:00:00.000Z
                     fulfillments:
                       - id: '1'
                         type: Delivery
@@ -8845,16 +8683,16 @@ x-flows:
                                 value: '3.0'
                               - descriptor:
                                   code: PICKUP_SLOT_START
-                                value: '2024-12-11T00:00:00.000Z'
+                                value: 2024-12-11T00:00:00.000Z
                               - descriptor:
                                   code: PICKUP_SLOT_END
-                                value: '2024-12-11T00:15:00.000Z'
+                                value: 2024-12-11T00:15:00.000Z
                               - descriptor:
                                   code: DELIVERY_SLOT_START
-                                value: '2024-12-11T01:30:00.000Z'
+                                value: 2024-12-11T01:30:00.000Z
                               - descriptor:
                                   code: DELIVERY_SLOT_END
-                                value: '2024-12-11T02:00:00.000Z'
+                                value: 2024-12-11T02:00:00.000Z
                           - descriptor:
                               code: FULFILL_RESPONSE
                             list:
@@ -8883,7 +8721,7 @@ x-flows:
                         time:
                           label: TAT
                           duration: PT10M
-                          timestamp: '2024-11-20'
+                          timestamp: 2024-11-20T00:00:00.000Z
                         tags:
                           - descriptor:
                               code: TYPE
@@ -8908,7 +8746,7 @@ x-flows:
                         time:
                           label: TAT
                           duration: PT10M
-                          timestamp: '2024-11-20'
+                          timestamp: 2024-11-20T00:00:00.000Z
                         tags:
                           - descriptor:
                               code: TYPE
@@ -8975,11 +8813,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: init
               bap_id: lbnp.com
@@ -9020,7 +8853,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.4535,77.9283
@@ -9037,7 +8869,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -9189,7 +9020,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.4535,77.9283
@@ -9206,7 +9036,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -9411,11 +9240,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_init
               bap_id: lbnp.com
@@ -9451,7 +9275,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.453544,77.928379
@@ -9466,7 +9289,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: RIDER_CHECK
@@ -9597,7 +9419,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.453544,77.928379
@@ -9612,7 +9433,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: RIDER_CHECK
@@ -9734,18 +9554,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '150.00'
                       price:
                         currency: INR
                         value: '150.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -9821,11 +9635,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: confirm
               bap_id: lbnp.com
@@ -9834,7 +9643,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M3
-              timestamp: '2024-11-20T22:00:00.000Z'
+              timestamp: 2024-11-20T22:00:00.000Z
               ttl: PT30S
             message:
               order:
@@ -9861,18 +9670,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '150.00'
                       price:
                         currency: INR
                         value: '150.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -9905,7 +9708,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -9933,7 +9735,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -10107,7 +9908,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: F2
                     state:
@@ -10137,7 +9938,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -10165,7 +9965,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -10339,7 +10138,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -10416,11 +10215,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: confirm
               bap_id: lbnp.com
@@ -10429,7 +10223,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M3
-              timestamp: '2024-11-20T22:00:00.000Z'
+              timestamp: 2024-11-20T22:00:00.000Z
               ttl: PT30S
             message:
               order:
@@ -10456,36 +10250,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '150.00'
                       price:
                         currency: INR
                         value: '150.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: DIFF
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '45.00'
                       price:
                         currency: INR
                         value: '45.00'
                     - title: TAX_DIFF
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '2.00'
                       price:
                         currency: INR
                         value: '2.00'
@@ -10518,7 +10300,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -10546,7 +10327,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -10747,7 +10527,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: F2
                     state:
@@ -10759,7 +10539,7 @@ x-flows:
                       - type: START
                         time:
                           duration: PT15M
-                          timestamp: '2024-11-20T22:00:00.000Z'
+                          timestamp: 2024-11-20T22:00:00.000Z
                           range:
                             start: 2024-11-20T23:00:00.000Z
                             end: 2024-11-20T23:15:00.000Z
@@ -10778,7 +10558,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -10806,7 +10585,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -11007,7 +10785,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -11084,11 +10862,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: update
               bap_id: lbnp.com
@@ -11147,7 +10920,6 @@ x-flows:
                           area_code: '560076'
                         contact:
                           phone: '9886098860'
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of DCC
@@ -11299,7 +11071,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: F2
                     agent:
@@ -11338,7 +11110,6 @@ x-flows:
                           area_code: '560076'
                         contact:
                           phone: '9886098860'
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of DCC
@@ -11490,10 +11261,9 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 updated_at: 2024-11-20T23:00:00.000Z
-                tags: []
       - summary: <b>LSP acknowledges the update</b>
         api: on_update
         details:
@@ -11515,11 +11285,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_update
               bap_id: lbnp.com
@@ -11528,7 +11293,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M4
-              timestamp: '2024-11-20T22:30:30.000Z'
+              timestamp: 2024-11-20T22:30:30.000Z
             message:
               order:
                 id: O2
@@ -11545,7 +11310,7 @@ x-flows:
                     time:
                       label: TAT
                       duration: PT10M
-                      timestamp: '2024-11-20'
+                      timestamp: 2024-11-20T00:00:00.000Z
                     category_ids:
                       - Instant Delivery
                 quote:
@@ -11556,36 +11321,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '150.00'
                       price:
                         currency: INR
                         value: '150.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: DIFF
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '45.00'
                       price:
                         currency: INR
                         value: '45.00'
                     - title: TAX_DIFF
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '2.00'
                       price:
                         currency: INR
                         value: '2.00'
@@ -11600,8 +11353,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': '2024-11-20T12:00:00.000Z'
                     type: Delivery
                     stops:
                       - type: START
@@ -11620,12 +11371,11 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
-                            start: '2024-11-20T23:45:00.000Z'
-                            end: '2024-11-20T00:00:00.000Z'
+                            start: 2024-11-20T23:45:00.000Z
+                            end: 2024-11-20T00:00:00.000Z
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -11655,7 +11405,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -11665,8 +11414,8 @@ x-flows:
                             url: ..
                         time:
                           range:
-                            start: '2024-11-20T02:00:00.000Z'
-                            end: '2024-11-20T02:15:00.000Z'
+                            start: 2024-11-20T02:00:00.000Z
+                            end: 2024-11-20T02:15:00.000Z
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -11779,16 +11528,16 @@ x-flows:
                             value: '3.0'
                           - descriptor:
                               code: PICKUP_SLOT_START
-                            value: '2024-12-11T00:00:00.000Z'
+                            value: 2024-12-11T00:00:00.000Z
                           - descriptor:
                               code: PICKUP_SLOT_END
-                            value: '2024-12-11T00:15:00.000Z'
+                            value: 2024-12-11T00:15:00.000Z
                           - descriptor:
                               code: DELIVERY_SLOT_START
-                            value: '2024-12-11T01:30:00.000Z'
+                            value: 2024-12-11T01:30:00.000Z
                           - descriptor:
                               code: DELIVERY_SLOT_END
-                            value: '2024-12-11T02:00:00.000Z'
+                            value: 2024-12-11T02:00:00.000Z
                       - descriptor:
                           code: FULFILL_RESPONSE
                         list:
@@ -11823,19 +11572,10 @@ x-flows:
                               code: PHONE
                             value: '9886098860'
                       - descriptor:
-                          code: EWAY
-                        list:
-                          - descriptor:
-                              code: BILL_NO
-                            value: EBN1
-                          - descriptor:
-                              code: EXPIRY_DATE
-                            value: '2024-11-20T12:00:00.000Z'
-                      - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: F2
                     state:
@@ -11865,13 +11605,12 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
-                            start: '2024-11-20T23:45:00.000Z'
-                            end: '2024-11-20T00:00:00.000Z'
-                          timestamp: '2024-11-20T00:00:00.000Z'
+                            start: 2024-11-20T23:45:00.000Z
+                            end: 2024-11-20T00:00:00.000Z
+                          timestamp: 2024-11-20T00:00:00.000Z
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -11901,7 +11640,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -11911,8 +11649,8 @@ x-flows:
                             url: ..
                         time:
                           range:
-                            start: '2024-11-20T02:00:00.000Z'
-                            end: '2024-11-20T02:15:00.000Z'
+                            start: 2024-11-20T02:00:00.000Z
+                            end: 2024-11-20T02:15:00.000Z
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -12025,16 +11763,16 @@ x-flows:
                             value: '3.0'
                           - descriptor:
                               code: PICKUP_SLOT_START
-                            value: '2024-12-11T00:00:00.000Z'
+                            value: 2024-12-11T00:00:00.000Z
                           - descriptor:
                               code: PICKUP_SLOT_END
-                            value: '2024-12-11T00:15:00.000Z'
+                            value: 2024-12-11T00:15:00.000Z
                           - descriptor:
                               code: DELIVERY_SLOT_START
-                            value: '2024-12-11T01:30:00.000Z'
+                            value: 2024-12-11T01:30:00.000Z
                           - descriptor:
                               code: DELIVERY_SLOT_END
-                            value: '2024-12-11T02:00:00.000Z'
+                            value: 2024-12-11T02:00:00.000Z
                       - descriptor:
                           code: FULFILL_RESPONSE
                         list:
@@ -12072,7 +11810,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC sellerNP
@@ -12086,10 +11824,10 @@ x-flows:
                   tax_id: XXXXXXXXXXXXXXX
                   email: abcd.efgh@gmail.com
                   phone: '9886098860'
-                  time: timestamp:' 2024-11-20T21:30:00.000Z'
-                updated_at: '2024-11-20T23:00:30.000Z'
+                  time:
+                    timestamp: 2024-11-20T21:30:00.000Z
+                updated_at: 2024-11-20T23:00:30.000Z
                 status: In-progress
-                tags: []
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -12206,18 +11944,13 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: search
               bap_id: lbnp.com
               bap_uri: https://lbnp.com/ondc
               transaction_id: T1
               message_id: M1
-              timestamp: '2024-11-20T21:00:00.000Z'
+              timestamp: 2024-11-20T21:00:00.000Z
               ttl: PT30S
             message:
               intent:
@@ -12231,8 +11964,8 @@ x-flows:
                     days: 1,2,3,4,5,6,7
                     schedule:
                       holidays:
-                        - '2023-06-29'
-                        - '2023-08-15'
+                        - 2023-06-29T00:00:00.000Z
+                        - 2023-08-15T00:00:00.000Z
                     duration: PT30M
                     range:
                       start: '1100'
@@ -12335,11 +12068,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_search
               bap_id: lbnp.com
@@ -12497,11 +12225,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: init
               bap_id: lbnp.com
@@ -12565,7 +12288,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.4535,77.9283
@@ -12582,7 +12304,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -12680,11 +12401,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_init
               bap_id: lbnp.com
@@ -12722,7 +12438,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.453544,77.928379
@@ -12737,7 +12452,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: RIDER_CHECK
@@ -12777,36 +12491,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: COD
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '16.25'
                       price:
                         currency: INR
                         value: '16.25'
                     - title: TAX
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '2.93'
                       price:
                         currency: INR
                         value: '2.93'
@@ -12842,11 +12544,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: confirm
               bap_id: lbnp.com
@@ -12855,7 +12552,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M3
-              timestamp: '2024-11-20T22:00:00.000Z'
+              timestamp: 2024-11-20T22:00:00.000Z
               ttl: PT30S
             message:
               order:
@@ -12884,18 +12581,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -12921,7 +12612,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -12945,7 +12635,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -13097,7 +12786,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -13145,11 +12834,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_confirm
               bap_id: lbnp.com
@@ -13186,18 +12870,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -13232,7 +12910,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -13267,7 +12944,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -13437,7 +13113,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -13522,11 +13198,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_status
               bap_id: lbnp.com
@@ -13535,7 +13206,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M7
-              timestamp: '2024-11-20T00:00:30.000Z'
+              timestamp: 2024-11-20T00:00:30.000Z
             message:
               order:
                 id: O2
@@ -13578,36 +13249,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: RTO
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '20.00'
                       price:
                         currency: INR
                         value: '20.00'
                     - title: TAX
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '3.60'
                       price:
                         currency: INR
                         value: '3.60'
@@ -13623,8 +13282,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2024-11-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -13643,7 +13300,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
@@ -13683,7 +13339,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -13864,19 +13519,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2024-11-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: 1-RTO
                     state:
@@ -14033,11 +13688,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_cancel
               bap_id: lbnp.com
@@ -14046,7 +13696,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M5
-              timestamp: '2024-11-20T23:00:30.000Z'
+              timestamp: 2024-11-20T23:00:30.000Z
             message:
               order:
                 id: O2
@@ -14089,36 +13739,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: RTO
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '20.0'
                       price:
                         currency: INR
                         value: '20.0'
                     - title: TAX
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '3.60'
                       price:
                         currency: INR
                         value: '3.60'
@@ -14133,8 +13771,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2023-06-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -14153,7 +13789,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -14184,7 +13819,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -14327,19 +13961,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2023-06-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: 1-RTO
                     state:
@@ -14351,6 +13985,16 @@ x-flows:
                       - type: START
                         time:
                           timestamp: 2024-11-21T14:00:00.000Z
+                    tags:
+                      - descriptor:
+                          code: EBN
+                        list:
+                          - descriptor:
+                              code: ID
+                            value: EBN2
+                          - descriptor:
+                              code: EXPIRY_DATE
+                            value: 2024-06-30T12:00:00.000Z
                 billing:
                   name: ONDC sellerNP
                   address: My building no, My building name, My street name
@@ -14368,7 +14012,6 @@ x-flows:
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:30.000Z
                 status: In-progress
-                tags: []
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -14420,11 +14063,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_status
               bap_id: lbnp.com
@@ -14433,7 +14071,7 @@ x-flows:
               bpp_uri: https://lsp.com/ondc
               transaction_id: T1
               message_id: M7
-              timestamp: '2024-11-20T00:00:30.000Z'
+              timestamp: 2024-11-20T00:00:30.000Z
             message:
               order:
                 id: O2
@@ -14476,36 +14114,24 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
                     - title: RTO
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '20.00'
                       price:
                         currency: INR
                         value: '20.00'
                     - title: TAX
                       item:
                         id: I2
-                        price:
-                          currency: INR
-                          value: '3.60'
                       price:
                         currency: INR
                         value: '3.60'
@@ -14521,8 +14147,6 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    '@ondc/org/ewaybillno': EBN1
-                    '@ondc/org/ebnexpirydate': 2024-11-30T12:00:00.000Z
                     type: Delivery
                     stops:
                       - type: START
@@ -14541,7 +14165,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           duration: PT15M
                           range:
@@ -14581,7 +14204,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         time:
                           range:
                             start: 2024-11-20T23:00:00.000Z
@@ -14729,19 +14351,19 @@ x-flows:
                               code: URL
                             value: public link to pdf
                       - descriptor:
-                          code: EWAY
+                          code: EBN
                         list:
                           - descriptor:
-                              code: BILL_NO
+                              code: ID
                             value: EBN1
                           - descriptor:
                               code: EXPIRY_DATE
-                            value: 2024-11-30T12:00:00.000Z
+                            value: 2024-06-30T12:00:00.000Z
                       - descriptor:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                   - id: 1-RTO
                     state:
@@ -14913,11 +14535,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: select
               bap_id: lbnp.com
@@ -14960,7 +14577,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.4535,77.9283
@@ -14977,7 +14593,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: LINKED_PROVIDER
@@ -15036,11 +14651,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_select
               bap_id: lbnp.com
@@ -15078,7 +14688,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                       - type: END
                         location:
                           gps: 12.453544,77.928379
@@ -15093,7 +14702,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                     tags:
                       - descriptor:
                           code: RIDER_CHECK
@@ -15118,18 +14726,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -15169,11 +14771,6 @@ x-flows:
           value:
             context:
               domain: nic2004:60232
-              location:
-                city:
-                  code: std:080
-                country:
-                  code: IND
               version: 2.0.0
               action: on_confirm
               bap_id: lbnp.com
@@ -15210,18 +14807,12 @@ x-flows:
                     - title: DELIVERY
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '50.00'
                       price:
                         currency: INR
                         value: '50.00'
                     - title: TAX
                       item:
                         id: I1
-                        price:
-                          currency: INR
-                          value: '9.00'
                       price:
                         currency: INR
                         value: '9.00'
@@ -15256,7 +14847,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '2'
                           short_desc: value of PCC
@@ -15291,7 +14881,6 @@ x-flows:
                         contact:
                           phone: '9886098860'
                           email: abcd.efgh@gmail.com
-                          tags: []
                         instructions:
                           code: '3'
                           short_desc: value of DCC
@@ -15428,7 +15017,7 @@ x-flows:
                           code: AWB
                         list:
                           - descriptor:
-                              code: NUMBER
+                              code: ID
                             value: '1227262193237777'
                 billing:
                   name: ONDC Logistics Buyer NP
@@ -15503,11 +15092,6 @@ x-examples:
             value:
               context:
                 domain: nic2004:60232
-                location:
-                  city:
-                    code: std:080
-                  country:
-                    code: IND
                 version: 2.0.0
                 action: confirm
                 bap_id: lbnp.com
@@ -15516,7 +15100,7 @@ x-examples:
                 bpp_uri: https://lsp.com/ondc
                 transaction_id: T1
                 message_id: M3
-                timestamp: '2024-11-20T22:00:00.000Z'
+                timestamp: 2024-11-20T22:00:00.000Z
                 ttl: PT30S
               message:
                 order:
@@ -15543,18 +15127,12 @@ x-examples:
                       - title: DELIVERY
                         item:
                           id: I1
-                          price:
-                            currency: INR
-                            value: '150.00'
                         price:
                           currency: INR
                           value: '150.00'
                       - title: TAX
                         item:
                           id: I1
-                          price:
-                            currency: INR
-                            value: '9.00'
                         price:
                           currency: INR
                           value: '9.00'
@@ -15580,7 +15158,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '2'
                             short_desc: value of PCC
@@ -15604,7 +15181,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '3'
                             short_desc: value of DCC
@@ -15780,7 +15356,7 @@ x-examples:
                             code: AWB
                           list:
                             - descriptor:
-                                code: NUMBER
+                                code: ID
                               value: '1227262193237777'
                     - id: F2
                       type: Delivery
@@ -15803,7 +15379,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '2'
                             short_desc: value of PCC
@@ -15827,7 +15402,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '3'
                             short_desc: value of DCC
@@ -16003,7 +15577,7 @@ x-examples:
                             code: AWB
                           list:
                             - descriptor:
-                                code: NUMBER
+                                code: ID
                               value: '1227262193237777'
                   billing:
                     name: ONDC Logistics Buyer NP
@@ -16068,11 +15642,6 @@ x-examples:
             value:
               context:
                 domain: nic2004:60232
-                location:
-                  city:
-                    code: std:080
-                  country:
-                    code: IND
                 version: 2.0.0
                 action: status
                 bap_id: lbnp.com
@@ -16095,11 +15664,6 @@ x-examples:
             value:
               context:
                 domain: nic2004:60232
-                location:
-                  city:
-                    code: std:080
-                  country:
-                    code: IND
                 version: 2.0.0
                 action: cancel
                 bap_id: lbnp.com
@@ -16151,11 +15715,6 @@ x-examples:
             value:
               context:
                 domain: nic2004:60232
-                location:
-                  city:
-                    code: std:080
-                  country:
-                    code: IND
                 version: 2.0.0
                 action: on_cancel
                 bap_id: lbnp.com
@@ -16164,7 +15723,7 @@ x-examples:
                 bpp_uri: https://lsp.com/ondc
                 transaction_id: T1
                 message_id: M5
-                timestamp: '2024-11-20T23:00:30.000Z'
+                timestamp: 2024-11-20T23:00:30.000Z
               message:
                 order:
                   id: O2
@@ -16196,18 +15755,12 @@ x-examples:
                       - title: DELIVERY
                         item:
                           id: I1
-                          price:
-                            currency: INR
-                            value: '50.00'
                         price:
                           currency: INR
                           value: '50.00'
                       - title: TAX
                         item:
                           id: I1
-                          price:
-                            currency: INR
-                            value: '09.00'
                         price:
                           currency: INR
                           value: '09.00'
@@ -16240,7 +15793,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '2'
                             short_desc: value of PCC
@@ -16271,7 +15823,6 @@ x-examples:
                           contact:
                             phone: '9886098860'
                             email: abcd.efgh@gmail.com
-                            tags: []
                           instructions:
                             code: '3'
                             short_desc: value of DCC
@@ -16405,7 +15956,7 @@ x-examples:
                             code: AWB
                           list:
                             - descriptor:
-                                code: NUMBER
+                                code: ID
                               value: '1227262193237777'
                   billing:
                     name: ONDC Logistics Buyer NP
@@ -16423,7 +15974,6 @@ x-examples:
                       timestamp: 2024-11-20T21:30:00.000Z
                   updated_at: 2024-11-20T22:00:30.000Z
                   status: Cancelled
-                  tags: []
                   payments:
                     - type: POST-FULFILLMENT
                       collected_by: BPP

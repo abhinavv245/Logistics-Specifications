@@ -3,12 +3,7 @@ description: LBNP confirms the order
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: confirm
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -16,7 +11,7 @@ value:
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M3
-    timestamp: '2024-11-20T22:00:00.000Z'
+    timestamp: 2024-11-20T22:00:00.000Z
     ttl: PT30S
   message:
     order:
@@ -32,7 +27,7 @@ value:
           time:
             label: TAT
             duration: PT10M
-            timestamp: '2024-11-20'
+            timestamp: 2024-11-20
           category_ids:
             - Instant Delivery
       quote:
@@ -43,18 +38,12 @@ value:
           - title: DELIVERY
             item:
               id: I1
-              price:
-                currency: INR
-                value: "150.00"
             price:
               currency: INR
               value: "150.00"
           - title: TAX
             item:
               id: I1
-              price:
-                currency: INR
-                value: "9.00"
             price:
               currency: INR
               value: "9.00"
@@ -80,14 +69,13 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of PCC
                 long_desc: additional instructions for pickup
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
             - type: END
               person:
                 name: person_name
@@ -104,14 +92,13 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 long_desc: additional instructions for delivery
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
           tags:
             - descriptor:
                 code: LINKED_PROVIDER
@@ -279,7 +266,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
         - id: F2
           type: Delivery
@@ -302,14 +289,13 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of PCC
                 long_desc: additional instructions for pickup
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
             - type: END
               person:
                 name: person_name
@@ -326,14 +312,13 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 long_desc: additional instructions for delivery
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
           tags:
             - descriptor:
                 code: LINKED_PROVIDER
@@ -501,7 +486,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       billing:
         name: ONDC Logistics Buyer NP

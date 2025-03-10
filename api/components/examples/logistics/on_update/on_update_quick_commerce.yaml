@@ -4,12 +4,7 @@ description: LSP acknowledges order updates such as agent assignment by LBNP,
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: on_update
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -17,7 +12,7 @@ value:
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M4
-    timestamp: '2024-11-20T22:30:30.000Z'
+    timestamp: 2024-11-20T22:30:30.000Z
   message:
     order:
       id: O2
@@ -34,7 +29,7 @@ value:
           time:
             label: TAT
             duration: PT10M
-            timestamp: '2024-11-20'
+            timestamp: 2024-11-20
           category_ids:
             - Instant Delivery
       quote:
@@ -45,36 +40,24 @@ value:
           - title: DELIVERY
             item:
               id: I1
-              price:
-                currency: INR
-                value: "150.00"
             price:
               currency: INR
               value: "150.00"
           - title: TAX
             item:
               id: I1
-              price:
-                currency: INR
-                value: "9.00"
             price:
               currency: INR
               value: "9.00"
           - title: DIFF
             item:
               id: I1
-              price:
-                currency: INR
-                value: "45.00"
             price:
               currency: INR
               value: "45.00"
           - title: TAX_DIFF
             item:
               id: I1
-              price:
-                currency: INR
-                value: "2.00"
             price:
               currency: INR
               value: "2.00"
@@ -89,8 +72,6 @@ value:
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          "@ondc/org/ewaybillno": EBN1
-          "@ondc/org/ebnexpirydate": '2024-11-20T12:00:00.000Z'
           type: Delivery
           stops:
             - type: START
@@ -109,12 +90,11 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               time:
                 duration: PT15M
                 range:
-                  start: '2024-11-20T23:45:00.000Z'
-                  end: '2024-11-20T00:00:00.000Z'
+                  start: 2024-11-20T23:45:00.000Z
+                  end: 2024-11-20T00:00:00.000Z
               instructions:
                 code: "2"
                 short_desc: value of PCC
@@ -123,7 +103,7 @@ value:
                   - link to downloadable shipping label (required for P2H2P)
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
             - type: END
               person:
                 name: person_name
@@ -140,18 +120,17 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 long_desc: additional instructions for delivery
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 range:
-                  start: '2024-11-20T02:00:00.000Z'
-                  end: '2024-11-20T02:15:00.000Z'
+                  start: 2024-11-20T02:00:00.000Z
+                  end: 2024-11-20T02:15:00.000Z
           tags:
             - descriptor:
                 code: LINKED_PROVIDER
@@ -263,16 +242,16 @@ value:
                   value: "3.0"
                 - descriptor:
                     code: PICKUP_SLOT_START
-                  value: '2024-12-11T00:00:00.000Z'
+                  value: 2024-12-11T00:00:00.000Z
                 - descriptor:
                     code: PICKUP_SLOT_END
-                  value: '2024-12-11T00:15:00.000Z'
+                  value: 2024-12-11T00:15:00.000Z
                 - descriptor:
                     code: DELIVERY_SLOT_START
-                  value: '2024-12-11T01:30:00.000Z'
+                  value: 2024-12-11T01:30:00.000Z
                 - descriptor:
                     code: DELIVERY_SLOT_END
-                  value: '2024-12-11T02:00:00.000Z'
+                  value: 2024-12-11T02:00:00.000Z
             - descriptor:
                 code: FULFILL_RESPONSE
               list:
@@ -307,19 +286,10 @@ value:
                     code: PHONE
                   value: "9886098860"
             - descriptor:
-                code: EWAY
-              list:
-                - descriptor:
-                    code: BILL_NO
-                  value: EBN1
-                - descriptor:
-                    code: EXPIRY_DATE
-                  value: '2024-11-20T12:00:00.000Z'
-            - descriptor:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
         - id: F2
           state:
@@ -349,13 +319,12 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               time:
                 duration: PT15M
                 range:
-                  start: '2024-11-20T23:45:00.000Z'
-                  end: '2024-11-20T00:00:00.000Z'
-                timestamp: '2024-11-20T00:00:00.000Z'
+                  start: 2024-11-20T23:45:00.000Z
+                  end: 2024-11-20T00:00:00.000Z
+                timestamp: 2024-11-20T00:00:00.000Z
               instructions:
                 code: "2"
                 short_desc: value of PCC
@@ -364,7 +333,7 @@ value:
                   - link to downloadable shipping label (required for P2H2P)
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
             - type: END
               person:
                 name: person_name
@@ -381,18 +350,17 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 long_desc: additional instructions for delivery
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 range:
-                  start: '2024-11-20T02:00:00.000Z'
-                  end: '2024-11-20T02:15:00.000Z'
+                  start: 2024-11-20T02:00:00.000Z
+                  end: 2024-11-20T02:15:00.000Z
           tags:
             - descriptor:
                 code: LINKED_PROVIDER
@@ -504,16 +472,16 @@ value:
                   value: "3.0"
                 - descriptor:
                     code: PICKUP_SLOT_START
-                  value: '2024-12-11T00:00:00.000Z'
+                  value: 2024-12-11T00:00:00.000Z
                 - descriptor:
                     code: PICKUP_SLOT_END
-                  value: '2024-12-11T00:15:00.000Z'
+                  value: 2024-12-11T00:15:00.000Z
                 - descriptor:
                     code: DELIVERY_SLOT_START
-                  value: '2024-12-11T01:30:00.000Z'
+                  value: 2024-12-11T01:30:00.000Z
                 - descriptor:
                     code: DELIVERY_SLOT_END
-                  value: '2024-12-11T02:00:00.000Z'
+                  value: 2024-12-11T02:00:00.000Z
             - descriptor:
                 code: FULFILL_RESPONSE
               list:
@@ -551,7 +519,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       billing:
         name: ONDC sellerNP
@@ -566,10 +534,9 @@ value:
         email: abcd.efgh@gmail.com
         phone: "9886098860"
         time:
-          timestamp:' 2024-11-20T21:30:00.000Z'
-      updated_at: '2024-11-20T23:00:30.000Z'
+          timestamp: 2024-11-20T21:30:00.000Z
+      updated_at: 2024-11-20T23:00:30.000Z
       status: In-progress
-      tags: []
       payments:
         - type: POST-FULFILLMENT
           collected_by: BPP

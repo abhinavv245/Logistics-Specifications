@@ -3,12 +3,7 @@ description: LSP provides acceptance to the order
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: on_confirm
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -44,18 +39,12 @@ value:
           - title: DELIVERY
             item:
               id: I1
-              price:
-                currency: INR
-                value: "50.00"
             price:
               currency: INR
               value: "50.00"
           - title: TAX
             item:
               id: I1
-              price:
-                currency: INR
-                value: "9.00"
             price:
               currency: INR
               value: "9.00"
@@ -88,7 +77,6 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of PCC
@@ -97,7 +85,7 @@ value:
                   - link to downloadable shipping label (required for P2H2P)
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 duration: PT15M
                 range:
@@ -119,13 +107,12 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 range:
                   start: 2024-11-20T23:00:00.000Z
@@ -288,7 +275,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       billing:
         name: ONDC Logistics Buyer NP

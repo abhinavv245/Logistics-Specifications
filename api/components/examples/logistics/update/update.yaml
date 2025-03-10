@@ -4,12 +4,7 @@ description: Logistics Buyer app updates the order, marks the fulfillment ready
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: update
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -40,7 +35,7 @@ value:
                 long_desc: additional instructions for pickup
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               authorization:
                 type: OTP
                 token: OTP code
@@ -155,7 +150,6 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       updated_at: 2024-11-20T23:00:00.000Z
-      tags: []

@@ -3,12 +3,7 @@ description: LSP cancels the order
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: on_cancel
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -16,7 +11,7 @@ value:
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M5
-    timestamp: '2024-11-20T23:00:30.000Z'
+    timestamp: 2024-11-20T23:00:30.000Z
   message:
     order:
       id: O2
@@ -48,18 +43,12 @@ value:
           - title: DELIVERY
             item:
               id: I1
-              price:
-                currency: INR
-                value: "50.00"
             price:
               currency: INR
               value: "50.00"
           - title: TAX
             item:
               id: I1
-              price:
-                currency: INR
-                value: "09.00"
             price:
               currency: INR
               value: "09.00"
@@ -92,14 +81,13 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "2"
                 short_desc: value of PCC
                 long_desc: QR code will be attached to package
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 duration: PT15M
                 range:
@@ -121,13 +109,12 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
               instructions:
                 code: "3"
                 short_desc: value of DCC
                 additional_desc:
                   content_type: text/html
-                  url: '..'
+                  url: ..
               time:
                 range:
                   start: 2024-11-20T23:00:00.000Z
@@ -254,7 +241,7 @@ value:
                 code: AWB
               list:
                 - descriptor:
-                    code: NUMBER
+                    code: ID
                   value: "1227262193237777"
       billing:
         name: ONDC Logistics Buyer NP
@@ -272,7 +259,6 @@ value:
           timestamp: 2024-11-20T21:30:00.000Z
       updated_at: 2024-11-20T22:00:30.000Z
       status: Cancelled
-      tags: []
       payments:
         - type: POST-FULFILLMENT
           collected_by: BPP

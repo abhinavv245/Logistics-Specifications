@@ -3,12 +3,7 @@ description: LSP returns the catalog of its services in response to the search r
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: on_search
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -24,14 +19,14 @@ value:
             code: LSP_FEATURES
           list:
             - descriptor:
-                code: '005'
-              value: 'yes'
+                code: "005"
+              value: yes
             - descriptor:
-                code: '009'
-              value: 'yes'
+                code: "009"
+              value: yes
             - descriptor:
-                code: '00C'
-              value: 'yes'
+                code: 00C
+              value: yes
       descriptor:
         name: LSP Aggregator Inc
         tags:

@@ -3,12 +3,7 @@ description: LBNP acknowledges order initialisation , provides quote breakup.
 value:
   context:
     domain: nic2004:60232
-    location:
-      city:
-        code: std:080
-      country:
-        code: IND
-    version: '2.0.0'
+    version: 2.0.0
     action: on_init
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
@@ -45,7 +40,6 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
             - type: END
               location:
                 gps: 12.453544,77.928379
@@ -60,7 +54,6 @@ value:
               contact:
                 phone: "9886098860"
                 email: abcd.efgh@gmail.com
-                tags: []
           tags:
             - descriptor:
                 code: RIDER_CHECK
@@ -85,18 +78,12 @@ value:
           - title: DELIVERY
             item:
               id: I1
-              price:
-                currency: INR
-                value: "50.00"
             price:
               currency: INR
               value: "50.00"
           - title: TAX
             item:
               id: I1
-              price:
-                currency: INR
-                value: "9.00"
             price:
               currency: INR
               value: "9.00"
