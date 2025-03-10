@@ -6,6 +6,11 @@ description: LBNP must send following information as part of order /confirm -
 value:
   context:
     domain: nic2004:60232
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
     version: 2.0.0
     action: confirm
     bap_id: lbnp.com

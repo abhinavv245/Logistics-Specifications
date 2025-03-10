@@ -3,6 +3,11 @@ description: LSP cancels the order
 value:
   context:
     domain: nic2004:60232
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
     version: 2.0.0
     action: on_cancel
     bap_id: lbnp.com

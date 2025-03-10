@@ -3,6 +3,11 @@ description: LSP provides live tracking details
 value:
   context:
     domain: nic2004:60232
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
     version: 2.0.0
     action: on_track
     bap_id: lbnp.com
@@ -12,7 +17,6 @@ value:
     transaction_id: T1
     message_id: M6
     timestamp: 2024-11-20T23:30:30.000Z
-    ttl: PT30S
   message:
     tracking:
       id: F1

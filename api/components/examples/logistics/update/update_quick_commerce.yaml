@@ -4,6 +4,11 @@ description: Logistics Buyer app updates the order, assigns agent to the
 value:
   context:
     domain: nic2004:60232
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
     version: 2.0.0
     action: update
     bap_id: lbnp.com
