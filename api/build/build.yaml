@@ -14885,7 +14885,9 @@ x-attributes:
                       type: string
                       owner: BPP
                       usage: false
-                      description: average time to pickup (ISO8601 Duration);
+                      description: >-
+                        average time to pickup (ISO8601 Duration); required for
+                        'Delivery' fulfillment.
               locations:
                 id:
                   required: optional
@@ -15145,7 +15147,7 @@ x-attributes:
                 usage: false
                 description: false
               fulfillment_id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -15432,7 +15434,7 @@ x-attributes:
                   description: false
             items:
               id:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -17057,7 +17059,8 @@ x-attributes:
                 usage: false
                 description: >-
                   indicates from when settlement window starts, enum -
-                  "invoicing" (from date of invoicing);
+                  "invoicing" (from date of invoicing); mandatory for
+                  POST-FULFILLMENT
               '@ondc/org/settlement_window':
                 required: optional
                 type: string
@@ -17065,7 +17068,7 @@ x-attributes:
                 usage: false
                 description: >-
                   settlement window, as per settlement basis, in ISO8601
-                  Duration format;
+                  Duration format; mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_details':
                 settlement_counterparty:
                   required: optional
@@ -17877,7 +17880,7 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: ' indicates from when settlement window starts, enum - "invoicing" (from date of invoicing);'
+                description: ' indicates from when settlement window starts, enum - "invoicing" (from date of invoicing); mandatory for POST-FULFILLMENT'
               '@ondc/org/settlement_window':
                 required: optional
                 type: string
@@ -17885,7 +17888,7 @@ x-attributes:
                 usage: false
                 description: >-
                   settlement window, as per settlement basis, in ISO8601
-                  Duration format;
+                  Duration format; mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_details':
                 settlement_counterparty:
                   required: optional
@@ -18423,67 +18426,67 @@ x-attributes:
             '@ondc/org/linked_order':
               items:
                 category_id:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BAP
                   usage: false
                   description: false
                 descriptor:
                   name:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                 quantity:
                   count:
-                    required: mandatory
+                    required: optional
                     type: integer
                     owner: BAP
                     usage: false
                     description: false
                   measure:
                     unit:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     value:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                 price:
                   currency:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   value:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
               order:
                 id:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BAP
                   usage: false
                   description: false
                 weight:
                   unit:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
                     description: false
                   value:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -18491,39 +18494,39 @@ x-attributes:
                 dimensions:
                   length:
                     unit:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     value:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                   breadth:
                     unit:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     value:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                   height:
                     unit:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
                       description: false
                     value:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BAP
                       usage: false
@@ -19171,13 +19174,13 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_window':
                 required: optional
                 type: string
                 owner: BPP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_details':
                 settlement_counterparty:
                   required: optional
@@ -19279,8 +19282,8 @@ x-attributes:
                     usage: false
                     description: false
                   street:
-                    required: optional
-                    type: string
+                    required: mandatory
+                    type: integer
                     owner: BAP
                     usage: false
                     description: false
@@ -19607,7 +19610,7 @@ x-attributes:
                   description: false
             items:
               id:
-                required: optional
+                required: mandatory
                 type: string
                 owner: BPP
                 usage: false
@@ -20104,13 +20107,13 @@ x-attributes:
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_window':
                 required: optional
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               status:
                 required: mandatory
                 type: string
@@ -20264,7 +20267,7 @@ x-attributes:
                 descriptor:
                   name:
                     required: mandatory
-                    type: integer
+                    type: string
                     owner: BAP
                     usage: false
                     description: false
@@ -20948,10 +20951,7 @@ x-attributes:
                   type: string
                   owner: BPP
                   usage: false
-                  description: >-
-                    quote should reflect the updated value of logistics order
-                    (including weight differential cost & tax if applicable)
-                    which has to be paid by LBNP;
+                  description: false
               breakup:
                 '@ondc/org/item_id':
                   required: mandatory
@@ -21068,13 +21068,13 @@ x-attributes:
                       type: string
                       owner: BAP
                       usage: false
-                      description: required if "ready_to_ship" = yes in /confirm;
+                      description: false
                     country:
                       required: optional
                       type: string
                       owner: BAP
                       usage: false
-                      description: required if "ready_to_ship" = yes in /confirm;
+                      description: false
                     area_code:
                       required: optional
                       type: string
@@ -21126,7 +21126,7 @@ x-attributes:
                     type: string
                     owner: BPP
                     usage: false
-                    description: false
+                    description: required if "ready_to_ship" = yes in /confirm;
                   name:
                     required: optional
                     type: string
@@ -21138,7 +21138,7 @@ x-attributes:
                     type: string
                     owner: BPP
                     usage: false
-                    description: false
+                    description: required if "ready_to_ship" = yes in /confirm;
                   long_desc:
                     required: optional
                     type: string
@@ -21176,13 +21176,13 @@ x-attributes:
                     type: string
                     owner: BAP
                     usage: false
-                    description: may be provided after order is picked up;
+                    description: false
                   valid_from:
                     required: optional
                     type: string
                     owner: BAP
                     usage: false
-                    description: may be provided after order is picked up;
+                    description: false
                   valid_to:
                     required: optional
                     type: string
@@ -21386,13 +21386,13 @@ x-attributes:
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               '@ondc/org/settlement_window':
                 required: optional
                 type: string
                 owner: BAP
                 usage: false
-                description: false
+                description: mandatory for POST-FULFILLMENT
               status:
                 required: mandatory
                 type: string
@@ -21408,7 +21408,7 @@ x-attributes:
                   description: false
               '@ondc/org/settlement_details':
                 settlement_counterparty:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: false
                   usage: false
@@ -21546,7 +21546,7 @@ x-attributes:
                 descriptor:
                   name:
                     required: mandatory
-                    type: integer
+                    type: string
                     owner: BAP
                     usage: false
                     description: false

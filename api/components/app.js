@@ -218,6 +218,7 @@ async function traverseTags(currentTagValue, schemaForTraversal, logObject) {
 }
 
 async function validateTags(tags, schema, isAttribute) {
+
   for (const tag of Object.keys(tags)) {
     const currentTag = tags[tag];
     const currentSchema = schema[tag]?.properties;
@@ -225,7 +226,8 @@ async function validateTags(tags, schema, isAttribute) {
     //context & message
     for (const tagItem of Object.keys(currentTag)) {
       const currentTagValue = currentTag[tagItem];
-      let schemaForTraversal;
+      let schemaForTraversal;      
+      
       if (currentSchema[tagItem]?.type === "object") {
         schemaForTraversal = currentSchema[tagItem]?.properties;
       } //for validating attribute contexts

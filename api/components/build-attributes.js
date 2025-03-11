@@ -3,9 +3,10 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 
 async function buildAttribiutes() {
-
   let attributes = {};
-  const workSheetsFromBuffer = xlsx.parse(`./attributes/Logistics 1.2.5 Attribute Sheet.xlsx`);
+  const workSheetsFromBuffer = xlsx.parse(
+    `./attributes/Logistics 1.2.5 Attribute Sheet.xlsx`
+  );
   for (let i = 0; i < workSheetsFromBuffer.length; i++) {
     const array = workSheetsFromBuffer[i];
     const filterArray = array.data.filter((subArr) => subArr.length > 0);
@@ -43,7 +44,8 @@ function formObject(attributes) {
       temp = temp[key];
     });
   });
+
   return result;
 }
 
-module.exports = { buildAttribiutes }
+module.exports = { buildAttribiutes };
