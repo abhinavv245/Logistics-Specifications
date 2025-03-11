@@ -811,11 +811,28 @@ settlement_details:
     description: Settlement window, as per settlement basis, in ISO8601 Duration format;
     reference: <PR/Issue/Discussion Links md format text>
   - code: SETTLEMENT_COUNTERPARTY
-    description: Counterparty with whom the settlement will be done, enum - "LBNP", "LSP";
+    description: The entity responsible for settlement.
     reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: 'LBNP'
+        description: Settlement will be done by LBNP
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: 'LSP'
+        description: Settlement will be done by LSP
+        reference: <PR/Issue/Discussion Links md format text>
   - code: SETTLEMENT_TYPE
     description:  Enum - "UPI", "NEFT", "RTGS"; for "UPI", upi_address needs to be entered while for "NEFT", "RTGS", settlement_bank_account_no, settlement_ifsc_code needs to be entered;
     reference: <PR/Issue/Discussion Links md format text>
+    list:
+      - code: 'UPI'
+        description: Settlement will be done via upi.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: 'NEFT'
+        description: Settlement will be done via neft.
+        reference: <PR/Issue/Discussion Links md format text>
+      - code: 'RTGS'
+        description: Settlement will be done via rtgs.
+        reference: <PR/Issue/Discussion Links md format text>
   - code: UPI_ADDRESS
     description: UPI address of the beneficiary.
     reference: <PR/Issue/Discussion Links md format text>
