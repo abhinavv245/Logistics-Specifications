@@ -2587,44 +2587,27 @@ x-enum:
       intent:
         fulfillment:
           type: &ref_3
-            - code: Delivery
+            - code: DELIVERY
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
-            - code: Return
+            - code: RETURN
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
             - code: RTO
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
-          start: &ref_8
+          stops: &ref_8
+            type:
+              - code: START
+                description: Describes the pickup stop information.
+                reference: <PR/Issue/Discussion Links md format text
+              - code: END
+                description: Describes the delivery stop information.
+                reference: <PR/Issue/Discussion Links md format text
             authorization:
               type:
                 - code: OTP
-                  description: >-
-                    Describes OTP as an authorization mechanism used to start
-                    the fulfillment of an order.
-                  reference: <PR/Issue/Discussion Links md format text
-            instructions:
-              code:
-                - code: '2'
-                  description: Describes merchant order number.
-                  reference: <PR/Issue/Discussion Links md format text
-                - code: '3'
-                  description: Describes any other pickup confirmation code.
-                  reference: <PR/Issue/Discussion Links md format text
-                - code: '4'
-                  description: Describes OTP for pickup confirmation.
-                  reference: <PR/Issue/Discussion Links md format text
-                - code: '5'
-                  description: Describes Static OTP for pickup confirmation.
-                  reference: <PR/Issue/Discussion Links md format text
-          end: &ref_9
-            authorization:
-              type:
-                - code: OTP
-                  description: >-
-                    Describes OTP as an authorization mechanism used to end the
-                    fulfillment of an order.
+                  description: Describes OTP as an authorization mechanism.
                   reference: <PR/Issue/Discussion Links md format text
             instructions:
               code:
@@ -2632,13 +2615,20 @@ x-enum:
                   description: Describes OTP for delivery confirmation.
                   reference: <PR/Issue/Discussion Links md format text
                 - code: '2'
-                  description: Describes any other delivery confirmation code (DCC).
+                  description: >-
+                    Describes merchant order number or any other delivery
+                    confirmation code (DCC).
                   reference: <PR/Issue/Discussion Links md format text
                 - code: '3'
-                  description: Describes no delivery code.
+                  description: >-
+                    Describes any other pickup confirmation code or no delivery
+                    code.
+                  reference: <PR/Issue/Discussion Links md format text
+                - code: '4'
+                  description: Describes OTP for pickup confirmation.
                   reference: <PR/Issue/Discussion Links md format text
                 - code: '5'
-                  description: Describes Static OTP for delivery confirmation.
+                  description: Describes Static OTP for pickup/delivery confirmation.
                   reference: <PR/Issue/Discussion Links md format text
         payment:
           type: &ref_5
@@ -2653,28 +2643,28 @@ x-enum:
               reference: <PR/Issue/Discussion Links md format text
         category:
           id: &ref_2
-            - code: Express Delivery
+            - code: EXPRESS DELIVERY
               description: Delivery will be done by Air
               reference: <PR/Issue/Discussion Links md format text>
-            - code: Standard Delivery
+            - code: STANDARD DELIVERY
               description: Delivery will be done by Surface
               reference: <PR/Issue/Discussion Links md format text>
-            - code: Immediate Delivery
+            - code: IMMEDIATE DELIVERY
               description: >-
                 Delivery will be done within S2D (Shipment to Delivery) <= 60
                 min
               reference: <PR/Issue/Discussion Links md format text>
-            - code: Next Day Delivery
+            - code: NEXT DAY DELIVERY
               description: >-
                 Delivery will be done on the Next Day with respect to context
                 timestamp
               reference: <PR/Issue/Discussion Links md format text>
-            - code: Same Day Delivery
+            - code: SAME DAY DELIVERY
               description: >-
                 Delivery will be done on the Same Day with respect to context
                 timestamp
               reference: <PR/Issue/Discussion Links md format text>
-            - code: Instant Delivery
+            - code: INSTANT DELIVERY
               description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
               reference: <PR/Issue/Discussion Links md format text>
         item:
@@ -2711,10 +2701,10 @@ x-enum:
           type: *ref_5
           '@ondc/org/settlement_details':
             settlement_counterparty:
-              - code: lbnp
+              - code: LBNP
                 description: This defines with whom the settlement will happen.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: lsp
+              - code: LSP
                 description: This defines with whom the settlement will happen.
                 reference: <PR/Issue/Discussion Links md format text>
   on_init:
@@ -2727,112 +2717,111 @@ x-enum:
         quote: &ref_7
           breakup:
             '@ondc/org/title_type':
-              - code: delivery
+              - code: DELIVERY
                 description: Describes the base fare for delivery.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: rto
+              - code: RTO
                 description: Describes the base fare for return to origin (rto).
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: tax
+              - code: TAX
                 description: Describes the tax fare for delivery or rto.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: diff
+              - code: DIFF
                 description: Describes the weight differential charge.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: tax_diff
+              - code: TAX_DIFF
                 description: Describes the tax on weight differential charge.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: discount
+              - code: DISCOUNT
                 description: Describes the discount on delivery charge.
                 reference: <PR/Issue/Discussion Links md format text>
-              - code: cod
+              - code: COD
                 description: Describes the COD charge
                 reference: <PR/Issue/Discussion Links md format text>
   confirm:
     context: *ref_0
     message:
       order:
-        items: &ref_10
+        items: &ref_9
           descriptor:
             code: *ref_1
           category_id: *ref_2
         quote: *ref_7
-        fulfillments: &ref_11
+        fulfillments: &ref_10
           type: *ref_3
-          start: *ref_8
-          end: *ref_9
+          stops: *ref_8
           state:
             descriptor:
               code:
-                - code: Pending
+                - code: PENDING
                   description: Describes the state of the order as Pending.
-                - code: Cancelled
+                - code: CANCELLED
                   description: Describes the state of the order as Cancelled.
-                - code: Order-picked-up
+                - code: ORDER-PICKED-UP
                   description: Describes the state of the order as Order picked up.
                 - code: RTO
                   description: Describes the state of the order as Return to Origin.
-                - code: RTO-Initiated
+                - code: RTO-INITIATED
                   description: >-
                     Describes the state of the order as Return to Origin
                     Initiated.
-                - code: RTO-Delivered
+                - code: RTO-DELIVERED
                   description: >-
                     Describes the state of the order as Return to Origin
                     Delivered.
-                - code: RTO-Disposed
+                - code: RTO-DISPOSED
                   description: >-
                     Describes the state of the order as Return to Origin
                     Disposed.
-                - code: Out-for-pickup
+                - code: OUT-FOR-PICKUP
                   description: Describes the state of the order as Out for pickup.
-                - code: At-destination-hub
+                - code: AT-DESTINATION-HUB
                   description: Describes the state of the order as At destination hub.
-                - code: In-transit
+                - code: IN-TRANSIT
                   description: Describes the state of the order as In transit.
-                - code: At-pickup
+                - code: AT-PICKUP
                   description: Describes the state of the order as At pickup.
-                - code: Out-for-delivery
+                - code: OUT-FOR-DELIVERY
                   description: Describes the state of the order as Out for delivery.
-                - code: At-delivery
+                - code: AT-DELIVERY
                   description: Describes the state of the order as At delivery.
-                - code: Searching-for-Agent
+                - code: SEARCHING-FOR-AGENT
                   description: Describes the state of the order as Searching for Agent.
-                - code: Agent-assigned
+                - code: AGENT-ASSIGNED
                   description: Describes the state of the order as Agent assigned.
-                - code: Pickup-failed
+                - code: PICKUP-FAILED
                   description: Describes the state of the order as Pickup failed.
-                - code: Pickup-rescheduled
+                - code: PICKUP-RESCHEDULED
                   description: Describes the state of the order as Pickup rescheduled.
-                - code: Delivery-failed
+                - code: DELIVERY-FAILED
                   description: Describes the state of the order as Delivery failed.
-                - code: Delivery-rescheduled
+                - code: DELIVERY-RESCHEDULED
                   description: Describes the state of the order as Delivery rescheduled.
-                - code: Order-delivered
+                - code: ORDER-DELIVERED
                   description: Describes the state of the order as Order delivered.
         payment: *ref_6
   on_confirm:
     context: *ref_0
     message:
-      order: &ref_12
+      order: &ref_11
         state:
-          - code: Created
+          - code: CREATED
             description: The order has been created by the buyer app.
             reference: <PR/Issue/Discussion Links md format text>
-          - code: Accepted
+          - code: ACCEPTED
             description: The order has been accepted by the seller app.
             reference: <PR/Issue/Discussion Links md format text>
-          - code: In-progress
+          - code: IN-PROGRESS
             description: The order is in progress.
             reference: <PR/Issue/Discussion Links md format text>
-          - code: Completed
+          - code: COMPLETED
             description: The order has been delivered to the buyer.
             reference: <PR/Issue/Discussion Links md format text>
-          - code: Cancelled
+          - code: CANCELLED
             description: The order has been cancelled.
             reference: <PR/Issue/Discussion Links md format text>
-        items: *ref_10
-        fulfillments: *ref_11
+        items: *ref_9
+        fulfillments: *ref_10
         payment: *ref_6
         quote: *ref_7
   status:
@@ -2840,21 +2829,21 @@ x-enum:
   on_status:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_11
   cancel:
     context: *ref_0
   on_cancel:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_11
   update:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_11
   on_update:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_11
   track:
     context: *ref_0
   on_track:
@@ -2862,10 +2851,10 @@ x-enum:
     message:
       tracking:
         status:
-          - code: active
+          - code: ACTIVE
             description: Defines whether the status is active or not
             reference: <PR/Issue/Discussion Links md format text>
-          - code: inactive
+          - code: INACTIVE
             description: Defines whether the status is active or not
             reference: <PR/Issue/Discussion Links md format text>
 x-tags:
@@ -2955,7 +2944,7 @@ x-tags:
             - code: FULFILL_REQUEST
               description: Details regarding order fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_13
+              list: &ref_12
                 - code: RIDER_COUNT
                   description: >-
                     either rider_count or order_count to be provided; if both
@@ -2995,7 +2984,7 @@ x-tags:
           - code: LBNP_FEATURES
             description: Describes the LBNP features enabled.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_14
+            list: &ref_13
               - code: 00B
                 description: Describes the Updated cancellation codes.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3104,7 +3093,7 @@ x-tags:
           - code: LBNP_SLA_TERMS
             description: Service Level Agreement terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_24
+            list: &ref_23
               - code: METRIC
                 description: The metric being measured.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3181,11 +3170,11 @@ x-tags:
               - code: FULFILL_REQUEST
                 description: Request details for fulfillment.
                 reference: <PR/Issue/Discussion Links md format text>
-                list: *ref_13
+                list: *ref_12
               - code: FULFILL_RESPONSE
                 description: Response details for fulfillment.
                 reference: <PR/Issue/Discussion Links md format text>
-                list: &ref_15
+                list: &ref_14
                   - code: RIDER_COUNT
                     description: >-
                       either rider_count or order_count to be provided; if both
@@ -3235,7 +3224,7 @@ x-tags:
             - code: LSP_FEATURES
               description: Features available for the LSP.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_14
+              list: *ref_13
             - code: SPECIAL_REQ
               description: Special requirements for the order.
               reference: <PR/Issue/Discussion Links md format text>
@@ -3263,7 +3252,7 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_16
+              list: &ref_15
                 - code: ID
                   description: Describes unique id for provider.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3276,15 +3265,15 @@ x-tags:
             - code: FULFILL_REQUEST
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: LINKED_ORDER
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_18
+              list: &ref_17
                 - code: ID
                   description: Describes the unique id of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3349,7 +3338,7 @@ x-tags:
                 - code: HEIGHT
                   description: Describes the height of the package for retail order.
                   reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_19
+        tags: &ref_18
           - code: BAP_TERMS
             description: Terms and conditions agreed upon by the BAP.
             reference: <PR/Issue/Discussion Links md format text>
@@ -3372,19 +3361,19 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Describes the provider information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: FULFILL_REQUEST
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: LINKED_ORDER
               description: Describes the retail linked order information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_20
+              list: &ref_19
                 - code: ID
                   description: Describes the unique id of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3415,7 +3404,7 @@ x-tags:
             - code: LINKED_ORDER_ITEM
               description: Describes the retail linked order item information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_21
+              list: &ref_20
                 - code: CATEGORY
                   description: Describes the category of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3483,11 +3472,11 @@ x-tags:
                 - code: VALUE
                   description: Available balance in the wallet.
                   reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_22
+        tags: &ref_21
           - code: BPP_TERMS
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_28
+            list: &ref_27
               - code: STATIC_TERMS
                 description: Describes the static terms.
                 reference: >-
@@ -3498,7 +3487,7 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: &ref_17
+              tags: &ref_16
                 - code: MASKED_CONTACT
                   description: >-
                     either phone no or masked_contact to be provided; to be part
@@ -3524,30 +3513,30 @@ x-tags:
                       reference: <PR/Issue/Discussion Links md format text>
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: LINKED_PROVIDER
               description: Details about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: FULFILL_REQUEST
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: LINKED_ORDER
               description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
+              list: *ref_17
         items:
           tags:
             - code: TYPE
               description: Defines the base type.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_23
+              list: &ref_22
                 - code: TYPE
                   description: Describes the type of the item.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3561,17 +3550,17 @@ x-tags:
                     - code: COD
                       description: cod charge item
                       reference: <PR/Issue/Discussion Links md format text>
-        tags: *ref_19
+        tags: *ref_18
   on_init:
     message:
       order:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: RIDER_CHECK
               description: Rider inline check details.
@@ -3583,40 +3572,40 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Details about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: FULFILL_REQUEST
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: LINKED_ORDER
               description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
+              list: *ref_19
             - code: LINKED_ORDER_ITEM
               description: Details about the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
-        tags: *ref_22
+              list: *ref_20
+        tags: *ref_21
   confirm:
     message:
       order:
-        items: &ref_25
+        items: &ref_24
           tags:
             - code: TYPE
               description: Type information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_23
+              list: *ref_22
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: LINKED_PROVIDER
               description: Details about the linked provider.
@@ -3711,7 +3700,7 @@ x-tags:
             - code: STATE
               description: State details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_26
+              list: &ref_25
                 - code: READY_TO_SHIP
                   description: Describes the order is ready to ship.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3725,7 +3714,7 @@ x-tags:
             - code: RTO_ACTION
               description: Return to Origin action details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_27
+              list: &ref_26
                 - code: RETURN_TO_ORIGIN
                   description: Describes the item for return to origin.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3777,7 +3766,7 @@ x-tags:
             - code: COD_SETTLEMENT_DETAIL
               description: COD settlement details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_32
+              list: &ref_31
                 - code: SETTLEMENT_WINDOW
                   description: Settlement window duration.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3846,7 +3835,7 @@ x-tags:
             - code: REVERSEQC_INPUT
               description: Reverse QC input details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_33
+              list: &ref_32
                 - code: P001
                   description: Product identifier.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3860,34 +3849,34 @@ x-tags:
           - code: BAP_TERMS
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_29
+            list: &ref_28
               - code: ACCEPT_BPP_TERMS
                 description: Indicates if BPP terms are accepted.
                 reference: <PR/Issue/Discussion Links md format text>
           - code: LBNP_SLA_TERMS
             description: SLA terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_24
+            list: *ref_23
   on_confirm:
     message:
       order:
-        items: *ref_25
+        items: *ref_24
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: LINKED_PROVIDER
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: LINKED_ORDER
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_30
+              list: &ref_29
                 - code: ID
                   description: Unique identifier for the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3928,19 +3917,19 @@ x-tags:
             - code: LINKED_ORDER_ITEM
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_20
             - code: STATE
               description: Order state information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_26
+              list: *ref_25
             - code: RTO_ACTION
               description: Return to origin action status.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_27
+              list: *ref_26
             - code: SHIPPING_LABEL
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_31
+              list: &ref_30
                 - code: TYPE
                   description: Describes the type of shipping label.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3978,15 +3967,15 @@ x-tags:
           - code: BPP_TERMS
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_28
+            list: *ref_27
           - code: BAP_TERMS
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_29
+            list: *ref_28
           - code: LBNP_SLA_TERMS
             description: Service Level Agreement (SLA) terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_24
+            list: *ref_23
   update:
     message:
       order:
@@ -4005,46 +3994,46 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: LINKED_ORDER
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_29
             - code: LINKED_ORDER_ITEM
               description: Details of the linked order items.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_20
   on_update:
     message:
       order:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: LINKED_PROVIDER
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: LINKED_ORDER
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_29
             - code: LINKED_ORDER_ITEM
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_20
             - code: SHIPPING_LABEL
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_30
             - code: FULFILL_REQUEST
               description: Fulfillment request details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Fulfillment response details.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4151,10 +4140,10 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: IGM_REQUEST
               description: Request related to IGM (Issue Management).
@@ -4211,19 +4200,19 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Information about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: LINKED_ORDER
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_29
             - code: LINKED_ORDER_ITEM
               description: Items within the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_20
             - code: SHIPPING_LABEL
               description: Details of the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_30
             - code: RTO_EVENT
               description: Details of the Return to Origin (RTO) event.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4280,10 +4269,10 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_16
           tags:
             - code: TRACKING
               description: Tracking details for the order.
@@ -4303,23 +4292,23 @@ x-tags:
             - code: LINKED_PROVIDER
               description: Provider details linked to the order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: LINKED_ORDER
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_29
             - code: LINKED_ORDER_ITEM
               description: Individual items in the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_20
             - code: SHIPPING_LABEL
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_30
             - code: FULFILL_REQUEST
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_12
             - code: FULFILL_RESPONSE
               description: Response details for the fulfillment request.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4368,7 +4357,7 @@ x-tags:
             - code: COD_SETTLEMENT_DETAIL
               description: Details of COD settlement.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_32
+              list: *ref_31
             - code: RTO_EVENT
               description: Details of the RTO (Return to Origin) event.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4394,7 +4383,7 @@ x-tags:
             - code: REVERSEQC_OUTPUT
               description: Output details of the reverse quality check (QC).
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_33
+              list: *ref_32
         tags:
           - code: DIFF_DIM
             description: Dimension differences recorded.
@@ -4503,7 +4492,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_36
+        example: &ref_35
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -4541,10 +4530,11 @@ x-flows:
                       start: '1100'
                       end: '2100'
                 fulfillment:
-                  type: Delivery
+                  type: DELIVERY
                   stops:
                     - type: START
                       location:
+                        id: S1
                         gps: 12.4535,77.9283
                         area_code: '560041'
                       authorization:
@@ -4622,7 +4612,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_47
+        example: &ref_46
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -4689,7 +4679,7 @@ x-flows:
                           timestamp: 2024-11-20T00:00:00.000Z
                     fulfillments:
                       - id: '1'
-                        type: Delivery
+                        type: DELIVERY
                         stops:
                           - type: START
                             time:
@@ -4732,7 +4722,7 @@ x-flows:
                         fulfillment_ids:
                           - '1'
                         category_ids:
-                          - Immediate Delivery
+                          - IMMEDIATE DELIVERY
                       - id: I2
                         parent_item_id: I1
                         descriptor:
@@ -4750,7 +4740,7 @@ x-flows:
                         fulfillment_ids:
                           - '2'
                         category_ids:
-                          - Immediate Delivery
+                          - IMMEDIATE DELIVERY
       - summary: <b>LBNP selects and initializes order</b>
         api: init
         details:
@@ -4764,7 +4754,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_40
+        example: &ref_39
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4798,13 +4788,14 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: My store name, My building name, My street name
                           city:
@@ -4906,7 +4897,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_51
+        example: &ref_50
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -4938,10 +4929,11 @@ x-flows:
                       - '1'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -5045,7 +5037,7 @@ x-flows:
                 LBNP ->> LSP: **/confirm** - Confirm order with final details
                 LSP -->> LBNP: ACK - Confirm order received
                 LSP ->> LBNP: **/on_confirm** - Provide final fulfillment details
-        example: &ref_34
+        example: &ref_33
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -5084,7 +5076,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -5104,7 +5096,7 @@ x-flows:
                         value: '9.00'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -5112,6 +5104,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -5290,7 +5283,7 @@ x-flows:
                         value: 'yes'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:00.000Z
-                status: Created
+                status: CREATED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -5331,7 +5324,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Confirm order fulfillment
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment confirmation
-        example: &ref_54
+        example: &ref_53
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -5369,7 +5362,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -5391,19 +5384,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Pending
+                        code: PENDING
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: >-
                             Store name, My house or building name, My street
@@ -5620,7 +5614,7 @@ x-flows:
                         value: 'Y'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:30.000Z
-                status: Accepted
+                status: ACCEPTED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -5663,7 +5657,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_44
+        example: &ref_43
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -5695,10 +5689,10 @@ x-flows:
                     descriptor:
                       code: P2P
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         instructions:
@@ -5840,7 +5834,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_update** - Update order details
                 LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
-        example: &ref_63
+        example: &ref_62
           summary: Order updates
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -5880,7 +5874,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -5902,19 +5896,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Order-picked-up
+                        code: ORDER-PICKED-UP
                     tracking: false
                     agent:
                       name: person_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: Ramu
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: name, My house or building name, My street name
                           city:
@@ -6107,7 +6102,7 @@ x-flows:
                   time:
                     timestamp: 2024-11-20T21:30:00.000Z
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: In-progress
+                status: IN-PROGRESS
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -6150,7 +6145,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_35
+        example: &ref_34
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6191,7 +6186,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -6213,20 +6208,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Order-picked-up
-                        short_desc: pickup or delivery failed reason code
+                        code: ORDER-PICKED-UP
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: name, My house or building name, My street name
                           city:
@@ -6472,7 +6467,7 @@ x-flows:
                           code: URL
                         value: https://lsp.com/sorter/images1.png
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: In-progress
+                status: IN-PROGRESS
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -6514,7 +6509,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_46
+        example: &ref_45
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -6549,7 +6544,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_track** - Update order tracking information
                 LBNP ->> LSP: ACK
-        example: &ref_66
+        example: &ref_65
           summary: Order tracking
           description: LSP provides live tracking details
           value:
@@ -6636,7 +6631,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_58
+        example: &ref_57
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6677,7 +6672,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -6699,20 +6694,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Order-delivered
-                        short_desc: pickup or delivery failed reason code
+                        code: ORDER-DELIVERED
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: name, My house or building name, My street name
                           city:
@@ -6959,7 +6954,7 @@ x-flows:
                           code: URL
                         value: https://lsp.com/sorter/images1.png
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: Completed
+                status: COMPLETED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -7108,7 +7103,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -7128,7 +7123,7 @@ x-flows:
                         value: '9.00'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -7136,6 +7131,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -7317,7 +7313,7 @@ x-flows:
                         value: 'yes'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:00.000Z
-                status: Created
+                status: CREATED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -7391,10 +7387,10 @@ x-flows:
                     descriptor:
                       code: P2P
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         instructions:
@@ -7535,7 +7531,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
                 LBNP -->> LSP: ACK
-        example: &ref_62
+        example: &ref_61
           summary: Order status (At-pickup)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -7576,7 +7572,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -7598,20 +7594,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: At-pickup
-                        short_desc: pickup or delivery failed reason code
+                        code: AT-PICKUP
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: name, My house or building name, My street name
                           city:
@@ -7837,7 +7833,7 @@ x-flows:
                           code: URL
                         value: https://lsp.com/sorter/images1.png
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: In-progress
+                status: IN-PROGRESS
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -7976,7 +7972,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_38
+        example: &ref_37
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -8017,10 +8013,11 @@ x-flows:
                       start: '1100'
                       end: '2100'
                 fulfillment:
-                  type: Delivery
+                  type: DELIVERY
                   stops:
                     - type: START
                       location:
+                        id: S1
                         gps: 12.4535,77.9283
                         area_code: '560041'
                       authorization:
@@ -8159,7 +8156,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_49
+        example: &ref_48
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -8231,7 +8228,7 @@ x-flows:
                           timestamp: 2024-12-11T00:00:00.000Z
                     fulfillments:
                       - id: '1'
-                        type: Delivery
+                        type: DELIVERY
                         stops:
                           - type: START
                             time:
@@ -8312,7 +8309,7 @@ x-flows:
                         fulfillment_ids:
                           - '1'
                         category_ids:
-                          - Instant Delivery
+                          - INSTANT DELIVERY
                       - id: I2
                         parent_item_id: I1
                         descriptor:
@@ -8340,7 +8337,7 @@ x-flows:
                         fulfillment_ids:
                           - '2'
                         category_ids:
-                          - Instant Delivery
+                          - INSTANT DELIVERY
                     tags:
                       - descriptor:
                           code: LSP_FEATURES
@@ -8387,7 +8384,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_42
+        example: &ref_41
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8419,13 +8416,14 @@ x-flows:
                     descriptor:
                       code: P2P
                     category_ids:
-                      - Instant Delivery
+                      - INSTANT DELIVERY
                 fulfillments:
                   - id: ''
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: My store name, My building name, My street name
                           city:
@@ -8589,10 +8587,11 @@ x-flows:
                               code: WEIGHT_VALUE
                             value: '1.0'
                   - id: ''
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: My store name, My building name, My street name
                           city:
@@ -8819,7 +8818,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_53
+        example: &ref_52
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -8849,10 +8848,11 @@ x-flows:
                   - id: I1
                 fulfillments:
                   - id: F1
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -8993,10 +8993,11 @@ x-flows:
                               code: WEIGHT_VALUE
                             value: '1.0'
                   - id: F2
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -9202,7 +9203,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: *ref_34
+        example: *ref_33
       - summary: <b>LSP acknowledges and assigns fulfillment IDs</b>
         api: on_confirm
         details:
@@ -9219,7 +9220,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_56
+        example: &ref_55
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -9256,7 +9257,7 @@ x-flows:
                       duration: PT10M
                       timestamp: 2024-11-20T00:00:00.000Z
                     category_ids:
-                      - Instant Delivery
+                      - INSTANT DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -9278,9 +9279,9 @@ x-flows:
                   - id: F1
                     state:
                       descriptor:
-                        code: Pending
+                        code: PENDING
                     tracking: false
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -9291,6 +9292,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -9508,9 +9510,9 @@ x-flows:
                   - id: F2
                     state:
                       descriptor:
-                        code: Pending
+                        code: PENDING
                     tracking: false
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -9521,6 +9523,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -9758,7 +9761,7 @@ x-flows:
                         value: 'yes'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:00.000Z
-                status: Accepted
+                status: ACCEPTED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -9801,7 +9804,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_60
+        example: &ref_59
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -9841,7 +9844,7 @@ x-flows:
                       duration: PT10M
                       timestamp: 2024-11-20T00:00:00.000Z
                     category_ids:
-                      - Instant Delivery
+                      - INSTANT DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -9875,9 +9878,9 @@ x-flows:
                   - id: F1
                     state:
                       descriptor:
-                        code: Agent-assigned
+                        code: AGENT-ASSIGNED
                     tracking: false
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -9888,6 +9891,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -10132,9 +10136,9 @@ x-flows:
                   - id: F2
                     state:
                       descriptor:
-                        code: Order-picked-up
+                        code: ORDER-PICKED-UP
                     tracking: false
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -10146,6 +10150,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -10410,7 +10415,7 @@ x-flows:
                         value: 'yes'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:00.000Z
-                status: Accepted
+                status: ACCEPTED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -10454,7 +10459,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_45
+        example: &ref_44
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -10486,7 +10491,7 @@ x-flows:
                     descriptor:
                       code: P2P
                     category_ids:
-                      - Instant Delivery
+                      - INSTANT DELIVERY
                 fulfillments:
                   - id: F1
                     agent:
@@ -10494,7 +10499,7 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         instructions:
@@ -10509,7 +10514,8 @@ x-flows:
                           token: OTP code
                           valid_from: 2024-11-20T12:00:00.000Z
                           valid_to: 2024-11-20T14:00:00.000Z
-                        location: {}
+                        location:
+                          id: S1
                       - type: END
                         person:
                           name: Buyer1
@@ -10684,7 +10690,7 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3KVJ947
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         instructions:
@@ -10699,7 +10705,8 @@ x-flows:
                           token: OTP code
                           valid_from: 2024-11-20T12:00:00.000Z
                           valid_to: 2024-11-20T14:00:00.000Z
-                        location: {}
+                        location:
+                          id: S1
                       - type: END
                         person:
                           name: Buyer1
@@ -10882,7 +10889,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_update (Updated fulfillment details)
                 LBNP ->> LSP: ACK
-        example: &ref_64
+        example: &ref_63
           summary: Order updates (Quick Commerce)
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -10922,7 +10929,7 @@ x-flows:
                       duration: PT10M
                       timestamp: 2024-11-20T00:00:00.000Z
                     category_ids:
-                      - Instant Delivery
+                      - INSTANT DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -10956,19 +10963,20 @@ x-flows:
                   - id: F1
                     state:
                       descriptor:
-                        code: Agent-assigned
+                        code: AGENT-ASSIGNED
                     tracking: false
                     agent:
                       name: person_name1
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: Ramu
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: name, My house or building name, My street name
                           city:
@@ -11190,19 +11198,20 @@ x-flows:
                   - id: F2
                     state:
                       descriptor:
-                        code: Order-picked-up
+                        code: ORDER-PICKED-UP
                     tracking: false
                     agent:
                       name: person_name2
                       phone: '9886098860'
                     vehicle:
                       registration: 3KVJ947
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: Ramu
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: name, My house or building name, My street name
                           city:
@@ -11437,7 +11446,7 @@ x-flows:
                   time:
                     timestamp: 2024-11-20T21:30:00.000Z
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: In-progress
+                status: IN-PROGRESS
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -11548,7 +11557,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_37
+        example: &ref_36
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -11586,10 +11595,11 @@ x-flows:
                       start: '1100'
                       end: '2100'
                 fulfillment:
-                  type: Delivery
+                  type: DELIVERY
                   stops:
                     - type: START
                       location:
+                        id: S1
                         gps: 12.4535,77.9283
                         area_code: '560041'
                       authorization:
@@ -11675,7 +11685,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_48
+        example: &ref_47
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -11742,7 +11752,7 @@ x-flows:
                           timestamp: 2024-11-20T00:00:00.000Z
                     fulfillments:
                       - id: '1'
-                        type: Delivery
+                        type: DELIVERY
                         stops:
                           - type: START
                             time:
@@ -11792,7 +11802,7 @@ x-flows:
                         fulfillment_ids:
                           - '1'
                         category_ids:
-                          - Immediate Delivery
+                          - IMMEDIATE DELIVERY
                       - id: I2
                         parent_item_id: I1
                         descriptor:
@@ -11817,7 +11827,7 @@ x-flows:
                         fulfillment_ids:
                           - '2'
                         category_ids:
-                          - Immediate Delivery
+                          - IMMEDIATE DELIVERY
                     tags:
                       - descriptor:
                           code: SPECIAL_REQ
@@ -11839,7 +11849,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_41
+        example: &ref_40
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -11880,7 +11890,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                   - id: I2
                     descriptor:
                       code: P2P
@@ -11894,13 +11904,14 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: My store name, My building name, My street name
                           city:
@@ -12020,7 +12031,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_52
+        example: &ref_51
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -12052,10 +12063,11 @@ x-flows:
                       - '1'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -12168,7 +12180,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (COD settlement details)
                 LSP -->> LBNP: ACK
-        example: &ref_43
+        example: &ref_42
           summary: Order confirmation (Cash on delivery)
           description: LBNP confirms the order
           value:
@@ -12207,7 +12219,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -12227,7 +12239,7 @@ x-flows:
                         value: '9.00'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         time:
@@ -12235,6 +12247,7 @@ x-flows:
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -12446,7 +12459,7 @@ x-flows:
                         value: 'yes'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:00.000Z
-                status: Created
+                status: CREATED
                 payments:
                   - type: ON-ORDER
                     collected_by: BPP
@@ -12463,7 +12476,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_55
+        example: &ref_54
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -12501,7 +12514,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -12523,19 +12536,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Pending
+                        code: PENDING
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: >-
                             Store name, My house or building name, My street
@@ -12785,7 +12799,7 @@ x-flows:
                         value: 'Y'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:30.000Z
-                status: Accepted
+                status: ACCEPTED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BAP
@@ -12829,7 +12843,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_59
+        example: &ref_58
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -12874,7 +12888,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                   - id: I2
                     descriptor:
                       code: P2P
@@ -12885,7 +12899,7 @@ x-flows:
                     fulfillment_ids:
                       - 1-RTO
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -12919,20 +12933,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Order-picked-up
-                        short_desc: pickup or delivery failed reason code
+                        code: ORDER-PICKED-UP
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: name, My house or building name, My street name
                           city:
@@ -13181,7 +13195,7 @@ x-flows:
                   - id: 1-RTO
                     state:
                       descriptor:
-                        code: RTO-Initiated
+                        code: RTO-INITIATED
                     agent:
                       name: agent_name
                       phone: '9886098860'
@@ -13242,7 +13256,7 @@ x-flows:
                           code: URL
                         value: https://lsp.com/sorter/images1.png
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: Completed
+                status: COMPLETED
                 payments:
                   - type: ON-ORDER
                     collected_by: BPP
@@ -13303,7 +13317,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_35
+        example: *ref_34
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -13325,7 +13339,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
                 LBNP ->> LSP: ACK
-        example: &ref_65
+        example: &ref_64
           summary: RTO Initiation
           description: >-
             LSP updates the forward shipment to RTO and creates a new RTO
@@ -13369,7 +13383,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                   - id: I2
                     descriptor:
                       code: P2P
@@ -13380,7 +13394,7 @@ x-flows:
                     fulfillment_ids:
                       - 1-RTO
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -13421,12 +13435,13 @@ x-flows:
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: name, My house or building name, My street name
                           city:
@@ -13628,8 +13643,7 @@ x-flows:
                   - id: 1-RTO
                     state:
                       descriptor:
-                        code: RTO-Initiated
-                        short_desc: RTO disposed reason code
+                        code: RTO-INITIATED
                     type: RTO
                     stops:
                       - type: START
@@ -13661,7 +13675,7 @@ x-flows:
                     timestamp: 2024-11-20T21:30:00.000Z
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:30.000Z
-                status: In-progress
+                status: IN-PROGRESS
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -13703,7 +13717,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update RTO fulfillment to its terminal state
                 LBNP ->> LSP: ACK
-        example: &ref_61
+        example: &ref_60
           summary: Order status (RTO)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -13749,7 +13763,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                   - id: I2
                     descriptor:
                       code: P2P
@@ -13760,7 +13774,7 @@ x-flows:
                     fulfillment_ids:
                       - 1-RTO
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -13794,20 +13808,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Order-picked-up
-                        short_desc: pickup or delivery failed reason code
+                        code: ORDER-PICKED-UP
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: name, My house or building name, My street name
                           city:
@@ -14023,7 +14037,7 @@ x-flows:
                   - id: 1-RTO
                     state:
                       descriptor:
-                        code: RTO-Initiated
+                        code: RTO-INITIATED
                     agent:
                       name: agent_name
                       phone: '9886098860'
@@ -14084,7 +14098,7 @@ x-flows:
                           code: URL
                         value: https://lsp.com/sorter/images1.png
                 updated_at: 2024-11-20T23:00:30.000Z
-                status: Completed
+                status: COMPLETED
                 payments:
                   - type: POST-FULFILLMENT
                     collected_by: BPP
@@ -14184,7 +14198,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_39
+        example: &ref_38
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -14218,13 +14232,14 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Immediate Delivery
+                      - IMMEDIATE DELIVERY
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.453544,77.928379
                           address: My store name, My building name, My street name
                           city:
@@ -14305,7 +14320,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_50
+        example: &ref_49
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -14337,10 +14352,11 @@ x-flows:
                       - '1'
                 fulfillments:
                   - id: '1'
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: Store name, House or building name, Locality
                           city:
@@ -14428,7 +14444,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_57
+        example: &ref_56
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -14468,7 +14484,7 @@ x-flows:
                     fulfillment_ids:
                       - '1'
                     category_ids:
-                      - Same Day Delivery
+                      - SAME DAY DELIVERY
                 quote:
                   price:
                     currency: INR
@@ -14490,19 +14506,20 @@ x-flows:
                   - id: '1'
                     state:
                       descriptor:
-                        code: Pending
+                        code: PENDING
                     tracking: false
                     agent:
                       name: agent_name
                       phone: '9886098860'
                     vehicle:
                       registration: 3LVJ945
-                    type: Delivery
+                    type: DELIVERY
                     stops:
                       - type: START
                         person:
                           name: person_name
                         location:
+                          id: S1
                           gps: 12.4535,77.9283
                           address: >-
                             Store name, My house or building name, My street
@@ -14719,7 +14736,7 @@ x-flows:
                         value: 'Y'
                 created_at: 2024-11-20T22:00:00.000Z
                 updated_at: 2024-11-20T22:00:30.000Z
-                status: Accepted
+                status: ACCEPTED
                 payments:
                   - type: ON-ORDER
                     collected_by: BPP
@@ -14742,21 +14759,21 @@ x-examples:
     example_set:
       search:
         examples:
+          - *ref_35
           - *ref_36
           - *ref_37
-          - *ref_38
       select:
         examples:
-          - *ref_39
+          - *ref_38
       init:
         examples:
+          - *ref_39
           - *ref_40
           - *ref_41
-          - *ref_42
       confirm:
         examples:
-          - *ref_34
-          - *ref_43
+          - *ref_33
+          - *ref_42
           - summary: Order confirmation (Quick Commerce)
             description: LBNP confirms the order
             value:
@@ -14793,7 +14810,7 @@ x-examples:
                         duration: PT10M
                         timestamp: 2024-11-20T00:00:00.000Z
                       category_ids:
-                        - Instant Delivery
+                        - INSTANT DELIVERY
                   quote:
                     price:
                       currency: INR
@@ -14813,7 +14830,7 @@ x-examples:
                           value: '9.00'
                   fulfillments:
                     - id: F1
-                      type: Delivery
+                      type: DELIVERY
                       stops:
                         - type: START
                           time:
@@ -14821,6 +14838,7 @@ x-examples:
                           person:
                             name: person_name
                           location:
+                            id: S1
                             gps: 12.4535,77.9283
                             address: Store name, House or building name, Locality
                             city:
@@ -15034,7 +15052,7 @@ x-examples:
                                 code: ID
                               value: '1227262193237777'
                     - id: F2
-                      type: Delivery
+                      type: DELIVERY
                       stops:
                         - type: START
                           time:
@@ -15042,6 +15060,7 @@ x-examples:
                           person:
                             name: person_name
                           location:
+                            id: S1
                             gps: 12.4535,77.9283
                             address: Store name, House or building name, Locality
                             city:
@@ -15277,7 +15296,7 @@ x-examples:
                           value: 'yes'
                   created_at: 2024-11-20T22:00:00.000Z
                   updated_at: 2024-11-20T22:00:00.000Z
-                  status: Created
+                  status: CREATED
                   payments:
                     - type: POST-FULFILLMENT
                       collected_by: BAP
@@ -15308,8 +15327,8 @@ x-examples:
                               value: XXXXXXXXX
       update:
         examples:
+          - *ref_43
           - *ref_44
-          - *ref_45
       status:
         examples:
           - summary: Order Status
@@ -15336,7 +15355,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_46
+          - *ref_45
       cancel:
         examples:
           - summary: Order cancellation
@@ -15364,35 +15383,35 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
+          - *ref_46
           - *ref_47
           - *ref_48
-          - *ref_49
       on_select:
         examples:
-          - *ref_50
+          - *ref_49
       on_init:
         examples:
+          - *ref_50
           - *ref_51
           - *ref_52
-          - *ref_53
       on_confirm:
         examples:
+          - *ref_53
           - *ref_54
           - *ref_55
           - *ref_56
-          - *ref_57
       on_status:
         examples:
+          - *ref_57
           - *ref_58
           - *ref_59
           - *ref_60
+          - *ref_34
           - *ref_61
-          - *ref_35
-          - *ref_62
       on_update:
         examples:
+          - *ref_62
           - *ref_63
-          - *ref_64
       on_cancel:
         examples:
           - summary: Order cancellation
@@ -15436,7 +15455,7 @@ x-examples:
                       fulfillment_ids:
                         - '1'
                       category_ids:
-                        - Same Day Delivery
+                        - SAME DAY DELIVERY
                   quote:
                     price:
                       currency: INR
@@ -15458,19 +15477,20 @@ x-examples:
                     - id: '1'
                       state:
                         descriptor:
-                          code: Cancelled
+                          code: CANCELLED
                       tracking: false
                       agent:
                         name: agent_name
                         phone: '9886098860'
                       vehicle:
                         registration: 3LVJ945
-                      type: Delivery
+                      type: DELIVERY
                       stops:
                         - type: START
                           person:
                             name: person_name
                           location:
+                            id: S1
                             gps: 12.4535,77.9283
                             address: name, My house or building name, My street name
                             city:
@@ -15663,7 +15683,7 @@ x-examples:
                     time:
                       timestamp: 2024-11-20T21:30:00.000Z
                   updated_at: 2024-11-20T22:00:30.000Z
-                  status: Cancelled
+                  status: CANCELLED
                   payments:
                     - type: POST-FULFILLMENT
                       collected_by: BPP
@@ -15692,10 +15712,10 @@ x-examples:
                             - descriptor:
                                 code: SETTLEMENT_IFSC_CODE
                               value: XXXXXXXXX
-          - *ref_65
+          - *ref_64
       on_track:
         examples:
-          - *ref_66
+          - *ref_65
 x-attributes:
   logistics:
     attribute_set:

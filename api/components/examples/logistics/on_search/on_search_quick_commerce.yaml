@@ -67,7 +67,7 @@ value:
                 timestamp: 2024-12-11
           fulfillments:
             - id: "1"
-              type: Delivery
+              type: DELIVERY
               stops:
                 - type: START
                   time:
@@ -148,7 +148,7 @@ value:
               fulfillment_ids:
                 - "1"
               category_ids:
-                - Instant Delivery
+                - INSTANT DELIVERY
             - id: I2
               parent_item_id: I1
               descriptor:
@@ -176,7 +176,7 @@ value:
               fulfillment_ids:
                 - "2"
               category_ids:
-                - Instant Delivery
+                - INSTANT DELIVERY
           tags:
             - descriptor:
                 code: LSP_FEATURES

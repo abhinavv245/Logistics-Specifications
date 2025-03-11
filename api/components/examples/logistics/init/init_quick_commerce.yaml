@@ -29,13 +29,14 @@ value:
           descriptor:
             code: P2P
           category_ids:
-            - Instant Delivery
+            - INSTANT DELIVERY
       fulfillments:
         - id: ""
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.453544,77.928379
                 address: My store name, My building name, My street name
                 city:
@@ -196,10 +197,11 @@ value:
                     code: WEIGHT_VALUE
                   value: "1.0"
         - id: ""
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.453544,77.928379
                 address: My store name, My building name, My street name
                 city:

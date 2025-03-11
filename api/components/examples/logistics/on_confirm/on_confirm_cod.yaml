@@ -35,7 +35,7 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
       quote:
         price:
           currency: INR
@@ -57,19 +57,20 @@ value:
         - id: "1"
           state:
             descriptor:
-              code: Pending
+              code: PENDING
           tracking: false
           agent:
             name: agent_name
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, My house or building name, My street name
                 city:
@@ -311,7 +312,7 @@ value:
               value: Y
       created_at: 2024-11-20T22:00:00.000Z
       updated_at: 2024-11-20T22:00:30.000Z
-      status: Accepted
+      status: ACCEPTED
       payments:
         - type: POST-FULFILLMENT
           collected_by: BAP

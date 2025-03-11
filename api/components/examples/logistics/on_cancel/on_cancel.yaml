@@ -39,7 +39,7 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
       quote:
         price:
           currency: INR
@@ -61,19 +61,20 @@ value:
         - id: "1"
           state:
             descriptor:
-              code: Cancelled
+              code: CANCELLED
           tracking: false
           agent:
             name: agent_name
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: name, My house or building name, My street name
                 city:
@@ -263,7 +264,7 @@ value:
         time:
           timestamp: 2024-11-20T21:30:00.000Z
       updated_at: 2024-11-20T22:00:30.000Z
-      status: Cancelled
+      status: CANCELLED
       payments:
         - type: POST-FULFILLMENT
           collected_by: BPP

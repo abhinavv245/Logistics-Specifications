@@ -1,23 +1,23 @@
 breakup:
-  "@ondc/org/title_type":
-    - code: delivery
+  '@ondc/org/title_type':
+    - code: DELIVERY
       description: Describes the base fare for delivery.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: rto
+    - code: RTO
       description: Describes the base fare for return to origin (rto).
       reference: <PR/Issue/Discussion Links md format text>
-    - code: tax
+    - code: TAX
       description: Describes the tax fare for delivery or rto.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: diff
+    - code: DIFF
       description: Describes the weight differential charge.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: tax_diff
+    - code: TAX_DIFF
       description: Describes the tax on weight differential charge.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: discount
+    - code: DISCOUNT
       description: Describes the discount on delivery charge.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: cod
+    - code: COD
       description: Describes the COD charge
       reference: <PR/Issue/Discussion Links md format text>

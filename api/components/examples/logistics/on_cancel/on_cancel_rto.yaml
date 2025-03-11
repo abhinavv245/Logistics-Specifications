@@ -40,7 +40,7 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
         - id: I2
           descriptor:
             code: P2P
@@ -51,7 +51,7 @@ value:
           fulfillment_ids:
             - 1-RTO
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
       quote:
         price:
           currency: INR
@@ -92,12 +92,13 @@ value:
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: name, My house or building name, My street name
                 city:
@@ -296,8 +297,7 @@ value:
         - id: 1-RTO
           state:
             descriptor:
-              code: RTO-Initiated
-              short_desc: RTO disposed reason code
+              code: RTO-INITIATED
           type: RTO
           stops:
             - type: START
@@ -329,7 +329,7 @@ value:
           timestamp: 2024-11-20T21:30:00.000Z
       created_at: 2024-11-20T22:00:00.000Z
       updated_at: 2024-11-20T22:00:30.000Z
-      status: In-progress
+      status: IN-PROGRESS
       payments:
         - type: POST-FULFILLMENT
           collected_by: BPP

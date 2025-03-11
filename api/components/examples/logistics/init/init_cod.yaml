@@ -38,7 +38,7 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Immediate Delivery
+            - IMMEDIATE DELIVERY
         - id: I2
           descriptor:
             code: P2P
@@ -52,13 +52,14 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Immediate Delivery
+            - IMMEDIATE DELIVERY
       fulfillments:
         - id: "1"
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.453544,77.928379
                 address: My store name, My building name, My street name
                 city:

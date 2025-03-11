@@ -1,19 +1,19 @@
 id:
- - code: Express Delivery
-   description: Delivery will be done by Air
-   reference: <PR/Issue/Discussion Links md format text>
- - code: Standard Delivery
-   description: Delivery will be done by Surface
-   reference: <PR/Issue/Discussion Links md format text>
- - code: Immediate Delivery
-   description: Delivery will be done within S2D (Shipment to Delivery) <= 60 min
-   reference: <PR/Issue/Discussion Links md format text>
- - code: Next Day Delivery
-   description: Delivery will be done on the Next Day with respect to context timestamp
-   reference: <PR/Issue/Discussion Links md format text>
- - code: Same Day Delivery
-   description: Delivery will be done on the Same Day with respect to context timestamp
-   reference: <PR/Issue/Discussion Links md format text>      
- - code: Instant Delivery
-   description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
-   reference: <PR/Issue/Discussion Links md format text>     
+  - code: EXPRESS DELIVERY
+    description: Delivery will be done by Air
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: STANDARD DELIVERY
+    description: Delivery will be done by Surface
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: IMMEDIATE DELIVERY
+    description: Delivery will be done within S2D (Shipment to Delivery) <= 60 min
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: NEXT DAY DELIVERY
+    description: Delivery will be done on the Next Day with respect to context timestamp
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: SAME DAY DELIVERY
+    description: Delivery will be done on the Same Day with respect to context timestamp
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: INSTANT DELIVERY
+    description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
+    reference: <PR/Issue/Discussion Links md format text>

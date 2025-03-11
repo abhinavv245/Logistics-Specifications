@@ -28,7 +28,7 @@ value:
           descriptor:
             code: P2P
           category_ids:
-            - Instant Delivery
+            - INSTANT DELIVERY
       fulfillments:
         - id: F1
           agent:
@@ -36,7 +36,7 @@ value:
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               instructions:
@@ -51,7 +51,8 @@ value:
                 token: OTP code
                 valid_from: 2024-11-20T12:00:00.000Z
                 valid_to: 2024-11-20T14:00:00.000Z
-              location: {}
+              location:
+                id: S1
             - type: END
               person:
                 name: Buyer1
@@ -225,7 +226,7 @@ value:
             phone: "9886098860"
           vehicle:
             registration: 3KVJ947
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               instructions:
@@ -240,7 +241,8 @@ value:
                 token: OTP code
                 valid_from: 2024-11-20T12:00:00.000Z
                 valid_to: 2024-11-20T14:00:00.000Z
-              location: {}
+              location:
+                id: S1
             - type: END
               person:
                 name: Buyer1

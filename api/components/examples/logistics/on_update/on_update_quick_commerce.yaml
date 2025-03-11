@@ -36,7 +36,7 @@ value:
             duration: PT10M
             timestamp: 2024-11-20
           category_ids:
-            - Instant Delivery
+            - INSTANT DELIVERY
       quote:
         price:
           currency: INR
@@ -70,19 +70,20 @@ value:
         - id: F1
           state:
             descriptor:
-              code: Agent-assigned
+              code: AGENT-ASSIGNED
           tracking: false
           agent:
             name: person_name1
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: Ramu
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: name, My house or building name, My street name
                 city:
@@ -299,19 +300,20 @@ value:
         - id: F2
           state:
             descriptor:
-              code: Order-picked-up
+              code: ORDER-PICKED-UP
           tracking: false
           agent:
             name: person_name2
             phone: "9886098860"
           vehicle:
             registration: 3KVJ947
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: Ramu
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: name, My house or building name, My street name
                 city:
@@ -541,7 +543,7 @@ value:
         time:
           timestamp: 2024-11-20T21:30:00.000Z
       updated_at: 2024-11-20T23:00:30.000Z
-      status: In-progress
+      status: IN-PROGRESS
       payments:
         - type: POST-FULFILLMENT
           collected_by: BPP

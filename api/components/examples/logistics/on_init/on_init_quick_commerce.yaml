@@ -27,10 +27,11 @@ value:
         - id: I1
       fulfillments:
         - id: F1
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, House or building name, Locality
                 city:
@@ -170,10 +171,11 @@ value:
                     code: WEIGHT_VALUE
                   value: "1.0"
         - id: F2
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, House or building name, Locality
                 city:

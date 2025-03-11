@@ -41,7 +41,7 @@ value:
           fulfillment_ids:
             - "1"
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
         - id: I2
           descriptor:
             code: P2P
@@ -52,7 +52,7 @@ value:
           fulfillment_ids:
             - 1-RTO
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
       quote:
         price:
           currency: INR
@@ -86,20 +86,20 @@ value:
         - id: "1"
           state:
             descriptor:
-              code: Order-picked-up
-              short_desc: pickup or delivery failed reason code
+              code: ORDER-PICKED-UP
           tracking: false
           agent:
             name: agent_name
             phone: "9886098860"
           vehicle:
             registration: 3LVJ945
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.453544,77.928379
                 address: name, My house or building name, My street name
                 city:
@@ -345,7 +345,7 @@ value:
         - id: 1-RTO
           state:
             descriptor:
-              code: RTO-Initiated
+              code: RTO-INITIATED
           agent:
             name: agent_name
             phone: "9886098860"
@@ -406,7 +406,7 @@ value:
                 code: URL
               value: https://lsp.com/sorter/images1.png
       updated_at: 2024-11-20T23:00:30.000Z
-      status: Completed
+      status: COMPLETED
       payments:
         - type: ON-ORDER
           collected_by: BPP

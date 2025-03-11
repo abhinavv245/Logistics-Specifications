@@ -28,10 +28,10 @@ value:
           descriptor:
             code: P2P
           category_ids:
-            - Same Day Delivery
+            - SAME DAY DELIVERY
       fulfillments:
         - id: "1"
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               instructions:

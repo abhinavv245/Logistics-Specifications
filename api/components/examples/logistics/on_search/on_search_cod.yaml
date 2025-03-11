@@ -62,7 +62,7 @@ value:
                 timestamp: 2024-11-20
           fulfillments:
             - id: "1"
-              type: Delivery
+              type: DELIVERY
               stops:
                 - type: START
                   time:
@@ -112,7 +112,7 @@ value:
               fulfillment_ids:
                 - "1"
               category_ids:
-                - Immediate Delivery
+                - IMMEDIATE DELIVERY
             - id: I2
               parent_item_id: I1
               descriptor:
@@ -137,7 +137,7 @@ value:
               fulfillment_ids:
                 - "2"
               category_ids:
-                - Immediate Delivery
+                - IMMEDIATE DELIVERY
           tags:
             - descriptor:
                 code: SPECIAL_REQ

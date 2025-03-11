@@ -29,10 +29,11 @@ value:
             - "1"
       fulfillments:
         - id: "1"
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, House or building name, Locality
                 city:

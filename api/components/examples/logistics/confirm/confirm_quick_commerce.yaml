@@ -34,7 +34,7 @@ value:
             duration: PT10M
             timestamp: 2024-11-20
           category_ids:
-            - Instant Delivery
+            - INSTANT DELIVERY
       quote:
         price:
           currency: INR
@@ -54,7 +54,7 @@ value:
               value: "9.00"
       fulfillments:
         - id: F1
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               time:
@@ -62,6 +62,7 @@ value:
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, House or building name, Locality
                 city:
@@ -274,7 +275,7 @@ value:
                     code: ID
                   value: "1227262193237777"
         - id: F2
-          type: Delivery
+          type: DELIVERY
           stops:
             - type: START
               time:
@@ -282,6 +283,7 @@ value:
               person:
                 name: person_name
               location:
+                id: S1
                 gps: 12.4535,77.9283
                 address: Store name, House or building name, Locality
                 city:
@@ -516,7 +518,7 @@ value:
               value: yes
       created_at: 2024-11-20T22:00:00.000Z
       updated_at: 2024-11-20T22:00:00.000Z
-      status: Created
+      status: CREATED
       payments:
         - type: POST-FULFILLMENT
           collected_by: BAP

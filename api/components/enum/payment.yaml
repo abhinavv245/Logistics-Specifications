@@ -8,11 +8,11 @@ type:
   - code: POST-FULFILLMENT
     description: Payment occurs after invoice is raised.
     reference: <PR/Issue/Discussion Links md format text
-"@ondc/org/settlement_details":
+'@ondc/org/settlement_details':
   settlement_counterparty:
-    - code: lbnp
+    - code: LBNP
       description: This defines with whom the settlement will happen.
       reference: <PR/Issue/Discussion Links md format text>
-    - code: lsp
+    - code: LSP
       description: This defines with whom the settlement will happen.
       reference: <PR/Issue/Discussion Links md format text>

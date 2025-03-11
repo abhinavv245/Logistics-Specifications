@@ -6,10 +6,8 @@ search:
       fulfillment:
         type:
           $ref: "./fulfillment.yaml#/type"
-        start:
-          $ref: "./fulfillment.yaml#/start"
-        end:
-          $ref: "./fulfillment.yaml#/end"
+        stops:
+          $ref: "./fulfillment.yaml#/stops"
       payment:
         type:
           $ref: "./payment.yaml#/type"

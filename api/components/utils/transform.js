@@ -3,7 +3,7 @@ const path = require("path");
 const yaml = require("yaml");
 const axios = require("axios");
 
-const inputDir = "../examples/logistics";  // Root directory containing YAML files
+const inputDir = "../examples/logistics copy";  // Root directory containing YAML files
 const apiEndpoint = "http://localhost:3000/transform";  // Your API endpoint
 
 // Function to find all YAML files recursively
