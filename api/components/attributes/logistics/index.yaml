@@ -260,7 +260,7 @@ on_search:
     bap_uri:
       required: mandatory
       type: string
-      owner: BAP
+      owner: BPP
       usage: https://api.example-bap.com/pilot/bap/cab/v1
       description: Describes subscriber URL of the BAP for accepting callbacks from BPPs.
     bpp_id:
@@ -299,170 +299,208 @@ on_search:
     catalog:
       descriptor:
         name:
-          required: false
-          type: false
-          owner: false
+          required: mandatory
+          type: string
+          owner: BPP
           usage: false
           description: false
       providers:
         id:
-          required: false
-          type: false
-          owner: false
+          required: mandatory
+          type: string
+          owner: BPP
           usage: false
           description: false
         descriptor:
           name:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           short_desc:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           long_desc:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
         categories:
           id:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           time:
             label:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             duration:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             timestamp:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
+              usage: false
+              description: false
+        locations:
+          id:
+            required: optional
+            type: string
+            owner: BPP
+            usage: false
+            description: false
+          gps:
+            required: optional
+            type: string
+            owner: BPP
+            usage: false
+            description: false
+          address:
+            city:
+              required: optional
+              type: string
+              owner: BPP
+              usage: false
+              description: false
+            area_code:
+              required: optional
+              type: string
+              owner: BPP
+              usage: false
+              description: false
+            street:
+              required: optional
+              type: string
+              owner: BPP
+              usage: false
+              description: false
+            state:
+              required: optional
+              type: string
+              owner: BPP
               usage: false
               description: false
         fulfillments:
           id:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           type:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           stops:
             type:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             time:
               duration:
-                required: false
-                type: false
-                owner: false
+                required: mandatory
+                type: string
+                owner: BPP
                 usage: false
                 description: false
         items:
           id:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           parent_item_id:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           descriptor:
             code:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             name:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             short_desc:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             long_desc:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
           price:
             currency:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
             value:
-              required: false
-              type: false
-              owner: false
+              required: mandatory
+              type: string
+              owner: BPP
               usage: false
               description: false
           time:
             label:
-              required: false
-              type: false
-              owner: false
+              required: optional
+              type: string
+              owner: BPP
               usage: false
               description: false
             duration:
-              required: false
-              type: false
-              owner: false
+              required: optional
+              type: string
+              owner: BPP
               usage: false
               description: false
             timestamp:
-              required: false
-              type: false
-              owner: false
+              required: optional
+              type: string
+              owner: BPP
               usage: false
               description: false
           fulfillment_ids:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
           category_ids:
-            required: false
-            type: false
-            owner: false
+            required: mandatory
+            type: string
+            owner: BPP
             usage: false
             description: false
 select:
@@ -560,185 +598,185 @@ select:
     order:
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         fulfillment_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
       billing:
         name:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -830,100 +868,100 @@ on_select:
     order:
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         fulfillment_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
@@ -931,59 +969,59 @@ on_select:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
         ttl:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -1081,9 +1119,9 @@ track:
         message holds valid
   message:
     order_id:
-      required: false
-      type: false
-      owner: false
+      required: mandatory
+      type: string
+      owner: BAP
       usage: false
       description: false
 init:
@@ -1181,179 +1219,179 @@ init:
     order:
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -1445,94 +1483,94 @@ on_init:
     order:
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
@@ -1540,59 +1578,59 @@ on_init:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
         ttl:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -1691,60 +1729,60 @@ confirm:
   message:
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         time:
           label:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           duration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -1752,253 +1790,376 @@ confirm:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           time:
             duration:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           person:
             name:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           instructions:
             code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       created_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       status:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
+on_track:
+  context:
+    domain:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: nic2004:60232
+      description: Describes domain code that is relevant to this transaction context
+    location:
+      city:
+        code:
+          required: mandatory
+          type: string
+          owner: BAP
+          usage: std:080
+          description: >
+            Describes the city code this location is, or is located within, city
+            code should match the city for fulfillment start location;
+      country:
+        code:
+          required: mandatory
+          type: string
+          owner: BAP
+          usage: IND
+          description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
+    version:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: 2.0.0
+      description: Describes the version of transaction protocol being used by the sender.
+    action:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: on_track
+      description: >-
+        Describes the Beckn protocol method being called by the sender and
+        executed at the receiver.
+    bap_id:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: api.example-bap.com
+      description: Describes subscriber ID of the BAP
+    bap_uri:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: https://api.example-bap.com/pilot/bap/cab/v1
+      description: Describes subscriber URL of the BAP for accepting callbacks from BPPs.
+    bpp_id:
+      required: mandatory
+      type: string
+      owner: BPP
+      usage: api.example-bpp.com
+      description: Describes subscriber ID of the BPP
+    bpp_uri:
+      required: mandatory
+      type: string
+      owner: BPP
+      usage: https://api.example-bpp.com/dobpp/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      description: Describes subscriber URL of the BPP for accepting calls from BAPs.
+    transaction_id:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: 6743e9e2
+      description: Describes  a unique value which persists across all API calls
+    message_id:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: 13ba8018f176
+      description: >-
+        Describes a unique value which persists during a request / callback
+        cycle.
+    timestamp:
+      required: mandatory
+      type: string
+      owner: BAP
+      usage: '2023-03-23T04:41:16Z'
+      description: Describes tme of request generation in RFC3339 format
+  message:
+    tracking:
+      id:
+        required: mandatory
+        type: false
+        owner: false
+        usage: false
+        description: false
+      url:
+        required: optional
+        type: false
+        owner: false
+        usage: false
+        description: false
+      location:
+        gps:
+          required: mandatory
+          type: false
+          owner: false
+          usage: false
+          description: false
+        time:
+          timestamp:
+            required: mandatory
+            type: false
+            owner: false
+            usage: false
+            description: false
+        updated_at:
+          required: mandatory
+          type: false
+          owner: false
+          usage: false
+          description: false
+      status:
+        required: mandatory
+        type: false
+        owner: false
+        usage: false
+        description: false
 on_confirm:
   context:
     domain:
@@ -2083,7 +2244,7 @@ on_confirm:
       usage: '2023-03-23T04:41:16Z'
       description: Describes tme of request generation in RFC3339 format
     ttl:
-      required: false
+      required: optional
       type: false
       owner: false
       usage: false
@@ -2091,60 +2252,60 @@ on_confirm:
   message:
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         time:
           label:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           duration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -2152,47 +2313,47 @@ on_confirm:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -2200,234 +2361,234 @@ on_confirm:
         state:
           descriptor:
             code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
         tracking:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           time:
             duration:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             range:
               start:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               end:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
           person:
             name:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           instructions:
             code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             images:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       created_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       status:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -2525,137 +2686,137 @@ update:
         message holds valid
   message:
     update_target:
-      required: false
+      required: mandatory
       type: false
       owner: false
       usage: false
       description: false
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         agent:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           phone:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         vehicle:
           registration:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           instructions:
             code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
           authorization:
             type:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             token:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             valid_from:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             valid_to:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
@@ -2746,66 +2907,66 @@ on_update:
   message:
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         fulfillment_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         time:
           label:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           duration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -2813,47 +2974,47 @@ on_update:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -2861,248 +3022,254 @@ on_update:
         state:
           descriptor:
             code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
         tracking:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         agent:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           phone:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         vehicle:
           registration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           person:
             name:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           location:
             gps:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: mandatory
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           time:
             duration:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             range:
               start:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               end:
-                required: false
+                required: optional
+                type: false
+                owner: false
+                usage: false
+                description: false
+              timestamp:
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
           instructions:
             code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             images:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       status:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -3200,9 +3367,9 @@ status:
         message holds valid
   message:
     order_id:
-      required: false
-      type: false
-      owner: false
+      required: mandatory
+      type: string
+      owner: BAP
       usage: false
       description: false
 on_status:
@@ -3291,66 +3458,80 @@ on_status:
   message:
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
+      cancellation:
+        cancelled_by:
+          required: optional
+          type: false
+          owner: false
+          usage: false
+          description: false
+        reason:
+          id:
+            required: optional
+            type: false
+            owner: false
+            usage: false
+            description: false
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         time:
           label:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           duration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         fulfillment_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -3358,47 +3539,47 @@ on_status:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -3406,291 +3587,291 @@ on_status:
         state:
           descriptor:
             code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
         tracking:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         agent:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           phone:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         vehicle:
           registration:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         type:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           person:
             name:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           location:
             gps:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           time:
             duration:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             range:
               start:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               end:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             timestamp:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           instructions:
             code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             name:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             images:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
           authorization:
             type:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             token:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             valid_from:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             valid_to:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       status:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -3788,15 +3969,15 @@ cancel:
         message holds valid
   message:
     order_id:
-      required: false
-      type: false
-      owner: false
+      required: mandatory
+      type: string
+      owner: BAP
       usage: false
       description: false
     cancellation_reason_id:
-      required: false
-      type: false
-      owner: false
+      required: mandatory
+      type: string
+      owner: BAP
       usage: false
       description: false
 on_cancel:
@@ -3885,80 +4066,80 @@ on_cancel:
   message:
     order:
       id:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       cancellation:
         cancelled_by:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         reason:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       provider:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         locations:
           id:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
       items:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         descriptor:
           code:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         time:
           label:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           duration:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         fulfillment_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         category_ids:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -3966,47 +4147,47 @@ on_cancel:
       quote:
         price:
           currency:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           value:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         breakup:
           title:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
           item:
             id:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
           price:
             currency:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
             value:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
       fulfillments:
         id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
@@ -4014,372 +4195,249 @@ on_cancel:
         state:
           descriptor:
             code:
-              required: false
+              required: mandatory
               type: false
               owner: false
               usage: false
               description: false
         tracking:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         agent:
           name:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           phone:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         vehicle:
           registration:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
         type:
-          required: false
+          required: optional
           type: false
           owner: false
           usage: false
           description: false
         stops:
           type:
-            required: false
+            required: optional
             type: false
             owner: false
             usage: false
             description: false
           person:
             name:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           location:
             gps:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             address:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             city:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             state:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             country:
               name:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
             area_code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           contact:
             phone:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             email:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
           instructions:
             code:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             short_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             long_desc:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             additional_desc:
               content_type:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               url:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
           time:
             duration:
-              required: false
+              required: optional
               type: false
               owner: false
               usage: false
               description: false
             range:
               start:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
               end:
-                required: false
+                required: optional
                 type: false
                 owner: false
                 usage: false
                 description: false
       billing:
         name:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         address:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         state:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         city:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         country:
           name:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
         tax_id:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         email:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         phone:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         time:
           timestamp:
-            required: false
+            required: mandatory
             type: false
             owner: false
             usage: false
             description: false
       created_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       updated_at:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       status:
-        required: false
+        required: mandatory
         type: false
         owner: false
         usage: false
         description: false
       payments:
         type:
-          required: false
+          required: mandatory
           type: false
           owner: false
           usage: false
           description: false
         collected_by:
-          required: false
-          type: false
-          owner: false
-          usage: false
-          description: false
-on_track:
-  context:
-    domain:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: nic2004:60232
-      description: Describes domain code that is relevant to this transaction context
-    location:
-      city:
-        code:
           required: mandatory
-          type: string
-          owner: BAP
-          usage: std:080
-          description: >
-            Describes the city code this location is, or is located within, city
-            code should match the city for fulfillment start location;
-      country:
-        code:
-          required: mandatory
-          type: string
-          owner: BAP
-          usage: IND
-          description: Describes country code as per ISO 3166-1 and ISO 3166-2 format
-    version:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: 2.0.0
-      description: Describes the version of transaction protocol being used by the sender.
-    action:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: on_track
-      description: >-
-        Describes the Beckn protocol method being called by the sender and
-        executed at the receiver.
-    bap_id:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: api.example-bap.com
-      description: Describes subscriber ID of the BAP
-    bap_uri:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: https://api.example-bap.com/pilot/bap/cab/v1
-      description: Describes subscriber URL of the BAP for accepting callbacks from BPPs.
-    bpp_id:
-      required: mandatory
-      type: string
-      owner: BPP
-      usage: api.example-bpp.com
-      description: Describes subscriber ID of the BPP
-    bpp_uri:
-      required: mandatory
-      type: string
-      owner: BPP
-      usage: https://api.example-bpp.com/dobpp/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-      description: Describes subscriber URL of the BPP for accepting calls from BAPs.
-    transaction_id:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: 6743e9e2
-      description: Describes  a unique value which persists across all API calls
-    message_id:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: 13ba8018f176
-      description: >-
-        Describes a unique value which persists during a request / callback
-        cycle.
-    timestamp:
-      required: mandatory
-      type: string
-      owner: BAP
-      usage: '2023-03-23T04:41:16Z'
-      description: Describes tme of request generation in RFC3339 format
-  message:
-    tracking:
-      id:
-        required: false
-        type: false
-        owner: false
-        usage: false
-        description: false
-      url:
-        required: false
-        type: false
-        owner: false
-        usage: false
-        description: false
-      location:
-        gps:
-          required: false
           type: false
           owner: false
           usage: false
           description: false
-        time:
-          timestamp:
-            required: false
-            type: false
-            owner: false
-            usage: false
-            description: false
-        updated_at:
-          required: false
-          type: false
-          owner: false
-          usage: false
-          description: false
-      status:
-        required: false
-        type: false
-        owner: false
-        usage: false
-        description: false

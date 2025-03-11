@@ -159,6 +159,14 @@ on_select_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: ./tag.yaml#/common_linked_order_item
+payment_tags:
+  tags:
+    - code: SETTLEMENT_TERMS
+      description: Settlement terms
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: ./tag.yaml#/settlement_details
+
 on_select_payment_tags:
   tags:
     - code: WALLET_BALANCE

@@ -804,29 +804,26 @@ lbnp_sla_terms:
     description: The penalty value imposed.
     reference: <PR/Issue/Discussion Links md format text>
 settlement_details:
+  - code: SETTLEMENT_BASIS
+    description: Indicates from when settlement window starts, enum - "invoicing" (from date of invoicing);
+    reference: <PR/Issue/Discussion Links md format text>
   - code: SETTLEMENT_WINDOW
-    description: Settlement window duration.
+    description: Settlement window, as per settlement basis, in ISO8601 Duration format;
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: SETTLEMENT_COUNTERPARTY
+    description: Counterparty with whom the settlement will be done, enum - "LBNP", "LSP";
     reference: <PR/Issue/Discussion Links md format text>
   - code: SETTLEMENT_TYPE
-    description: Type of settlement.
-    reference: <PR/Issue/Discussion Links md format text>
-  - code: BENEFICIARY_NAME
-    description: Name of the beneficiary.
+    description:  Enum - "UPI", "NEFT", "RTGS"; for "UPI", upi_address needs to be entered while for "NEFT", "RTGS", settlement_bank_account_no, settlement_ifsc_code needs to be entered;
     reference: <PR/Issue/Discussion Links md format text>
   - code: UPI_ADDRESS
     description: UPI address of the beneficiary.
     reference: <PR/Issue/Discussion Links md format text>
-  - code: BANK_ACCOUNT_NO
+  - code: SETTLEMENT_BANK_ACCOUNT_NO
     description: Bank account number.
     reference: <PR/Issue/Discussion Links md format text>
-  - code: IFSC_CODE
+  - code: SETTLEMENT_IFSC_CODE
     description: IFSC code of the bank.
-    reference: <PR/Issue/Discussion Links md format text>
-  - code: BANK_NAME
-    description: Name of the bank.
-    reference: <PR/Issue/Discussion Links md format text>
-  - code: BRANCH_NAME
-    description: Name of the bank branch.
     reference: <PR/Issue/Discussion Links md format text>
 rto_verification:
   - code: CODE

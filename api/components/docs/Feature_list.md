@@ -13,7 +13,7 @@ These features are **mandatory** and must be implemented by all participating **
 
 | Feature ID | Feature Definition | Description | Published by LSP | Published by LBNP | Version |
 |------------|--------------------|-------------|------------------|------------------|---------|
-| 000 | Catalog | Live Search; Feature discovery; Payment collector updating settlement window & settlement terms; Updated RTO order state; Shipment type for P2H2P orders | N/A | N/A | 1.2.5 |
+| 000 | Catalog | Live Search; Feature discovery; Payment collector updating settlement window & settlement terms; Updated RTO order state; Shipment type for P2H2P orders | N/A | N/A | 2.0.0 |
 || **Order Flow** | Single pickup, single drop (SPSD) |  |  |  |  |
 || **Post-Order Flow** | Order/fulfillment status updates; Cancellation; RTO; P2P - live tracking |  |  |  |  |
 

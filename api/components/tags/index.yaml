@@ -9,10 +9,10 @@ search:
 on_search:
   message:
     catalog:
-      bpp/descriptor:
+      descriptor:
         tags:
           $ref: "./tag-group.yaml#/on_search_bpp_descriptor_tags"
-      bpp/providers:
+      providers:
         fulfillments:
           $ref: "./tag-group.yaml#/on_search_fulfillment_tags"
         items:
@@ -25,6 +25,8 @@ select:
     order:
       fulfillments:
         $ref: "./tag-group.yaml#/select_fulfillment_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       tags:
         $ref: "./tag-group.yaml#/init_order_tags"
 
@@ -43,14 +45,12 @@ init:
     order:
       fulfillments:
         $ref: "./tag-group.yaml#/init_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       items:
         $ref: "./tag-group.yaml#/init_items_tags"
       tags:
@@ -61,14 +61,12 @@ on_init:
     order:
       fulfillments:
         $ref: "./tag-group.yaml#/on_init_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       tags:
         $ref: "./tag-group.yaml#/on_init_order_tags"
 
@@ -79,14 +77,12 @@ confirm:
         $ref: "./tag-group.yaml#/confirm_item_tags"
       fulfillments:
         $ref: "./tag-group.yaml#/confirm_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       tags:
         $ref: "./tag-group.yaml#/confirm_order_tags"
 
@@ -97,14 +93,12 @@ on_confirm:
         $ref: "./tag-group.yaml#/confirm_item_tags"
       fulfillments:
         $ref: "./tag-group.yaml#/on_confirm_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       tags:
         $ref: "./tag-group.yaml#/on_confirm_order_tags"
 
@@ -119,28 +113,23 @@ on_update:
     order:
       fulfillments:
         $ref: "./tag-group.yaml#/on_update_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
 on_cancel:
   message:
     order:
       fulfillments:
-        start:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
-        end:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
         $ref: "./tag-group.yaml#/on_cancel_fulfillment_tags"
-
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
 on_track:
   message:
     tracking:
@@ -151,13 +140,11 @@ on_status:
     order:
       fulfillments:
         $ref: "./tag-group.yaml#/on_status_fulfillment_tags"
-        start:
+        stops:
           contact:
             tags:
               $ref: "./tag-group.yaml#/contact_tags"
-        end:
-          contact:
-            tags:
-              $ref: "./tag-group.yaml#/contact_tags"
+      payments:
+        $ref: "./tag-group.yaml#/payment_tags"
       tags:
         $ref: "./tag-group.yaml#/on_status_order_tags"
