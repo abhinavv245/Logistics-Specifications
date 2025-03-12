@@ -1594,6 +1594,24 @@ components:
           $ref: '#/components/schemas/Category/properties/id'
         fulfillment_id:
           $ref: '#/components/schemas/Fulfillment/properties/id'
+        category_ids:
+          description: Categories this item can be listed under
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Category/properties/id'
+        fulfillment_ids:
+          description: Modes through which this item can be fulfilled
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Fulfillment/properties/id'
+        location_ids:
+          description: Provider Locations this item is available in
+          type: array
+          items:
+            allOf:
+              - $ref: '#/components/schemas/Location/properties/id'
         rating:
           $ref: '#/components/schemas/Rating/properties/value'
         location_id:
