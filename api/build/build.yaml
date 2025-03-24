@@ -30,9 +30,11 @@ paths:
                   properties:
                     intent:
                       $ref: '#/components/schemas/Intent'
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -48,10 +50,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /select:
     post:
       tags:
@@ -73,9 +77,11 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -91,10 +97,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /init:
     post:
       tags:
@@ -116,9 +124,11 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -134,10 +144,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /confirm:
     post:
       tags:
@@ -159,9 +171,11 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -177,10 +191,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /status:
     post:
       tags:
@@ -202,9 +218,11 @@ paths:
                       $ref: '#/components/schemas/Order/properties/id'
                   required:
                     - order_id
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -220,10 +238,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /track:
     post:
       tags:
@@ -248,9 +268,11 @@ paths:
                       format: uri
                   required:
                     - order_id
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -266,10 +288,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /cancel:
     post:
       tags:
@@ -295,9 +319,11 @@ paths:
                       $ref: '#/components/schemas/Descriptor'
                   required:
                     - order_id
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -313,10 +339,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /update:
     post:
       tags:
@@ -345,9 +373,11 @@ paths:
                   required:
                     - update_target
                     - order
+                  additionalProperties: false
               required:
                 - context
                 - message
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -363,10 +393,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_search:
     post:
       tags:
@@ -389,10 +421,12 @@ paths:
                       $ref: '#/components/schemas/Catalog'
                   required:
                     - catalog
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -408,10 +442,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - context
+                additionalProperties: false
   /on_select:
     post:
       tags:
@@ -433,10 +469,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -452,10 +490,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_init:
     post:
       tags:
@@ -477,10 +517,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -496,10 +538,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_confirm:
     post:
       tags:
@@ -521,10 +565,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -540,10 +586,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_track:
     post:
       tags:
@@ -565,10 +613,12 @@ paths:
                       $ref: '#/components/schemas/Tracking'
                   required:
                     - tracking
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -584,10 +634,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_cancel:
     post:
       tags:
@@ -611,10 +663,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -630,10 +684,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_update:
     post:
       tags:
@@ -655,10 +711,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -674,10 +732,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
   /on_status:
     post:
       tags:
@@ -699,10 +759,12 @@ paths:
                       $ref: '#/components/schemas/Order'
                   required:
                     - order
+                  additionalProperties: false
                 error:
                   $ref: '#/components/schemas/Error'
               required:
                 - context
+              additionalProperties: false
       responses:
         '200':
           description: Acknowledgement of message received
@@ -718,10 +780,12 @@ paths:
                         $ref: '#/components/schemas/Ack'
                     required:
                       - ack
+                    additionalProperties: false
                   error:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+                additionalProperties: false
 components:
   securitySchemes:
     SubscriberAuth:
@@ -782,6 +846,7 @@ components:
             $ref: '#/components/schemas/TagGroup'
       required:
         - status
+      additionalProperties: false
     AddOn:
       description: Describes an add-on
       type: object
@@ -795,6 +860,7 @@ components:
           $ref: '#/components/schemas/Descriptor'
         price:
           $ref: '#/components/schemas/Price'
+      additionalProperties: false
     Address:
       description: Describes an address
       type: object
@@ -829,15 +895,17 @@ components:
         area_code:
           type: string
           description: Area code. This can be Pincode, ZIP code or any equivalent
+      additionalProperties: false
     Agent:
       description: Describes an order executor
-      allOf:
-        - $ref: '#/components/schemas/Person'
-        - $ref: '#/components/schemas/Contact'
-        - type: object
-          properties:
-            rateable:
-              $ref: '#/components/schemas/Rateable'
+      type: object
+      properties:
+        phone:
+          type: string
+          description: Phone number
+        name:
+          type: string
+          description: Agent name
     Authorization:
       description: Describes an authorization mechanism
       type: object
@@ -859,6 +927,7 @@ components:
         status:
           type: string
           description: Status of the token
+      additionalProperties: false
     Billing:
       description: Describes a billing event
       type: object
@@ -886,6 +955,7 @@ components:
         updated_at:
           type: string
           format: date-time
+      additionalProperties: false
     Cancellation:
       description: Describes a cancellation event
       type: object
@@ -913,8 +983,10 @@ components:
           properties:
             id:
               $ref: '#/components/schemas/Option/properties/id'
+          additionalProperties: false
         additional_description:
           $ref: '#/components/schemas/Descriptor'
+      additionalProperties: false
     CancellationTerm:
       description: >-
         Describes the cancellation terms of an item or an order. This can be
@@ -955,6 +1027,7 @@ components:
               enum:
                 - customer
                 - provider
+          additionalProperties: false
         refund_policy:
           type: object
           properties:
@@ -969,6 +1042,7 @@ components:
                 - $ref: '#/components/schemas/Time'
             refund_amount:
               $ref: '#/components/schemas/Price'
+          additionalProperties: false
         cancel_by:
           description: Information related to the time of cancellation.
           allOf:
@@ -981,6 +1055,7 @@ components:
           $ref: '#/components/schemas/XInputResponse'
         external_ref:
           $ref: '#/components/schemas/MediaFile'
+      additionalProperties: false
     Catalog:
       description: Describes a Seller App catalog
       type: object
@@ -1015,6 +1090,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Category:
       description: Describes a category.
       type: object
@@ -1042,6 +1118,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Circle:
       description: Describes a circular area on the map
       type: object
@@ -1053,6 +1130,7 @@ components:
       required:
         - gps
         - radius
+      additionalProperties: false
     City:
       description: Describes a city
       type: object
@@ -1065,6 +1143,7 @@ components:
           description: >-
             Codification of city code will be using the std code of the city
             e.g. for Bengaluru, city code is 'std:080'
+      additionalProperties: false
     Contact:
       type: object
       properties:
@@ -1076,6 +1155,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Context:
       description: Describes a ONDC message context
       type: object
@@ -1175,6 +1255,7 @@ components:
         - city
         - country
         - timestamp
+      additionalProperties: false
     Country:
       description: Describes a country.
       type: object
@@ -1185,6 +1266,7 @@ components:
         code:
           type: string
           description: Country code as per ISO 3166 Alpha-3 code format
+      additionalProperties: false
     DecimalValue:
       description: Describes a decimal value
       type: string
@@ -1214,6 +1296,7 @@ components:
                 - text/plain
                 - text/html
                 - application/json
+          additionalProperties: false
         images:
           type: array
           items:
@@ -1231,6 +1314,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Dimensions:
       description: Describes the dimensions of a real-world object
       type: object
@@ -1241,6 +1325,7 @@ components:
           $ref: '#/components/schemas/Scalar'
         height:
           $ref: '#/components/schemas/Scalar'
+      additionalProperties: false
     Document:
       description: Describes a document which can be sent as a url
       type: object
@@ -1250,6 +1335,7 @@ components:
           format: uri
         label:
           type: string
+      additionalProperties: false
     Domain:
       description: Codification of domain for ONDC
       type: string
@@ -1286,6 +1372,7 @@ components:
       required:
         - type
         - code
+      additionalProperties: false
     Feedback:
       description: Feedback for a service
       type: object
@@ -1294,6 +1381,7 @@ components:
           $ref: '#/components/schemas/FeedbackForm'
         feedback_url:
           $ref: '#/components/schemas/FeedbackUrl'
+      additionalProperties: false
     FeedbackForm:
       description: >-
         Describes a feedback form that a Seller App can send to get feedback
@@ -1328,6 +1416,7 @@ components:
             - radio
             - checkbox
             - text
+      additionalProperties: false
     FeedbackUrl:
       description: Describes how a feedback URL will be sent by the Seller App
       type: object
@@ -1353,6 +1442,7 @@ components:
             type: string
           required:
             - feedback_id
+      additionalProperties: false
     Fee:
       description: A fee applied on a particular entity
       type: object
@@ -1365,6 +1455,7 @@ components:
           description: A fixed value
           allOf:
             - $ref: '#/components/schemas/Price'
+      additionalProperties: false
     Form:
       description: Describes a form
       type: object
@@ -1395,6 +1486,7 @@ components:
             querying the url. MIME types are defined and standardized in IETF's
             RFC 6838.
           type: string
+      additionalProperties: false
     Fulfillment:
       description: >-
         Describes how a single product/service will be rendered/fulfilled to the
@@ -1431,6 +1523,7 @@ components:
               $ref: '#/components/schemas/Person'
             contact:
               $ref: '#/components/schemas/Contact'
+          additionalProperties: false
         agent:
           $ref: '#/components/schemas/Agent'
         person:
@@ -1455,6 +1548,7 @@ components:
               $ref: '#/components/schemas/Person'
             authorization:
               $ref: '#/components/schemas/Authorization'
+          additionalProperties: false
         end:
           description: Details on the end of fulfillment
           type: object
@@ -1471,12 +1565,14 @@ components:
               $ref: '#/components/schemas/Person'
             authorization:
               $ref: '#/components/schemas/Authorization'
+          additionalProperties: false
         rateable:
           $ref: '#/components/schemas/Rateable'
         tags:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Gps:
       description: Describes a gps coordinate
       type: string
@@ -1525,10 +1621,12 @@ components:
               $ref: '#/components/schemas/Price'
             dangerous_goods:
               type: boolean
+          additionalProperties: false
         tags:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     ItemQuantity:
       description: Describes count or amount of an item
       type: object
@@ -1541,6 +1639,7 @@ components:
               minimum: 0
             measure:
               $ref: '#/components/schemas/Scalar'
+          additionalProperties: false
         available:
           type: object
           properties:
@@ -1549,6 +1648,7 @@ components:
               minimum: 0
             measure:
               $ref: '#/components/schemas/Scalar'
+          additionalProperties: false
         maximum:
           type: object
           properties:
@@ -1557,6 +1657,7 @@ components:
               minimum: 1
             measure:
               $ref: '#/components/schemas/Scalar'
+          additionalProperties: false
         minimum:
           type: object
           properties:
@@ -1565,6 +1666,7 @@ components:
               minimum: 0
             measure:
               $ref: '#/components/schemas/Scalar'
+          additionalProperties: false
         selected:
           type: object
           properties:
@@ -1573,6 +1675,8 @@ components:
               minimum: 0
             measure:
               $ref: '#/components/schemas/Scalar'
+          additionalProperties: false
+      additionalProperties: false
     Item:
       description: >-
         Describes a product or a service offered to the end consumer by the
@@ -1630,6 +1734,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Language:
       description: >-
         indicates language code. ONDC supports language codes as per ISO 639.2
@@ -1638,6 +1743,7 @@ components:
       properties:
         code:
           type: string
+      additionalProperties: false
     Location:
       description: Describes the location of a runtime object.
       type: object
@@ -1662,8 +1768,11 @@ components:
           type: string
         3dspace:
           type: string
+        updated_at:
+          type: string
         time:
           $ref: '#/components/schemas/Time'
+      additionalProperties: false
     MediaFile:
       description: This object contains a url to a media file.
       type: object
@@ -1683,6 +1792,7 @@ components:
         dsa:
           description: The signing algorithm used by the sender
           type: string
+      additionalProperties: false
     Name:
       type: string
       description: >-
@@ -1710,6 +1820,7 @@ components:
             $ref: '#/components/schemas/Item/properties/id'
         time:
           $ref: '#/components/schemas/Time'
+      additionalProperties: false
     Operator:
       description: Describes the agent of a service
       allOf:
@@ -1724,6 +1835,8 @@ components:
                   type: string
                 unit:
                   type: string
+              additionalProperties: false
+          additionalProperties: false
     Option:
       description: Describes a selectable option
       type: object
@@ -1732,6 +1845,7 @@ components:
           type: string
         descriptor:
           $ref: '#/components/schemas/Descriptor'
+      additionalProperties: false
     Order:
       description: Describes the details of an order -
       type: object
@@ -1760,6 +1874,8 @@ components:
                     $ref: '#/components/schemas/Location/properties/id'
                 required:
                   - id
+                additionalProperties: false
+          additionalProperties: false
         items:
           type: array
           items:
@@ -1773,6 +1889,7 @@ components:
                 $ref: '#/components/schemas/AddOn/properties/id'
             required:
               - id
+            additionalProperties: false
         offers:
           type: array
           items:
@@ -1782,6 +1899,7 @@ components:
                 $ref: '#/components/schemas/Offer/properties/id'
             required:
               - id
+            additionalProperties: false
         documents:
           type: array
           items:
@@ -1836,6 +1954,7 @@ components:
                     $ref: '#/components/schemas/ItemQuantity/properties/selected'
                   price:
                     $ref: '#/components/schemas/Price'
+                additionalProperties: false
             provider:
               type: object
               properties:
@@ -1845,6 +1964,7 @@ components:
                   $ref: '#/components/schemas/Descriptor'
                 address:
                   $ref: '#/components/schemas/Address'
+              additionalProperties: false
             order:
               description: use same units for weight and dimensions as defined for Intent
               type: object
@@ -1867,10 +1987,13 @@ components:
                   $ref: '#/components/schemas/DecimalValue'
                 igst_amount:
                   $ref: '#/components/schemas/DecimalValue'
+              additionalProperties: false
+          additionalProperties: false
         tags:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Organization:
       description: Describes an organization
       type: object
@@ -1879,6 +2002,7 @@ components:
           type: string
         cred:
           type: string
+      additionalProperties: false
     Page:
       description: Describes a page in a search result
       type: object
@@ -1887,6 +2011,7 @@ components:
           type: string
         next_id:
           type: string
+      additionalProperties: false
     Payment:
       description: Describes a payment
       type: object
@@ -2022,6 +2147,8 @@ components:
                 description: Settlement transaction timestamp
                 type: string
                 format: date-time
+            additionalProperties: false
+      additionalProperties: false
     Person:
       description: Describes a person.
       type: object
@@ -2046,6 +2173,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Policy:
       description: Describes a policy. Allows for domain extension.
       type: object
@@ -2058,6 +2186,7 @@ components:
           $ref: '#/components/schemas/Policy/properties/id'
         time:
           $ref: '#/components/schemas/Time'
+      additionalProperties: false
     Price:
       description: Describes the price of an item. Allows for domain extension.
       type: object
@@ -2082,6 +2211,7 @@ components:
       required:
         - currency
         - value
+      additionalProperties: false
     Provider:
       description: >-
         Describes a service provider. This can be a restaurant, a hospital, a
@@ -2139,6 +2269,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Quotation:
       description: Describes a quote
       type: object
@@ -2168,8 +2299,10 @@ components:
                 type: string
               price:
                 $ref: '#/components/schemas/Price'
+            additionalProperties: false
         ttl:
           $ref: '#/components/schemas/Duration'
+      additionalProperties: false
     Rateable:
       description: If the entity can be rated or not
       type: boolean
@@ -2195,6 +2328,7 @@ components:
         feedback_id:
           $ref: >-
             #/components/schemas/FeedbackUrl/properties/params/properties/feedback_id
+      additionalProperties: false
     RatingAck:
       type: object
       properties:
@@ -2204,6 +2338,7 @@ components:
         rating_ack:
           description: If rating has been recorded or not
           type: boolean
+      additionalProperties: false
     Scalar:
       description: An object representing a scalar quantity.
       type: object
@@ -2226,11 +2361,13 @@ components:
               type: number
             max:
               type: number
+          additionalProperties: false
         unit:
           type: string
       required:
         - value
         - unit
+      additionalProperties: false
     Schedule:
       description: Describes a schedule
       type: object
@@ -2246,6 +2383,7 @@ components:
           items:
             type: string
             format: date-time
+      additionalProperties: false
     State:
       description: Describes a state
       type: object
@@ -2258,6 +2396,7 @@ components:
         updated_by:
           type: string
           description: ID of entity which changed the state
+      additionalProperties: false
     Subscriber:
       type: object
       description: >-
@@ -2331,6 +2470,7 @@ components:
             Expiry timestamp in UTC derived from the ```lease_time``` of the
             subscriber
           format: date-time
+      additionalProperties: false
     Support:
       description: Customer support
       type: object
@@ -2345,6 +2485,7 @@ components:
           type: string
         channels:
           $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Tag:
       description: >-
         Describes a tag. This is a simple key-value store which is used to
@@ -2389,6 +2530,7 @@ components:
             `false`, it should not be displayed. This value can override the
             group display value.
           type: boolean
+      additionalProperties: false
     TagGroup:
       description: >-
         A collection of tag objects with group level attributes. For detailed
@@ -2438,6 +2580,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+      additionalProperties: false
     Time:
       description: >-
         Describes time in its various forms. It can be a single point in time;
@@ -2457,11 +2600,13 @@ components:
               type: string
             end:
               type: string
+          additionalProperties: false
         days:
           type: string
           description: comma separated values representing days of the week
         schedule:
           $ref: '#/components/schemas/Schedule'
+      additionalProperties: false
     TrackingData:
       description: Describes tracking data object during live tracking of an order
       $ref: '#/components/schemas/Gps'
@@ -2509,6 +2654,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      additionalProperties: false
     Vehicle:
       description: Describes the properties of a vehicle used in a mobility service
       type: object
@@ -2531,6 +2677,7 @@ components:
           type: string
         registration:
           type: string
+      additionalProperties: false
     XInput:
       description: >-
         Contains any additional or extended inputs required to confirm an order.
@@ -2565,6 +2712,7 @@ components:
               more information on Data URLs visit
               https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs
             type: string
+        additionalProperties: false
 servers:
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/ONDC/ONDC-Protocol-Logistics/1.0.26
