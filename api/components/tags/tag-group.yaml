@@ -234,11 +234,11 @@ on_cancel_rto_fulfillments:
       list:
         $ref: "./tag.yaml#/shipping_label"
 contact_tags:
-    - code: masked_contact
-      description: either phone no or masked_contact to be provided; to be part of the order in /confirm, /on_confirm, /on_update, /on_status;
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        $ref: "./tag.yaml#/masked_contact"
+  - code: masked_contact
+    description: either phone no or masked_contact to be provided; to be part of the order in /confirm, /on_confirm, /on_update, /on_status;
+    reference: <PR/Issue/Discussion Links md format text>
+    list:
+      $ref: "./tag.yaml#/masked_contact"
 init_fulfillment_tags:
   tags:
     - code: linked_provider
@@ -663,6 +663,11 @@ on_update_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/fulfill_request"
+    - code: ebn
+      description: e-way bill details - will also be added, as applicable, to RTO fulfillment in on_cancel; should be sent in response to LBNP’s "ready_to_ship"="yes";
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/ebn"
 
     - code: fulfill_response
       description: Fulfillment response details.
@@ -721,17 +726,6 @@ on_update_fulfillment_tags:
           reference: <PR/Issue/Discussion Links md format text>
         - code: url
           description: Link to the proof image.
-          reference: <PR/Issue/Discussion Links md format text>
-
-    - code: ebn
-      description: Electronic bill number details.
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        - code: id
-          description: EBN identifier.
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: expiry_date
-          description: Expiry date of the EBN.
           reference: <PR/Issue/Discussion Links md format text>
 
     - code: linked_order_diff
@@ -814,6 +808,11 @@ on_cancel_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/rto_events"
+    - code: ebn
+      description: e-way bill details - will also be added, as applicable, to RTO fulfillment in on_cancel; should be sent in response to LBNP’s "ready_to_ship"="yes";
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/ebn"
 
 on_track_tracking_tags:
   tags:
@@ -999,3 +998,8 @@ on_status_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/reverseqc_input"
+    - code: ebn
+      description: e-way bill details - will also be added, as applicable, to RTO fulfillment in on_cancel; should be sent in response to LBNP’s "ready_to_ship"="yes";
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        $ref: "./tag.yaml#/ebn"

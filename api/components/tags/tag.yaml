@@ -915,3 +915,11 @@ dangerous_goods:
   - code: cod_order
     description: Indicates if the order is Cash on Delivery.
     reference: <PR/Issue/Discussion Links md format text>
+
+ebn:
+  - code: id
+    description: e-way bill no, mapped to "@ondc/org/ewaybillno";
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: expiry_date
+    description: e-way bill expiry date, mapped to "@ondc/org/ebnexpirydate";
+    reference: <PR/Issue/Discussion Links md format text>
