@@ -4,15 +4,12 @@ search:
     - $ref: "./search/search_cod.yaml"
     - $ref: "./search/search_quick_commerce.yaml"
 
-select:
-  examples:
-    - $ref: "./select/select_wallet.yaml"
-
 init:
   examples:
     - $ref: "./init/init.yaml"
     - $ref: "./init/init_cod.yaml"
     - $ref: "./init/init_quick_commerce.yaml"
+    - $ref: "./init/init_wallet.yaml"
 
 confirm:
   examples:
@@ -43,15 +40,13 @@ on_search:
     - $ref: "./on_search/on_search_cod.yaml"
     - $ref: "./on_search/on_search_quick_commerce.yaml"
 
-on_select:
-  examples:
-    - $ref: "./on_select/on_select_wallet.yaml"
 
 on_init:
   examples:
     - $ref: "./on_init/on_init.yaml"
     - $ref: "./on_init/on_init_cod.yaml"
     - $ref: "./on_init/on_init_quick_commerce.yaml"
+    - $ref: "./on_init/on_init_wallet.yaml"
 
 on_confirm:
   examples:

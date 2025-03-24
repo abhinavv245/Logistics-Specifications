@@ -4739,7 +4739,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_39
+        example: &ref_38
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4853,7 +4853,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_52
+        example: &ref_51
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -8076,7 +8076,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_41
+        example: &ref_40
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8395,7 +8395,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_54
+        example: &ref_53
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -11359,7 +11359,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_40
+        example: &ref_39
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -11501,7 +11501,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_53
+        example: &ref_52
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -13422,15 +13422,13 @@ x-flows:
 
             LBNP --> LSP: **/search**   
             LSP --> LBNP: **/on_search**   
-            LBNP ->> LSP: **/select** - Sends the payment type as ON-ORDER, which is collected by the BPP.
-            LSP ->> LBNP: **/on_select** - LSP provides payment tags, including the available wallet balance of the LBNP.
-            LBNP --> LSP: **/init**   
-            LSP --> LBNP: **/on_init**  
+            LBNP ->> LSP: **/init** - Sends the payment type as ON-ORDER, which is collected by the BPP.
+            LSP ->> LBNP: **/on_init** - LSP provides payment tags, including the available wallet balance of the LBNP. 
             LBNP --> LSP: **/confirm**   
             LSP ->> LBNP: **/on_confirm** - Automatically deducts the amount from the LBNP wallet and sends both the deducted amount and the updated wallet balance.
     steps:
       - summary: <b>LSP initiates payment collection via prepaid wallet</b>
-        api: select
+        api: init
         details:
           - description: >
               <b>LBNP</b> specifies that the payment will be collected through a
@@ -13443,9 +13441,9 @@ x-flows:
                 title Prepaid Payment Selection
                 participant LBNP
                 participant LSP
-                LBNP ->> LSP: **/select** - Payment type: Prepaid, Collected by - LSP
+                LBNP ->> LSP: **/init** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_38
+        example: &ref_41
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -13453,7 +13451,7 @@ x-flows:
               domain: nic2004:60232
               country: IND
               city: std:080
-              action: select
+              action: init
               core_version: 1.2.5
               bap_id: lbnp.com
               bap_uri: https://lbnp.com/ondc
@@ -13538,7 +13536,7 @@ x-flows:
                       - code: accept_bpp_terms
                         value: 'yes'
       - summary: <b>LSP provides wallet balance information</b>
-        api: on_select
+        api: on_init
         details:
           - description: >
               <b>LSP</b> sends the <b>LBNP</b>'s current wallet balance in the
@@ -13551,9 +13549,9 @@ x-flows:
                 title Wallet Balance Information
                 participant LBNP
                 participant LSP
-                LSP ->> LBNP: **/on_select** - Provide wallet balance inside payment.tags
+                LSP ->> LBNP: **/on_init** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_51
+        example: &ref_54
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -13561,7 +13559,7 @@ x-flows:
               domain: nic2004:60232
               country: IND
               city: std:080
-              action: on_select
+              action: on_init
               core_version: 1.2.5
               bap_id: lbnp.com
               bap_uri: https://lbnp.com/ondc
@@ -13978,11 +13976,9 @@ x-examples:
           - *ref_35
           - *ref_36
           - *ref_37
-      select:
-        examples:
-          - *ref_38
       init:
         examples:
+          - *ref_38
           - *ref_39
           - *ref_40
           - *ref_41
@@ -14046,11 +14042,9 @@ x-examples:
           - *ref_48
           - *ref_49
           - *ref_50
-      on_select:
-        examples:
-          - *ref_51
       on_init:
         examples:
+          - *ref_51
           - *ref_52
           - *ref_53
           - *ref_54
