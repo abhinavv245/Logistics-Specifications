@@ -108,5 +108,5 @@ value:
               value: 'yes'
             - code: 00E
               value: 'yes'
-            - code: 01D
+            - code: '008'
               value: 'yes'

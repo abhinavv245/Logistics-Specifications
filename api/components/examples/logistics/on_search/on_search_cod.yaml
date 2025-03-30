@@ -86,6 +86,27 @@ value:
                     - code: type
                       value: base
             - id: I2
+              parent_item_id: ''
+              category_id: Immediate Delivery
+              fulfillment_id: '1'
+              descriptor:
+                code: P2P
+                name: COD Fee
+                short_desc: COD Fee
+                long_desc: Cash on delivery fee
+              price:
+                currency: INR
+                value: '19.18'
+              time:
+                label: TAT
+                duration: PT60M
+                timestamp: '2024-11-20'
+              tags:
+                - code: type
+                  list:
+                    - code: type
+                      value: cod
+            - id: I3
               parent_item_id: I1
               category_id: Immediate Delivery
               fulfillment_id: '2'
@@ -101,11 +122,6 @@ value:
                 label: TAT
                 duration: PT60M
                 timestamp: '2024-11-20'
-              tags:
-                - code: type
-                  list:
-                    - code: type
-                      value: cod
           tags:
             - code: special_req
               list:
@@ -118,5 +134,5 @@ value:
               value: 'yes'
             - code: '009'
               value: 'yes'
-            - code: 00C
+            - code: '008'
               value: 'yes'
