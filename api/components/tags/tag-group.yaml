@@ -423,6 +423,34 @@ confirm_fulfillment_tags:
         - code: return_to_origin
           description: Indicates if return to origin is applicable.
           reference: <PR/Issue/Discussion Links md format text>
+    - code: cod_settlement_detail
+      description: settlement details for deposit of retail order value
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: settlement_window
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: settlement_type
+          description: enum - "upi", "neft", "rtgs"; for "upi", upi_address needs to be provided & for others, ("bank_account_no", "ifsc_code", "bank_name", "branch_name") should be provided;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: beneficiary_name
+          description: Beneficiary name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: upi_address
+          description: UPI address
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_account_no
+          description: Bank account number
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ifsc_code
+          description: IFSC code
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_name
+          description: Bank name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: branch_name
+          description: Branch name
+          reference: <PR/Issue/Discussion Links md format text>
 
     - code: state
       description: State details.
@@ -475,11 +503,6 @@ confirm_fulfillment_tags:
         - code: height
           description: Height of the order.
           reference: <PR/Issue/Discussion Links md format text>
-    - code: cod_settlement_detail
-      description: COD settlement details.
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        $ref: "./tag.yaml#/settlement_details"
 
     - code: rto_verification
       description: Return to origin (RTO) verification details.
@@ -557,6 +580,34 @@ on_confirm_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/common_linked_order_item"
+    - code: cod_settlement_detail
+      description: settlement details for deposit of retail order value
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: settlement_window
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: settlement_type
+          description: enum - "upi", "neft", "rtgs"; for "upi", upi_address needs to be provided & for others, ("bank_account_no", "ifsc_code", "bank_name", "branch_name") should be provided;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: beneficiary_name
+          description: Beneficiary name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: upi_address
+          description: UPI address
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_account_no
+          description: Bank account number
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ifsc_code
+          description: IFSC code
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_name
+          description: Bank name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: branch_name
+          description: Branch name
+          reference: <PR/Issue/Discussion Links md format text>
 
     - code: state
       description: Order state information.
@@ -651,6 +702,34 @@ on_update_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/common_linked_order_item"
+    - code: cod_settlement_detail
+      description: settlement details for deposit of retail order value
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: settlement_window
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: settlement_type
+          description: enum - "upi", "neft", "rtgs"; for "upi", upi_address needs to be provided & for others, ("bank_account_no", "ifsc_code", "bank_name", "branch_name") should be provided;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: beneficiary_name
+          description: Beneficiary name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: upi_address
+          description: UPI address
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_account_no
+          description: Bank account number
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ifsc_code
+          description: IFSC code
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_name
+          description: Bank name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: branch_name
+          description: Branch name
+          reference: <PR/Issue/Discussion Links md format text>
 
     - code: shipping_label
       description: Shipping label details.
@@ -796,7 +875,50 @@ on_cancel_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/common_linked_order_item"
-
+    - code: cod_settlement_detail
+      description: settlement details for deposit of retail order value
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: settlement_window
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: settlement_type
+          description: enum - "upi", "neft", "rtgs"; for "upi", upi_address needs to be provided & for others, ("bank_account_no", "ifsc_code", "bank_name", "branch_name") should be provided;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: beneficiary_name
+          description: Beneficiary name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: upi_address
+          description: UPI address
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_account_no
+          description: Bank account number
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ifsc_code
+          description: IFSC code
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_name
+          description: Bank name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: branch_name
+          description: Branch name
+          reference: <PR/Issue/Discussion Links md format text>
+    - code: cod_collection_detail
+      description: update COD collection details
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: currency
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: value
+          description: collection value for linked retail order;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: transaction_id
+          description: unique transaction reference for COD collection;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: timestamp
+          description: timestamp for COD collection;
+          reference: <PR/Issue/Discussion Links md format text>
     - code: shipping_label
       description: Details of the shipping label.
       reference: <PR/Issue/Discussion Links md format text>
@@ -917,6 +1039,50 @@ on_status_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/shipping_label"
+    - code: cod_settlement_detail
+      description: settlement details for deposit of retail order value
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: settlement_window
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: settlement_type
+          description: enum - "upi", "neft", "rtgs"; for "upi", upi_address needs to be provided & for others, ("bank_account_no", "ifsc_code", "bank_name", "branch_name") should be provided;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: beneficiary_name
+          description: Beneficiary name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: upi_address
+          description: UPI address
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_account_no
+          description: Bank account number
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ifsc_code
+          description: IFSC code
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: bank_name
+          description: Bank name
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: branch_name
+          description: Branch name
+          reference: <PR/Issue/Discussion Links md format text>
+    - code: cod_collection_detail
+      description: update COD collection details
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: currency
+          description: settlement window in ISO8601 Duration format (P0D means COD value to be settled the day of collection);
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: value
+          description: collection value for linked retail order;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: transaction_id
+          description: unique transaction reference for COD collection;
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: timestamp
+          description: timestamp for COD collection;
+          reference: <PR/Issue/Discussion Links md format text>
 
     - code: fulfill_request
       description: Request details for fulfillment.
@@ -946,29 +1112,6 @@ on_status_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/rider_details"
-
-    - code: cod_collection_detail
-      description: Details of COD collection.
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        - code: currency
-          description: Currency in which COD was collected.
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: value
-          description: Amount collected as COD.
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: transaction_id
-          description: Transaction ID of the COD collection.
-          reference: <PR/Issue/Discussion Links md format text>
-        - code: timestamp
-          description: Timestamp of the COD collection.
-          reference: <PR/Issue/Discussion Links md format text>
-
-    - code: cod_settlement_detail
-      description: Details of COD settlement.
-      reference: <PR/Issue/Discussion Links md format text>
-      list:
-        $ref: "./tag.yaml#/settlement_details"
 
     - code: rto_event
       description: Details of the RTO (Return to Origin) event.

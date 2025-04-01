@@ -66,28 +66,28 @@ state:
       - code: RTO-Disposed
         description: Describes the state of the order as Return to Origin Disposed.
       - code: Out-for-pickup
-        description: Describes the state of the order as Out for pickup.
+        description: Describes the state of the order as Out for pickup. (for P2H2P only)
       - code: At-destination-hub
-        description: Describes the state of the order as At destination hub.
+        description: Describes the state of the order as At destination hub. (for P2H2P only)
       - code: In-transit
-        description: Describes the state of the order as In transit.
+        description: Describes the state of the order as In transit. (for P2H2P only)
       - code: At-pickup
-        description: Describes the state of the order as At pickup.
+        description: To be set when rider reaches perimeter of pickup location, as specified by LSP; (for P2P)
       - code: Out-for-delivery
-        description: Describes the state of the order as Out for delivery. 
+        description: Describes the state of the order as Out for delivery. Not to be used for P2P, will be removed in future version;
       - code: At-delivery
-        description: Describes the state of the order as At delivery.  
+        description: Describes the state of the order as At delivery. To be set when rider reaches perimeter of delivery location, as specified by LSP; (for P2P)
       - code: Searching-for-Agent
         description: Describes the state of the order as Searching for Agent.
       - code: Agent-assigned
         description: Describes the state of the order as Agent assigned. 
       - code: Pickup-failed
-        description: Describes the state of the order as Pickup failed.   
+        description: Describes the state of the order as Pickup failed. (for P2H2P only)   
       - code: Pickup-rescheduled
-        description: Describes the state of the order as Pickup rescheduled.       
+        description: Describes the state of the order as Pickup rescheduled. (for P2H2P only)      
       - code: Delivery-failed
-        description: Describes the state of the order as Delivery failed.
+        description: Describes the state of the order as Delivery failed. (for P2H2P only)
       - code: Delivery-rescheduled
-        description: Describes the state of the order as Delivery rescheduled. 
+        description: Describes the state of the order as Delivery rescheduled. (for P2H2P only)
       - code: Order-delivered
         description: Describes the state of the order as Order delivered.    

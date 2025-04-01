@@ -83,25 +83,16 @@ search:
           owner: BAP
           usage: Immediate Delivery
           description: >
-            Describes the intended delivery category for the order, "Express
-            Delivery" - by air;
-
-            "Standard Delivery" - by surface
-
+            Express Delivery" - by air (for P2H2P);
+            "Standard Delivery" - by surface (for P2P, P2H2P):
             "Immediate Delivery" is for S2D <= 60 min;
-
             "Same Day Delivery"
-
             "Next Day Delivery"
-
             If id="Standard Delivery":
-
-            all possible options should be returned in /on_search (including for
-            "Immediate Delivery", "Same Day Delivery", "Next Day Delivery");
-
+            all possible options should be returned in /on_search (including for "Immediate Delivery", "Same Day Delivery", "Next Day Delivery");
             If id="Express Delivery":
-
             all possible P2H2P options should be returned in /on_search;
+
       item:
         descriptor:
           code:
@@ -111,7 +102,7 @@ search:
             usage: false
             description: >-
               Describes the type of order, point to point (P2P) or via hub
-              (P2H2P)
+              (P2H2P), deprecated, not to be used.
       provider:
         time:
           days:
@@ -618,7 +609,7 @@ on_search:
             description: false
           descriptor:
             code:
-              required: mandatory
+              required: optional
               type: string
               owner: BPP
               usage: false
@@ -626,7 +617,7 @@ on_search:
                 type of shipment; enum -  "P2P" (point-to-point), "P2H2P"
                 (point-to-hub-to-point). P2H2P fulfillments require different
                 packaging and AWB no; required for merchants to decide on the
-                packaging required for shipment;
+                packaging required for shipment; deprecated, not to be used.
             name:
               required: mandatory
               type: string
@@ -806,7 +797,7 @@ select:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -1415,7 +1406,7 @@ init:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -2239,7 +2230,7 @@ confirm:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -2324,7 +2315,7 @@ confirm:
           description: >-
             AWB no. can be provided by logistics buyer NP (in /confirm or
             /update) or LSP (in /on_confirm or /on_update) and is mandatory only
-            if item.descriptor.code = "P2H2P". Can be 11-16 digits;
+            if domain is ONDC:LOG11. Can be 11-16 digits;
         start:
           time:
             duration:
@@ -2411,7 +2402,7 @@ confirm:
               description: false
           instructions:
             code:
-              required: mandatory
+              required: optional
               type: string
               owner: BAP
               usage: false
@@ -2420,7 +2411,7 @@ confirm:
                 PCC: enum - "2" - merchant order no, "3" - other pickup
                 confirmation code, "4" - OTP;
             short_desc:
-              required: mandatory
+              required: optional
               type: string
               owner: BAP
               usage: false
@@ -2437,13 +2428,13 @@ confirm:
               description: optional
             additional_desc:
               content_type:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
                 description: ' for seller & buyer instructions,'
               url:
-                required: mandatory
+                required: optional
                 type: string
                 owner: BPP
                 usage: false
@@ -3011,7 +3002,7 @@ on_confirm:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -3101,7 +3092,7 @@ on_confirm:
           type: string
           owner: BPP
           usage: false
-          description: ' required only if item.descriptor.code = "P2H2P"; can be provided by logistics buyer (/confirm or /update) or LSP (/on_confirm or /on_update);'
+          description: ' required only if domain is ONDC:LOG11; can be provided by logistics buyer (/confirm or /update) or LSP (/on_confirm or /on_update);'
         tracking:
           required: mandatory
           type: string
@@ -3839,7 +3830,7 @@ update:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -4273,7 +4264,7 @@ on_update:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BPP
             usage: false
@@ -5215,7 +5206,7 @@ on_status:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: false
@@ -6474,7 +6465,7 @@ on_cancel:
           description: false
         descriptor:
           code:
-            required: mandatory
+            required: optional
             type: string
             owner: BAP
             usage: false

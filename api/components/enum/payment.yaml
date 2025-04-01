@@ -1,6 +1,6 @@
 type:
   - code: ON-ORDER
-    description: Payment occurs prior to order confirmation.
+    description: Prepaid payment via wallet system enabled by LSP.
     reference: <PR/Issue/Discussion Links md format text
   - code: ON-FULFILLMENT
     description: Payment occurs when order is Delivered.

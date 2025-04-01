@@ -99,7 +99,7 @@ value:
               category_id: Instant Delivery
               fulfillment_id: '1'
               descriptor:
-                code: P2P
+  
                 name: 10 min delivery
                 short_desc: 10 min delivery for Grocery
                 long_desc: 10 min delivery for Grocery
@@ -120,7 +120,7 @@ value:
               category_id: Instant Delivery
               fulfillment_id: '2'
               descriptor:
-                code: P2P
+  
                 name: RTO quote
                 short_desc: RTO quote
                 long_desc: RTO quote

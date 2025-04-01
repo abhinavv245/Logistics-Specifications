@@ -15,17 +15,12 @@ search:
           $ref: "./payment.yaml#/type"
       category: &category
         $ref: "./category.yaml"
-      item: &item
-        $ref: "./item.yaml"
 on_search:
   context: *context
   message:
     catalog:
       bpp/providers:
         items:
-          descriptor:
-            code:
-              $ref: "./item.yaml#/descriptor/code"
           category_id:
             $ref: "./category.yaml#/id"
         categories:
@@ -38,9 +33,6 @@ init:
   context: *context
   message:
     order:
-      items:
-        descriptor:
-          $ref: "./item.yaml#/descriptor"
       fulfillments:
         type:
           $ref: "./fulfillment.yaml#/type"
@@ -62,9 +54,6 @@ confirm:
   message:
     order:
       items: &items
-        descriptor:
-          code:
-            $ref: "./item.yaml#/descriptor/code"
         category_id:
           $ref: "./category.yaml#/id"
       quote: *quote

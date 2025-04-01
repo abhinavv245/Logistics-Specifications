@@ -10,6 +10,9 @@ search_linked_order:
   - code: cod_order
     description: Specifies if the order is cash on delivery.
     reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
+    reference: <PR/Issue/Discussion Links md format text>
   - code: currency
     description: The currency used for the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -195,6 +198,12 @@ fulfill_request:
 linked_order:
   - code: currency
     description: Describes the currency of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
     reference: <PR/Issue/Discussion Links md format text>
   - code: declared_value
     description: Describes the declared value of the order.
@@ -406,6 +415,12 @@ common_linked_order:
   - code: id
     description: Describes the unique id of the order.
     reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
+    reference: <PR/Issue/Discussion Links md format text>
   - code: currency
     description: Describes the currency of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -532,6 +547,12 @@ init_linked_order:
   - code: id
     description: Describes the unique id of the order.
     reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
+    reference: <PR/Issue/Discussion Links md format text>
   - code: currency
     description: Describes the currency of the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -598,6 +619,12 @@ on_confirm_linked_order:
   - code: id
     description: Unique identifier for the order.
     reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
+    reference: <PR/Issue/Discussion Links md format text>
   - code: currency
     description: Currency used in the order.
     reference: <PR/Issue/Discussion Links md format text>
@@ -636,6 +663,12 @@ on_confirm_linked_order:
 on_init_linked_order:
   - code: id
     description: Describes the unique id of the order.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: cod_order
+    description: Specifies if the order is cash on delivery.
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: collection_amount
+    description: collection amount for linked retail order, to be provided if "cod_order"="yes";
     reference: <PR/Issue/Discussion Links md format text>
   - code: currency
     description: Describes the currency of the order.

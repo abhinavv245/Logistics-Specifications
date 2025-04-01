@@ -69,7 +69,7 @@ value:
               category_id: Immediate Delivery
               fulfillment_id: '1'
               descriptor:
-                code: P2P
+  
                 name: 60 min delivery
                 short_desc: 60 min delivery for F&B
                 long_desc: 60 min delivery for F&B
@@ -90,7 +90,7 @@ value:
               category_id: Immediate Delivery
               fulfillment_id: '1'
               descriptor:
-                code: P2P
+  
                 name: COD Fee
                 short_desc: COD Fee
                 long_desc: Cash on delivery fee
@@ -111,7 +111,7 @@ value:
               category_id: Immediate Delivery
               fulfillment_id: '2'
               descriptor:
-                code: P2P
+  
                 name: RTO quote
                 short_desc: RTO quote
                 long_desc: RTO quote

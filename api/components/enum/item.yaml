@@ -1,8 +1,0 @@
-descriptor:
-  code: 
-    - code: P2P
-      description: P2P Describe shipment method (Point to point).
-      reference: <PR/Issue/Discussion Links md format text
-    - code: P2H2P
-      description: P2H2P Describe shipment method (Point to hub to point).
-      reference: <PR/Issue/Discussion Links md format text  

@@ -2720,13 +2720,19 @@ x-enum:
   search:
     context: &ref_0
       domain:
+        - code: ONDC:LOG10
+          description: Hyperlocal logistics domain code (P2P)
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: ONDC:LOG11
+          description: Intercity logistics domain code (P2H2P)
+          reference: <PR/Issue/Discussion Links md format text>
         - code: nic2004:60232
-          description: Logistics domain code
+          description: Logistics domain code (deprecated)
           reference: <PR/Issue/Discussion Links md format text>
     message:
       intent:
         fulfillment:
-          type: &ref_3
+          type: &ref_2
             - code: Delivery
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
@@ -2736,7 +2742,7 @@ x-enum:
             - code: RTO
               description: Describes the type of fulfillment.
               reference: <PR/Issue/Discussion Links md format text
-          start: &ref_8
+          start: &ref_6
             authorization:
               type:
                 - code: OTP
@@ -2758,7 +2764,7 @@ x-enum:
                 - code: '5'
                   description: Describes Static OTP for pickup confirmation.
                   reference: <PR/Issue/Discussion Links md format text
-          end: &ref_9
+          end: &ref_7
             authorization:
               type:
                 - code: OTP
@@ -2781,9 +2787,9 @@ x-enum:
                   description: Describes Static OTP for delivery confirmation.
                   reference: <PR/Issue/Discussion Links md format text
         payment:
-          type: &ref_5
+          type: &ref_3
             - code: ON-ORDER
-              description: Payment occurs prior to order confirmation.
+              description: Prepaid payment via wallet system enabled by LSP.
               reference: <PR/Issue/Discussion Links md format text
             - code: ON-FULFILLMENT
               description: Payment occurs when order is Delivered.
@@ -2792,7 +2798,7 @@ x-enum:
               description: Payment occurs after invoice is raised.
               reference: <PR/Issue/Discussion Links md format text
         category:
-          id: &ref_2
+          id: &ref_1
             - code: Express Delivery
               description: Delivery will be done by Air
               reference: <PR/Issue/Discussion Links md format text>
@@ -2817,38 +2823,25 @@ x-enum:
             - code: Instant Delivery
               description: Delivery will be done withing 10 minutes (S2D TAT <= 10 min)
               reference: <PR/Issue/Discussion Links md format text>
-        item:
-          descriptor: &ref_4
-            code: &ref_1
-              - code: P2P
-                description: P2P Describe shipment method (Point to point).
-                reference: <PR/Issue/Discussion Links md format text
-              - code: P2H2P
-                description: P2H2P Describe shipment method (Point to hub to point).
-                reference: <PR/Issue/Discussion Links md format text
   on_search:
     context: *ref_0
     message:
       catalog:
         bpp/providers:
           items:
-            descriptor:
-              code: *ref_1
-            category_id: *ref_2
+            category_id: *ref_1
           categories:
-            id: *ref_2
+            id: *ref_1
           fulfillments:
-            type: *ref_3
+            type: *ref_2
   init:
     context: *ref_0
     message:
       order:
-        items:
-          descriptor: *ref_4
         fulfillments:
+          type: *ref_2
+        payment: &ref_4
           type: *ref_3
-        payment: &ref_6
-          type: *ref_5
           '@ondc/org/settlement_details':
             settlement_counterparty:
               - code: lbnp
@@ -2862,9 +2855,9 @@ x-enum:
     message:
       order:
         fulfillments:
-          type: *ref_3
-        payment: *ref_6
-        quote: &ref_7
+          type: *ref_2
+        payment: *ref_4
+        quote: &ref_5
           breakup:
             '@ondc/org/title_type':
               - code: delivery
@@ -2892,15 +2885,13 @@ x-enum:
     context: *ref_0
     message:
       order:
-        items: &ref_10
-          descriptor:
-            code: *ref_1
-          category_id: *ref_2
-        quote: *ref_7
-        fulfillments: &ref_11
-          type: *ref_3
-          start: *ref_8
-          end: *ref_9
+        items: &ref_8
+          category_id: *ref_1
+        quote: *ref_5
+        fulfillments: &ref_9
+          type: *ref_2
+          start: *ref_6
+          end: *ref_7
           state:
             descriptor:
               code:
@@ -2925,36 +2916,57 @@ x-enum:
                     Describes the state of the order as Return to Origin
                     Disposed.
                 - code: Out-for-pickup
-                  description: Describes the state of the order as Out for pickup.
+                  description: >-
+                    Describes the state of the order as Out for pickup. (for
+                    P2H2P only)
                 - code: At-destination-hub
-                  description: Describes the state of the order as At destination hub.
+                  description: >-
+                    Describes the state of the order as At destination hub. (for
+                    P2H2P only)
                 - code: In-transit
-                  description: Describes the state of the order as In transit.
+                  description: >-
+                    Describes the state of the order as In transit. (for P2H2P
+                    only)
                 - code: At-pickup
-                  description: Describes the state of the order as At pickup.
+                  description: >-
+                    To be set when rider reaches perimeter of pickup location,
+                    as specified by LSP; (for P2P)
                 - code: Out-for-delivery
-                  description: Describes the state of the order as Out for delivery.
+                  description: >-
+                    Describes the state of the order as Out for delivery. Not to
+                    be used for P2P, will be removed in future version;
                 - code: At-delivery
-                  description: Describes the state of the order as At delivery.
+                  description: >-
+                    Describes the state of the order as At delivery. To be set
+                    when rider reaches perimeter of delivery location, as
+                    specified by LSP; (for P2P)
                 - code: Searching-for-Agent
                   description: Describes the state of the order as Searching for Agent.
                 - code: Agent-assigned
                   description: Describes the state of the order as Agent assigned.
                 - code: Pickup-failed
-                  description: Describes the state of the order as Pickup failed.
+                  description: >-
+                    Describes the state of the order as Pickup failed. (for
+                    P2H2P only)
                 - code: Pickup-rescheduled
-                  description: Describes the state of the order as Pickup rescheduled.
+                  description: >-
+                    Describes the state of the order as Pickup rescheduled. (for
+                    P2H2P only)
                 - code: Delivery-failed
-                  description: Describes the state of the order as Delivery failed.
+                  description: >-
+                    Describes the state of the order as Delivery failed. (for
+                    P2H2P only)
                 - code: Delivery-rescheduled
-                  description: Describes the state of the order as Delivery rescheduled.
+                  description: >-
+                    Describes the state of the order as Delivery rescheduled.
+                    (for P2H2P only)
                 - code: Order-delivered
                   description: Describes the state of the order as Order delivered.
-        payment: *ref_6
+        payment: *ref_4
   on_confirm:
     context: *ref_0
     message:
-      order: &ref_12
+      order: &ref_10
         state:
           - code: Created
             description: The order has been created by the buyer app.
@@ -2971,30 +2983,30 @@ x-enum:
           - code: Cancelled
             description: The order has been cancelled.
             reference: <PR/Issue/Discussion Links md format text>
-        items: *ref_10
-        fulfillments: *ref_11
-        payment: *ref_6
-        quote: *ref_7
+        items: *ref_8
+        fulfillments: *ref_9
+        payment: *ref_4
+        quote: *ref_5
   status:
     context: *ref_0
   on_status:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_10
   cancel:
     context: *ref_0
   on_cancel:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_10
   update:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_10
   on_update:
     context: *ref_0
     message:
-      order: *ref_12
+      order: *ref_10
   track:
     context: *ref_0
   on_track:
@@ -3030,6 +3042,11 @@ x-tags:
               list:
                 - code: cod_order
                   description: Specifies if the order is cash on delivery.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: collection_amount
+                  description: >-
+                    collection amount for linked retail order, to be provided if
+                    "cod_order"="yes";
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: currency
                   description: The currency used for the order.
@@ -3095,7 +3112,7 @@ x-tags:
             - code: fulfill_request
               description: Details regarding order fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_13
+              list: &ref_11
                 - code: rider_count
                   description: >-
                     either rider_count or order_count to be provided; if both
@@ -3135,7 +3152,7 @@ x-tags:
           - code: lbnp_features
             description: Describes the LBNP features enabled.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_14
+            list: &ref_12
               - code: 00B
                 description: Describes the Updated cancellation codes.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3244,7 +3261,7 @@ x-tags:
           - code: lbnp_sla_terms
             description: Service Level Agreement terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_24
+            list: &ref_17
               - code: metric
                 description: The metric being measured.
                 reference: <PR/Issue/Discussion Links md format text>
@@ -3321,11 +3338,11 @@ x-tags:
               - code: fulfill_request
                 description: Request details for fulfillment.
                 reference: <PR/Issue/Discussion Links md format text>
-                list: *ref_13
+                list: *ref_11
               - code: fulfill_response
                 description: Response details for fulfillment.
                 reference: <PR/Issue/Discussion Links md format text>
-                list: &ref_15
+                list: &ref_14
                   - code: rider_count
                     description: >-
                       either rider_count or order_count to be provided; if both
@@ -3375,7 +3392,7 @@ x-tags:
             - code: lsp_features
               description: Features available for the LSP.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_14
+              list: *ref_12
             - code: special_req
               description: Special requirements for the order.
               reference: <PR/Issue/Discussion Links md format text>
@@ -3395,15 +3412,44 @@ x-tags:
                 - code: cod_order
                   description: Indicates if the order is Cash on Delivery.
                   reference: <PR/Issue/Discussion Links md format text>
-  select:
+  init:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: &ref_13
+                - code: masked_contact
+                  description: >-
+                    either phone no or masked_contact to be provided; to be part
+                    of the order in /confirm, /on_confirm, /on_update,
+                    /on_status;
+                  reference: <PR/Issue/Discussion Links md format text>
+                  list:
+                    - code: type
+                      description: Type of masked contact (e.g., IVR PIN).
+                      reference: <PR/Issue/Discussion Links md format text>
+                      list:
+                        - code: ivr_pin
+                          description: IVR with pin
+                        - code: ivr_without_pin
+                          description: IVR without pin
+                        - code: api_endpoint
+                          description: API endpoint for bridge
+                    - code: setup
+                      description: IVR setup or contact number.
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: token
+                      description: Token for masked contact.
+                      reference: <PR/Issue/Discussion Links md format text>
+          end:
+            contact:
+              tags: *ref_13
           tags:
             - code: linked_provider
-              description: Describes the provider information.
+              description: Details about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_16
+              list: &ref_15
                 - code: id
                   description: Describes unique id for provider.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3416,17 +3462,25 @@ x-tags:
             - code: fulfill_request
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_11
             - code: fulfill_response
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: linked_order
-              description: Describes the retail linked order information.
+              description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_18
+              list:
                 - code: id
                   description: Describes the unique id of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: cod_order
+                  description: Specifies if the order is cash on delivery.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: collection_amount
+                  description: >-
+                    collection amount for linked retail order, to be provided if
+                    "cod_order"="yes";
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: currency
                   description: Describes the currency of the order.
@@ -3489,7 +3543,26 @@ x-tags:
                 - code: height
                   description: Describes the height of the package for retail order.
                   reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_19
+        items:
+          tags:
+            - code: type
+              description: Defines the base type.
+              reference: <PR/Issue/Discussion Links md format text>
+              list: &ref_16
+                - code: type
+                  description: Describes the type of the item.
+                  reference: <PR/Issue/Discussion Links md format text>
+                  list:
+                    - code: base
+                      description: base item
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: surge
+                      description: surge fee item
+                      reference: <PR/Issue/Discussion Links md format text>
+                    - code: cod
+                      description: cod charge item
+                      reference: <PR/Issue/Discussion Links md format text>
+        tags:
           - code: bap_terms
             description: Terms and conditions agreed upon by the BAP.
             reference: <PR/Issue/Discussion Links md format text>
@@ -3497,10 +3570,16 @@ x-tags:
               - code: accept_bpp_terms
                 description: Indicates whether the BAP accepts the BPP terms.
                 reference: <PR/Issue/Discussion Links md format text>
-  on_select:
+  on_init:
     message:
       order:
         fulfillments:
+          start:
+            contact:
+              tags: *ref_13
+          end:
+            contact:
+              tags: *ref_13
           tags:
             - code: rider_check
               description: Rider inline check details.
@@ -3510,23 +3589,31 @@ x-tags:
                   description: Indicates if inline check for rider is required.
                   reference: <PR/Issue/Discussion Links md format text>
             - code: linked_provider
-              description: Describes the provider information.
+              description: Details about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: fulfill_request
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_11
             - code: fulfill_response
               description: Response details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
+              list: *ref_14
             - code: linked_order
-              description: Describes the retail linked order information.
+              description: Details about the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_20
+              list:
                 - code: id
                   description: Describes the unique id of the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: cod_order
+                  description: Specifies if the order is cash on delivery.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: collection_amount
+                  description: >-
+                    collection amount for linked retail order, to be provided if
+                    "cod_order"="yes";
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: currency
                   description: Describes the currency of the order.
@@ -3553,9 +3640,9 @@ x-tags:
                   description: Describes the height of the package for retail order.
                   reference: <PR/Issue/Discussion Links md format text>
             - code: linked_order_item
-              description: Describes the retail linked order item information.
+              description: Details about the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_21
+              list: &ref_19
                 - code: category
                   description: Describes the category of the order.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3611,152 +3698,31 @@ x-tags:
                 - code: weight_value
                   description: Describes the weight value of the order.
                   reference: <PR/Issue/Discussion Links md format text>
-        payment:
-          tags:
-            - code: wallet_balance
-              description: Wallet balance details.
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: currency
-                  description: Describe the type of currency.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: value
-                  description: Available balance in the wallet.
-                  reference: <PR/Issue/Discussion Links md format text>
-        tags: &ref_22
+        tags:
           - code: bpp_terms
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_28
+            list: &ref_22
               - code: static_terms
                 description: Describes the static terms.
                 reference: >-
                   https://github.com/ONDC-Official/protocol-network-extension/discussions/79
-  init:
-    message:
-      order:
-        fulfillments:
-          start:
-            contact:
-              tags: &ref_17
-                - code: masked_contact
-                  description: >-
-                    either phone no or masked_contact to be provided; to be part
-                    of the order in /confirm, /on_confirm, /on_update,
-                    /on_status;
-                  reference: <PR/Issue/Discussion Links md format text>
-                  list:
-                    - code: type
-                      description: Type of masked contact (e.g., IVR PIN).
-                      reference: <PR/Issue/Discussion Links md format text>
-                      list:
-                        - code: ivr_pin
-                          description: IVR with pin
-                        - code: ivr_without_pin
-                          description: IVR without pin
-                        - code: api_endpoint
-                          description: API endpoint for bridge
-                    - code: setup
-                      description: IVR setup or contact number.
-                      reference: <PR/Issue/Discussion Links md format text>
-                    - code: token
-                      description: Token for masked contact.
-                      reference: <PR/Issue/Discussion Links md format text>
-          end:
-            contact:
-              tags: *ref_17
-          tags:
-            - code: linked_provider
-              description: Details about the linked provider.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
-            - code: fulfill_request
-              description: Request details for fulfillment.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
-            - code: fulfill_response
-              description: Response details for fulfillment.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
-            - code: linked_order
-              description: Details about the linked order.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_18
-        items:
-          tags:
-            - code: type
-              description: Defines the base type.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_23
-                - code: type
-                  description: Describes the type of the item.
-                  reference: <PR/Issue/Discussion Links md format text>
-                  list:
-                    - code: base
-                      description: base item
-                      reference: <PR/Issue/Discussion Links md format text>
-                    - code: surge
-                      description: surge fee item
-                      reference: <PR/Issue/Discussion Links md format text>
-                    - code: cod
-                      description: cod charge item
-                      reference: <PR/Issue/Discussion Links md format text>
-        tags: *ref_19
-  on_init:
-    message:
-      order:
-        fulfillments:
-          start:
-            contact:
-              tags: *ref_17
-          end:
-            contact:
-              tags: *ref_17
-          tags:
-            - code: rider_check
-              description: Rider inline check details.
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: inline_check_for_rider
-                  description: Indicates if inline check for rider is required.
-                  reference: <PR/Issue/Discussion Links md format text>
-            - code: linked_provider
-              description: Details about the linked provider.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
-            - code: fulfill_request
-              description: Request details for fulfillment.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
-            - code: fulfill_response
-              description: Response details for fulfillment.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_15
-            - code: linked_order
-              description: Details about the linked order.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_20
-            - code: linked_order_item
-              description: Details about the linked order item.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
-        tags: *ref_22
   confirm:
     message:
       order:
-        items: &ref_25
+        items: &ref_18
           tags:
             - code: type
               description: Type information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_23
+              list: *ref_16
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           tags:
             - code: linked_provider
               description: Details about the linked provider.
@@ -3848,10 +3814,43 @@ x-tags:
                 - code: return_to_origin
                   description: Indicates if return to origin is applicable.
                   reference: <PR/Issue/Discussion Links md format text>
+            - code: cod_settlement_detail
+              description: settlement details for deposit of retail order value
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: settlement_window
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: settlement_type
+                  description: >-
+                    enum - "upi", "neft", "rtgs"; for "upi", upi_address needs
+                    to be provided & for others, ("bank_account_no",
+                    "ifsc_code", "bank_name", "branch_name") should be provided;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: beneficiary_name
+                  description: Beneficiary name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: upi_address
+                  description: UPI address
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_account_no
+                  description: Bank account number
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: ifsc_code
+                  description: IFSC code
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_name
+                  description: Bank name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: branch_name
+                  description: Branch name
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: state
               description: State details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_26
+              list: &ref_20
                 - code: ready_to_ship
                   description: Describes the order is ready to ship.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3865,7 +3864,7 @@ x-tags:
             - code: rto_action
               description: Return to Origin action details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_27
+              list: &ref_21
                 - code: return_to_origin
                   description: Describes the item for return to origin.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -3914,34 +3913,6 @@ x-tags:
                 - code: height
                   description: Height of the order.
                   reference: <PR/Issue/Discussion Links md format text>
-            - code: cod_settlement_detail
-              description: COD settlement details.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_33
-                - code: settlement_window
-                  description: Settlement window duration.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: settlement_type
-                  description: Type of settlement.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: beneficiary_name
-                  description: Name of the beneficiary.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: upi_address
-                  description: UPI address of the beneficiary.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: bank_account_no
-                  description: Bank account number.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: ifsc_code
-                  description: IFSC code of the bank.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: bank_name
-                  description: Name of the bank.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: branch_name
-                  description: Name of the bank branch.
-                  reference: <PR/Issue/Discussion Links md format text>
             - code: rto_verification
               description: Return to origin (RTO) verification details.
               reference: <PR/Issue/Discussion Links md format text>
@@ -3986,7 +3957,7 @@ x-tags:
             - code: reverseqc_input
               description: Reverse QC input details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_34
+              list: &ref_27
                 - code: P001
                   description: Product identifier.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4000,36 +3971,44 @@ x-tags:
           - code: bap_terms
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: &ref_29
+            list: &ref_23
               - code: accept_bpp_terms
                 description: Indicates if BPP terms are accepted.
                 reference: <PR/Issue/Discussion Links md format text>
           - code: lbnp_sla_terms
             description: SLA terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_24
+            list: *ref_17
   on_confirm:
     message:
       order:
-        items: *ref_25
+        items: *ref_18
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           tags:
             - code: linked_provider
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_30
+              list: &ref_24
                 - code: id
                   description: Unique identifier for the order.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: cod_order
+                  description: Specifies if the order is cash on delivery.
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: collection_amount
+                  description: >-
+                    collection amount for linked retail order, to be provided if
+                    "cod_order"="yes";
                   reference: <PR/Issue/Discussion Links md format text>
                 - code: currency
                   description: Currency used in the order.
@@ -4068,19 +4047,52 @@ x-tags:
             - code: linked_order_item
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_19
+            - code: cod_settlement_detail
+              description: settlement details for deposit of retail order value
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: settlement_window
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: settlement_type
+                  description: >-
+                    enum - "upi", "neft", "rtgs"; for "upi", upi_address needs
+                    to be provided & for others, ("bank_account_no",
+                    "ifsc_code", "bank_name", "branch_name") should be provided;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: beneficiary_name
+                  description: Beneficiary name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: upi_address
+                  description: UPI address
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_account_no
+                  description: Bank account number
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: ifsc_code
+                  description: IFSC code
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_name
+                  description: Bank name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: branch_name
+                  description: Branch name
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: state
               description: Order state information.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_26
+              list: *ref_20
             - code: rto_action
               description: Return to origin action status.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_27
+              list: *ref_21
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_31
+              list: &ref_25
                 - code: type
                   description: Describes the type of shipping label.
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4118,15 +4130,15 @@ x-tags:
           - code: bpp_terms
             description: Terms related to BPP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_28
+            list: *ref_22
           - code: bap_terms
             description: Terms related to BAP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_29
+            list: *ref_23
           - code: lbnp_sla_terms
             description: Service Level Agreement (SLA) terms for LBNP.
             reference: <PR/Issue/Discussion Links md format text>
-            list: *ref_24
+            list: *ref_17
   update:
     message:
       order:
@@ -4145,53 +4157,86 @@ x-tags:
             - code: linked_provider
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_24
             - code: linked_order_item
               description: Details of the linked order items.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_19
   on_update:
     message:
       order:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           tags:
             - code: linked_provider
               description: Details of the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_24
             - code: linked_order_item
               description: Details of the linked order item.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_19
+            - code: cod_settlement_detail
+              description: settlement details for deposit of retail order value
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: settlement_window
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: settlement_type
+                  description: >-
+                    enum - "upi", "neft", "rtgs"; for "upi", upi_address needs
+                    to be provided & for others, ("bank_account_no",
+                    "ifsc_code", "bank_name", "branch_name") should be provided;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: beneficiary_name
+                  description: Beneficiary name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: upi_address
+                  description: UPI address
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_account_no
+                  description: Bank account number
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: ifsc_code
+                  description: IFSC code
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_name
+                  description: Bank name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: branch_name
+                  description: Branch name
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_25
             - code: fulfill_request
               description: Fulfillment request details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_11
             - code: ebn
               description: >-
                 e-way bill details - will also be added, as applicable, to RTO
                 fulfillment in on_cancel; should be sent in response to LBNP’s
                 "ready_to_ship"="yes";
               reference: <PR/Issue/Discussion Links md format text>
-              list: &ref_32
+              list: &ref_26
                 - code: id
                   description: e-way bill no, mapped to "@ondc/org/ewaybillno";
                   reference: <PR/Issue/Discussion Links md format text>
@@ -4294,10 +4339,10 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           tags:
             - code: igm_request
               description: Request related to IGM (Issue Management).
@@ -4354,19 +4399,70 @@ x-tags:
             - code: linked_provider
               description: Information about the linked provider.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_24
             - code: linked_order_item
               description: Items within the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_19
+            - code: cod_settlement_detail
+              description: settlement details for deposit of retail order value
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: settlement_window
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: settlement_type
+                  description: >-
+                    enum - "upi", "neft", "rtgs"; for "upi", upi_address needs
+                    to be provided & for others, ("bank_account_no",
+                    "ifsc_code", "bank_name", "branch_name") should be provided;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: beneficiary_name
+                  description: Beneficiary name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: upi_address
+                  description: UPI address
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_account_no
+                  description: Bank account number
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: ifsc_code
+                  description: IFSC code
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_name
+                  description: Bank name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: branch_name
+                  description: Branch name
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: cod_collection_detail
+              description: update COD collection details
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: currency
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: value
+                  description: collection value for linked retail order;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: transaction_id
+                  description: unique transaction reference for COD collection;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: timestamp
+                  description: timestamp for COD collection;
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: shipping_label
               description: Details of the shipping label.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_25
             - code: rto_event
               description: Details of the Return to Origin (RTO) event.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4392,7 +4488,7 @@ x-tags:
                 fulfillment in on_cancel; should be sent in response to LBNP’s
                 "ready_to_ship"="yes";
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_32
+              list: *ref_26
   on_track:
     message:
       tracking:
@@ -4430,10 +4526,10 @@ x-tags:
         fulfillments:
           start:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           end:
             contact:
-              tags: *ref_17
+              tags: *ref_13
           tags:
             - code: tracking
               description: Tracking details for the order.
@@ -4453,23 +4549,74 @@ x-tags:
             - code: linked_provider
               description: Provider details linked to the order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_16
+              list: *ref_15
             - code: linked_order
               description: Details of the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_30
+              list: *ref_24
             - code: linked_order_item
               description: Individual items in the linked order.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_21
+              list: *ref_19
             - code: shipping_label
               description: Shipping label details.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_31
+              list: *ref_25
+            - code: cod_settlement_detail
+              description: settlement details for deposit of retail order value
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: settlement_window
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: settlement_type
+                  description: >-
+                    enum - "upi", "neft", "rtgs"; for "upi", upi_address needs
+                    to be provided & for others, ("bank_account_no",
+                    "ifsc_code", "bank_name", "branch_name") should be provided;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: beneficiary_name
+                  description: Beneficiary name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: upi_address
+                  description: UPI address
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_account_no
+                  description: Bank account number
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: ifsc_code
+                  description: IFSC code
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: bank_name
+                  description: Bank name
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: branch_name
+                  description: Branch name
+                  reference: <PR/Issue/Discussion Links md format text>
+            - code: cod_collection_detail
+              description: update COD collection details
+              reference: <PR/Issue/Discussion Links md format text>
+              list:
+                - code: currency
+                  description: >-
+                    settlement window in ISO8601 Duration format (P0D means COD
+                    value to be settled the day of collection);
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: value
+                  description: collection value for linked retail order;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: transaction_id
+                  description: unique transaction reference for COD collection;
+                  reference: <PR/Issue/Discussion Links md format text>
+                - code: timestamp
+                  description: timestamp for COD collection;
+                  reference: <PR/Issue/Discussion Links md format text>
             - code: fulfill_request
               description: Request details for fulfillment.
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_13
+              list: *ref_11
             - code: fulfill_response
               description: Response details for the fulfillment request.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4499,26 +4646,6 @@ x-tags:
                 - code: vehicle_registration
                   description: Describes the vehicle registration number.
                   reference: <PR/Issue/Discussion Links md format text>
-            - code: cod_collection_detail
-              description: Details of COD collection.
-              reference: <PR/Issue/Discussion Links md format text>
-              list:
-                - code: currency
-                  description: Currency in which COD was collected.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: value
-                  description: Amount collected as COD.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: transaction_id
-                  description: Transaction ID of the COD collection.
-                  reference: <PR/Issue/Discussion Links md format text>
-                - code: timestamp
-                  description: Timestamp of the COD collection.
-                  reference: <PR/Issue/Discussion Links md format text>
-            - code: cod_settlement_detail
-              description: Details of COD settlement.
-              reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_33
             - code: rto_event
               description: Details of the RTO (Return to Origin) event.
               reference: <PR/Issue/Discussion Links md format text>
@@ -4544,14 +4671,14 @@ x-tags:
             - code: reverseqc_output
               description: Output details of the reverse quality check (QC).
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_34
+              list: *ref_27
             - code: ebn
               description: >-
                 e-way bill details - will also be added, as applicable, to RTO
                 fulfillment in on_cancel; should be sent in response to LBNP’s
                 "ready_to_ship"="yes";
               reference: <PR/Issue/Discussion Links md format text>
-              list: *ref_32
+              list: *ref_26
         tags:
           - code: diff_dim
             description: Dimension differences recorded.
@@ -4660,7 +4787,7 @@ x-flows:
                 LBNP ->> LSP: **/search** - Request available options based on shipment details
                 LSP -->> LBNP: ACK - Confirm search request received
                 LSP ->> LBNP: **/on_search** - Respond with available fulfillment options
-        example: &ref_36
+        example: &ref_29
           summary: Search (Baseline)
           description: Logistics Buyer app sends a search request
           value:
@@ -4680,9 +4807,6 @@ x-flows:
               intent:
                 category:
                   id: Immediate Delivery
-                item:
-                  descriptor:
-                    code: P2P
                 provider:
                   time:
                     days: 1,2,3,4,5,6,7
@@ -4781,7 +4905,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_search** - Return available fulfillment options with rates
                 LBNP ->> LSP: ACK - Confirm catalog received
-        example: &ref_49
+        example: &ref_42
           summary: Returns the catalog
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -4855,7 +4979,6 @@ x-flows:
                         category_id: Immediate Delivery
                         fulfillment_id: '1'
                         descriptor:
-                          code: P2P
                           name: 60 min delivery
                           short_desc: 60 min delivery for F&B
                           long_desc: 60 min delivery for F&B
@@ -4871,7 +4994,6 @@ x-flows:
                         category_id: Immediate Delivery
                         fulfillment_id: '2'
                         descriptor:
-                          code: P2P
                           name: RTO quote
                           short_desc: RTO quote
                           long_desc: RTO quote
@@ -4904,7 +5026,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Send order details for fulfillment
                 LSP -->> LBNP: ACK - Confirm request received
-        example: &ref_39
+        example: &ref_32
           summary: Order Initialisation
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -4932,8 +5054,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: '1'
                     type: Delivery
@@ -5018,7 +5138,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Return assigned fulfillment IDs & pricing
                 LBNP ->> LSP: ACK - Confirm receipt of fulfillment details
-        example: &ref_52
+        example: &ref_45
           summary: Order initialisation
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -5188,7 +5308,7 @@ x-flows:
                   LBNP ->> LSP: **Retry /confirm**
                   LBNP -->> LSP: **Cancel Order** if no response (Reason Code 996)
                 end
-        example: &ref_43
+        example: &ref_36
           summary: Order confirmation
           description: LBNP confirms the order
           value:
@@ -5218,8 +5338,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -5488,7 +5606,7 @@ x-flows:
                   LSP ->> LBNP: **Retry /on_confirm**
                   LSP -->> LBNP: **Cancel Order** if no response (Reason Code 997)
                 end
-        example: &ref_56
+        example: &ref_49
           summary: Order Acceptance
           description: LSP provides acceptance to the order
           value:
@@ -5517,8 +5635,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -5783,7 +5899,7 @@ x-flows:
                 LBNP ->> LSP: **/update** - Send updated order details
                 LSP -->> LBNP: ACK - Confirm update received
                 LSP ->> LBNP: **/on_update** - Confirm changes applied
-        example: &ref_46
+        example: &ref_39
           summary: Order updates
           description: >-
             Logistics Buyer app updates the order, marks the fulfillment ready
@@ -5810,8 +5926,6 @@ x-flows:
                 items:
                   - id: I1
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: '1'
                     type: Delivery
@@ -5945,7 +6059,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_update** - Update order details
                 LBNP ->> LSP: ACK - Acknowledge weight diff charges, else NACK
-        example: &ref_65
+        example: &ref_58
           summary: Order updates
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -5976,8 +6090,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -6230,7 +6342,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_35
+        example: &ref_28
           summary: Order status (In-progress)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6262,8 +6374,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -6560,7 +6670,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/track** - Requests for tracking information
                 LSP -->> LBNP: ACK
-        example: &ref_48
+        example: &ref_41
           summary: Order tracking
           description: Logistics Buyer app requests for tracking information
           value:
@@ -6592,7 +6702,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_track** - Update order tracking information
                 LBNP ->> LSP: ACK
-        example: &ref_68
+        example: &ref_61
           summary: Order tracking
           description: LSP provides live tracking details
           value:
@@ -6663,7 +6773,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status
                 LBNP ->> LSP: ACK - Acknowledge order status
-        example: &ref_60
+        example: &ref_53
           summary: Order status (Completed)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -6695,8 +6805,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -7092,8 +7200,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -7352,8 +7458,6 @@ x-flows:
                 items:
                   - id: I1
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: '1'
                     type: Delivery
@@ -7485,7 +7589,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Fulfillment state: "At-pickup"
                 LBNP -->> LSP: ACK
-        example: &ref_64
+        example: &ref_57
           summary: Order status (At-pickup)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -7517,8 +7621,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -7895,7 +7997,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Order details, pickup & delivery slots, max distance, rate basis)
                 LSP -->> LBNP: ACK
-        example: &ref_38
+        example: &ref_31
           summary: Search (Quick Commerce)
           description: >-
             LBNP sends /search request by providing details such as no of orders
@@ -7918,9 +8020,6 @@ x-flows:
               intent:
                 category:
                   id: Instant Delivery
-                item:
-                  descriptor:
-                    code: P2P
                 provider:
                   time:
                     days: 1,2,3,4,5,6,7
@@ -8062,7 +8161,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (Fulfillment capacity, pricing details)
                 LBNP ->> LSP: ACK
-        example: &ref_51
+        example: &ref_44
           summary: Returns the catalog (Quick Commerce)
           description: >-
             LSP returns the catalog of its services. It also includes the
@@ -8166,7 +8265,6 @@ x-flows:
                         category_id: Instant Delivery
                         fulfillment_id: '1'
                         descriptor:
-                          code: P2P
                           name: 10 min delivery
                           short_desc: 10 min delivery for Grocery
                           long_desc: 10 min delivery for Grocery
@@ -8187,7 +8285,6 @@ x-flows:
                         category_id: Instant Delivery
                         fulfillment_id: '2'
                         descriptor:
-                          code: P2P
                           name: RTO quote
                           short_desc: RTO quote
                           long_desc: RTO quote
@@ -8241,7 +8338,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Initialize order processing)
                 LSP -->> LBNP: ACK
-        example: &ref_41
+        example: &ref_34
           summary: Order Initialisation (Quick Commerce)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -8269,8 +8366,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: ''
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: ''
                     type: Delivery
@@ -8560,7 +8655,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Fulfillment details, pricing breakdown)
                 LBNP ->> LSP: ACK
-        example: &ref_54
+        example: &ref_47
           summary: Order initialisation (Quick Commerce)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -8850,7 +8945,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (Confirmation of the order)
                 LSP -->> LBNP: ACK
-        example: &ref_45
+        example: &ref_38
           summary: Order confirmation (Quick Commerce)
           description: LBNP confirms the order
           value:
@@ -8882,8 +8977,6 @@ x-flows:
                       - F1
                       - F2
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT10M
@@ -9316,7 +9409,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm (Order acceptance)
                 LBNP ->> LSP: ACK
-        example: &ref_58
+        example: &ref_51
           summary: Order Acceptance (Quick commerce)
           description: LSP provides acceptance to the order
           value:
@@ -9348,8 +9441,6 @@ x-flows:
                       - F1
                       - F2
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT10M
@@ -9802,7 +9893,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (Updated order status and rider information)
                 LBNP ->> LSP: ACK
-        example: &ref_62
+        example: &ref_55
           summary: Order status (Quick Commerce)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -9837,8 +9928,6 @@ x-flows:
                       - F1
                       - F2
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT10M
@@ -10340,7 +10429,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /update (Updated order details)
                 LSP ->> LBNP: ACK
-        example: &ref_47
+        example: &ref_40
           summary: Order updates (Quick Commerce)
           description: >-
             Logistics Buyer app updates the order, assigns agent to the
@@ -10367,8 +10456,6 @@ x-flows:
                 items:
                   - id: I1
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: F1
                     type: Delivery
@@ -10688,7 +10775,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_update (Updated fulfillment details)
                 LBNP ->> LSP: ACK
-        example: &ref_66
+        example: &ref_59
           summary: Order updates (Quick Commerce)
           description: >-
             LSP acknowledges order updates such as agent assignment by LBNP,
@@ -10722,8 +10809,6 @@ x-flows:
                       - F1
                       - F2
                     category_id: Instant Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT10M
@@ -11258,7 +11343,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /search (Declare COD order, collection amount)
                 LSP -->> LBNP: ACK
-        example: &ref_37
+        example: &ref_30
           summary: Search (For Retail COD order)
           description: Logistics Buyer app sends a search request for retail COD order
           value:
@@ -11278,9 +11363,6 @@ x-flows:
               intent:
                 category:
                   id: Immediate Delivery
-                item:
-                  descriptor:
-                    code: P2P
                 provider:
                   time:
                     days: 1,2,3,4,5,6,7
@@ -11385,7 +11467,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_search (COD capability, service charge details)
                 LBNP -->> LSP: ACK
-        example: &ref_50
+        example: &ref_43
           summary: Returns the catalog (Cash on delivery)
           description: >-
             LSP returns the catalog of its services in response to the search
@@ -11459,7 +11541,6 @@ x-flows:
                         category_id: Immediate Delivery
                         fulfillment_id: '1'
                         descriptor:
-                          code: P2P
                           name: 60 min delivery
                           short_desc: 60 min delivery for F&B
                           long_desc: 60 min delivery for F&B
@@ -11480,7 +11561,6 @@ x-flows:
                         category_id: Immediate Delivery
                         fulfillment_id: '1'
                         descriptor:
-                          code: P2P
                           name: COD Fee
                           short_desc: COD Fee
                           long_desc: Cash on delivery fee
@@ -11501,7 +11581,6 @@ x-flows:
                         category_id: Immediate Delivery
                         fulfillment_id: '2'
                         descriptor:
-                          code: P2P
                           name: RTO quote
                           short_desc: RTO quote
                           long_desc: RTO quote
@@ -11540,7 +11619,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /init (Select delivery type, COD fee)
                 LSP -->> LBNP: ACK
-        example: &ref_40
+        example: &ref_33
           summary: Order Initialisation (Cash on delivery)
           description: LBNP initialises the order with the selected LSP.
           value:
@@ -11568,8 +11647,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                     tags:
                       - code: type
                         list:
@@ -11578,8 +11655,6 @@ x-flows:
                   - id: I2
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                     tags:
                       - code: type
                         list:
@@ -11682,7 +11757,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_init (Final cost breakdown, COD fee, taxes)
                 LBNP -->> LSP: ACK
-        example: &ref_53
+        example: &ref_46
           summary: Order initialisation (Cash on delivery)
           description: LBNP acknowledges order initialisation , provides quote breakup.
           value:
@@ -11810,7 +11885,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: /confirm (COD settlement details)
                 LSP -->> LBNP: ACK
-        example: &ref_44
+        example: &ref_37
           summary: Order confirmation (Cash on delivery)
           description: LBNP confirms the order
           value:
@@ -11840,8 +11915,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -12084,7 +12157,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_confirm
                 LBNP -->> LSP: ACK
-        example: &ref_57
+        example: &ref_50
           summary: Order Acceptance (Cash on delivery)
           description: LSP provides acceptance to the order
           value:
@@ -12113,8 +12186,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -12402,7 +12473,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: /on_status (COD deposit transaction details)
                 LBNP -->> LSP: ACK
-        example: &ref_61
+        example: &ref_54
           summary: Order status (Cash on delivery)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -12438,8 +12509,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -12447,8 +12516,6 @@ x-flows:
                   - id: I2
                     fulfillment_id: 1-RTO
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -12832,7 +12899,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update order status (Out-for-delivery, etc.)
                 LBNP ->> LSP: ACK
-        example: *ref_35
+        example: *ref_28
       - summary: <b>LSP marks the forward shipment as 'RTO' </b>
         api: on_cancel
         details:
@@ -12854,7 +12921,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_cancel** - Update forward shipment to 'RTO' and create RTO fulfillment
                 LBNP ->> LSP: ACK
-        example: &ref_67
+        example: &ref_60
           summary: RTO Initiation
           description: >-
             LSP updates the forward shipment to RTO and creates a new RTO
@@ -12889,8 +12956,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -12898,8 +12963,6 @@ x-flows:
                   - id: I2
                     fulfillment_id: 1-RTO
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -13189,7 +13252,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_status** - Update RTO fulfillment to its terminal state
                 LBNP ->> LSP: ACK
-        example: &ref_63
+        example: &ref_56
           summary: Order status (RTO)
           description: >-
             LSP updates the order status such as any changes to the fulfillment
@@ -13226,8 +13289,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -13235,8 +13296,6 @@ x-flows:
                   - id: I2
                     fulfillment_id: 1-RTO
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -13624,7 +13683,7 @@ x-flows:
                 participant LSP
                 LBNP ->> LSP: **/init** - Payment type: Prepaid, Collected by - LSP
                 LSP ->> LBNP: ACK
-        example: &ref_42
+        example: &ref_35
           summary: LBNP proposes prepaid payment collection by LSP
           description: LBNP proposes prepaid payment collection by LSP
           value:
@@ -13652,8 +13711,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Immediate Delivery
-                    descriptor:
-                      code: P2P
                 fulfillments:
                   - id: '1'
                     type: Delivery
@@ -13732,7 +13789,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_init** - Provide wallet balance inside payment.tags
                 LBNP ->> LSP: ACK
-        example: &ref_55
+        example: &ref_48
           summary: LSP responds with payment collection details
           description: LSP responds with payment collection details
           value:
@@ -13849,7 +13906,7 @@ x-flows:
                 participant LSP
                 LSP ->> LBNP: **/on_confirm** - Deduct amount from wallet and send updated balance
                 LBNP ->> LSP: ACK
-        example: &ref_59
+        example: &ref_52
           summary: Order Confirmation (Auto-debit of wallet balance)
           description: >-
             LSP provides acceptance to the order and auto-debit of wallet
@@ -13880,8 +13937,6 @@ x-flows:
                   - id: I1
                     fulfillment_id: '1'
                     category_id: Same Day Delivery
-                    descriptor:
-                      code: P2P
                     time:
                       label: TAT
                       duration: PT45M
@@ -14154,24 +14209,24 @@ x-examples:
     example_set:
       search:
         examples:
+          - *ref_29
+          - *ref_30
+          - *ref_31
+      init:
+        examples:
+          - *ref_32
+          - *ref_33
+          - *ref_34
+          - *ref_35
+      confirm:
+        examples:
           - *ref_36
           - *ref_37
           - *ref_38
-      init:
+      update:
         examples:
           - *ref_39
           - *ref_40
-          - *ref_41
-          - *ref_42
-      confirm:
-        examples:
-          - *ref_43
-          - *ref_44
-          - *ref_45
-      update:
-        examples:
-          - *ref_46
-          - *ref_47
       status:
         examples:
           - summary: Order Status
@@ -14195,7 +14250,7 @@ x-examples:
                 order_id: O2
       track:
         examples:
-          - *ref_48
+          - *ref_41
       cancel:
         examples:
           - summary: Order cancellation
@@ -14220,33 +14275,33 @@ x-examples:
                 cancellation_reason_id: '126'
       on_search:
         examples:
+          - *ref_42
+          - *ref_43
+          - *ref_44
+      on_init:
+        examples:
+          - *ref_45
+          - *ref_46
+          - *ref_47
+          - *ref_48
+      on_confirm:
+        examples:
           - *ref_49
           - *ref_50
           - *ref_51
-      on_init:
-        examples:
           - *ref_52
+      on_status:
+        examples:
           - *ref_53
           - *ref_54
           - *ref_55
-      on_confirm:
-        examples:
           - *ref_56
+          - *ref_28
           - *ref_57
-          - *ref_58
-          - *ref_59
-      on_status:
-        examples:
-          - *ref_60
-          - *ref_61
-          - *ref_62
-          - *ref_63
-          - *ref_35
-          - *ref_64
       on_update:
         examples:
-          - *ref_65
-          - *ref_66
+          - *ref_58
+          - *ref_59
       on_cancel:
         examples:
           - summary: Order cancellation
@@ -14281,8 +14336,6 @@ x-examples:
                     - id: I1
                       fulfillment_id: '1'
                       category_id: Same Day Delivery
-                      descriptor:
-                        code: P2P
                       time:
                         label: TAT
                         duration: PT45M
@@ -14517,10 +14570,10 @@ x-examples:
                           unit: centimeter
                           value: 1
                   updated_at: '2024-11-20T22:00:30.000Z'
-          - *ref_67
+          - *ref_60
       on_track:
         examples:
-          - *ref_68
+          - *ref_61
 x-attributes:
   logistics:
     attribute_set:
@@ -14613,26 +14666,14 @@ x-attributes:
                 owner: BAP
                 usage: Immediate Delivery
                 description: >
-                  Describes the intended delivery category for the order,
-                  "Express Delivery" - by air;
-
-                  "Standard Delivery" - by surface
-
-                  "Immediate Delivery" is for S2D <= 60 min;
-
-                  "Same Day Delivery"
-
-                  "Next Day Delivery"
-
-                  If id="Standard Delivery":
-
-                  all possible options should be returned in /on_search
-                  (including for "Immediate Delivery", "Same Day Delivery",
-                  "Next Day Delivery");
-
-                  If id="Express Delivery":
-
-                  all possible P2H2P options should be returned in /on_search;
+                  Express Delivery" - by air (for P2H2P); "Standard Delivery" -
+                  by surface (for P2P, P2H2P): "Immediate Delivery" is for S2D
+                  <= 60 min; "Same Day Delivery" "Next Day Delivery" If
+                  id="Standard Delivery": all possible options should be
+                  returned in /on_search (including for "Immediate Delivery",
+                  "Same Day Delivery", "Next Day Delivery"); If id="Express
+                  Delivery": all possible P2H2P options should be returned in
+                  /on_search;
             item:
               descriptor:
                 code:
@@ -14642,7 +14683,7 @@ x-attributes:
                   usage: false
                   description: >-
                     Describes the type of order, point to point (P2P) or via hub
-                    (P2H2P)
+                    (P2H2P), deprecated, not to be used.
             provider:
               time:
                 days:
@@ -15158,7 +15199,7 @@ x-attributes:
                   description: false
                 descriptor:
                   code:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BPP
                     usage: false
@@ -15166,7 +15207,8 @@ x-attributes:
                       type of shipment; enum -  "P2P" (point-to-point), "P2H2P"
                       (point-to-hub-to-point). P2H2P fulfillments require
                       different packaging and AWB no; required for merchants to
-                      decide on the packaging required for shipment;
+                      decide on the packaging required for shipment; deprecated,
+                      not to be used.
                   name:
                     required: mandatory
                     type: string
@@ -15353,7 +15395,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -15980,7 +16022,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -16820,7 +16862,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -16905,8 +16947,7 @@ x-attributes:
                 description: >-
                   AWB no. can be provided by logistics buyer NP (in /confirm or
                   /update) or LSP (in /on_confirm or /on_update) and is
-                  mandatory only if item.descriptor.code = "P2H2P". Can be 11-16
-                  digits;
+                  mandatory only if domain is ONDC:LOG11. Can be 11-16 digits;
               start:
                 time:
                   duration:
@@ -16993,7 +17034,7 @@ x-attributes:
                     description: false
                 instructions:
                   code:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -17002,7 +17043,7 @@ x-attributes:
                       of PCC: enum - "2" - merchant order no, "3" - other pickup
                       confirmation code, "4" - OTP;
                   short_desc:
-                    required: mandatory
+                    required: optional
                     type: string
                     owner: BAP
                     usage: false
@@ -17023,13 +17064,13 @@ x-attributes:
                     description: optional
                   additional_desc:
                     content_type:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
                       description: ' for seller & buyer instructions,'
                     url:
-                      required: mandatory
+                      required: optional
                       type: string
                       owner: BPP
                       usage: false
@@ -17604,7 +17645,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -17694,7 +17735,7 @@ x-attributes:
                 type: string
                 owner: BPP
                 usage: false
-                description: ' required only if item.descriptor.code = "P2H2P"; can be provided by logistics buyer (/confirm or /update) or LSP (/on_confirm or /on_update);'
+                description: ' required only if domain is ONDC:LOG11; can be provided by logistics buyer (/confirm or /update) or LSP (/on_confirm or /on_update);'
               tracking:
                 required: mandatory
                 type: string
@@ -18437,7 +18478,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -18876,7 +18917,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BPP
                   usage: false
@@ -19828,7 +19869,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BAP
                   usage: false
@@ -21107,7 +21148,7 @@ x-attributes:
                 description: false
               descriptor:
                 code:
-                  required: mandatory
+                  required: optional
                   type: string
                   owner: BAP
                   usage: false

@@ -29,8 +29,7 @@ value:
             - F1
             - F2
           category_id: Instant Delivery
-          descriptor:
-            code: P2P
+
           time:
             label: TAT
             duration: PT10M

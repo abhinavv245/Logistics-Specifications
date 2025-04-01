@@ -22,8 +22,7 @@ value:
       items:
         - id: I1
           category_id: Instant Delivery
-          descriptor:
-            code: P2P
+
       fulfillments:
         - id: F1
           type: Delivery

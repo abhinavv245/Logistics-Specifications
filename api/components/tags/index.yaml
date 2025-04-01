@@ -20,24 +20,6 @@ on_search:
         tags:
           $ref: "./tag-group.yaml#/on_search_providers_tags"
 
-select:
-  message:
-    order:
-      fulfillments:
-        $ref: "./tag-group.yaml#/select_fulfillment_tags"
-      tags:
-        $ref: "./tag-group.yaml#/init_order_tags"
-
-on_select:
-  message:
-    order:
-      fulfillments:
-        $ref: "./tag-group.yaml#/on_select_fulfillment_tags"
-      payment:
-        $ref: "./tag-group.yaml#/on_select_payment_tags"
-      tags:
-        $ref: "./tag-group.yaml#/on_init_order_tags"
-
 init:
   message:
     order:

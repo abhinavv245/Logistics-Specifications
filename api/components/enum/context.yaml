@@ -1,4 +1,10 @@
 domain:
+  - code: ONDC:LOG10
+    description: Hyperlocal logistics domain code (P2P)
+    reference: <PR/Issue/Discussion Links md format text>
+  - code: ONDC:LOG11
+    description: Intercity logistics domain code (P2H2P)
+    reference: <PR/Issue/Discussion Links md format text>
   - code: nic2004:60232
-    description: Logistics domain code
+    description: Logistics domain code (deprecated)
     reference: <PR/Issue/Discussion Links md format text>
