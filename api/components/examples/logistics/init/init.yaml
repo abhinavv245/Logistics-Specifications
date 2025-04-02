@@ -2,7 +2,7 @@ summary: Order Initialisation
 description: LBNP initialises the order with the selected LSP.
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: init

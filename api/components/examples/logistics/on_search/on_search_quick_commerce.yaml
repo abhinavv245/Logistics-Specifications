@@ -2,7 +2,7 @@ summary: Returns the catalog (Quick Commerce)
 description: LSP returns the catalog of its services. It also includes the 'fulfill_response' tag in response to the 'fulfill_request' by LBNP.
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: on_search

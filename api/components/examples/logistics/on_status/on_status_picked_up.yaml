@@ -2,7 +2,7 @@ summary: Order status (In-progress)
 description: LSP updates the order status such as any changes to the fulfillment state for e.g. from Pending to Order-picked-up, record timestamps, etc and maintains the complete order trail.
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: on_status

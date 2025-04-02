@@ -2,7 +2,7 @@ summary: Search (For Retail COD order)
 description: Logistics Buyer app sends a search request for retail COD order
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: search

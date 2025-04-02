@@ -2,7 +2,7 @@ summary: Order initialisation (Cash on delivery)
 description: LBNP acknowledges order initialisation , provides quote breakup.
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: on_init

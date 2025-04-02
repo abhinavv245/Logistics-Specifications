@@ -2,7 +2,7 @@ summary: Returns the catalog (Cash on delivery)
 description: LSP returns the catalog of its services in response to the search request and declares its ability to fulfill COD orders. 
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: on_search

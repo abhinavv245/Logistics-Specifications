@@ -2,7 +2,7 @@ summary: Order tracking
 description: LSP provides live tracking details
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     action: on_track
     country: IND
     city: std:080

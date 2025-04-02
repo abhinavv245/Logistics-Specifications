@@ -1272,6 +1272,8 @@ components:
       type: string
       enum:
         - nic2004:60232
+        - ONDC:LOG10
+        - ONDC:LOG11
     Duration:
       description: Describes duration as per ISO8601 format
       type: string
@@ -1862,6 +1864,10 @@ components:
                 igst_amount:
                   $ref: '#/components/schemas/DecimalValue'
               additionalProperties: false
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagGroup'
           additionalProperties: false
         tags:
           type: array

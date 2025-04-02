@@ -2,7 +2,7 @@ summary: Order updates (Quick Commerce)
 description: Logistics Buyer app updates the order, assigns agent to the fulfillment based on the rider details shared by LSP.
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: update

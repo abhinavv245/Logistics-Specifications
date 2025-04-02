@@ -2,7 +2,7 @@ summary: Order updates (Quick Commerce)
 description: LSP acknowledges order updates such as agent assignment by LBNP, provide any weight differentail charges, etc. 
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: on_update

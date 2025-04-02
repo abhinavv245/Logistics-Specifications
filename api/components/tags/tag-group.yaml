@@ -935,6 +935,42 @@ on_cancel_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/ebn"
+    - code: linked_order_diff
+      description: Differences in the linked order details.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Order ID.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_unit
+          description: Unit of weight measurement.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_value
+          description: Weight of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: dim_unit
+          description: Unit for dimensions.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: length
+          description: Order length.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: breadth
+          description: Order breadth.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: height
+          description: Order height.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: linked_order_diff_proof
+      description: Proof of differences in the order.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: type
+          description: Type of proof (e.g., image).
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: url
+          description: Link to the proof image.
+          reference: <PR/Issue/Discussion Links md format text>
 
 on_track_tracking_tags:
   tags:
@@ -1146,3 +1182,39 @@ on_status_fulfillment_tags:
       reference: <PR/Issue/Discussion Links md format text>
       list:
         $ref: "./tag.yaml#/ebn"
+    - code: linked_order_diff
+      description: Differences in the linked order details.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: id
+          description: Order ID.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_unit
+          description: Unit of weight measurement.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: weight_value
+          description: Weight of the order.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: dim_unit
+          description: Unit for dimensions.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: length
+          description: Order length.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: breadth
+          description: Order breadth.
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: height
+          description: Order height.
+          reference: <PR/Issue/Discussion Links md format text>
+
+    - code: linked_order_diff_proof
+      description: Proof of differences in the order.
+      reference: <PR/Issue/Discussion Links md format text>
+      list:
+        - code: type
+          description: Type of proof (e.g., image).
+          reference: <PR/Issue/Discussion Links md format text>
+        - code: url
+          description: Link to the proof image.
+          reference: <PR/Issue/Discussion Links md format text>

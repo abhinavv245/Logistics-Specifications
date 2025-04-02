@@ -2,7 +2,7 @@ summary: Search (Quick Commerce)
 description: LBNP sends /search request by providing details such as no of orders or riders, pickup location, pickup & delivery slot, max motorable distance for serviceability, rate basis (rate per rider or order);
 value:
   context:
-    domain: nic2004:60232
+    domain: ONDC:LOG10
     country: IND
     city: std:080
     action: search
