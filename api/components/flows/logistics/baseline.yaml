@@ -1,7 +1,7 @@
 summary: Order Flow (Baseline)
 details:
   - description: |
-      This flow defines the logistics order process for <b>Baseline Features</b> to be implemented by all Network participants transacting on version 1.2.5.<br>
+      This flow defines the logistics order process for <b>Baseline Features</b> to be implemented by all Network participants transacting on version 2.0.0.<br>
 
       These features are:<br>  
         - <b>Catalog Live Search</b><br>

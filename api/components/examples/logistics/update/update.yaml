@@ -1,19 +1,23 @@
 summary: Order updates
-description: Logistics Buyer app updates the order, marks the fulfillment ready to be shipped, updates delivery address, etc.
+description: Logistics Buyer app updates the order, marks the fulfillment ready
+  to be shipped, updates delivery address, etc.
 value:
   context:
     domain: nic2004:60232
-    country: IND
-    city: std:080
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
+    version: 2.0.0
     action: update
-    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M4
-    timestamp: '2024-11-20T22:30:00.000Z'
+    timestamp: 2024-11-20T22:30:00.000Z
     ttl: PT30S
   message:
     update_target: fulfillment
@@ -21,124 +25,136 @@ value:
       id: O2
       items:
         - id: I1
-          category_id: Same Day Delivery
           descriptor:
             code: P2P
+          category_ids:
+            - SAME DAY DELIVERY
       fulfillments:
-        - id: '1'
-          type: Delivery
-          '@ondc/org/awb_no': '1227262193237777'
-          start:
-            instructions:
-              code: '2'
-              short_desc: value of PCC
-              long_desc: additional instructions for pickup
-              additional_desc:
-                content_type: text/html
-                url: ".."
-            authorization:
-              type: OTP
-              token: OTP code
-              valid_from: '2024-11-20T12:00:00.000Z'
-              valid_to: '2024-11-20T14:00:00.000Z'
-          end:
-            instructions:
-              code: '2'
-              short_desc: value of DCC
-              long_desc: additional instructions for delivery
+        - id: "1"
+          type: DELIVERY
+          stops:
+            - type: START
+              instructions:
+                code: "2"
+                short_desc: value of PCC
+                long_desc: additional instructions for pickup
+                additional_desc:
+                  content_type: text/html
+                  url: ..
+              authorization:
+                type: OTP
+                token: OTP code
+                valid_from: 2024-11-20T12:00:00.000Z
+                valid_to: 2024-11-20T14:00:00.000Z
+            - type: END
+              instructions:
+                code: "2"
+                short_desc: value of DCC
+                long_desc: additional instructions for delivery
           tags:
-            - code: state
+            - descriptor:
+                code: STATE
               list:
-                - code: ready_to_ship
-                  value: 'yes'
-            - code: linked_provider
+                - descriptor:
+                    code: READY_TO_SHIP
+                  value: yes
+            - descriptor:
+                code: LINKED_PROVIDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: P1
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Seller1
-                - code: address
+                - descriptor:
+                    code: ADDRESS
                   value: shop_name,building_name,locality,city,state,pincode
-            - code: linked_order
+            - descriptor:
+                code: LINKED_ORDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: RO1
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: declared_value
-                  value: '300.0'
-                - code: weight_unit
+                - descriptor:
+                    code: DECLARED_VALUE
+                  value: "300.0"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '3.0'
-                - code: dim_unit
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "3.0"
+                - descriptor:
+                    code: DIM_UNIT
                   value: centimeter
-                - code: length
-                  value: '1.0'
-                - code: breadth
-                  value: '1.0'
-                - code: height
-                  value: '1.0'
-                - code: shipment_type
+                - descriptor:
+                    code: LENGTH
+                  value: "1.0"
+                - descriptor:
+                    code: BREADTH
+                  value: "1.0"
+                - descriptor:
+                    code: HEIGHT
+                  value: "1.0"
+                - descriptor:
+                    code: SHIPMENT_TYPE
                   value: box
-            - code: linked_order_item
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Atta
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '70.0'
-                - code: quantity
-                  value: '2'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "70.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "2"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-            - code: linked_order_item
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Basmati Rice
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '160.0'
-                - code: quantity
-                  value: '1'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "160.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "1"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-      '@ondc/org/linked_order':
-        items:
-          - category_id: Grocery
-            descriptor:
-              name: Atta
-            quantity:
-              count: 2
-              measure:
-                unit: kilogram
-                value: 0.5
-            price:
-              currency: INR
-              value: '150.00'
-        order:
-          id: O1
-          weight:
-            unit: kilogram
-            value: 1
-          dimensions:
-            length:
-              unit: centimeter
-              value: 1
-            breadth:
-              unit: centimeter
-              value: 1
-            height:
-              unit: centimeter
-              value: 1
-      updated_at: '2024-11-20T23:00:00.000Z'
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+            - descriptor:
+                code: AWB
+              list:
+                - descriptor:
+                    code: ID
+                  value: "1227262193237777"
+      updated_at: 2024-11-20T23:00:00.000Z

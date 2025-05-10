@@ -1,14 +1,23 @@
 breakup:
-  title:
-    - code: BASE_FARE
-      description: Describes the base fare for a specific ride.
-      reference: <PR/Issue/Discussion Links md format text
-    - code: DISTANCE_FARE
-      description: Describes the distance fare for a specific ride.
-      reference: <PR/Issue/Discussion Links md format text  
-    - code: CANCELLATION_CHARGES
-      description: Describes the cancellation charges for a specific ride.
-      reference: <PR/Issue/Discussion Links md format text  
-    - code: REFUND
-      description: Describes the refund amount for a specific ride.
-      reference: <PR/Issue/Discussion Links md format text   
+  '@ondc/org/title_type':
+    - code: DELIVERY
+      description: Describes the base fare for delivery.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: RTO
+      description: Describes the base fare for return to origin (rto).
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: TAX
+      description: Describes the tax fare for delivery or rto.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: DIFF
+      description: Describes the weight differential charge.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: TAX_DIFF
+      description: Describes the tax on weight differential charge.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: DISCOUNT
+      description: Describes the discount on delivery charge.
+      reference: <PR/Issue/Discussion Links md format text>
+    - code: COD
+      description: Describes the COD charge
+      reference: <PR/Issue/Discussion Links md format text>

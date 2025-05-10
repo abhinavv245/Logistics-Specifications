@@ -3,445 +3,547 @@ description: LBNP confirms the order
 value:
   context:
     domain: nic2004:60232
-    country: IND
-    city: std:080
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
+    version: 2.0.0
     action: confirm
-    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M3
-    timestamp: '2024-11-20T22:00:00.000Z'
+    timestamp: 2024-11-20T22:00:00.000Z
     ttl: PT30S
   message:
     order:
       id: O2
-      state: Created
       provider:
         id: P1
         locations:
           - id: L1
       items:
         - id: I1
-          fulfillment_ids:
-            - F1
-            - F2
-          category_id: Instant Delivery
           descriptor:
             code: P2P
           time:
             label: TAT
             duration: PT10M
-            timestamp: '2024-11-20'
+            timestamp: 2024-11-20
+          category_ids:
+            - INSTANT DELIVERY
       quote:
         price:
           currency: INR
-          value: '159.00'
+          value: "159.00"
         breakup:
-          - '@ondc/org/item_id': I1
-            '@ondc/org/title_type': delivery
+          - title: DELIVERY
+            item:
+              id: I1
             price:
               currency: INR
-              value: '150.00'
-          - '@ondc/org/item_id': I1
-            '@ondc/org/title_type': tax
+              value: "150.00"
+          - title: TAX
+            item:
+              id: I1
             price:
               currency: INR
-              value: '9.00'
+              value: "9.00"
       fulfillments:
         - id: F1
-          type: Delivery
-          '@ondc/org/awb_no': '1227262193237777'
-          start:
-            time:
-              duration: PT15M
-            person:
-              name: person_name
-            location:
-              id: S1
-              gps: 12.4535,77.9283
-              address:
-                name: Store name
-                building: House or building name
-                locality: Locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560041'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
-            instructions:
-              code: '2'
-              short_desc: value of PCC
-              long_desc: additional instructions for pickup
-              additional_desc:
-                content_type: text/html
-                url: ".."
-          end:
-            person:
-              name: person_name
-            location:
-              gps: 12.453544,77.928379
-              address:
-                name: 'My house #'
-                building: My house or building name
-                locality: locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560076'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
-            instructions:
-              code: '3'
-              short_desc: value of DCC
-              long_desc: additional instructions for delivery
-              additional_desc:
-                content_type: text/html
-                url: ".."
+          type: DELIVERY
+          stops:
+            - type: START
+              time:
+                duration: PT15M
+              person:
+                name: person_name
+              location:
+                id: S1
+                gps: 12.4535,77.9283
+                address: Store name, House or building name, Locality
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560041"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+              instructions:
+                code: "2"
+                short_desc: value of PCC
+                long_desc: additional instructions for pickup
+                additional_desc:
+                  content_type: text/html
+                  url: ..
+            - type: END
+              person:
+                name: person_name
+              location:
+                gps: 12.453544,77.928379
+                address: "My house #, My house or building name, locality"
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560076"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+              instructions:
+                code: "3"
+                short_desc: value of DCC
+                long_desc: additional instructions for delivery
+                additional_desc:
+                  content_type: text/html
+                  url: ..
           tags:
-            - code: linked_provider
+            - descriptor:
+                code: LINKED_PROVIDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: P1
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Seller1
-                - code: address
+                - descriptor:
+                    code: ADDRESS
                   value: shop_name,building_name,locality,city,state,pincode
-            - code: fulfill_request
+            - descriptor:
+                code: FULFILL_REQUEST
               list:
-                - code: rider_count
-                  value: '2'
-                - code: order_count
-                  value: '10'
-                - code: rate_basis
+                - descriptor:
+                    code: RIDER_COUNT
+                  value: "2"
+                - descriptor:
+                    code: ORDER_COUNT
+                  value: "10"
+                - descriptor:
+                    code: RATE_BASIS
                   value: rider
-                - code: motorable_distance
-                  value: '3.0'
-                - code: pickup_slot_start
-                  value: '2024-12-11T00:00:00.000Z'
-                - code: pickup_slot_end
-                  value: '2024-12-11T00:15:00.000Z'
-                - code: delivery_slot_start
-                  value: '2024-12-11T01:30:00.000Z'
-                - code: delivery_slot_end
-                  value: '2024-12-11T02:00:00.000Z'
-            - code: fulfill_response
+                - descriptor:
+                    code: MOTORABLE_DISTANCE
+                  value: "3.0"
+                - descriptor:
+                    code: PICKUP_SLOT_START
+                  value: 2024-12-11T00:00:00.000Z
+                - descriptor:
+                    code: PICKUP_SLOT_END
+                  value: 2024-12-11T00:15:00.000Z
+                - descriptor:
+                    code: DELIVERY_SLOT_START
+                  value: 2024-12-11T01:30:00.000Z
+                - descriptor:
+                    code: DELIVERY_SLOT_END
+                  value: 2024-12-11T02:00:00.000Z
+            - descriptor:
+                code: FULFILL_RESPONSE
               list:
-                - code: rider_count
-                  value: '2'
-                - code: order_count
-                  value: '10'
-                - code: rate_basis
+                - descriptor:
+                    code: RIDER_COUNT
+                  value: "2"
+                - descriptor:
+                    code: ORDER_COUNT
+                  value: "10"
+                - descriptor:
+                    code: RATE_BASIS
                   value: rider
-            - code: linked_order
+            - descriptor:
+                code: LINKED_ORDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: RO1
-                - code: prep_time
+                - descriptor:
+                    code: PREP_TIME
                   value: PT30M
-                - code: cod_order
-                  value: 'yes'
-                - code: currency
+                - descriptor:
+                    code: COD_ORDER
+                  value: yes
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: declared_value
-                  value: '300.0'
-                - code: collection_amount
-                  value: '325.00'
-                - code: weight_unit
+                - descriptor:
+                    code: DECLARED_VALUE
+                  value: "300.0"
+                - descriptor:
+                    code: COLLECTION_AMOUNT
+                  value: "325.00"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '3.0'
-                - code: value
-                  value: '300.0'
-                - code: dim_unit
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "3.0"
+                - descriptor:
+                    code: VALUE
+                  value: "300.0"
+                - descriptor:
+                    code: DIM_UNIT
                   value: centimeter
-                - code: length
-                  value: '1.0'
-                - code: breadth
-                  value: '1.0'
-                - code: height
-                  value: '1.0'
-                - code: shipment_type
+                - descriptor:
+                    code: LENGTH
+                  value: "1.0"
+                - descriptor:
+                    code: BREADTH
+                  value: "1.0"
+                - descriptor:
+                    code: HEIGHT
+                  value: "1.0"
+                - descriptor:
+                    code: SHIPMENT_TYPE
                   value: box
-            - code: linked_order_item
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Atta
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '70.0'
-                - code: quantity
-                  value: '2'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "70.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "2"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-                - code: return_to_origin
-                  value: 'yes'
-            - code: linked_order_item
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: yes
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Basmati Rice
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '160.0'
-                - code: quantity
-                  value: '1'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "160.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "1"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-                - code: return_to_origin
-                  value: 'yes'
-            - code: state
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: yes
+            - descriptor:
+                code: STATE
               list:
-                - code: ready_to_ship
-                  value: 'no'
-            - code: rto_action
+                - descriptor:
+                    code: READY_TO_SHIP
+                  value: no
+            - descriptor:
+                code: RTO_ACTION
               list:
-                - code: return_to_origin
-                  value: 'no'
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: no
+            - descriptor:
+                code: AWB
+              list:
+                - descriptor:
+                    code: ID
+                  value: "1227262193237777"
         - id: F2
-          type: Delivery
-          '@ondc/org/awb_no': '1227262193237777'
-          start:
-            time:
-              duration: PT15M
-            person:
-              name: person_name
-            location:
-              id: S1
-              gps: 12.4535,77.9283
-              address:
-                name: Store name
-                building: House or building name
-                locality: Locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560041'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
-            instructions:
-              code: '2'
-              short_desc: value of PCC
-              long_desc: additional instructions for pickup
-              additional_desc:
-                content_type: text/html
-                url: ".."
-          end:
-            person:
-              name: person_name
-            location:
-              gps: 12.453544,77.928379
-              address:
-                name: 'My house #'
-                building: My house or building name
-                locality: locality
-                city: Bengaluru
-                state: Karnataka
-                country: India
-                area_code: '560076'
-            contact:
-              phone: '9886098860'
-              email: abcd.efgh@gmail.com
-            instructions:
-              code: '3'
-              short_desc: value of DCC
-              long_desc: additional instructions for delivery
-              additional_desc:
-                content_type: text/html
-                url: ".."
+          type: DELIVERY
+          stops:
+            - type: START
+              time:
+                duration: PT15M
+              person:
+                name: person_name
+              location:
+                id: S1
+                gps: 12.4535,77.9283
+                address: Store name, House or building name, Locality
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560041"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+              instructions:
+                code: "2"
+                short_desc: value of PCC
+                long_desc: additional instructions for pickup
+                additional_desc:
+                  content_type: text/html
+                  url: ..
+            - type: END
+              person:
+                name: person_name
+              location:
+                gps: 12.453544,77.928379
+                address: "My house #, My house or building name, locality"
+                city:
+                  name: Bengaluru
+                state:
+                  name: Karnataka
+                country:
+                  name: India
+                area_code: "560076"
+              contact:
+                phone: "9886098860"
+                email: abcd.efgh@gmail.com
+              instructions:
+                code: "3"
+                short_desc: value of DCC
+                long_desc: additional instructions for delivery
+                additional_desc:
+                  content_type: text/html
+                  url: ..
           tags:
-            - code: linked_provider
+            - descriptor:
+                code: LINKED_PROVIDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: P1
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Seller1
-                - code: address
+                - descriptor:
+                    code: ADDRESS
                   value: shop_name,building_name,locality,city,state,pincode
-            - code: fulfill_request
+            - descriptor:
+                code: FULFILL_REQUEST
               list:
-                - code: rider_count
-                  value: '2'
-                - code: order_count
-                  value: '10'
-                - code: rate_basis
+                - descriptor:
+                    code: RIDER_COUNT
+                  value: "2"
+                - descriptor:
+                    code: ORDER_COUNT
+                  value: "10"
+                - descriptor:
+                    code: RATE_BASIS
                   value: rider
-                - code: motorable_distance
-                  value: '3.0'
-                - code: pickup_slot_start
-                  value: '2024-12-11T00:00:00.000Z'
-                - code: pickup_slot_end
-                  value: '2024-12-11T00:15:00.000Z'
-                - code: delivery_slot_start
-                  value: '2024-12-11T01:30:00.000Z'
-                - code: delivery_slot_end
-                  value: '2024-12-11T02:00:00.000Z'
-            - code: fulfill_response
+                - descriptor:
+                    code: MOTORABLE_DISTANCE
+                  value: "3.0"
+                - descriptor:
+                    code: PICKUP_SLOT_START
+                  value: 2024-12-11T00:00:00.000Z
+                - descriptor:
+                    code: PICKUP_SLOT_END
+                  value: 2024-12-11T00:15:00.000Z
+                - descriptor:
+                    code: DELIVERY_SLOT_START
+                  value: 2024-12-11T01:30:00.000Z
+                - descriptor:
+                    code: DELIVERY_SLOT_END
+                  value: 2024-12-11T02:00:00.000Z
+            - descriptor:
+                code: FULFILL_RESPONSE
               list:
-                - code: rider_count
-                  value: '2'
-                - code: order_count
-                  value: '10'
-                - code: rate_basis
+                - descriptor:
+                    code: RIDER_COUNT
+                  value: "2"
+                - descriptor:
+                    code: ORDER_COUNT
+                  value: "10"
+                - descriptor:
+                    code: RATE_BASIS
                   value: rider
-            - code: linked_order
+            - descriptor:
+                code: LINKED_ORDER
               list:
-                - code: id
+                - descriptor:
+                    code: ID
                   value: RO1
-                - code: prep_time
+                - descriptor:
+                    code: PREP_TIME
                   value: PT30M
-                - code: cod_order
-                  value: 'yes'
-                - code: currency
+                - descriptor:
+                    code: COD_ORDER
+                  value: yes
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: declared_value
-                  value: '300.0'
-                - code: collection_amount
-                  value: '325.00'
-                - code: weight_unit
+                - descriptor:
+                    code: DECLARED_VALUE
+                  value: "300.0"
+                - descriptor:
+                    code: COLLECTION_AMOUNT
+                  value: "325.00"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '3.0'
-                - code: value
-                  value: '300.0'
-                - code: dim_unit
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "3.0"
+                - descriptor:
+                    code: VALUE
+                  value: "300.0"
+                - descriptor:
+                    code: DIM_UNIT
                   value: centimeter
-                - code: length
-                  value: '1.0'
-                - code: breadth
-                  value: '1.0'
-                - code: height
-                  value: '1.0'
-                - code: shipment_type
+                - descriptor:
+                    code: LENGTH
+                  value: "1.0"
+                - descriptor:
+                    code: BREADTH
+                  value: "1.0"
+                - descriptor:
+                    code: HEIGHT
+                  value: "1.0"
+                - descriptor:
+                    code: SHIPMENT_TYPE
                   value: box
-            - code: linked_order_item
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Atta
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '70.0'
-                - code: quantity
-                  value: '2'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "70.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "2"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-                - code: return_to_origin
-                  value: 'yes'
-            - code: linked_order_item
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: yes
+            - descriptor:
+                code: LINKED_ORDER_ITEM
               list:
-                - code: category
+                - descriptor:
+                    code: CATEGORY
                   value: Grocery
-                - code: name
+                - descriptor:
+                    code: NAME
                   value: Basmati Rice
-                - code: currency
+                - descriptor:
+                    code: CURRENCY
                   value: INR
-                - code: value
-                  value: '160.0'
-                - code: quantity
-                  value: '1'
-                - code: weight_unit
+                - descriptor:
+                    code: VALUE
+                  value: "160.0"
+                - descriptor:
+                    code: QUANTITY
+                  value: "1"
+                - descriptor:
+                    code: WEIGHT_UNIT
                   value: kilogram
-                - code: weight_value
-                  value: '1.0'
-                - code: return_to_origin
-                  value: 'yes'
-            - code: state
+                - descriptor:
+                    code: WEIGHT_VALUE
+                  value: "1.0"
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: yes
+            - descriptor:
+                code: STATE
               list:
-                - code: ready_to_ship
-                  value: 'no'
-            - code: rto_action
+                - descriptor:
+                    code: READY_TO_SHIP
+                  value: no
+            - descriptor:
+                code: RTO_ACTION
               list:
-                - code: return_to_origin
-                  value: 'no'
+                - descriptor:
+                    code: RETURN_TO_ORIGIN
+                  value: no
+            - descriptor:
+                code: AWB
+              list:
+                - descriptor:
+                    code: ID
+                  value: "1227262193237777"
       billing:
         name: ONDC Logistics Buyer NP
-        address:
-          name: name
-          building: My house or building name
-          locality: My street name
-          city: Bengaluru
-          state: Karnataka
-          country: India
-          area_code: '560076'
-        tax_number: 29AAACU1901H1ZK
-        phone: '9886098860'
+        address: name, My house or building name, My street name
+        state:
+          name: Karnataka
+        city:
+          name: Bengaluru
+        country:
+          name: India
+        tax_id: 29AAACU1901H1ZK
         email: abcd.efgh@gmail.com
-        created_at: '2024-11-20T21:30:00.000Z'
-        updated_at: '2024-11-20T21:30:00.000Z'
-      payment:
-        '@ondc/org/collection_amount': '300.00'
-        collected_by: BAP
-        type: POST-FULFILLMENT
-        '@ondc/org/settlement_basis': invoicing
-        '@ondc/org/settlement_window': P15D
-        '@ondc/org/settlement_details':
-          - settlement_counterparty: buyer-app
-            settlement_type: upi
-            upi_address: gft@oksbi
-            settlement_bank_account_no: XXXXXXXXXX
-            settlement_ifsc_code: XXXXXXXXX
-      '@ondc/org/linked_order':
-        items:
-          - category_id: Grocery
-            descriptor:
-              name: Atta
-            quantity:
-              count: 2
-              measure:
-                unit: kilogram
-                value: 0.5
-            price:
-              currency: INR
-              value: '150.00'
-        provider:
-          descriptor:
-            name: Aadishwar Store
-          address:
-            name: KHB Towers
-            building: Building or House No
-            locality: Koramangala
-            city: Bengaluru
-            state: Karnataka
-            area_code: '560070'
-        order:
-          id: O1
-          weight:
-            unit: kilogram
-            value: 1
-          dimensions:
-            length:
-              unit: centimeter
-              value: 1
-            breadth:
-              unit: centimeter
-              value: 1
-            height:
-              unit: centimeter
-              value: 1
+        phone: "9886098860"
+        time:
+          timestamp: 2024-11-20T21:30:00.000Z
       tags:
-        - code: bap_terms
+        - descriptor:
+            code: BAP_TERMS
           list:
-            - code: accept_bpp_terms
-              value: 'yes'
-      created_at: '2024-11-20T22:00:00.000Z'
-      updated_at: '2024-11-20T22:00:00.000Z'
+            - descriptor:
+                code: ACCEPT_BPP_TERMS
+              value: yes
+      created_at: 2024-11-20T22:00:00.000Z
+      updated_at: 2024-11-20T22:00:00.000Z
+      status: CREATED
+      payments:
+        - type: POST-FULFILLMENT
+          collected_by: BAP
+          tags:
+            - descriptor:
+                code: SETTLEMENT_TERMS
+              list:
+                - descriptor:
+                    code: SETTLEMENT_BASIS
+                  value: invoicing
+                - descriptor:
+                    code: SETTLEMENT_WINDOW
+                  value: P15D
+                - descriptor:
+                    code: SETTLEMENT_COUNTERPARTY
+                  value: buyer-app
+                - descriptor:
+                    code: SETTLEMENT_TYPE
+                  value: upi
+                - descriptor:
+                    code: UPI_ADDRESS
+                  value: gft@oksbi
+                - descriptor:
+                    code: SETTLEMENT_BANK_ACCOUNT_NO
+                  value: XXXXXXXXXX
+                - descriptor:
+                    code: SETTLEMENT_IFSC_CODE
+                  value: XXXXXXXXX

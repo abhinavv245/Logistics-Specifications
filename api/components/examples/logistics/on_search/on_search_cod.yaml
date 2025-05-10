@@ -1,34 +1,54 @@
 summary: Returns the catalog (Cash on delivery)
-description: LSP returns the catalog of its services in response to the search request and declares its ability to fulfill COD orders. 
+description: LSP returns the catalog of its services in response to the search
+  request and declares its ability to fulfill COD orders.
 value:
   context:
     domain: nic2004:60232
-    country: IND
-    city: std:080
+    location:
+      city:
+        code: std:080
+      country:
+        code: IND
+    version: 2.0.0
     action: on_search
-    core_version: "1.2.5"
     bap_id: lbnp.com
     bap_uri: https://lbnp.com/ondc
     bpp_id: lsp.com
     bpp_uri: https://lsp.com/ondc
     transaction_id: T1
     message_id: M1
-    timestamp: '2024-11-20T21:00:30.000Z'
+    timestamp: 2024-11-20T21:00:30.000Z
   message:
     catalog:
-      bpp/descriptor:
+      tags:
+        - descriptor:
+            code: LSP_FEATURES
+          list:
+            - descriptor:
+                code: "005"
+              value: yes
+            - descriptor:
+                code: "009"
+              value: yes
+            - descriptor:
+                code: 00C
+              value: yes
+      descriptor:
         name: LSP Aggregator Inc
         tags:
-          - code: bpp_terms
+          - descriptor:
+              code: BPP_TERMS
             list:
-              - code: static_terms
-                value: ''
-              - code: static_terms_new
-                value: >-
-                  https://github.com/ONDC-Official/NP-Static-Terms/lspNP_LSP/1.0/tc.pdf
-              - code: effective_date
-                value: '2024-11-20T00:00:00.000Z'
-      bpp/providers:
+              - descriptor:
+                  code: STATIC_TERMS
+                value: ""
+              - descriptor:
+                  code: STATIC_TERMS_NEW
+                value: https://github.com/ONDC-Official/NP-Static-Terms/lspNP_LSP/1.0/tc.pdf
+              - descriptor:
+                  code: EFFECTIVE_DATE
+                value: 2024-11-20T00:00:00.000Z
+      providers:
         - id: P1
           descriptor:
             name: LSP Courier Inc
@@ -39,21 +59,25 @@ value:
               time:
                 label: TAT
                 duration: PT60M
-                timestamp: '2024-11-20'
+                timestamp: 2024-11-20
           fulfillments:
-            - id: '1'
-              type: Delivery
-              start:
-                time:
-                  duration: PT15M
+            - id: "1"
+              type: DELIVERY
+              stops:
+                - type: START
+                  time:
+                    duration: PT15M
               tags:
-                - code: distance
+                - descriptor:
+                    code: DISTANCE
                   list:
-                    - code: motorable_distance_type
+                    - descriptor:
+                        code: MOTORABLE_DISTANCE_TYPE
                       value: kilometer
-                    - code: motorable_distance
-                      value: '1.8'
-            - id: '2'
+                    - descriptor:
+                        code: MOTORABLE_DISTANCE
+                      value: "1.8"
+            - id: "2"
               type: RTO
           locations:
             - id: L1
@@ -61,13 +85,11 @@ value:
               address:
                 street: Jayanagar 4th Block
                 city: Bengaluru
-                area_code: '560076'
+                area_code: "560076"
                 state: KA
           items:
             - id: I1
-              parent_item_id: ''
-              category_id: Immediate Delivery
-              fulfillment_id: '1'
+              parent_item_id: ""
               descriptor:
                 code: P2P
                 name: 60 min delivery
@@ -75,20 +97,24 @@ value:
                 long_desc: 60 min delivery for F&B
               price:
                 currency: INR
-                value: '59.00'
+                value: "59.00"
               time:
                 label: TAT
                 duration: PT45M
-                timestamp: '2024-11-20'
+                timestamp: 2024-11-20
               tags:
-                - code: type
+                - descriptor:
+                    code: TYPE
                   list:
-                    - code: type
+                    - descriptor:
+                        code: TYPE
                       value: base
+              fulfillment_ids:
+                - "1"
+              category_ids:
+                - IMMEDIATE DELIVERY
             - id: I2
               parent_item_id: I1
-              category_id: Immediate Delivery
-              fulfillment_id: '2'
               descriptor:
                 code: P2P
                 name: RTO quote
@@ -96,27 +122,26 @@ value:
                 long_desc: RTO quote
               price:
                 currency: INR
-                value: '88.50'
+                value: "88.50"
               time:
                 label: TAT
                 duration: PT60M
-                timestamp: '2024-11-20'
+                timestamp: 2024-11-20
               tags:
-                - code: type
+                - descriptor:
+                    code: TYPE
                   list:
-                    - code: type
+                    - descriptor:
+                        code: TYPE
                       value: cod
+              fulfillment_ids:
+                - "2"
+              category_ids:
+                - IMMEDIATE DELIVERY
           tags:
-            - code: special_req
+            - descriptor:
+                code: SPECIAL_REQ
               list:
-                - code: cod_order
-                  value: 'yes'
-      tags:
-        - code: lsp_features
-          list:
-            - code: '005'
-              value: 'yes'
-            - code: '009'
-              value: 'yes'
-            - code: 00C
-              value: 'yes'
+                - descriptor:
+                    code: COD_ORDER
+                  value: yes
